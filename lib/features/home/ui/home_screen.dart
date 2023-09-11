@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:pet_home/features/favorites/ui/favorites_screen.dart';
+import 'package:pet_home/features/home/ui/index_home.dart';
+import 'package:pet_home/features/profile/ui/profile_screen.dart';
+import 'package:pet_home/features/publications/ui/my_publications_screen.dart';
 import 'package:pet_home/ui/icons/custom_icons.dart';
+import 'package:pet_home/ui/widgets/bottom_bar.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -9,10 +14,20 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  PageController pageController = PageController();
+
+  final screens = [
+    const IndexHome(),
+    const MyPublicationsScreen(),
+    const FavoritesScreen(),
+    const ProfileScreen(),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        shadowColor: Colors.grey.withOpacity(0.2),
         backgroundColor: Colors.white,
         leading: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 2, vertical: 10),
@@ -33,35 +48,8 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ],
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: 1,
-        showSelectedLabels: false,
-        showUnselectedLabels: false,
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(
-              CustomIcons.home,
-              color: Color(0xFf70B765),
-            ),
-            activeIcon: Icon(
-              CustomIcons.home_fill,
-              color: Color(0xFf70B765),
-            ),
-            label: '1',
-          ),
-          BottomNavigationBarItem(
-            activeIcon: Icon(
-              Icons.chat_bubble_sharp,
-              color: Color(0xFf70B765),
-            ),
-            icon: Icon(
-              Icons.chat_bubble_outline_outlined,
-              color: Color(0xFf70B765),
-            ),
-            label: '2',
-          ),
-        ],
-      ),
+      body: Container(),
+      bottomNavigationBar: const BottomBar(),
     );
   }
 }
