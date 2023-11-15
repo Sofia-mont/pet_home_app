@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pet_home/core/router/router.dart';
+import 'package:pet_home/ui/constants/app_theme.dart';
 
 void main() => runApp(
       const ProviderScope(
@@ -22,9 +23,8 @@ class _MyAppState extends ConsumerState<MyApp> {
     final router = ref.watch(goRouterProvider);
 
     return MaterialApp.router(
-      routeInformationParser: router.routeInformationParser,
-      routeInformationProvider: router.routeInformationProvider,
-      routerDelegate: router.routerDelegate,
+      theme: AppTheme.lightTheme(),
+      routerConfig: router,
     );
   }
 }
