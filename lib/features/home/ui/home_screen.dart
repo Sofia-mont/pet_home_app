@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pet_home/features/favorites/ui/favorites_screen.dart';
 import 'package:pet_home/features/home/ui/index_home.dart';
-import 'package:pet_home/features/profile/ui/profile_screen.dart';
 import 'package:pet_home/features/publications/ui/my_publications_screen.dart';
 import 'package:pet_home/ui/icons/custom_icons.dart';
 import 'package:pet_home/ui/widgets/bottom_bar.dart';
@@ -20,7 +19,6 @@ class _HomeScreenState extends State<HomeScreen> {
     const IndexHome(),
     const MyPublicationsScreen(),
     const FavoritesScreen(),
-    const ProfileScreen(),
   ];
 
   @override

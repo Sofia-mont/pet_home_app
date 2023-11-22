@@ -7,7 +7,6 @@ import 'package:pet_home/features/auth/ui/register/register_info_step.dart';
 import 'package:pet_home/features/auth/ui/register/register_option_step.dart';
 import 'package:pet_home/features/favorites/ui/favorites_screen.dart';
 import 'package:pet_home/features/home/ui/index_home.dart';
-import 'package:pet_home/features/profile/ui/profile_screen.dart';
 import 'package:pet_home/features/publications/ui/my_publications_screen.dart';
 import 'package:pet_home/ui/widgets/errors_screen.dart';
 
@@ -23,13 +22,6 @@ final goRouterProvider = Provider<GoRouter>((ref) {
         path: '/index',
         name: 'Index',
         builder: (context, state) => IndexHome(
-          key: state.pageKey,
-        ),
-      ),
-      GoRoute(
-        path: '/profile',
-        name: 'Profile',
-        builder: (context, state) => ProfileScreen(
           key: state.pageKey,
         ),
       ),
