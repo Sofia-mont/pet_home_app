@@ -5,6 +5,7 @@ import 'package:pet_home/ui/constants/font_constants.dart';
 class AppTheme {
   static ThemeData lightTheme() {
     return ThemeData(
+      useMaterial3: false,
       visualDensity: VisualDensity.adaptivePlatformDensity,
       shadowColor: const Color(0xFF9A9A9A),
       scaffoldBackgroundColor: const Color(0xFFF5F5F5),
@@ -15,23 +16,23 @@ class AppTheme {
         color: Colors.white,
         systemOverlayStyle: SystemUiOverlayStyle.dark,
         titleTextStyle: FontConstants.subtitle1,
+        elevation: 1,
       ),
       elevatedButtonTheme: ElevatedButtonThemeData(
-        style: ButtonStyle(
-          textStyle: MaterialStateProperty.all(FontConstants.body1),
-          backgroundColor: MaterialStateProperty.all(const Color(0xFf70B765)),
-          shape: MaterialStateProperty.all(
-            const RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(
-                Radius.circular(10),
-              ),
+        style: ElevatedButton.styleFrom(
+          textStyle: FontConstants.body1,
+          backgroundColor: const Color(0xFf70B765),
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(
+              Radius.circular(10),
             ),
           ),
+          elevation: 0.0,
         ),
       ),
       textButtonTheme: TextButtonThemeData(
-        style: ButtonStyle(
-          textStyle: MaterialStateProperty.all(FontConstants.body1),
+        style: TextButton.styleFrom(
+          textStyle: FontConstants.body1,
         ),
       ),
       outlinedButtonTheme: OutlinedButtonThemeData(
@@ -47,7 +48,10 @@ class AppTheme {
           ),
         ),
       ),
-      textTheme: FontConstants.textTheme,
+      textTheme: FontConstants.textTheme.apply(
+        bodyColor: const Color(0xFF3C3C3C),
+        displayColor: const Color(0xFF3C3C3C),
+      ),
       buttonTheme: const ButtonThemeData(
         buttonColor: Color(0xFf70B765),
         shape: RoundedRectangleBorder(

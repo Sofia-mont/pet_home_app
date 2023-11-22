@@ -2,11 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class FontConstants {
-  static const maxLengthCellPhone = 10;
-  static const maxLengthTransverValue = 7;
-  static const maxLengthVeciPassword = 4;
-
-  static final _baseFont = GoogleFonts.quicksandTextTheme().bodyLarge!;
+  static final _baseFont = GoogleFonts.quicksandTextTheme().bodyMedium!;
 
   static final textTheme = GoogleFonts.quicksandTextTheme(
     TextTheme(

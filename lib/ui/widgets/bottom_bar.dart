@@ -12,7 +12,7 @@ class BottomBar extends StatefulWidget {
 class _BottomBarState extends State<BottomBar> {
   @override
   Widget build(BuildContext context) {
-    final position = 0;
+    const position = 0;
 
     return BottomNavigationBar(
       currentIndex: position,

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:pet_home/ui/constants/font_constants.dart';
 
 class InputWithText extends StatefulWidget {
   const InputWithText({
     this.isRequired = false,
+    this.obscureText = false,
     required this.title,
     required this.hintText,
     super.key,
@@ -11,6 +13,7 @@ class InputWithText extends StatefulWidget {
   final String title;
   final String hintText;
   final bool isRequired;
+  final bool obscureText;
 
   @override
   State<InputWithText> createState() => _InputWithTextState();
@@ -23,11 +26,15 @@ class _InputWithTextState extends State<InputWithText> {
       children: [
         Row(
           children: [
-            Text(widget.title),
+            Text(
+              widget.title,
+              style: FontConstants.body2,
+            ),
             if (widget.isRequired)
-              const Text(
-                '*',
-                style: TextStyle(color: Color(0xFFDF3333), fontSize: 24),
+              Text(
+                ' *',
+                style: FontConstants.body1
+                    .copyWith(color: const Color(0xFFDF3333)),
               ),
           ],
         ),
@@ -35,10 +42,11 @@ class _InputWithTextState extends State<InputWithText> {
           height: 5,
         ),
         TextFormField(
+          obscureText: widget.obscureText,
+          style: FontConstants.body2,
           decoration: InputDecoration(
             hintText: widget.hintText,
-            // ignore: prefer_const_constructors
-            hintStyle: TextStyle(color: const Color(0xFFA7A7A7)),
+            hintStyle: const TextStyle(color: Color(0xFFA7A7A7)),
           ),
         ),
       ],

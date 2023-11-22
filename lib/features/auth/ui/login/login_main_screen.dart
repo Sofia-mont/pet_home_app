@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 import 'package:go_router/go_router.dart';
 import 'package:pet_home/ui/constants/font_constants.dart';
-import 'package:pet_home/ui/widgets/input_with_title.dart';
+import 'package:pet_home/ui/widgets/inputs/input_with_title.dart';
+import 'package:pet_home/ui/widgets/buttons/large_button.dart';
 
 class LoginMainScreen extends StatefulWidget {
   const LoginMainScreen({super.key});
@@ -12,21 +13,27 @@ class LoginMainScreen extends StatefulWidget {
 }
 
 class _LoginMainScreenState extends State<LoginMainScreen> {
-  int selectedOption = -1;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
         backgroundColor: const Color(0xFf70B765),
+        iconTheme: const IconThemeData(
+          color: Colors.white,
+        ),
       ),
       body: Column(
         children: [
-          ClipPath(
-            clipper: OvalBottomBorderClipper(),
-            child: Container(
-              height: MediaQuery.of(context).size.height * 0.2,
-              color: const Color(0xFf70B765),
+          AnimatedContainer(
+            duration: const Duration(milliseconds: 300),
+            height: MediaQuery.of(context).viewInsets.bottom == 0 ? 152 : 0,
+            child: ClipPath(
+              clipper: OvalBottomBorderClipper(),
+              child: Container(
+                height: MediaQuery.of(context).size.height * 0.2,
+                color: const Color(0xFf70B765),
+              ),
             ),
           ),
           const SizedBox(
@@ -48,50 +55,44 @@ class _LoginMainScreenState extends State<LoginMainScreen> {
             child: Form(
               child: Padding(
                 padding: const EdgeInsets.symmetric(
-                  horizontal: 20,
+                  horizontal: 15,
                   vertical: 10,
                 ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    const InputWithText(
-                      title: 'Correo eléctronico',
-                      hintText: 'micorreo@example.com',
-                    ),
-                    SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.02,
-                    ),
-                    const InputWithText(
-                      title: 'Contraseña',
-                      hintText: '**********',
-                    ),
-                    SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.02,
-                    ),
-                    ElevatedButton(
-                      onPressed: () => context.push('/index'),
-                      style: ButtonStyle(
-                        elevation: const MaterialStatePropertyAll(0),
-                        minimumSize: MaterialStatePropertyAll(
-                          Size(MediaQuery.of(context).size.width * 0.9, 45),
+                child: SingleChildScrollView(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      const InputWithText(
+                        title: 'Correo eléctronico',
+                        hintText: 'micorreo@example.com',
+                      ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.02,
+                      ),
+                      const InputWithText(
+                        title: 'Contraseña',
+                        hintText: '**********',
+                      ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.02,
+                      ),
+                      LargeButton(
+                        text: 'Iniciar sesión',
+                        onPressed: () => context.push('/index'),
+                      ),
+                      TextButton(
+                        onPressed: () => context.push('/register'),
+                        child: Text(
+                          '¡Olvidé mi contraseña!',
+                          style: FontConstants.body1.copyWith(
+                            color: const Color(0xFf70B765),
+                            decoration: TextDecoration.underline,
+                            decorationColor: const Color(0xFf70B765),
+                          ),
                         ),
                       ),
-                      child: const Text('Iniciar sesión'),
-                    ),
-                    SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.01,
-                    ),
-                    InkWell(
-                      onTap: () => context.push('/register'),
-                      child: Text(
-                        '¡Olvidé mi contraseña!',
-                        style: FontConstants.body1.copyWith(
-                          color: const Color(0xFf70B765),
-                          decoration: TextDecoration.underline,
-                        ),
-                      ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ),

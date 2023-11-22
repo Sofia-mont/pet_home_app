@@ -31,7 +31,7 @@ class IndexHome extends StatelessWidget {
               onPressed: () => {context.push('/login')},
               child: const Text('OPRIMIR'),
             ),
-            TextField(),
+            const TextField(),
           ],
         ),
       ),

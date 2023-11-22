@@ -3,7 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:pet_home/features/auth/ui/login/login_main_screen.dart';
 import 'package:pet_home/features/auth/ui/login/login_screen.dart';
-import 'package:pet_home/features/auth/ui/register/register_option.dart';
+import 'package:pet_home/features/auth/ui/register/register_info_step.dart';
+import 'package:pet_home/features/auth/ui/register/register_option_step.dart';
 import 'package:pet_home/features/favorites/ui/favorites_screen.dart';
 import 'package:pet_home/features/home/ui/index_home.dart';
 import 'package:pet_home/features/profile/ui/profile_screen.dart';
@@ -62,9 +63,16 @@ final goRouterProvider = Provider<GoRouter>((ref) {
         ),
       ),
       GoRoute(
-        path: '/register',
-        name: 'Register',
-        builder: (context, state) => RegisterOption(
+        path: '/register-option-step',
+        name: 'RegisterOptionStep',
+        builder: (context, state) => RegisterOptionStep(
+          key: state.pageKey,
+        ),
+      ),
+      GoRoute(
+        path: '/register-info-step',
+        name: 'RegisterInfoStep',
+        builder: (context, state) => RegisterInfoStep(
           key: state.pageKey,
         ),
       ),

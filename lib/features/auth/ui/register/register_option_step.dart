@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:pet_home/ui/widgets/buttons/large_button.dart';
 
 class Options {
   final String image;
@@ -8,18 +9,18 @@ class Options {
 }
 
 List<Options> registerOptions = [
-  Options(image: 'Icons.abc', title: 'Persona'),
-  Options(image: 'Icons.abc', title: 'Fundación'),
+  Options(image: 'assets/img/person.png', title: 'Persona'),
+  Options(image: 'assets/img/shelter.png', title: 'Fundación'),
 ];
 
-class RegisterOption extends StatefulWidget {
-  const RegisterOption({super.key});
+class RegisterOptionStep extends StatefulWidget {
+  const RegisterOptionStep({super.key});
 
   @override
-  State<RegisterOption> createState() => _RegisterOptionState();
+  State<RegisterOptionStep> createState() => _RegisterOptionStepState();
 }
 
-class _RegisterOptionState extends State<RegisterOption> {
+class _RegisterOptionStepState extends State<RegisterOptionStep> {
   int selectedOption = -1;
   @override
   Widget build(BuildContext context) {
@@ -28,7 +29,7 @@ class _RegisterOptionState extends State<RegisterOption> {
         iconTheme: const IconThemeData(color: Color(0xFf70B765)),
       ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 30),
+        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 30),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -40,11 +41,9 @@ class _RegisterOptionState extends State<RegisterOption> {
                 fontWeight: FontWeight.w700,
               ),
             ),
-            const SizedBox(
-              height: 80,
-            ),
-            SizedBox(
-              height: 240,
+            Container(
+              margin: const EdgeInsets.symmetric(vertical: 20),
+              height: 245,
               child: ListView.builder(
                 shrinkWrap: true,
                 scrollDirection: Axis.horizontal,
@@ -57,6 +56,7 @@ class _RegisterOptionState extends State<RegisterOption> {
                     child: SizedBox(
                       width: 190,
                       child: Card(
+                        elevation: 0,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10),
                           side: const BorderSide(
@@ -70,7 +70,10 @@ class _RegisterOptionState extends State<RegisterOption> {
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
-                            Text(registerOptions[position].image),
+                            Image.asset(
+                              registerOptions[position].image,
+                              height: 137,
+                            ),
                             Text(
                               registerOptions[position].title,
                               style: TextStyle(
@@ -90,14 +93,9 @@ class _RegisterOptionState extends State<RegisterOption> {
               ),
             ),
             const Spacer(),
-            Center(
-              child: SizedBox(
-                width: MediaQuery.of(context).size.width * 0.9,
-                child: ElevatedButton(
-                  onPressed: () => context.push('/login-main'),
-                  child: const Text('Continuar'),
-                ),
-              ),
+            LargeButton(
+              text: 'Continuar',
+              onPressed: () => context.push('/register-info-step'),
             ),
           ],
         ),
