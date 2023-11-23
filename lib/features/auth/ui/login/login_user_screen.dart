@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 import 'package:go_router/go_router.dart';
+import 'package:pet_home/core/router/router.dart';
 import 'package:pet_home/ui/constants/font_constants.dart';
 import 'package:pet_home/ui/widgets/inputs/input_with_title.dart';
 import 'package:pet_home/ui/widgets/buttons/large_button.dart';
 
-class LoginMainScreen extends StatefulWidget {
-  const LoginMainScreen({super.key});
+class LoginUserScreen extends StatefulWidget {
+  const LoginUserScreen({super.key});
 
   @override
-  State<LoginMainScreen> createState() => _LoginMainScreenState();
+  State<LoginUserScreen> createState() => _LoginUserScreenState();
 }
 
-class _LoginMainScreenState extends State<LoginMainScreen> {
+class _LoginUserScreenState extends State<LoginUserScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -78,10 +79,12 @@ class _LoginMainScreenState extends State<LoginMainScreen> {
                       ),
                       LargeButton(
                         text: 'Iniciar sesión',
-                        onPressed: () => context.push('/index'),
+                        onPressed: () => context.push(RoutePath.home.path),
                       ),
                       TextButton(
-                        onPressed: () => context.push('/register'),
+                        onPressed: () => {
+                          //context.push('/register'),
+                        },
                         child: Text(
                           '¡Olvidé mi contraseña!',
                           style: FontConstants.body1.copyWith(

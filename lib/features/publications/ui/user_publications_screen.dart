@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class MyPublicationsScreen extends StatelessWidget {
-  const MyPublicationsScreen({this.showBottomBar = true, super.key});
+class UserPublicationsScreen extends StatelessWidget {
+  const UserPublicationsScreen({this.showBottomBar = true, super.key});
 
   final bool showBottomBar;
 

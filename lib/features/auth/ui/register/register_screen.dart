@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:pet_home/core/router/router.dart';
 import 'package:pet_home/ui/widgets/buttons/large_button.dart';
 
 class Options {
@@ -13,14 +14,14 @@ List<Options> registerOptions = [
   Options(image: 'assets/img/shelter.png', title: 'Fundación'),
 ];
 
-class RegisterOptionStep extends StatefulWidget {
-  const RegisterOptionStep({super.key});
+class RegisterScreen extends StatefulWidget {
+  const RegisterScreen({super.key});
 
   @override
-  State<RegisterOptionStep> createState() => _RegisterOptionStepState();
+  State<RegisterScreen> createState() => _RegisterScreenState();
 }
 
-class _RegisterOptionStepState extends State<RegisterOptionStep> {
+class _RegisterScreenState extends State<RegisterScreen> {
   int selectedOption = -1;
   @override
   Widget build(BuildContext context) {
@@ -95,7 +96,7 @@ class _RegisterOptionStepState extends State<RegisterOptionStep> {
             const Spacer(),
             LargeButton(
               text: 'Continuar',
-              onPressed: () => context.push('/register-info-step'),
+              onPressed: () => context.push(RoutePath.registerInfo.path),
             ),
           ],
         ),

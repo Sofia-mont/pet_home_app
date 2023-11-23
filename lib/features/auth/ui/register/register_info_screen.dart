@@ -4,14 +4,14 @@ import 'package:pet_home/ui/widgets/buttons/checkbox_text.dart';
 import 'package:pet_home/ui/widgets/buttons/large_button.dart';
 import 'package:pet_home/ui/widgets/inputs/input_with_title.dart';
 
-class RegisterInfoStep extends StatefulWidget {
-  const RegisterInfoStep({super.key});
+class RegisterInfoScreen extends StatefulWidget {
+  const RegisterInfoScreen({super.key});
 
   @override
-  State<RegisterInfoStep> createState() => _RegisterInfoStepState();
+  State<RegisterInfoScreen> createState() => _RegisterInfoScreenState();
 }
 
-class _RegisterInfoStepState extends State<RegisterInfoStep> {
+class _RegisterInfoScreenState extends State<RegisterInfoScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
