@@ -87,10 +87,8 @@ class _LoginUserScreenState extends State<LoginUserScreen> {
                         },
                         child: Text(
                           '¡Olvidé mi contraseña!',
-                          style: FontConstants.body1.copyWith(
+                          style: FontConstants.bodyLink1.copyWith(
                             color: const Color(0xFf70B765),
-                            decoration: TextDecoration.underline,
-                            decorationColor: const Color(0xFf70B765),
                           ),
                         ),
                       ),

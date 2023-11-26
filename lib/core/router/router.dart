@@ -6,6 +6,12 @@ import 'package:pet_home/features/auth/ui/login/login_screen.dart';
 import 'package:pet_home/features/auth/ui/register/register_info_screen.dart';
 import 'package:pet_home/features/auth/ui/register/register_screen.dart';
 import 'package:pet_home/features/favorites/ui/favorites_screen.dart';
+import 'package:pet_home/features/form_adoption/ui/family_data_screen.dart';
+import 'package:pet_home/features/form_adoption/ui/personal_data_screen.dart';
+import 'package:pet_home/features/form_adoption/ui/questionary_first_screen.dart';
+import 'package:pet_home/features/form_adoption/ui/questionary_second_screen.dart';
+import 'package:pet_home/features/form_adoption/ui/questionary_third_screen.dart';
+import 'package:pet_home/features/form_adoption/ui/secondary_data_screen.dart';
 import 'package:pet_home/features/home/ui/home_screen.dart';
 import 'package:pet_home/features/publications/ui/user_publications_screen.dart';
 import 'package:pet_home/ui/widgets/scaffold_with_navbar.dart';
@@ -19,7 +25,13 @@ enum RoutePath {
   login(path: '/login'),
   loginUser(path: '/login-user'),
   register(path: '/register'),
-  registerInfo(path: '/register-info');
+  registerInfo(path: '/register-info'),
+  adoptionPersonalData(path: '/adoption-form-personal-information'),
+  adoptionFamilyData(path: '/adoption-form-family-information'),
+  adoptionSecondaryData(path: '/adoption-form-secondary-information'),
+  adoptionQuestionaryFirts(path: '/adoption-form-questionary-1'),
+  adoptionQuestionarySecond(path: '/adoption-form-questionary-2'),
+  adoptionQuestionaryThird(path: '/adoption-form-questionary-3');
 
   const RoutePath({required this.path});
   final String path;
@@ -29,7 +41,7 @@ final goRouterProvider = Provider<GoRouter>((ref) {
   final rootNavKey = GlobalKey<NavigatorState>(debugLabel: 'rootNav');
   //final listenable = ref.watch(appRouterListenableProvider);
   return GoRouter(
-    initialLocation: '/home',
+    initialLocation: '/login',
     navigatorKey: rootNavKey,
     //refreshListenable: listenable,
     //redirect: (context, state) => appRouteRedirect(context, ref, state),
@@ -68,6 +80,38 @@ final goRouterProvider = Provider<GoRouter>((ref) {
           ),
         ],
       ),
+      //FORM ADOPTION ROUTES
+      GoRoute(
+        path: RoutePath.adoptionFamilyData.path,
+        name: RoutePath.adoptionFamilyData.name,
+        builder: (context, state) => const FamilyDataScreen(),
+      ),
+      GoRoute(
+        path: RoutePath.adoptionPersonalData.path,
+        name: RoutePath.adoptionPersonalData.name,
+        builder: (context, state) => const PersonalDataScreen(),
+      ),
+      GoRoute(
+        path: RoutePath.adoptionQuestionaryFirts.path,
+        name: RoutePath.adoptionQuestionaryFirts.name,
+        builder: (context, state) => const QuestionaryScreen(),
+      ),
+      GoRoute(
+        path: RoutePath.adoptionQuestionarySecond.path,
+        name: RoutePath.adoptionQuestionarySecond.name,
+        builder: (context, state) => const QuestionarySecondScreen(),
+      ),
+      GoRoute(
+        path: RoutePath.adoptionQuestionaryThird.path,
+        name: RoutePath.adoptionQuestionaryThird.name,
+        builder: (context, state) => const QuestionaryThirdScreen(),
+      ),
+      GoRoute(
+        path: RoutePath.adoptionSecondaryData.path,
+        name: RoutePath.adoptionSecondaryData.name,
+        builder: (context, state) => const SecondaryDataScreen(),
+      ),
+      //LOGIN ROUTES
       GoRoute(
         path: RoutePath.login.path,
         name: RoutePath.login.name,

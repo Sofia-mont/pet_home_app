@@ -17,9 +17,6 @@ class ScaffoldWithNavBar extends StatelessWidget {
     return Scaffold(
       body: navigationShell,
       bottomNavigationBar: BottomNavigationBar(
-        showSelectedLabels: false,
-        showUnselectedLabels: false,
-        unselectedItemColor: const Color(0xFf70B765),
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             activeIcon: Icon(Pethome.home_filled),

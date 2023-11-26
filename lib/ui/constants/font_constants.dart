@@ -42,6 +42,7 @@ class FontConstants {
   static final TextStyle subtitleLink1 = _baseFont.copyWith(
     fontSize: 20,
     decoration: TextDecoration.underline,
+    decorationColor: const Color(0xFf70B765),
     fontWeight: FontWeight.w600,
   );
 
@@ -58,6 +59,7 @@ class FontConstants {
   static final TextStyle bodyLink1 = _baseFont.copyWith(
     fontSize: 16,
     decoration: TextDecoration.underline,
+    decorationColor: const Color(0xFf70B765),
     fontWeight: FontWeight.w600,
   );
 
@@ -84,6 +86,7 @@ class FontConstants {
   static final TextStyle captionLink1 = _baseFont.copyWith(
     fontSize: 14,
     decoration: TextDecoration.underline,
+    decorationColor: const Color(0xFf70B765),
     fontWeight: FontWeight.w600,
   );
 
@@ -95,6 +98,7 @@ class FontConstants {
   static final TextStyle captionLink2 = _baseFont.copyWith(
     fontSize: 14,
     decoration: TextDecoration.underline,
+    decorationColor: const Color(0xFf70B765),
     fontWeight: FontWeight.w400,
   );
 
@@ -106,6 +110,7 @@ class FontConstants {
   static final TextStyle subCaptionLink1 = _baseFont.copyWith(
     fontSize: 12,
     decoration: TextDecoration.underline,
+    decorationColor: const Color(0xFf70B765),
     fontWeight: FontWeight.w600,
   );
 
@@ -117,6 +122,7 @@ class FontConstants {
   static final TextStyle subCaptionLink2 = _baseFont.copyWith(
     fontSize: 12,
     decoration: TextDecoration.underline,
+    decorationColor: const Color(0xFf70B765),
     fontWeight: FontWeight.w400,
   );
 }

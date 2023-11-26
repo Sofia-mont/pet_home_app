@@ -17,6 +17,13 @@ class AppTheme {
         systemOverlayStyle: SystemUiOverlayStyle.dark,
         titleTextStyle: FontConstants.subtitle1,
         elevation: 1,
+        iconTheme: const IconThemeData(color: Color(0xFf70B765)),
+      ),
+      bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+        backgroundColor: Colors.white,
+        unselectedItemColor: Color(0xFf70B765),
+        showSelectedLabels: false,
+        showUnselectedLabels: false,
       ),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(

@@ -54,10 +54,8 @@ class _LoginScreenState extends State<LoginScreen> {
             onPressed: () => context.push(RoutePath.register.path),
             child: Text(
               'Crear cuenta',
-              style: FontConstants.body1.copyWith(
+              style: FontConstants.bodyLink1.copyWith(
                 color: const Color(0xFf70B765),
-                decoration: TextDecoration.underline,
-                decorationColor: const Color(0xFf70B765),
               ),
             ),
           ),
