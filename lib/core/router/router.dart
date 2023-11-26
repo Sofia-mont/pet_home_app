@@ -8,6 +8,7 @@ import 'package:pet_home/features/auth/ui/register/register_screen.dart';
 import 'package:pet_home/features/favorites/ui/favorites_screen.dart';
 import 'package:pet_home/features/home/ui/home_screen.dart';
 import 'package:pet_home/features/publications/ui/user_publications_screen.dart';
+import 'package:pet_home/ui/widgets/scaffold_with_navbar.dart';
 import 'package:pet_home/ui/widgets/errors_screen.dart';
 
 enum RoutePath {
@@ -33,20 +34,39 @@ final goRouterProvider = Provider<GoRouter>((ref) {
     //refreshListenable: listenable,
     //redirect: (context, state) => appRouteRedirect(context, ref, state),
     routes: [
-      GoRoute(
-        path: RoutePath.home.path,
-        name: RoutePath.home.name,
-        builder: (context, state) => const HomeScreen(),
-      ),
-      GoRoute(
-        path: RoutePath.userPublications.path,
-        name: RoutePath.userPublications.name,
-        builder: (context, state) => const UserPublicationsScreen(),
-      ),
-      GoRoute(
-        path: RoutePath.favorites.path,
-        name: RoutePath.favorites.name,
-        builder: (context, state) => const FavoritesScreen(),
+      StatefulShellRoute.indexedStack(
+        builder: (context, state, navigationShell) {
+          return ScaffoldWithNavBar(navigationShell: navigationShell);
+        },
+        branches: <StatefulShellBranch>[
+          StatefulShellBranch(
+            routes: <RouteBase>[
+              GoRoute(
+                path: RoutePath.home.path,
+                name: RoutePath.home.name,
+                builder: (context, state) => const HomeScreen(),
+              ),
+            ],
+          ),
+          StatefulShellBranch(
+            routes: <RouteBase>[
+              GoRoute(
+                path: RoutePath.userPublications.path,
+                name: RoutePath.userPublications.name,
+                builder: (context, state) => const UserPublicationsScreen(),
+              ),
+            ],
+          ),
+          StatefulShellBranch(
+            routes: <RouteBase>[
+              GoRoute(
+                path: RoutePath.favorites.path,
+                name: RoutePath.favorites.name,
+                builder: (context, state) => const FavoritesScreen(),
+              ),
+            ],
+          ),
+        ],
       ),
       GoRoute(
         path: RoutePath.login.path,
