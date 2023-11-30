@@ -8,7 +8,7 @@ class AppTheme {
     return ThemeData(
       useMaterial3: false,
       visualDensity: VisualDensity.adaptivePlatformDensity,
-      shadowColor: const Color(0xFF9A9A9A),
+      shadowColor: Palette.textMedium,
       scaffoldBackgroundColor: const Color(0xFFF5F5F5),
       brightness: Brightness.light,
       primaryColor: Palette.primary00,
