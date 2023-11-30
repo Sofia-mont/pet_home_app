@@ -74,7 +74,7 @@ class _CheckboxTextState extends State<CheckboxText> {
         const SizedBox(
           width: 10,
         ),
-        Expanded(child: widget.text),
+        widget.text,
       ],
     );
   }

@@ -114,22 +114,26 @@ class _RegisterInfoScreenState extends State<RegisterInfoScreen> {
                 CheckboxText(
                   onChange: (value) {},
                   isChecked: true,
-                  text: RichText(
-                    text: TextSpan(
-                      children: [
-                        TextSpan(
-                          text: 'Al continuar aceptas los ',
-                          style: FontConstants.caption2,
-                        ),
-                        TextSpan(
-                          text:
-                              'términos, condiciones y políticas de tratamientos de datos.',
-                          style: FontConstants.captionLink2.copyWith(
-                            color: const Color(0xFF0073D6),
-                            decorationColor: const Color(0xFF0073D6),
+                  text: Expanded(
+                    child: RichText(
+                      maxLines: 3,
+                      text: TextSpan(
+                        children: [
+                          TextSpan(
+                            text: 'Al continuar aceptas los ',
+                            style: FontConstants.caption2,
                           ),
-                        ),
-                      ],
+                          TextSpan(
+                            text:
+                                'términos, condiciones y políticas de tratamientos de datos.',
+                            style: FontConstants.caption2.copyWith(
+                              color: const Color(0xFF0073D6),
+                              decoration: TextDecoration.underline,
+                              decorationColor: const Color(0xFF0073D6),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),

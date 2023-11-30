@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:pet_home/ui/constants/font_constants.dart';
 
-class InputWithText extends StatefulWidget {
-  const InputWithText({
+class LargeInputWithText extends StatefulWidget {
+  const LargeInputWithText({
     this.isRequired = false,
-    this.obscureText = false,
     required this.title,
     required this.hintText,
     super.key,
@@ -13,13 +12,12 @@ class InputWithText extends StatefulWidget {
   final String title;
   final String hintText;
   final bool isRequired;
-  final bool obscureText;
 
   @override
-  State<InputWithText> createState() => _InputWithTextState();
+  State<LargeInputWithText> createState() => _LargeInputWithTextState();
 }
 
-class _InputWithTextState extends State<InputWithText> {
+class _LargeInputWithTextState extends State<LargeInputWithText> {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -44,7 +42,9 @@ class _InputWithTextState extends State<InputWithText> {
           height: 5,
         ),
         TextFormField(
-          obscureText: widget.obscureText,
+          minLines: 3,
+          maxLines: 10,
+          keyboardType: TextInputType.multiline,
           style: FontConstants.body2,
           decoration: InputDecoration(
             hintText: widget.hintText,

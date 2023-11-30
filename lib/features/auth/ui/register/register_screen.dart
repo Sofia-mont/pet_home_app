@@ -55,7 +55,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       selectedOption = position;
                     }),
                     child: SizedBox(
-                      width: 190,
+                      width: (MediaQuery.of(context).size.width / 2) - 20,
                       child: Card(
                         elevation: 0,
                         shape: RoundedRectangleBorder(

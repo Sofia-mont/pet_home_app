@@ -14,7 +14,6 @@ import 'package:pet_home/features/form_adoption/ui/questionary_third_screen.dart
 import 'package:pet_home/features/form_adoption/ui/secondary_data_screen.dart';
 import 'package:pet_home/features/home/ui/home_screen.dart';
 import 'package:pet_home/features/publications/ui/user_publications_screen.dart';
-import 'package:pet_home/ui/widgets/scaffold_with_navbar.dart';
 import 'package:pet_home/ui/widgets/errors_screen.dart';
 
 enum RoutePath {
@@ -41,44 +40,23 @@ final goRouterProvider = Provider<GoRouter>((ref) {
   final rootNavKey = GlobalKey<NavigatorState>(debugLabel: 'rootNav');
   //final listenable = ref.watch(appRouterListenableProvider);
   return GoRouter(
-    initialLocation: '/login',
+    initialLocation: '/home',
     navigatorKey: rootNavKey,
-    //refreshListenable: listenable,
-    //redirect: (context, state) => appRouteRedirect(context, ref, state),
     routes: [
-      StatefulShellRoute.indexedStack(
-        builder: (context, state, navigationShell) {
-          return ScaffoldWithNavBar(navigationShell: navigationShell);
-        },
-        branches: <StatefulShellBranch>[
-          StatefulShellBranch(
-            routes: <RouteBase>[
-              GoRoute(
-                path: RoutePath.home.path,
-                name: RoutePath.home.name,
-                builder: (context, state) => const HomeScreen(),
-              ),
-            ],
-          ),
-          StatefulShellBranch(
-            routes: <RouteBase>[
-              GoRoute(
-                path: RoutePath.userPublications.path,
-                name: RoutePath.userPublications.name,
-                builder: (context, state) => const UserPublicationsScreen(),
-              ),
-            ],
-          ),
-          StatefulShellBranch(
-            routes: <RouteBase>[
-              GoRoute(
-                path: RoutePath.favorites.path,
-                name: RoutePath.favorites.name,
-                builder: (context, state) => const FavoritesScreen(),
-              ),
-            ],
-          ),
-        ],
+      GoRoute(
+        path: RoutePath.home.path,
+        name: RoutePath.home.name,
+        builder: (context, state) => const HomeScreen(),
+      ),
+      GoRoute(
+        path: RoutePath.userPublications.path,
+        name: RoutePath.userPublications.name,
+        builder: (context, state) => const UserPublicationsScreen(),
+      ),
+      GoRoute(
+        path: RoutePath.favorites.path,
+        name: RoutePath.favorites.name,
+        builder: (context, state) => const FavoritesScreen(),
       ),
       //FORM ADOPTION ROUTES
       GoRoute(
