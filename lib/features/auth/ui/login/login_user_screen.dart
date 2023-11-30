@@ -3,6 +3,7 @@ import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 import 'package:go_router/go_router.dart';
 import 'package:pet_home/core/router/router.dart';
 import 'package:pet_home/ui/constants/font_constants.dart';
+import 'package:pet_home/ui/constants/palette.dart';
 import 'package:pet_home/ui/widgets/inputs/input_with_title.dart';
 import 'package:pet_home/ui/widgets/buttons/large_button.dart';
 
@@ -19,7 +20,7 @@ class _LoginUserScreenState extends State<LoginUserScreen> {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
-        backgroundColor: const Color(0xFf70B765),
+        backgroundColor: Palette.primary00,
         iconTheme: const IconThemeData(
           color: Colors.white,
         ),
@@ -33,7 +34,7 @@ class _LoginUserScreenState extends State<LoginUserScreen> {
               clipper: OvalBottomBorderClipper(),
               child: Container(
                 height: MediaQuery.of(context).size.height * 0.2,
-                color: const Color(0xFf70B765),
+                color: Palette.primary00,
               ),
             ),
           ),
@@ -88,9 +89,9 @@ class _LoginUserScreenState extends State<LoginUserScreen> {
                         child: Text(
                           '¡Olvidé mi contraseña!',
                           style: FontConstants.body1.copyWith(
-                            color: const Color(0xFf70B765),
+                            color: Palette.primary00,
                             decoration: TextDecoration.underline,
-                            decorationColor: const Color(0xFf70B765),
+                            decorationColor: Palette.primary00,
                           ),
                         ),
                       ),

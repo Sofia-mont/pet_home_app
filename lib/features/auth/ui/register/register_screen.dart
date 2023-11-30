@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:pet_home/core/router/router.dart';
+import 'package:pet_home/ui/constants/palette.dart';
 import 'package:pet_home/ui/widgets/buttons/large_button.dart';
 
 class Options {
@@ -26,9 +27,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        iconTheme: const IconThemeData(color: Color(0xFf70B765)),
-      ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 30),
         child: Column(
@@ -37,7 +35,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
             const Text(
               'Quiero registrarme como...',
               style: TextStyle(
-                color: Color(0xFf70B765),
+                color: Palette.primary00,
                 fontSize: 20,
                 fontWeight: FontWeight.w700,
               ),
@@ -61,12 +59,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10),
                           side: const BorderSide(
-                            color: Color(0xFf70B765),
+                            color: Palette.primary00,
                             width: 2,
                           ),
                         ),
                         color: (selectedOption == position)
-                            ? const Color(0xFf70B765)
+                            ? Palette.primary00
                             : null,
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -80,7 +78,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               style: TextStyle(
                                 color: (selectedOption == position)
                                     ? Colors.white
-                                    : const Color(0xFf70B765),
+                                    : Palette.primary00,
                                 fontSize: 16,
                                 fontWeight: FontWeight.w700,
                               ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pet_home/ui/constants/font_constants.dart';
+import 'package:pet_home/ui/constants/palette.dart';
 import 'package:pet_home/ui/widgets/buttons/checkbox_text.dart';
 import 'package:pet_home/ui/widgets/buttons/large_button.dart';
 import 'package:pet_home/ui/widgets/inputs/input_with_title.dart';
@@ -15,9 +16,6 @@ class _RegisterInfoScreenState extends State<RegisterInfoScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        iconTheme: const IconThemeData(color: Color(0xFf70B765)),
-      ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
         child: Form(
@@ -31,13 +29,13 @@ class _RegisterInfoScreenState extends State<RegisterInfoScreen> {
                       TextSpan(
                         text: 'Crear cuenta\n',
                         style: FontConstants.subtitle2
-                            .copyWith(color: const Color(0xFf70B765)),
+                            .copyWith(color: Palette.primary00),
                       ),
                       TextSpan(
                         text:
                             'Ingresa los siguientes datos para la creación de tu cuenta',
                         style: FontConstants.body2
-                            .copyWith(color: const Color(0xFfA7A7A7)),
+                            .copyWith(color: Palette.textMedium),
                       ),
                     ],
                   ),
@@ -81,8 +79,7 @@ class _RegisterInfoScreenState extends State<RegisterInfoScreen> {
                 ),
                 Text(
                   'Ubicación',
-                  style: FontConstants.body1
-                      .copyWith(color: const Color(0xFf70B765)),
+                  style: FontConstants.body1.copyWith(color: Palette.primary00),
                 ),
                 const SizedBox(
                   height: 15,
@@ -127,9 +124,9 @@ class _RegisterInfoScreenState extends State<RegisterInfoScreen> {
                             text:
                                 'términos, condiciones y políticas de tratamientos de datos.',
                             style: FontConstants.caption2.copyWith(
-                              color: const Color(0xFF0073D6),
+                              color: Palette.textLink,
                               decoration: TextDecoration.underline,
-                              decorationColor: const Color(0xFF0073D6),
+                              decorationColor: Palette.textLink,
                             ),
                           ),
                         ],

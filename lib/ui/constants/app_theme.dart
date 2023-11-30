@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:pet_home/ui/constants/font_constants.dart';
+import 'package:pet_home/ui/constants/palette.dart';
 
 class AppTheme {
   static ThemeData lightTheme() {
@@ -10,25 +11,25 @@ class AppTheme {
       shadowColor: const Color(0xFF9A9A9A),
       scaffoldBackgroundColor: const Color(0xFFF5F5F5),
       brightness: Brightness.light,
-      primaryColor: const Color(0xFf70B765),
-      focusColor: const Color(0xFf70B765),
+      primaryColor: Palette.primary00,
+      focusColor: Palette.primary10L,
       appBarTheme: AppBarTheme(
         color: Colors.white,
         systemOverlayStyle: SystemUiOverlayStyle.dark,
         titleTextStyle: FontConstants.subtitle1,
         elevation: 1,
-        iconTheme: const IconThemeData(color: Color(0xFf70B765)),
+        iconTheme: const IconThemeData(color: Palette.primary00),
       ),
       bottomNavigationBarTheme: const BottomNavigationBarThemeData(
         backgroundColor: Colors.white,
-        unselectedItemColor: Color(0xFf70B765),
+        unselectedItemColor: Palette.primary00,
         showSelectedLabels: false,
         showUnselectedLabels: false,
       ),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
           textStyle: FontConstants.body1,
-          backgroundColor: const Color(0xFf70B765),
+          backgroundColor: Palette.primary00,
           shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.all(
               Radius.circular(10),
@@ -51,16 +52,16 @@ class AppTheme {
             ),
           ),
           side: MaterialStateProperty.all(
-            const BorderSide(color: Color(0xFf70B765), width: 2),
+            const BorderSide(color: Palette.primary00, width: 2),
           ),
         ),
       ),
       textTheme: FontConstants.textTheme.apply(
-        bodyColor: const Color(0xFF3C3C3C),
-        displayColor: const Color(0xFF3C3C3C),
+        bodyColor: Palette.textDark,
+        displayColor: Palette.textDark,
       ),
       buttonTheme: const ButtonThemeData(
-        buttonColor: Color(0xFf70B765),
+        buttonColor: Palette.primary00,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(10)),
         ),
@@ -74,27 +75,26 @@ class AppTheme {
           if (states.contains(MaterialState.disabled)) {
             return Colors.white;
           } else if (states.contains(MaterialState.error)) {
-            return const Color(0xFFD1343C);
+            return Palette.errorDark;
           } else if (states.contains(MaterialState.error)) {
-            return const Color(0xFFD1343C);
+            return Palette.errorDark;
           } else {
-            return const Color(0xFf70B765);
+            return Palette.primary00;
           }
         }),
       ),
       inputDecorationTheme: InputDecorationTheme(
-        fillColor: const Color(0xFf70B765),
-        focusColor: const Color(0xFf70B765),
-        hoverColor: const Color(0xFf70B765),
+        fillColor: Palette.primary00,
+        focusColor: Palette.primary00,
+        hoverColor: Palette.primary00,
         contentPadding: const EdgeInsets.all(10),
         enabledBorder: const OutlineInputBorder(
-          borderSide: BorderSide(color: Color(0xFF9A9A9A)),
+          borderSide: BorderSide(color: Palette.textMedium),
           borderRadius: BorderRadius.all(Radius.circular(7)),
         ),
-        labelStyle:
-            FontConstants.body2.copyWith(color: const Color(0xFF9A9A9A)),
+        labelStyle: FontConstants.body2.copyWith(color: Palette.textMedium),
         focusedBorder: const OutlineInputBorder(
-          borderSide: BorderSide(color: Color(0xFf70B765), width: 1.8),
+          borderSide: BorderSide(color: Palette.primary00, width: 1.8),
           borderRadius: BorderRadius.all(Radius.circular(7)),
         ),
         border: const OutlineInputBorder(
@@ -102,8 +102,8 @@ class AppTheme {
         ),
       ),
       colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.teal).copyWith(
-        primary: const Color(0xFf70B765),
-        secondary: const Color(0xFf70B765),
+        primary: Palette.primary00,
+        secondary: Palette.primary00,
       ),
     );
   }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pet_home/ui/constants/palette.dart';
 
 // ignore: must_be_immutable
 class CheckboxText extends StatefulWidget {
@@ -51,7 +52,7 @@ class _CheckboxTextState extends State<CheckboxText> {
               borderRadius: BorderRadius.circular(20),
               border: Border.all(
                 width: 3,
-                color: widget.borderColor ?? const Color(0xFf70B765),
+                color: widget.borderColor ?? Palette.primary00,
               ),
             ),
             child: isChecked
@@ -60,11 +61,11 @@ class _CheckboxTextState extends State<CheckboxText> {
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
                       color: isChecked
-                          ? widget.backgroundColor ?? const Color(0xFf70B765)
+                          ? widget.backgroundColor ?? Palette.primary00
                           : Colors.transparent,
                       border: Border.all(
                         width: 3,
-                        color: widget.borderColor ?? const Color(0xFf70B765),
+                        color: widget.borderColor ?? Palette.primary00,
                       ),
                     ),
                   )

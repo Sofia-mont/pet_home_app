@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:pet_home/core/router/router.dart';
 import 'package:pet_home/ui/constants/font_constants.dart';
+import 'package:pet_home/ui/constants/palette.dart';
 import 'package:pet_home/ui/widgets/buttons/large_button.dart';
 import 'package:pet_home/ui/widgets/inputs/input_with_title.dart';
 
@@ -20,8 +21,7 @@ class _FamilyDataScreenState extends State<FamilyDataScreen> {
       appBar: AppBar(
         title: Text(
           'Formulario de adopción',
-          style:
-              FontConstants.subtitle1.copyWith(color: const Color(0xFf70B765)),
+          style: FontConstants.subtitle1.copyWith(color: Palette.primary00),
         ),
       ),
       body: Padding(
@@ -36,7 +36,7 @@ class _FamilyDataScreenState extends State<FamilyDataScreen> {
                     Text(
                       'Composición de la familia',
                       style: FontConstants.subtitle2
-                          .copyWith(color: const Color(0xFf70B765)),
+                          .copyWith(color: Palette.primary00),
                     ),
                     const SizedBox(
                       height: 10,

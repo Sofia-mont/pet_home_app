@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pet_home/ui/constants/font_constants.dart';
+import 'package:pet_home/ui/constants/palette.dart';
 
 class InputWithText extends StatefulWidget {
   const InputWithText({
@@ -35,8 +36,8 @@ class _InputWithTextState extends State<InputWithText> {
             if (widget.isRequired)
               Text(
                 ' *',
-                style: FontConstants.caption2
-                    .copyWith(color: const Color(0xFFDF3333)),
+                style:
+                    FontConstants.caption2.copyWith(color: Palette.errorDark),
               ),
           ],
         ),
@@ -48,7 +49,7 @@ class _InputWithTextState extends State<InputWithText> {
           style: FontConstants.body2,
           decoration: InputDecoration(
             hintText: widget.hintText,
-            hintStyle: const TextStyle(color: Color(0xFFA7A7A7)),
+            hintStyle: const TextStyle(color: Palette.textMedium),
           ),
         ),
       ],
