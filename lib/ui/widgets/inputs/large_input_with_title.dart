@@ -52,6 +52,9 @@ class _LargeInputWithTextState extends State<LargeInputWithText> {
             hintStyle: const TextStyle(color: Palette.textMedium),
           ),
         ),
+        const SizedBox(
+          height: 20,
+        ),
       ],
     );
   }

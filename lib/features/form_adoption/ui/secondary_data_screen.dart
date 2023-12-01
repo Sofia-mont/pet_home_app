@@ -25,92 +25,86 @@ class _SecondaryDataScreenState extends State<SecondaryDataScreen> {
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-        child: Form(
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Datos de contacto adicional diferente a su núcleo familiar',
-                  style: FontConstants.subtitle2
-                      .copyWith(color: Palette.primary00),
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                const InputWithText(
-                  title: 'Nombre completo',
-                  hintText: 'Ingresa el nombre completo',
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                Row(
-                  children: [
-                    SizedBox(
-                      width: (MediaQuery.of(context).size.width / 2) - 20,
-                      child: const InputWithText(
-                        title: 'Departamento',
+        child: Column(
+          children: [
+            Expanded(
+              child: SingleChildScrollView(
+                child: Form(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Datos de contacto adicional diferente a su núcleo familiar',
+                        style: FontConstants.subtitle2
+                            .copyWith(color: Palette.primary00),
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      const InputWithText(
+                        title: 'Nombre completo',
+                        hintText: 'Ingresa el nombre completo',
+                      ),
+                      Row(
+                        children: [
+                          SizedBox(
+                            width: (MediaQuery.of(context).size.width / 2) - 20,
+                            child: const InputWithText(
+                              title: 'Departamento',
+                              hintText: 'Selecciona',
+                            ),
+                          ),
+                          const Spacer(),
+                          SizedBox(
+                            width: (MediaQuery.of(context).size.width / 2) - 20,
+                            child: const InputWithText(
+                              title: 'Municipio',
+                              hintText: 'Selecciona',
+                            ),
+                          ),
+                        ],
+                      ),
+                      const InputWithText(
+                        title: 'Barrio',
                         hintText: 'Selecciona',
                       ),
-                    ),
-                    const Spacer(),
-                    SizedBox(
-                      width: (MediaQuery.of(context).size.width / 2) - 20,
-                      child: const InputWithText(
-                        title: 'Municipio',
-                        hintText: 'Selecciona',
+                      const InputWithText(
+                        title: 'Dirección',
+                        hintText: 'Ingresa la dirección completa del hogar',
                       ),
-                    ),
-                  ],
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                const InputWithText(
-                  title: 'Barrio',
-                  hintText: 'Selecciona',
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                const InputWithText(
-                  title: 'Dirección',
-                  hintText: 'Ingresa la dirección completa del hogar',
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                Row(
-                  children: [
-                    SizedBox(
-                      width: (MediaQuery.of(context).size.width / 2) - 20,
-                      child: const InputWithText(
-                        title: 'Teléfono fijo',
-                        hintText: '604 123 4567',
+                      Row(
+                        children: [
+                          SizedBox(
+                            width: (MediaQuery.of(context).size.width / 2) - 20,
+                            child: const InputWithText(
+                              title: 'Teléfono fijo',
+                              hintText: '604 123 4567',
+                            ),
+                          ),
+                          const Spacer(),
+                          SizedBox(
+                            width: (MediaQuery.of(context).size.width / 2) - 20,
+                            child: const InputWithText(
+                              title: 'Celular',
+                              hintText: '312 456 6789',
+                            ),
+                          ),
+                        ],
                       ),
-                    ),
-                    const Spacer(),
-                    SizedBox(
-                      width: (MediaQuery.of(context).size.width / 2) - 20,
-                      child: const InputWithText(
-                        title: 'Celular',
-                        hintText: '312 456 6789',
-                      ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ],
+              ),
             ),
-          ),
-        ),
-      ),
-      bottomNavigationBar: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: LargeButton(
-          text: 'Continuar',
-          onPressed: () =>
-              context.push(RoutePath.adoptionQuestionaryFirts.path),
+            Visibility(
+              visible: MediaQuery.of(context).viewInsets.bottom == 0.0,
+              child: LargeButton(
+                text: 'Continuar',
+                onPressed: () =>
+                    context.push(RoutePath.adoptionQuestionaryFirts.path),
+              ),
+            ),
+          ],
         ),
       ),
     );

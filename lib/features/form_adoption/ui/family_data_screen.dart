@@ -17,7 +17,6 @@ class _FamilyDataScreenState extends State<FamilyDataScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         title: Text(
           'Formulario de adopción',
@@ -30,77 +29,71 @@ class _FamilyDataScreenState extends State<FamilyDataScreen> {
           children: [
             Expanded(
               child: SingleChildScrollView(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Composición de la familia',
-                      style: FontConstants.subtitle2
-                          .copyWith(color: Palette.primary00),
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    const InputWithText(
-                      title: 'Número de personas en el hogar',
-                      hintText: 'Ingresa el número de personas en el hogar',
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    Row(
-                      children: [
-                        SizedBox(
-                          width: (MediaQuery.of(context).size.width / 3) - 20,
-                          child: const InputWithText(
-                            title: 'Adultos',
-                            hintText: 'Ej: 2',
+                child: Form(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Composición de la familia',
+                        style: FontConstants.subtitle2
+                            .copyWith(color: Palette.primary00),
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      const InputWithText(
+                        title: 'Número de personas en el hogar',
+                        hintText: 'Ingresa el número de personas en el hogar',
+                      ),
+                      Row(
+                        children: [
+                          SizedBox(
+                            width: (MediaQuery.of(context).size.width / 3) - 20,
+                            child: const InputWithText(
+                              title: 'Adultos',
+                              hintText: 'Ej: 2',
+                            ),
                           ),
-                        ),
-                        const Spacer(),
-                        SizedBox(
-                          width: (MediaQuery.of(context).size.width / 3) - 20,
-                          child: const InputWithText(
-                            title: 'Niños',
-                            hintText: 'Ej: 2',
+                          const Spacer(),
+                          SizedBox(
+                            width: (MediaQuery.of(context).size.width / 3) - 20,
+                            child: const InputWithText(
+                              title: 'Niños',
+                              hintText: 'Ej: 2',
+                            ),
                           ),
-                        ),
-                        const Spacer(),
-                        SizedBox(
-                          width: (MediaQuery.of(context).size.width / 3) - 20,
-                          child: const InputWithText(
-                            title: 'Bebés',
-                            hintText: 'Ej: 2',
+                          const Spacer(),
+                          SizedBox(
+                            width: (MediaQuery.of(context).size.width / 3) - 20,
+                            child: const InputWithText(
+                              title: 'Bebés',
+                              hintText: 'Ej: 2',
+                            ),
                           ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    const InputWithText(
-                      title: 'Edad de cada uno',
-                      hintText: 'Ingresa la edad de cada persona',
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    const InputWithText(
-                      title: 'Describa la composición del grupo familiar',
-                      hintText: 'Ej: Papá, Mamá, abuela e hijos',
-                    ),
-                  ],
+                        ],
+                      ),
+                      const InputWithText(
+                        title: 'Edad de cada uno',
+                        hintText: 'Ingresa la edad de cada persona',
+                      ),
+                      const InputWithText(
+                        title: 'Describa la composición del grupo familiar',
+                        hintText: 'Ej: Papá, Mamá, abuela e hijos',
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
+            Visibility(
+              visible: MediaQuery.of(context).viewInsets.bottom == 0.0,
+              child: LargeButton(
+                text: 'Continuar',
+                onPressed: () =>
+                    {context.push(RoutePath.adoptionSecondaryData.path)},
+              ),
+            ),
           ],
-        ),
-      ),
-      floatingActionButton: Visibility(
-        visible: MediaQuery.of(context).viewInsets.bottom == 0.0,
-        child: LargeButton(
-          text: 'Continuar',
-          onPressed: () => {context.push(RoutePath.adoptionSecondaryData.path)},
         ),
       ),
     );

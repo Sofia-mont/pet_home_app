@@ -52,6 +52,9 @@ class _InputWithTextState extends State<InputWithText> {
             hintStyle: const TextStyle(color: Palette.textMedium),
           ),
         ),
+        const SizedBox(
+          height: 20,
+        ),
       ],
     );
   }

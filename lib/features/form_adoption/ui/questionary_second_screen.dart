@@ -28,119 +28,117 @@ class _QuestionarySecondScreenState extends State<QuestionarySecondScreen> {
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-        child: Form(
-          child: SingleChildScrollView(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  '¿Tú o algun miembro de la familia es alérgico al pelo de gato o perro?',
-                  style: FontConstants.body2,
-                ),
-                const SizedBox(
-                  height: 5,
-                ),
-                Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    SizedBox(
-                      width: (MediaQuery.of(context).size.width / 3) - 30,
-                      child: CheckboxText(
-                        onChange: () => {},
-                        text: const Text('Sí'),
-                        isChecked: false,
+        child: Column(
+          children: [
+            Expanded(
+              child: SingleChildScrollView(
+                child: Form(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        '¿Tú o algun miembro de la familia es alérgico al pelo de gato o perro?',
+                        style: FontConstants.body2,
                       ),
-                    ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    SizedBox(
-                      width: (MediaQuery.of(context).size.width / 3) - 30,
-                      child: CheckboxText(
-                        onChange: () => {},
-                        text: const Text('No'),
-                        isChecked: false,
+                      const SizedBox(
+                        height: 5,
                       ),
-                    ),
-                  ],
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                Text(
-                  '¿Puede cubrir económicamente sus necesidades: alimento, cuentas veterinarias, vacunas, correas, juguetes, medicinas, elementos de higiene?',
-                  style: FontConstants.body2,
-                ),
-                const SizedBox(
-                  height: 5,
-                ),
-                Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    SizedBox(
-                      width: (MediaQuery.of(context).size.width / 3) - 30,
-                      child: CheckboxText(
-                        onChange: () => {},
-                        text: const Text('Sí'),
-                        isChecked: false,
+                      Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          SizedBox(
+                            width: (MediaQuery.of(context).size.width / 3) - 30,
+                            child: CheckboxText(
+                              onChange: () => {},
+                              text: const Text('Sí'),
+                              isChecked: false,
+                            ),
+                          ),
+                          const SizedBox(
+                            width: 10,
+                          ),
+                          SizedBox(
+                            width: (MediaQuery.of(context).size.width / 3) - 30,
+                            child: CheckboxText(
+                              onChange: () => {},
+                              text: const Text('No'),
+                              isChecked: false,
+                            ),
+                          ),
+                        ],
                       ),
-                    ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    SizedBox(
-                      width: (MediaQuery.of(context).size.width / 3) - 30,
-                      child: CheckboxText(
-                        onChange: () => {},
-                        text: const Text('No'),
-                        isChecked: false,
+                      const SizedBox(
+                        height: 20,
                       ),
-                    ),
-                  ],
+                      Text(
+                        '¿Puede cubrir económicamente sus necesidades: alimento, cuentas veterinarias, vacunas, correas, juguetes, medicinas, elementos de higiene?',
+                        style: FontConstants.body2,
+                      ),
+                      const SizedBox(
+                        height: 5,
+                      ),
+                      Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          SizedBox(
+                            width: (MediaQuery.of(context).size.width / 3) - 30,
+                            child: CheckboxText(
+                              onChange: () => {},
+                              text: const Text('Sí'),
+                              isChecked: false,
+                            ),
+                          ),
+                          const SizedBox(
+                            width: 10,
+                          ),
+                          SizedBox(
+                            width: (MediaQuery.of(context).size.width / 3) - 30,
+                            child: CheckboxText(
+                              onChange: () => {},
+                              text: const Text('No'),
+                              isChecked: false,
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      const InputWithText(
+                        title:
+                            '¿Cuántas horas del día permanecería solo el animal?',
+                        hintText: 'Ingresa tu respuesta...',
+                      ),
+                      const InputWithText(
+                        title:
+                            '¿Qué tiempo diario dispone para compartir con el animal?',
+                        hintText: 'Ingresa tu respuesta...',
+                      ),
+                      const LargeInputWithText(
+                        title:
+                            '¿Qué sucedería si alguien resultara alérgico al animal?',
+                        hintText: 'Ingresa tu respuesta...',
+                      ),
+                      const LargeInputWithText(
+                        title:
+                            '¿Qué sucedería si usted o, en caso de ser hombre, su pareja quedara embarazada?',
+                        hintText: 'Ingresa tu respuesta...',
+                      ),
+                    ],
+                  ),
                 ),
-                const SizedBox(
-                  height: 10,
-                ),
-                const InputWithText(
-                  title: '¿Cuántas horas del día permanecería solo el animal?',
-                  hintText: 'Ingresa tu respuesta...',
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                const InputWithText(
-                  title:
-                      '¿Qué tiempo diario dispone para compartir con el animal?',
-                  hintText: 'Ingresa tu respuesta...',
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                const LargeInputWithText(
-                  title:
-                      '¿Qué sucedería si alguien resultara alérgico al animal?',
-                  hintText: 'Ingresa tu respuesta...',
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                const LargeInputWithText(
-                  title:
-                      '¿Qué sucedería si usted o, en caso de ser hombre, su pareja quedara embarazada?',
-                  hintText: 'Ingresa tu respuesta...',
-                ),
-                const SizedBox(
-                  height: 30,
-                ),
-                LargeButton(
-                  text: 'Continuar',
-                  onPressed: () =>
-                      context.push(RoutePath.adoptionQuestionaryThird.path),
-                ),
-              ],
+              ),
             ),
-          ),
+            Visibility(
+              visible: MediaQuery.of(context).viewInsets.bottom == 0.0,
+              child: LargeButton(
+                text: 'Continuar',
+                onPressed: () =>
+                    context.push(RoutePath.adoptionQuestionaryThird.path),
+              ),
+            ),
+          ],
         ),
       ),
     );

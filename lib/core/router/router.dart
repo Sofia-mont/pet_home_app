@@ -12,6 +12,7 @@ import 'package:pet_home/features/form_adoption/ui/questionary_first_screen.dart
 import 'package:pet_home/features/form_adoption/ui/questionary_second_screen.dart';
 import 'package:pet_home/features/form_adoption/ui/questionary_third_screen.dart';
 import 'package:pet_home/features/form_adoption/ui/secondary_data_screen.dart';
+import 'package:pet_home/features/form_adoption/ui/success_form_sent_screen.dart';
 import 'package:pet_home/features/home/ui/home_screen.dart';
 import 'package:pet_home/features/publications/ui/user_publications_screen.dart';
 import 'package:pet_home/ui/widgets/errors_screen.dart';
@@ -30,7 +31,8 @@ enum RoutePath {
   adoptionSecondaryData(path: '/adoption-form-secondary-information'),
   adoptionQuestionaryFirts(path: '/adoption-form-questionary-1'),
   adoptionQuestionarySecond(path: '/adoption-form-questionary-2'),
-  adoptionQuestionaryThird(path: '/adoption-form-questionary-3');
+  adoptionQuestionaryThird(path: '/adoption-form-questionary-3'),
+  successFormSent(path: '/success-form-sent');
 
   const RoutePath({required this.path});
   final String path;
@@ -88,6 +90,11 @@ final goRouterProvider = Provider<GoRouter>((ref) {
         path: RoutePath.adoptionSecondaryData.path,
         name: RoutePath.adoptionSecondaryData.name,
         builder: (context, state) => const SecondaryDataScreen(),
+      ),
+      GoRoute(
+        path: RoutePath.successFormSent.path,
+        name: RoutePath.successFormSent.name,
+        builder: (context, state) => const SuccessFormSentScreen(),
       ),
       //LOGIN ROUTES
       GoRoute(

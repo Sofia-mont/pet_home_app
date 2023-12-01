@@ -27,197 +27,197 @@ class _QuestionaryScreenState extends State<QuestionaryScreen> {
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-        child: Form(
-          child: SingleChildScrollView(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Cuestionario',
-                  style: FontConstants.subtitle2
-                      .copyWith(color: Palette.primary00),
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                const LargeInputWithText(
-                  title: '¿Por qué quiere adoptar un animal?',
-                  hintText: 'Ingresa tu respuesta...',
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                const InputWithText(
-                  title: 'Tipo de vivienda',
-                  hintText: 'Selecciona',
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                Text(
-                  '¿La vivienda es propia o de alquiler?',
-                  style: FontConstants.body2,
-                ),
-                const SizedBox(
-                  height: 5,
-                ),
-                Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    SizedBox(
-                      width: (MediaQuery.of(context).size.width / 3) - 30,
-                      child: CheckboxText(
-                        onChange: () => {},
-                        text: const Text('Propia'),
-                        isChecked: false,
+        child: Column(
+          children: [
+            Expanded(
+              child: SingleChildScrollView(
+                child: Form(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Cuestionario',
+                        style: FontConstants.subtitle2
+                            .copyWith(color: Palette.primary00),
                       ),
-                    ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    SizedBox(
-                      width: (MediaQuery.of(context).size.width / 3) - 30,
-                      child: CheckboxText(
-                        onChange: () => {},
-                        text: const Text('Alquiler'),
-                        isChecked: false,
+                      const SizedBox(
+                        height: 10,
                       ),
-                    ),
-                  ],
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                Text(
-                  '¿El reglamento de su vivienda permite mascotas?',
-                  style: FontConstants.body2,
-                ),
-                const SizedBox(
-                  height: 5,
-                ),
-                Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    SizedBox(
-                      width: (MediaQuery.of(context).size.width / 3) - 30,
-                      child: CheckboxText(
-                        onChange: () => {},
-                        text: const Text('Si'),
-                        isChecked: false,
+                      const LargeInputWithText(
+                        title: '¿Por qué quiere adoptar un animal?',
+                        hintText: 'Ingresa tu respuesta...',
                       ),
-                    ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    SizedBox(
-                      width: (MediaQuery.of(context).size.width / 3) - 30,
-                      child: CheckboxText(
-                        onChange: () => {},
-                        text: const Text('No'),
-                        isChecked: false,
+                      const InputWithText(
+                        title: 'Tipo de vivienda',
+                        hintText: 'Selecciona',
                       ),
-                    ),
-                  ],
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                Text(
-                  '¿Su vivienda tiene patio, terraza o jardín? Si es así, ¿es cubierto?',
-                  style: FontConstants.body2,
-                ),
-                const SizedBox(
-                  height: 5,
-                ),
-                Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    SizedBox(
-                      width: (MediaQuery.of(context).size.width / 3) - 30,
-                      child: CheckboxText(
-                        onChange: () => {},
-                        text: const Text('Si'),
-                        isChecked: false,
+                      Text(
+                        '¿La vivienda es propia o de alquiler?',
+                        style: FontConstants.body2,
                       ),
-                    ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    SizedBox(
-                      width: (MediaQuery.of(context).size.width / 3) - 30,
-                      child: CheckboxText(
-                        onChange: () => {},
-                        text: const Text('No'),
-                        isChecked: false,
+                      const SizedBox(
+                        height: 5,
                       ),
-                    ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    SizedBox(
-                      width: (MediaQuery.of(context).size.width / 3) - 30,
-                      child: CheckboxText(
-                        onChange: () => {},
-                        text: const Text('No tiene'),
-                        isChecked: false,
+                      Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          SizedBox(
+                            width: (MediaQuery.of(context).size.width / 3) - 30,
+                            child: CheckboxText(
+                              onChange: () => {},
+                              text: const Text('Propia'),
+                              isChecked: false,
+                            ),
+                          ),
+                          const SizedBox(
+                            width: 10,
+                          ),
+                          SizedBox(
+                            width: (MediaQuery.of(context).size.width / 3) - 30,
+                            child: CheckboxText(
+                              onChange: () => {},
+                              text: const Text('Alquiler'),
+                              isChecked: false,
+                            ),
+                          ),
+                        ],
                       ),
-                    ),
-                  ],
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                Text(
-                  '¿Está dispuesto a colocar protecciones para prevenir escapes y accidentes?',
-                  style: FontConstants.body2,
-                ),
-                const SizedBox(
-                  height: 5,
-                ),
-                Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    SizedBox(
-                      width: (MediaQuery.of(context).size.width / 3) - 30,
-                      child: CheckboxText(
-                        onChange: () => {},
-                        text: const Text('Si'),
-                        isChecked: false,
+                      const SizedBox(
+                        height: 20,
                       ),
-                    ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    SizedBox(
-                      width: (MediaQuery.of(context).size.width / 3) - 30,
-                      child: CheckboxText(
-                        onChange: () => {},
-                        text: const Text('No'),
-                        isChecked: false,
+                      Text(
+                        '¿El reglamento de su vivienda permite mascotas?',
+                        style: FontConstants.body2,
                       ),
-                    ),
-                  ],
+                      const SizedBox(
+                        height: 5,
+                      ),
+                      Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          SizedBox(
+                            width: (MediaQuery.of(context).size.width / 3) - 30,
+                            child: CheckboxText(
+                              onChange: () => {},
+                              text: const Text('Si'),
+                              isChecked: false,
+                            ),
+                          ),
+                          const SizedBox(
+                            width: 10,
+                          ),
+                          SizedBox(
+                            width: (MediaQuery.of(context).size.width / 3) - 30,
+                            child: CheckboxText(
+                              onChange: () => {},
+                              text: const Text('No'),
+                              isChecked: false,
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      Text(
+                        '¿Su vivienda tiene patio, terraza o jardín? Si es así, ¿es cubierto?',
+                        style: FontConstants.body2,
+                      ),
+                      const SizedBox(
+                        height: 5,
+                      ),
+                      Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          SizedBox(
+                            width: (MediaQuery.of(context).size.width / 3) - 30,
+                            child: CheckboxText(
+                              onChange: () => {},
+                              text: const Text('Si'),
+                              isChecked: false,
+                            ),
+                          ),
+                          const SizedBox(
+                            width: 10,
+                          ),
+                          SizedBox(
+                            width: (MediaQuery.of(context).size.width / 3) - 30,
+                            child: CheckboxText(
+                              onChange: () => {},
+                              text: const Text('No'),
+                              isChecked: false,
+                            ),
+                          ),
+                          const SizedBox(
+                            width: 10,
+                          ),
+                          SizedBox(
+                            width: (MediaQuery.of(context).size.width / 3) - 30,
+                            child: CheckboxText(
+                              onChange: () => {},
+                              text: const Text('No tiene'),
+                              isChecked: false,
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      Text(
+                        '¿Está dispuesto a colocar protecciones para prevenir escapes y accidentes?',
+                        style: FontConstants.body2,
+                      ),
+                      const SizedBox(
+                        height: 5,
+                      ),
+                      Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          SizedBox(
+                            width: (MediaQuery.of(context).size.width / 3) - 30,
+                            child: CheckboxText(
+                              onChange: () => {},
+                              text: const Text('Si'),
+                              isChecked: false,
+                            ),
+                          ),
+                          const SizedBox(
+                            width: 10,
+                          ),
+                          SizedBox(
+                            width: (MediaQuery.of(context).size.width / 3) - 30,
+                            child: CheckboxText(
+                              onChange: () => {},
+                              text: const Text('No'),
+                              isChecked: false,
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      const InputWithText(
+                        title:
+                            '¿Qué lugar de la vivienda estaría destinado al animal?',
+                        hintText: 'Ingresa tu respuesta...',
+                      ),
+                    ],
+                  ),
                 ),
-                const SizedBox(
-                  height: 10,
-                ),
-                const InputWithText(
-                  title:
-                      '¿Qué lugar de la vivienda estaría destinado al animal?',
-                  hintText: 'Ingresa tu respuesta...',
-                ),
-                const SizedBox(
-                  height: 30,
-                ),
-                LargeButton(
-                  text: 'Continuar',
-                  onPressed: () =>
-                      context.push(RoutePath.adoptionQuestionarySecond.path),
-                ),
-              ],
+              ),
             ),
-          ),
+            Visibility(
+              visible: MediaQuery.of(context).viewInsets.bottom == 0.0,
+              child: LargeButton(
+                text: 'Continuar',
+                onPressed: () =>
+                    context.push(RoutePath.adoptionQuestionarySecond.path),
+              ),
+            ),
+          ],
         ),
       ),
     );

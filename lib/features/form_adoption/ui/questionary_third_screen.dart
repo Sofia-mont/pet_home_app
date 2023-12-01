@@ -26,161 +26,169 @@ class _QuestionaryThirdScreenState extends State<QuestionaryThirdScreen> {
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-        child: Form(
-          child: SingleChildScrollView(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const LargeInputWithText(
-                  title:
-                      '¿Anteriormente ha tenido animales en casa? ¿Cuál (es)? ¿Qué paso con ellos?',
-                  hintText: 'Ingresa tu respuesta...',
-                ),
-                Text(
-                  '¿Es consciente de que un animal puede dañar o morder sus muebles y/o pertenencias?',
-                  style: FontConstants.body2,
-                ),
-                const SizedBox(
-                  height: 5,
-                ),
-                Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    SizedBox(
-                      width: (MediaQuery.of(context).size.width / 3) - 30,
-                      child: CheckboxText(
-                        onChange: () => {},
-                        text: const Text('Sí'),
-                        isChecked: false,
+        child: Column(
+          children: [
+            Expanded(
+              child: SingleChildScrollView(
+                child: Form(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const LargeInputWithText(
+                        title:
+                            '¿Anteriormente ha tenido animales en casa? ¿Cuál (es)? ¿Qué paso con ellos?',
+                        hintText: 'Ingresa tu respuesta...',
                       ),
-                    ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    SizedBox(
-                      width: (MediaQuery.of(context).size.width / 3) - 30,
-                      child: CheckboxText(
-                        onChange: () => {},
-                        text: const Text('No'),
-                        isChecked: false,
+                      Text(
+                        '¿Es consciente de que un animal puede dañar o morder sus muebles y/o pertenencias?',
+                        style: FontConstants.body2,
                       ),
-                    ),
-                  ],
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                Text(
-                  '¿Es consciente que al adoptar un perro/gato debe educarlo y ser paciente mientras este se adapta a su nueva familia y hábitos?',
-                  style: FontConstants.body2,
-                ),
-                const SizedBox(
-                  height: 5,
-                ),
-                Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    SizedBox(
-                      width: (MediaQuery.of(context).size.width / 3) - 30,
-                      child: CheckboxText(
-                        onChange: () => {},
-                        text: const Text('Sí'),
-                        isChecked: false,
+                      const SizedBox(
+                        height: 5,
                       ),
-                    ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    SizedBox(
-                      width: (MediaQuery.of(context).size.width / 3) - 30,
-                      child: CheckboxText(
-                        onChange: () => {},
-                        text: const Text('No'),
-                        isChecked: false,
+                      Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          SizedBox(
+                            width: (MediaQuery.of(context).size.width / 3) - 30,
+                            child: CheckboxText(
+                              onChange: () => {},
+                              text: const Text('Sí'),
+                              isChecked: false,
+                            ),
+                          ),
+                          const SizedBox(
+                            width: 10,
+                          ),
+                          SizedBox(
+                            width: (MediaQuery.of(context).size.width / 3) - 30,
+                            child: CheckboxText(
+                              onChange: () => {},
+                              text: const Text('No'),
+                              isChecked: false,
+                            ),
+                          ),
+                        ],
                       ),
-                    ),
-                  ],
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                Text(
-                  'Si la adopción se concreta, ¿está de acuerdo con recibir visitas de seguimiento periódicas y enviar fotografías cada vez que solicite para el respectivo seguimiento?',
-                  style: FontConstants.body2,
-                ),
-                const SizedBox(
-                  height: 5,
-                ),
-                Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    SizedBox(
-                      width: (MediaQuery.of(context).size.width / 3) - 30,
-                      child: CheckboxText(
-                        onChange: () => {},
-                        text: const Text('Sí'),
-                        isChecked: false,
+                      const SizedBox(
+                        height: 20,
                       ),
-                    ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    SizedBox(
-                      width: (MediaQuery.of(context).size.width / 3) - 30,
-                      child: CheckboxText(
-                        onChange: () => {},
-                        text: const Text('No'),
-                        isChecked: false,
+                      Text(
+                        '¿Es consciente que al adoptar un perro/gato debe educarlo y ser paciente mientras este se adapta a su nueva familia y hábitos?',
+                        style: FontConstants.body2,
                       ),
-                    ),
-                  ],
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                Text(
-                  '¿Se compromete a hacer la esterilización apenas cumpla 4 meses en caso de ser hembra y en el caso del macho apenas esté listo aproximadamente entre 6 o 7 meses?',
-                  style: FontConstants.body2,
-                ),
-                const SizedBox(
-                  height: 5,
-                ),
-                Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    SizedBox(
-                      width: (MediaQuery.of(context).size.width / 3) - 30,
-                      child: CheckboxText(
-                        onChange: () => {},
-                        text: const Text('Sí'),
-                        isChecked: false,
+                      const SizedBox(
+                        height: 5,
                       ),
-                    ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    SizedBox(
-                      width: (MediaQuery.of(context).size.width / 3) - 30,
-                      child: CheckboxText(
-                        onChange: () => {},
-                        text: const Text('No'),
-                        isChecked: false,
+                      Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          SizedBox(
+                            width: (MediaQuery.of(context).size.width / 3) - 30,
+                            child: CheckboxText(
+                              onChange: () => {},
+                              text: const Text('Sí'),
+                              isChecked: false,
+                            ),
+                          ),
+                          const SizedBox(
+                            width: 10,
+                          ),
+                          SizedBox(
+                            width: (MediaQuery.of(context).size.width / 3) - 30,
+                            child: CheckboxText(
+                              onChange: () => {},
+                              text: const Text('No'),
+                              isChecked: false,
+                            ),
+                          ),
+                        ],
                       ),
-                    ),
-                  ],
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      Text(
+                        'Si la adopción se concreta, ¿está de acuerdo con recibir visitas de seguimiento periódicas y enviar fotografías cada vez que solicite para el respectivo seguimiento?',
+                        style: FontConstants.body2,
+                      ),
+                      const SizedBox(
+                        height: 5,
+                      ),
+                      Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          SizedBox(
+                            width: (MediaQuery.of(context).size.width / 3) - 30,
+                            child: CheckboxText(
+                              onChange: () => {},
+                              text: const Text('Sí'),
+                              isChecked: false,
+                            ),
+                          ),
+                          const SizedBox(
+                            width: 10,
+                          ),
+                          SizedBox(
+                            width: (MediaQuery.of(context).size.width / 3) - 30,
+                            child: CheckboxText(
+                              onChange: () => {},
+                              text: const Text('No'),
+                              isChecked: false,
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      Text(
+                        '¿Se compromete a hacer la esterilización apenas cumpla 4 meses en caso de ser hembra y en el caso del macho apenas esté listo aproximadamente entre 6 o 7 meses?',
+                        style: FontConstants.body2,
+                      ),
+                      const SizedBox(
+                        height: 5,
+                      ),
+                      Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          SizedBox(
+                            width: (MediaQuery.of(context).size.width / 3) - 30,
+                            child: CheckboxText(
+                              onChange: () => {},
+                              text: const Text('Sí'),
+                              isChecked: false,
+                            ),
+                          ),
+                          const SizedBox(
+                            width: 10,
+                          ),
+                          SizedBox(
+                            width: (MediaQuery.of(context).size.width / 3) - 30,
+                            child: CheckboxText(
+                              onChange: () => {},
+                              text: const Text('No'),
+                              isChecked: false,
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                    ],
+                  ),
                 ),
-                const SizedBox(
-                  height: 30,
-                ),
-                LargeButton(
-                  text: 'Enviar solicitud',
-                  onPressed: () =>
-                      context.push(RoutePath.adoptionQuestionaryThird.path),
-                ),
-              ],
+              ),
             ),
-          ),
+            Visibility(
+              visible: MediaQuery.of(context).viewInsets.bottom == 0.0,
+              child: LargeButton(
+                text: 'Enviar solicitud',
+                onPressed: () => context.push(RoutePath.successFormSent.path),
+              ),
+            ),
+          ],
         ),
       ),
     );
