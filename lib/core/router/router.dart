@@ -14,6 +14,7 @@ import 'package:pet_home/features/form_adoption/ui/questionary_third_screen.dart
 import 'package:pet_home/features/form_adoption/ui/secondary_data_screen.dart';
 import 'package:pet_home/features/form_adoption/ui/success_form_sent_screen.dart';
 import 'package:pet_home/features/home/ui/home_screen.dart';
+import 'package:pet_home/features/publications/ui/publication_screen.dart';
 import 'package:pet_home/features/publications/ui/user_publications_screen.dart';
 import 'package:pet_home/ui/widgets/errors_screen.dart';
 
@@ -21,6 +22,7 @@ enum RoutePath {
   root(path: '/'),
   home(path: '/home'),
   userPublications(path: '/user-publications'),
+  userPublication(path: '/publication'),
   favorites(path: '/favorites'),
   login(path: '/login'),
   loginUser(path: '/login-user'),
@@ -54,6 +56,11 @@ final goRouterProvider = Provider<GoRouter>((ref) {
         path: RoutePath.userPublications.path,
         name: RoutePath.userPublications.name,
         builder: (context, state) => const UserPublicationsScreen(),
+      ),
+      GoRoute(
+        path: RoutePath.userPublication.path,
+        name: RoutePath.userPublication.name,
+        builder: (context, state) => const PublicationScreen(),
       ),
       GoRoute(
         path: RoutePath.favorites.path,
