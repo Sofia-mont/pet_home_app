@@ -31,6 +31,6 @@ flutter:
     - assets/img/
 
   fonts:
-    - family:  Pethome
+    - family:  PetHome
       fonts:
         - asset: assets/icons/Pethome.ttf

@@ -21,7 +21,7 @@ class HomeScreen extends StatelessWidget {
         child: Column(
           children: [
             OutlinedButton(
-              onPressed: () => context.push(RoutePath.userPublication.path),
+              onPressed: () => context.push(RoutePath.adoptionAlert.path),
               child: const Text('OPRIMIR'),
             ),
             const TextField(),
