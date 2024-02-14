@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:pet_home/ui/constants/font_constants.dart';
 import 'package:pet_home/ui/constants/palette.dart';
@@ -7,14 +8,15 @@ import 'package:pet_home/ui/widgets/buttons/large_button.dart';
 
 import '../../../core/router/router.dart';
 
-class SuccessFormSentScreen extends StatefulWidget {
+class SuccessFormSentScreen extends ConsumerStatefulWidget {
   const SuccessFormSentScreen({super.key});
 
   @override
-  State<SuccessFormSentScreen> createState() => _SuccessFormSentScreenState();
+  ConsumerState<SuccessFormSentScreen> createState() =>
+      _SuccessFormSentScreenState();
 }
 
-class _SuccessFormSentScreenState extends State<SuccessFormSentScreen> {
+class _SuccessFormSentScreenState extends ConsumerState<SuccessFormSentScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -53,7 +55,9 @@ class _SuccessFormSentScreenState extends State<SuccessFormSentScreen> {
               text: 'Finalizar',
               onPressed: () => {
                 popUntil(),
-                context.pushReplacement(RoutePath.home.path),
+                ref
+                    .read(appRouterProvider)
+                    .pushReplacement(RoutePath.home.path),
               },
             ),
           ],

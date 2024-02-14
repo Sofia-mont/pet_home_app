@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pet_home/core/router/router.dart';
 import 'package:pet_home/ui/constants/font_constants.dart';
 import 'package:pet_home/ui/constants/palette.dart';
 import 'package:pet_home/ui/widgets/buttons/large_button.dart';
 
-class AdoptionAlert extends StatelessWidget {
+class AdoptionAlert extends ConsumerWidget {
   const AdoptionAlert({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -46,8 +46,9 @@ class AdoptionAlert extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 20),
         child: LargeButton(
           text: 'Aceptar',
-          onPressed: () =>
-              context.pushReplacement(RoutePath.adoptionPersonalData.path),
+          onPressed: () => ref
+              .read(appRouterProvider)
+              .pushReplacement(RoutePath.adoptionPersonalData.path),
         ),
       ),
     );

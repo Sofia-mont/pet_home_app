@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:pet_home/core/router/router.dart';
 import 'package:pet_home/features/home/ui/widget/card.dart';
@@ -6,16 +7,16 @@ import 'package:pet_home/ui/constants/font_constants.dart';
 import 'package:pet_home/ui/constants/palette.dart';
 import 'package:pet_home/ui/constants/pethome_icons.dart';
 
-class HomeScreen extends StatefulWidget {
+class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({this.showBottomBar = true, super.key});
 
   final bool showBottomBar;
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  ConsumerState<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _HomeScreenState extends ConsumerState<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -78,7 +79,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 height: 5,
               ),
               SizedBox(
-                height: 250,
+                height: MediaQuery.of(context).size.height / 3.5,
                 child: ListView(
                   scrollDirection: Axis.horizontal,
                   children: <Widget>[
@@ -89,7 +90,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ],
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               Row(
@@ -114,7 +115,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 height: 5,
               ),
               SizedBox(
-                height: 250,
+                height: MediaQuery.of(context).size.height / 3.5,
                 child: ListView(
                   scrollDirection: Axis.horizontal,
                   children: <Widget>[

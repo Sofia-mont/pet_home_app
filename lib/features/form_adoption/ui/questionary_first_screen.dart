@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pet_home/core/router/router.dart';
 import 'package:pet_home/ui/constants/font_constants.dart';
 import 'package:pet_home/ui/constants/palette.dart';
@@ -8,14 +8,14 @@ import 'package:pet_home/ui/widgets/buttons/large_button.dart';
 import 'package:pet_home/ui/widgets/inputs/input_with_title.dart';
 import 'package:pet_home/ui/widgets/inputs/large_input_with_title.dart';
 
-class QuestionaryScreen extends StatefulWidget {
+class QuestionaryScreen extends ConsumerStatefulWidget {
   const QuestionaryScreen({super.key});
 
   @override
-  State<QuestionaryScreen> createState() => _QuestionaryScreenState();
+  ConsumerState<QuestionaryScreen> createState() => _QuestionaryScreenState();
 }
 
-class _QuestionaryScreenState extends State<QuestionaryScreen> {
+class _QuestionaryScreenState extends ConsumerState<QuestionaryScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -213,8 +213,9 @@ class _QuestionaryScreenState extends State<QuestionaryScreen> {
               visible: MediaQuery.of(context).viewInsets.bottom == 0.0,
               child: LargeButton(
                 text: 'Continuar',
-                onPressed: () =>
-                    context.push(RoutePath.adoptionQuestionarySecond.path),
+                onPressed: () => ref
+                    .read(appRouterProvider)
+                    .push(RoutePath.adoptionQuestionarySecond.path),
               ),
             ),
           ],

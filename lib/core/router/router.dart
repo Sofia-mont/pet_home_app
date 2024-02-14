@@ -47,7 +47,7 @@ final GlobalKey<NavigatorState> _rootNavigator = GlobalKey(debugLabel: 'root');
 final GlobalKey<NavigatorState> _shellNavigator =
     GlobalKey(debugLabel: 'shell');
 
-final goRouterProvider = Provider<GoRouter>((ref) {
+final appRouterProvider = Provider<GoRouter>((ref) {
   return GoRouter(
     initialLocation: '/home',
     navigatorKey: _rootNavigator,

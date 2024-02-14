@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
-import 'package:go_router/go_router.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pet_home/core/router/router.dart';
 import 'package:pet_home/ui/constants/font_constants.dart';
 import 'package:pet_home/ui/constants/palette.dart';
 import 'package:pet_home/ui/widgets/inputs/input_with_title.dart';
 import 'package:pet_home/ui/widgets/buttons/large_button.dart';
 
-class LoginUserScreen extends StatefulWidget {
+class LoginUserScreen extends ConsumerStatefulWidget {
   const LoginUserScreen({super.key});
 
   @override
-  State<LoginUserScreen> createState() => _LoginUserScreenState();
+  ConsumerState<LoginUserScreen> createState() => _LoginUserScreenState();
 }
 
-class _LoginUserScreenState extends State<LoginUserScreen> {
+class _LoginUserScreenState extends ConsumerState<LoginUserScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -80,11 +80,11 @@ class _LoginUserScreenState extends State<LoginUserScreen> {
                       ),
                       LargeButton(
                         text: 'Iniciar sesión',
-                        onPressed: () => context.push(RoutePath.home.path),
+                        onPressed: () => ref.read(appRouterProvider).push(RoutePath.home.path),
                       ),
                       TextButton(
                         onPressed: () => {
-                          //context.push('/register'),
+                          //TODO : URL
                         },
                         child: Text(
                           '¡Olvidé mi contraseña!',

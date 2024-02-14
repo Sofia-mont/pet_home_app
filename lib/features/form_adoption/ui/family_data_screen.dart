@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pet_home/core/router/router.dart';
 import 'package:pet_home/ui/constants/font_constants.dart';
 import 'package:pet_home/ui/constants/palette.dart';
 import 'package:pet_home/ui/widgets/buttons/large_button.dart';
 import 'package:pet_home/ui/widgets/inputs/input_with_title.dart';
 
-class FamilyDataScreen extends StatefulWidget {
+class FamilyDataScreen extends ConsumerStatefulWidget {
   const FamilyDataScreen({super.key});
 
   @override
-  State<FamilyDataScreen> createState() => _FamilyDataScreenState();
+  ConsumerState<FamilyDataScreen> createState() => _FamilyDataScreenState();
 }
 
-class _FamilyDataScreenState extends State<FamilyDataScreen> {
+class _FamilyDataScreenState extends ConsumerState<FamilyDataScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -89,8 +89,9 @@ class _FamilyDataScreenState extends State<FamilyDataScreen> {
               visible: MediaQuery.of(context).viewInsets.bottom == 0.0,
               child: LargeButton(
                 text: 'Continuar',
-                onPressed: () =>
-                    {context.push(RoutePath.adoptionSecondaryData.path)},
+                onPressed: () => ref
+                    .read(appRouterProvider)
+                    .push(RoutePath.adoptionSecondaryData.path),
               ),
             ),
           ],

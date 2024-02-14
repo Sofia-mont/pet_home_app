@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pet_home/core/router/router.dart';
 import 'package:pet_home/ui/constants/font_constants.dart';
 import 'package:pet_home/ui/constants/palette.dart';
@@ -7,14 +7,16 @@ import 'package:pet_home/ui/widgets/buttons/checkbox_text.dart';
 import 'package:pet_home/ui/widgets/buttons/large_button.dart';
 import 'package:pet_home/ui/widgets/inputs/large_input_with_title.dart';
 
-class QuestionaryThirdScreen extends StatefulWidget {
+class QuestionaryThirdScreen extends ConsumerStatefulWidget {
   const QuestionaryThirdScreen({super.key});
 
   @override
-  State<QuestionaryThirdScreen> createState() => _QuestionaryThirdScreenState();
+  ConsumerState<QuestionaryThirdScreen> createState() =>
+      _QuestionaryThirdScreenState();
 }
 
-class _QuestionaryThirdScreenState extends State<QuestionaryThirdScreen> {
+class _QuestionaryThirdScreenState
+    extends ConsumerState<QuestionaryThirdScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -185,7 +187,9 @@ class _QuestionaryThirdScreenState extends State<QuestionaryThirdScreen> {
               visible: MediaQuery.of(context).viewInsets.bottom == 0.0,
               child: LargeButton(
                 text: 'Enviar solicitud',
-                onPressed: () => context.push(RoutePath.successFormSent.path),
+                onPressed: () => ref
+                    .read(appRouterProvider)
+                    .push(RoutePath.successFormSent.path),
               ),
             ),
           ],

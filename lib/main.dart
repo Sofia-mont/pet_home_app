@@ -9,7 +9,6 @@ void main() => runApp(
       ),
     );
 
-//Route configuration
 class MyApp extends ConsumerStatefulWidget {
   const MyApp({super.key});
 
@@ -20,11 +19,10 @@ class MyApp extends ConsumerStatefulWidget {
 class _MyAppState extends ConsumerState<MyApp> {
   @override
   Widget build(BuildContext context) {
-    final router = ref.watch(goRouterProvider);
-
+    final routerProvider = ref.watch(appRouterProvider);
     return MaterialApp.router(
       theme: AppTheme.lightTheme(),
-      routerConfig: router,
+      routerConfig: routerProvider,
     );
   }
 }

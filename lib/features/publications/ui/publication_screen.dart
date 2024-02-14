@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pet_home/core/router/router.dart';
 import 'package:pet_home/features/publications/ui/widgets/pet_description.dart';
 import 'package:pet_home/features/publications/ui/widgets/pet_history.dart';
@@ -8,14 +8,14 @@ import 'package:pet_home/ui/constants/palette.dart';
 import 'package:pet_home/ui/constants/pethome_icons.dart';
 import 'package:pet_home/ui/widgets/buttons/large_button.dart';
 
-class PublicationScreen extends StatefulWidget {
+class PublicationScreen extends ConsumerStatefulWidget {
   const PublicationScreen({super.key});
 
   @override
-  State<PublicationScreen> createState() => _PublicationScreenState();
+  ConsumerState<PublicationScreen> createState() => _PublicationScreenState();
 }
 
-class _PublicationScreenState extends State<PublicationScreen>
+class _PublicationScreenState extends ConsumerState<PublicationScreen>
     with SingleTickerProviderStateMixin {
   late TabController tabController;
 
@@ -128,7 +128,9 @@ class _PublicationScreenState extends State<PublicationScreen>
         padding: const EdgeInsets.symmetric(horizontal: 25),
         child: LargeButton(
           onPressed: () => {
-            context.push(RoutePath.adoptionPersonalData.path),
+            ref
+                .read(appRouterProvider)
+                .push(RoutePath.adoptionPersonalData.path),
           },
           text: 'Adoptame',
         ),
