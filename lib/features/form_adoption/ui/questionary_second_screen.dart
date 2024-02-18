@@ -137,7 +137,7 @@ class _QuestionarySecondScreenState
                 text: 'Continuar',
                 onPressed: () => ref
                     .read(appRouterProvider)
-                    .push(RoutePath.adoptionQuestionaryThird.path),
+                    .push('/adoption-form-questionary-3'),
               ),
             ),
           ],

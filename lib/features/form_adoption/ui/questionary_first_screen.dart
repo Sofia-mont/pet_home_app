@@ -215,7 +215,7 @@ class _QuestionaryScreenState extends ConsumerState<QuestionaryScreen> {
                 text: 'Continuar',
                 onPressed: () => ref
                     .read(appRouterProvider)
-                    .push(RoutePath.adoptionQuestionarySecond.path),
+                    .push('/adoption-form-questionary-2'),
               ),
             ),
           ],

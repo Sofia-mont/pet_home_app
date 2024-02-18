@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:pet_home/core/router/router.dart';
 import 'package:pet_home/features/home/ui/widget/card.dart';
 import 'package:pet_home/ui/constants/font_constants.dart';
 import 'package:pet_home/ui/constants/palette.dart';
@@ -36,8 +35,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                 children: [
                   Expanded(
                     child: OutlinedButton(
-                      onPressed: () =>
-                          context.push(RoutePath.adoptionAlert.path),
+                      onPressed: () => context.push('/adoption-alert'),
                       child: const Text('Dar en adopción'),
                     ),
                   ),

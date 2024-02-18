@@ -48,7 +48,7 @@ class AdoptionAlert extends ConsumerWidget {
           text: 'Aceptar',
           onPressed: () => ref
               .read(appRouterProvider)
-              .pushReplacement(RoutePath.adoptionPersonalData.path),
+              .pushReplacement('/adoption-form-personal-information'),
         ),
       ),
     );

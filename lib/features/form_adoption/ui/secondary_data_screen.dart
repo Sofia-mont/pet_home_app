@@ -103,7 +103,7 @@ class _SecondaryDataScreenState extends ConsumerState<SecondaryDataScreen> {
                 text: 'Continuar',
                 onPressed: () => ref
                     .read(appRouterProvider)
-                    .push(RoutePath.adoptionQuestionaryFirts.path),
+                    .push('/adoption-form-questionary-1'),
               ),
             ),
           ],

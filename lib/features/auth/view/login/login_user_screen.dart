@@ -85,8 +85,7 @@ class _LoginUserScreenState extends ConsumerState<LoginUserScreen> {
               children: [
                 LargeButton(
                   text: 'Iniciar sesión',
-                  onPressed: () =>
-                      ref.read(appRouterProvider).push(RoutePath.home.path),
+                  onPressed: () => ref.read(appRouterProvider).push('/home'),
                 ),
                 TextButton(
                   onPressed: () => {

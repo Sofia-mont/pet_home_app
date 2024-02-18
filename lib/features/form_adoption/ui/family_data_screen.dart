@@ -91,7 +91,7 @@ class _FamilyDataScreenState extends ConsumerState<FamilyDataScreen> {
                 text: 'Continuar',
                 onPressed: () => ref
                     .read(appRouterProvider)
-                    .push(RoutePath.adoptionSecondaryData.path),
+                    .push('/adoption-form-secondary-information'),
               ),
             ),
           ],

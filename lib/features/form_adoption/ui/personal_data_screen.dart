@@ -119,7 +119,7 @@ class _PersonalDataScreenState extends ConsumerState<PersonalDataScreen> {
                 text: 'Continuar',
                 onPressed: () => ref
                     .read(appRouterProvider)
-                    .push(RoutePath.adoptionFamilyData.path),
+                    .push('/adoption-form-family-information'),
               ),
             ),
           ],

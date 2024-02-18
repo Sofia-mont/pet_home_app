@@ -130,7 +130,7 @@ class _PublicationScreenState extends ConsumerState<PublicationScreen>
           onPressed: () => {
             ref
                 .read(appRouterProvider)
-                .push(RoutePath.adoptionPersonalData.path),
+                .push('/adoption-form-personal-information'),
           },
           text: 'Adoptame',
         ),

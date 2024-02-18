@@ -47,13 +47,11 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
             padding: const EdgeInsets.symmetric(horizontal: 15),
             child: LargeButton(
               text: 'Iniciar sesión',
-              onPressed: () =>
-                  ref.read(appRouterProvider).push(RoutePath.loginUser.path),
+              onPressed: () => ref.read(appRouterProvider).push('/login-index'),
             ),
           ),
           TextButton(
-            onPressed: () =>
-                ref.read(appRouterProvider).push(RoutePath.register.path),
+            onPressed: () => ref.read(appRouterProvider).push('/register'),
             child: Text(
               'Crear cuenta',
               style: FontConstants.body1.copyWith(

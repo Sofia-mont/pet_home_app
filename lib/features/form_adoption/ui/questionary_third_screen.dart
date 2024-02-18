@@ -187,9 +187,8 @@ class _QuestionaryThirdScreenState
               visible: MediaQuery.of(context).viewInsets.bottom == 0.0,
               child: LargeButton(
                 text: 'Enviar solicitud',
-                onPressed: () => ref
-                    .read(appRouterProvider)
-                    .push(RoutePath.successFormSent.path),
+                onPressed: () =>
+                    ref.read(appRouterProvider).push('/success-form-sent'),
               ),
             ),
           ],

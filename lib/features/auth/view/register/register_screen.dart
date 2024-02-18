@@ -25,6 +25,7 @@ class RegisterScreen extends ConsumerStatefulWidget {
 
 class _RegisterScreenState extends ConsumerState<RegisterScreen> {
   int selectedOption = -1;
+  String personType = '';
   @override
   Widget build(BuildContext context) {
     return CustomScaffold(
@@ -50,6 +51,9 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
                 return InkWell(
                   onTap: () => setState(() {
                     selectedOption = position;
+                    if (position != -1) {
+                      personType = position == 1 ? 'Fundación' : 'Persona';
+                    }
                   }),
                   child: SizedBox(
                     width: (MediaQuery.of(context).size.width / 2) - 20,
@@ -93,11 +97,14 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
           const Spacer(),
           LargeButton(
             text: 'Continuar',
-            onPressed: () =>
-                ref.read(appRouterProvider).push(RoutePath.registerInfo.path),
+            onPressed: () => _onContinue(personType),
           ),
         ],
       ),
     );
+  }
+
+  _onContinue(String option) {
+    ref.read(appRouterProvider).push('/register-info');
   }
 }

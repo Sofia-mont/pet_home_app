@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:pet_home/core/router/router.dart';
 import 'package:pet_home/ui/constants/palette.dart';
 import 'package:pet_home/ui/constants/pethome_icons.dart';
 import 'package:pet_home/ui/scaffold/scaffold_controller.dart';
@@ -52,13 +51,13 @@ class _ScaffoldWithNavBarState extends ConsumerState<ScaffoldWithNavBar> {
     ref.read(scaffoldControllerProvider.notifier).setPosition(index);
     switch (index) {
       case 0:
-        context.go(RoutePath.home.path);
+        context.go('/home');
         break;
       case 1:
-        context.go(RoutePath.userPublications.path);
+        context.go('/user-publications');
         break;
       case 2:
-        context.go(RoutePath.favorites.path);
+        context.go('/favorites');
         break;
     }
   }

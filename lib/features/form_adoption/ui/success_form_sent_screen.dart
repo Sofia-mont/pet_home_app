@@ -55,9 +55,7 @@ class _SuccessFormSentScreenState extends ConsumerState<SuccessFormSentScreen> {
               text: 'Finalizar',
               onPressed: () => {
                 popUntil(),
-                ref
-                    .read(appRouterProvider)
-                    .pushReplacement(RoutePath.home.path),
+                ref.read(appRouterProvider).pushReplacement('/home'),
               },
             ),
           ],

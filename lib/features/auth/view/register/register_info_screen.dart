@@ -121,10 +121,15 @@ class _RegisterInfoScreenState extends State<RegisterInfoScreen> {
               ),
             ),
             Spacing.textField,
-            LargeButton(text: 'Continuar', onPressed: () => {}),
+            LargeButton(
+              text: 'Registrarme',
+              onPressed: () => _handleRegister(),
+            ),
           ],
         ),
       ),
     );
   }
 }
+
+void _handleRegister() {}
