@@ -1,10 +1,10 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:pet_home/features/auth/ui/login/login_user_screen.dart';
-import 'package:pet_home/features/auth/ui/login/login_screen.dart';
-import 'package:pet_home/features/auth/ui/register/register_info_screen.dart';
-import 'package:pet_home/features/auth/ui/register/register_screen.dart';
+import 'package:pet_home/features/auth/view/login/login_user_screen.dart';
+import 'package:pet_home/features/auth/view/login/login_screen.dart';
+import 'package:pet_home/features/auth/view/register/register_info_screen.dart';
+import 'package:pet_home/features/auth/view/register/register_screen.dart';
 import 'package:pet_home/features/favorites/ui/favorites_screen.dart';
 import 'package:pet_home/features/form_adoption/ui/adoption_alert.dart';
 import 'package:pet_home/features/form_adoption/ui/family_data_screen.dart';
@@ -49,7 +49,7 @@ final GlobalKey<NavigatorState> _shellNavigator =
 
 final appRouterProvider = Provider<GoRouter>((ref) {
   return GoRouter(
-    initialLocation: '/home',
+    initialLocation: RoutePath.login.path,
     navigatorKey: _rootNavigator,
     routes: [
       GoRoute(

@@ -2,15 +2,24 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pet_home/core/router/router.dart';
 import 'package:pet_home/ui/constants/app_theme.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-void main() => runApp(
-      const ProviderScope(
-        child: MyApp(),
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  final SharedPreferences sharedPreferences =
+      await SharedPreferences.getInstance();
+  runApp(
+    ProviderScope(
+      child: MyApp(
+        sharedPreferences: sharedPreferences,
       ),
-    );
+    ),
+  );
+}
 
 class MyApp extends ConsumerStatefulWidget {
-  const MyApp({super.key});
+  final SharedPreferences sharedPreferences;
+  const MyApp({super.key, required this.sharedPreferences});
 
   @override
   ConsumerState<MyApp> createState() => _MyAppState();

@@ -4,6 +4,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pet_home/core/router/router.dart';
 import 'package:pet_home/ui/constants/font_constants.dart';
 import 'package:pet_home/ui/constants/palette.dart';
+import 'package:pet_home/ui/constants/spacing.dart';
+import 'package:pet_home/ui/scaffold/custom_scaffold.dart';
 import 'package:pet_home/ui/widgets/buttons/large_button.dart';
 
 class LoginScreen extends ConsumerStatefulWidget {
@@ -16,12 +18,10 @@ class LoginScreen extends ConsumerStatefulWidget {
 class _LoginScreenState extends ConsumerState<LoginScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Palette.primary00,
-        automaticallyImplyLeading: false,
-      ),
+    return CustomScaffold(
+      withPadding: false,
+      appbarElevation: 0,
+      appbarColor: Palette.primary00,
       body: Column(
         children: [
           ClipPath(
@@ -47,11 +47,13 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
             padding: const EdgeInsets.symmetric(horizontal: 15),
             child: LargeButton(
               text: 'Iniciar sesión',
-              onPressed: () => ref.read(appRouterProvider).push(RoutePath.loginUser.path),
+              onPressed: () =>
+                  ref.read(appRouterProvider).push(RoutePath.loginUser.path),
             ),
           ),
           TextButton(
-            onPressed: () => ref.read(appRouterProvider).push(RoutePath.register.path),
+            onPressed: () =>
+                ref.read(appRouterProvider).push(RoutePath.register.path),
             child: Text(
               'Crear cuenta',
               style: FontConstants.body1.copyWith(
@@ -61,6 +63,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
               ),
             ),
           ),
+          Spacing.textField,
         ],
       ),
     );
