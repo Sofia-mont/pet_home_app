@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pet_home/core/router/router.dart';
+import 'package:pet_home/features/auth/view/login/login_user_screen.dart';
+import 'package:pet_home/features/auth/view/register/register_screen.dart';
 import 'package:pet_home/ui/constants/font_constants.dart';
 import 'package:pet_home/ui/constants/palette.dart';
 import 'package:pet_home/ui/constants/spacing.dart';
@@ -49,11 +51,13 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
             padding: const EdgeInsets.symmetric(horizontal: 15),
             child: LargeButton(
               text: 'Iniciar sesión',
-              onPressed: () => ref.read(appRouterProvider).push('/login-index'),
+              onPressed: () =>
+                  ref.read(appRouterProvider).push(LoginUserScreen.path),
             ),
           ),
           TextButton(
-            onPressed: () => ref.read(appRouterProvider).push('/register'),
+            onPressed: () =>
+                ref.read(appRouterProvider).push(RegisterScreen.path),
             child: Text(
               'Crear cuenta',
               style: FontConstants.body1.copyWith(

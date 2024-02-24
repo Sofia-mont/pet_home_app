@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:pet_home/features/home/ui/home_screen.dart';
 import 'package:pet_home/ui/constants/font_constants.dart';
 import 'package:pet_home/ui/constants/palette.dart';
 import 'package:pet_home/ui/constants/pethome_icons.dart';
@@ -57,7 +58,7 @@ class _SuccessFormSentScreenState extends ConsumerState<SuccessFormSentScreen> {
               text: 'Finalizar',
               onPressed: () => {
                 popUntil(),
-                ref.read(appRouterProvider).pushReplacement('/home'),
+                ref.read(appRouterProvider).pushReplacement(HomeScreen.path),
               },
             ),
           ],

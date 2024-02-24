@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pet_home/core/router/router.dart';
+import 'package:pet_home/features/form_adoption/ui/adoption_alert.dart';
 import 'package:pet_home/features/publications/ui/widgets/pet_description.dart';
 import 'package:pet_home/features/publications/ui/widgets/pet_history.dart';
 import 'package:pet_home/ui/constants/font_constants.dart';
@@ -130,9 +131,7 @@ class _PublicationScreenState extends ConsumerState<PublicationScreen>
         padding: const EdgeInsets.symmetric(horizontal: 25),
         child: LargeButton(
           onPressed: () => {
-            ref
-                .read(appRouterProvider)
-                .push('/adoption-form-personal-information'),
+            ref.read(appRouterProvider).push(AdoptionAlert.path),
           },
           text: 'Adoptame',
         ),

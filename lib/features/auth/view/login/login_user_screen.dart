@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pet_home/core/router/router.dart';
+import 'package:pet_home/features/home/ui/home_screen.dart';
 import 'package:pet_home/ui/constants/font_constants.dart';
 import 'package:pet_home/ui/constants/palette.dart';
 import 'package:pet_home/ui/scaffold/custom_scaffold.dart';
@@ -86,7 +87,8 @@ class _LoginUserScreenState extends ConsumerState<LoginUserScreen> {
               children: [
                 LargeButton(
                   text: 'Iniciar sesión',
-                  onPressed: () => ref.read(appRouterProvider).push('/home'),
+                  onPressed: () =>
+                      ref.read(appRouterProvider).push(HomeScreen.path),
                 ),
                 TextButton(
                   onPressed: () => {

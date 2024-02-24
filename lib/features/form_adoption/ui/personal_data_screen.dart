@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pet_home/core/router/router.dart';
+import 'package:pet_home/features/form_adoption/ui/family_data_screen.dart';
 import 'package:pet_home/ui/constants/font_constants.dart';
 import 'package:pet_home/ui/constants/palette.dart';
 import 'package:pet_home/ui/widgets/buttons/large_button.dart';
@@ -119,9 +120,8 @@ class _PersonalDataScreenState extends ConsumerState<PersonalDataScreen> {
               visible: MediaQuery.of(context).viewInsets.bottom == 0.0,
               child: LargeButton(
                 text: 'Continuar',
-                onPressed: () => ref
-                    .read(appRouterProvider)
-                    .push('/adoption-form-family-information'),
+                onPressed: () =>
+                    ref.read(appRouterProvider).push(FamilyDataScreen.path),
               ),
             ),
           ],

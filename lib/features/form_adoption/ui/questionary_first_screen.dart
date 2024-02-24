@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pet_home/core/router/router.dart';
+import 'package:pet_home/features/form_adoption/ui/questionary_second_screen.dart';
 import 'package:pet_home/ui/constants/font_constants.dart';
 import 'package:pet_home/ui/constants/palette.dart';
 import 'package:pet_home/ui/widgets/buttons/checkbox_text.dart';
@@ -217,7 +218,7 @@ class _QuestionaryScreenState extends ConsumerState<QuestionaryScreen> {
                 text: 'Continuar',
                 onPressed: () => ref
                     .read(appRouterProvider)
-                    .push('/adoption-form-questionary-2'),
+                    .push(QuestionarySecondScreen.path),
               ),
             ),
           ],
