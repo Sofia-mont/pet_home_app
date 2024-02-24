@@ -9,6 +9,7 @@ import 'package:pet_home/ui/widgets/inputs/input_with_title.dart';
 class SecondaryDataScreen extends ConsumerStatefulWidget {
   const SecondaryDataScreen({super.key});
 
+  static const path = '/adoption-form-secondary-information';
   @override
   ConsumerState<SecondaryDataScreen> createState() =>
       _SecondaryDataScreenState();
@@ -42,7 +43,7 @@ class _SecondaryDataScreenState extends ConsumerState<SecondaryDataScreen> {
                       const SizedBox(
                         height: 10,
                       ),
-                      const InputWithText(
+                      const InputWithTitle(
                         title: 'Nombre completo',
                         hintText: 'Ingresa el nombre completo',
                       ),
@@ -50,7 +51,7 @@ class _SecondaryDataScreenState extends ConsumerState<SecondaryDataScreen> {
                         children: [
                           SizedBox(
                             width: (MediaQuery.of(context).size.width / 2) - 20,
-                            child: const InputWithText(
+                            child: const InputWithTitle(
                               title: 'Departamento',
                               hintText: 'Selecciona',
                             ),
@@ -58,18 +59,18 @@ class _SecondaryDataScreenState extends ConsumerState<SecondaryDataScreen> {
                           const Spacer(),
                           SizedBox(
                             width: (MediaQuery.of(context).size.width / 2) - 20,
-                            child: const InputWithText(
+                            child: const InputWithTitle(
                               title: 'Municipio',
                               hintText: 'Selecciona',
                             ),
                           ),
                         ],
                       ),
-                      const InputWithText(
+                      const InputWithTitle(
                         title: 'Barrio',
                         hintText: 'Selecciona',
                       ),
-                      const InputWithText(
+                      const InputWithTitle(
                         title: 'Dirección',
                         hintText: 'Ingresa la dirección completa del hogar',
                       ),
@@ -77,7 +78,7 @@ class _SecondaryDataScreenState extends ConsumerState<SecondaryDataScreen> {
                         children: [
                           SizedBox(
                             width: (MediaQuery.of(context).size.width / 2) - 20,
-                            child: const InputWithText(
+                            child: const InputWithTitle(
                               title: 'Teléfono fijo',
                               hintText: '604 123 4567',
                             ),
@@ -85,7 +86,7 @@ class _SecondaryDataScreenState extends ConsumerState<SecondaryDataScreen> {
                           const Spacer(),
                           SizedBox(
                             width: (MediaQuery.of(context).size.width / 2) - 20,
-                            child: const InputWithText(
+                            child: const InputWithTitle(
                               title: 'Celular',
                               hintText: '312 456 6789',
                             ),

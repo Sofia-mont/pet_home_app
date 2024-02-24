@@ -11,6 +11,7 @@ import 'package:pet_home/ui/widgets/buttons/large_button.dart';
 class LoginUserScreen extends ConsumerStatefulWidget {
   const LoginUserScreen({super.key});
 
+  static const path = '/login-index';
   @override
   ConsumerState<LoginUserScreen> createState() => _LoginUserScreenState();
 }
@@ -60,14 +61,14 @@ class _LoginUserScreenState extends ConsumerState<LoginUserScreen> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const InputWithText(
+                  InputWithTitle(
                     title: 'Correo eléctronico',
                     hintText: 'micorreo@example.com',
                   ),
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.02,
                   ),
-                  const InputWithText(
+                  InputWithTitle(
                     title: 'Contraseña',
                     hintText: '**********',
                   ),

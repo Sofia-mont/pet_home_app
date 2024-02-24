@@ -5,10 +5,12 @@ import 'package:pet_home/ui/constants/font_constants.dart';
 import 'package:pet_home/ui/constants/palette.dart';
 import 'package:pet_home/ui/widgets/buttons/checkbox_text.dart';
 import 'package:pet_home/ui/widgets/buttons/large_button.dart';
-import 'package:pet_home/ui/widgets/inputs/large_input_with_title.dart';
+import 'package:pet_home/ui/widgets/inputs/input_with_title.dart';
 
 class QuestionaryThirdScreen extends ConsumerStatefulWidget {
   const QuestionaryThirdScreen({super.key});
+
+  static const path = '/adoption-form-questionary-3';
 
   @override
   ConsumerState<QuestionaryThirdScreen> createState() =>
@@ -37,10 +39,11 @@ class _QuestionaryThirdScreenState
                     mainAxisSize: MainAxisSize.min,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const LargeInputWithText(
+                      const InputWithTitle(
                         title:
                             '¿Anteriormente ha tenido animales en casa? ¿Cuál (es)? ¿Qué paso con ellos?',
                         hintText: 'Ingresa tu respuesta...',
+                        isMultiline: true,
                       ),
                       Text(
                         '¿Es consciente de que un animal puede dañar o morder sus muebles y/o pertenencias?',

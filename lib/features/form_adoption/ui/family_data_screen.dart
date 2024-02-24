@@ -9,6 +9,8 @@ import 'package:pet_home/ui/widgets/inputs/input_with_title.dart';
 class FamilyDataScreen extends ConsumerStatefulWidget {
   const FamilyDataScreen({super.key});
 
+  static const path = '/adoption-form-family-information';
+
   @override
   ConsumerState<FamilyDataScreen> createState() => _FamilyDataScreenState();
 }
@@ -41,7 +43,7 @@ class _FamilyDataScreenState extends ConsumerState<FamilyDataScreen> {
                       const SizedBox(
                         height: 10,
                       ),
-                      const InputWithText(
+                      const InputWithTitle(
                         title: 'Número de personas en el hogar',
                         hintText: 'Ingresa el número de personas en el hogar',
                       ),
@@ -49,7 +51,7 @@ class _FamilyDataScreenState extends ConsumerState<FamilyDataScreen> {
                         children: [
                           SizedBox(
                             width: (MediaQuery.of(context).size.width / 3) - 20,
-                            child: const InputWithText(
+                            child: const InputWithTitle(
                               title: 'Adultos',
                               hintText: 'Ej: 2',
                             ),
@@ -57,7 +59,7 @@ class _FamilyDataScreenState extends ConsumerState<FamilyDataScreen> {
                           const Spacer(),
                           SizedBox(
                             width: (MediaQuery.of(context).size.width / 3) - 20,
-                            child: const InputWithText(
+                            child: const InputWithTitle(
                               title: 'Niños',
                               hintText: 'Ej: 2',
                             ),
@@ -65,18 +67,18 @@ class _FamilyDataScreenState extends ConsumerState<FamilyDataScreen> {
                           const Spacer(),
                           SizedBox(
                             width: (MediaQuery.of(context).size.width / 3) - 20,
-                            child: const InputWithText(
+                            child: const InputWithTitle(
                               title: 'Bebés',
                               hintText: 'Ej: 2',
                             ),
                           ),
                         ],
                       ),
-                      const InputWithText(
+                      const InputWithTitle(
                         title: 'Edad de cada uno',
                         hintText: 'Ingresa la edad de cada persona',
                       ),
-                      const InputWithText(
+                      const InputWithTitle(
                         title: 'Describa la composición del grupo familiar',
                         hintText: 'Ej: Papá, Mamá, abuela e hijos',
                       ),

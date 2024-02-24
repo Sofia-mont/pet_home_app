@@ -20,7 +20,7 @@ mixin _$AuthState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(User user) successRegister,
+    required TResult Function() successRegister,
     required TResult Function() successLogin,
     required TResult Function(dynamic message) error,
   }) =>
@@ -29,7 +29,7 @@ mixin _$AuthState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(User user)? successRegister,
+    TResult? Function()? successRegister,
     TResult? Function()? successLogin,
     TResult? Function(dynamic message)? error,
   }) =>
@@ -38,7 +38,7 @@ mixin _$AuthState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(User user)? successRegister,
+    TResult Function()? successRegister,
     TResult Function()? successLogin,
     TResult Function(dynamic message)? error,
     required TResult orElse(),
@@ -131,7 +131,7 @@ class _$AuthInitialImpl implements _AuthInitial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(User user) successRegister,
+    required TResult Function() successRegister,
     required TResult Function() successLogin,
     required TResult Function(dynamic message) error,
   }) {
@@ -143,7 +143,7 @@ class _$AuthInitialImpl implements _AuthInitial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(User user)? successRegister,
+    TResult? Function()? successRegister,
     TResult? Function()? successLogin,
     TResult? Function(dynamic message)? error,
   }) {
@@ -155,7 +155,7 @@ class _$AuthInitialImpl implements _AuthInitial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(User user)? successRegister,
+    TResult Function()? successRegister,
     TResult Function()? successLogin,
     TResult Function(dynamic message)? error,
     required TResult orElse(),
@@ -251,7 +251,7 @@ class _$AuthLoadingImpl implements _AuthLoading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(User user) successRegister,
+    required TResult Function() successRegister,
     required TResult Function() successLogin,
     required TResult Function(dynamic message) error,
   }) {
@@ -263,7 +263,7 @@ class _$AuthLoadingImpl implements _AuthLoading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(User user)? successRegister,
+    TResult? Function()? successRegister,
     TResult? Function()? successLogin,
     TResult? Function(dynamic message)? error,
   }) {
@@ -275,7 +275,7 @@ class _$AuthLoadingImpl implements _AuthLoading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(User user)? successRegister,
+    TResult Function()? successRegister,
     TResult Function()? successLogin,
     TResult Function(dynamic message)? error,
     required TResult orElse(),
@@ -336,10 +336,6 @@ abstract class _$$AuthSuccessRegisterImplCopyWith<$Res> {
   factory _$$AuthSuccessRegisterImplCopyWith(_$AuthSuccessRegisterImpl value,
           $Res Function(_$AuthSuccessRegisterImpl) then) =
       __$$AuthSuccessRegisterImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({User user});
-
-  $UserCopyWith<$Res> get user;
 }
 
 /// @nodoc
@@ -349,70 +345,38 @@ class __$$AuthSuccessRegisterImplCopyWithImpl<$Res>
   __$$AuthSuccessRegisterImplCopyWithImpl(_$AuthSuccessRegisterImpl _value,
       $Res Function(_$AuthSuccessRegisterImpl) _then)
       : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? user = null,
-  }) {
-    return _then(_$AuthSuccessRegisterImpl(
-      null == user
-          ? _value.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as User,
-    ));
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $UserCopyWith<$Res> get user {
-    return $UserCopyWith<$Res>(_value.user, (value) {
-      return _then(_value.copyWith(user: value));
-    });
-  }
 }
 
 /// @nodoc
 
 class _$AuthSuccessRegisterImpl implements _AuthSuccessRegister {
-  const _$AuthSuccessRegisterImpl(this.user);
-
-  @override
-  final User user;
+  const _$AuthSuccessRegisterImpl();
 
   @override
   String toString() {
-    return 'AuthState.successRegister(user: $user)';
+    return 'AuthState.successRegister()';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$AuthSuccessRegisterImpl &&
-            (identical(other.user, user) || other.user == user));
+            other is _$AuthSuccessRegisterImpl);
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, user);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$AuthSuccessRegisterImplCopyWith<_$AuthSuccessRegisterImpl> get copyWith =>
-      __$$AuthSuccessRegisterImplCopyWithImpl<_$AuthSuccessRegisterImpl>(
-          this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(User user) successRegister,
+    required TResult Function() successRegister,
     required TResult Function() successLogin,
     required TResult Function(dynamic message) error,
   }) {
-    return successRegister(user);
+    return successRegister();
   }
 
   @override
@@ -420,11 +384,11 @@ class _$AuthSuccessRegisterImpl implements _AuthSuccessRegister {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(User user)? successRegister,
+    TResult? Function()? successRegister,
     TResult? Function()? successLogin,
     TResult? Function(dynamic message)? error,
   }) {
-    return successRegister?.call(user);
+    return successRegister?.call();
   }
 
   @override
@@ -432,13 +396,13 @@ class _$AuthSuccessRegisterImpl implements _AuthSuccessRegister {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(User user)? successRegister,
+    TResult Function()? successRegister,
     TResult Function()? successLogin,
     TResult Function(dynamic message)? error,
     required TResult orElse(),
   }) {
     if (successRegister != null) {
-      return successRegister(user);
+      return successRegister();
     }
     return orElse();
   }
@@ -485,13 +449,7 @@ class _$AuthSuccessRegisterImpl implements _AuthSuccessRegister {
 }
 
 abstract class _AuthSuccessRegister implements AuthState {
-  const factory _AuthSuccessRegister(final User user) =
-      _$AuthSuccessRegisterImpl;
-
-  User get user;
-  @JsonKey(ignore: true)
-  _$$AuthSuccessRegisterImplCopyWith<_$AuthSuccessRegisterImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  const factory _AuthSuccessRegister() = _$AuthSuccessRegisterImpl;
 }
 
 /// @nodoc
@@ -534,7 +492,7 @@ class _$AuthSuccessLoginImpl implements _AuthSuccessLogin {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(User user) successRegister,
+    required TResult Function() successRegister,
     required TResult Function() successLogin,
     required TResult Function(dynamic message) error,
   }) {
@@ -546,7 +504,7 @@ class _$AuthSuccessLoginImpl implements _AuthSuccessLogin {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(User user)? successRegister,
+    TResult? Function()? successRegister,
     TResult? Function()? successLogin,
     TResult? Function(dynamic message)? error,
   }) {
@@ -558,7 +516,7 @@ class _$AuthSuccessLoginImpl implements _AuthSuccessLogin {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(User user)? successRegister,
+    TResult Function()? successRegister,
     TResult Function()? successLogin,
     TResult Function(dynamic message)? error,
     required TResult orElse(),
@@ -679,7 +637,7 @@ class _$AuthErrorImpl implements _AuthError {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(User user) successRegister,
+    required TResult Function() successRegister,
     required TResult Function() successLogin,
     required TResult Function(dynamic message) error,
   }) {
@@ -691,7 +649,7 @@ class _$AuthErrorImpl implements _AuthError {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(User user)? successRegister,
+    TResult? Function()? successRegister,
     TResult? Function()? successLogin,
     TResult? Function(dynamic message)? error,
   }) {
@@ -703,7 +661,7 @@ class _$AuthErrorImpl implements _AuthError {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(User user)? successRegister,
+    TResult Function()? successRegister,
     TResult Function()? successLogin,
     TResult Function(dynamic message)? error,
     required TResult orElse(),

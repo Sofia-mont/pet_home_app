@@ -6,10 +6,11 @@ import 'package:pet_home/ui/constants/palette.dart';
 import 'package:pet_home/ui/widgets/buttons/checkbox_text.dart';
 import 'package:pet_home/ui/widgets/buttons/large_button.dart';
 import 'package:pet_home/ui/widgets/inputs/input_with_title.dart';
-import 'package:pet_home/ui/widgets/inputs/large_input_with_title.dart';
 
 class QuestionaryScreen extends ConsumerStatefulWidget {
   const QuestionaryScreen({super.key});
+
+  static const path = '/adoption-form-questionary-1';
 
   @override
   ConsumerState<QuestionaryScreen> createState() => _QuestionaryScreenState();
@@ -44,11 +45,12 @@ class _QuestionaryScreenState extends ConsumerState<QuestionaryScreen> {
                       const SizedBox(
                         height: 10,
                       ),
-                      const LargeInputWithText(
+                      const InputWithTitle(
                         title: '¿Por qué quiere adoptar un animal?',
                         hintText: 'Ingresa tu respuesta...',
+                        isMultiline: true,
                       ),
-                      const InputWithText(
+                      const InputWithTitle(
                         title: 'Tipo de vivienda',
                         hintText: 'Selecciona',
                       ),
@@ -199,7 +201,7 @@ class _QuestionaryScreenState extends ConsumerState<QuestionaryScreen> {
                       const SizedBox(
                         height: 20,
                       ),
-                      const InputWithText(
+                      const InputWithTitle(
                         title:
                             '¿Qué lugar de la vivienda estaría destinado al animal?',
                         hintText: 'Ingresa tu respuesta...',

@@ -11,6 +11,8 @@ class HomeScreen extends ConsumerStatefulWidget {
 
   final bool showBottomBar;
 
+  static const path = '/home';
+
   @override
   ConsumerState<HomeScreen> createState() => _HomeScreenState();
 }

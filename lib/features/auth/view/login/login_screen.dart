@@ -13,6 +13,8 @@ class LoginScreen extends ConsumerStatefulWidget {
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() => _LoginScreenState();
+
+  static const path = '/login';
 }
 
 class _LoginScreenState extends ConsumerState<LoginScreen> {

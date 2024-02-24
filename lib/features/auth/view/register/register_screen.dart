@@ -19,6 +19,8 @@ List<Options> registerOptions = [
 class RegisterScreen extends ConsumerStatefulWidget {
   const RegisterScreen({super.key});
 
+  static const path = '/register';
+
   @override
   ConsumerState<RegisterScreen> createState() => _RegisterScreenState();
 }
@@ -96,6 +98,7 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
           ),
           const Spacer(),
           LargeButton(
+            isEnabled: personType != '',
             text: 'Continuar',
             onPressed: () => _onContinue(personType),
           ),
@@ -105,6 +108,8 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
   }
 
   _onContinue(String option) {
-    ref.read(appRouterProvider).push('/register-info');
+    ref
+        .read(appRouterProvider)
+        .pushNamed('registerInfo', queryParameters: {'userType': option});
   }
 }

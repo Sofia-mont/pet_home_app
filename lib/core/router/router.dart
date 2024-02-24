@@ -30,83 +30,85 @@ final appRouterProvider = Provider<GoRouter>((ref) {
     navigatorKey: _rootNavigator,
     routes: [
       GoRoute(
-        path: '/publication',
-        name: 'userPublication',
+        path: PublicationScreen.path,
+        name: PublicationScreen.path,
         builder: (context, state) => const PublicationScreen(),
       ),
       //FORM ADOPTION ROUTES
       GoRoute(
         parentNavigatorKey: _rootNavigator,
-        path: '/adoption-alert',
-        name: 'adoptionAlert',
+        path: AdoptionAlert.path,
+        name: AdoptionAlert.path,
         builder: (context, state) => const AdoptionAlert(),
       ),
       GoRoute(
         parentNavigatorKey: _rootNavigator,
-        path: '/adoption-form-family-information',
-        name: 'adoptionFamilyData',
+        path: FamilyDataScreen.path,
+        name: FamilyDataScreen.path,
         builder: (context, state) => const FamilyDataScreen(),
       ),
       GoRoute(
         parentNavigatorKey: _rootNavigator,
-        path: '/adoption-form-personal-information',
-        name: 'adoptionPersonalData',
+        path: PersonalDataScreen.path,
+        name: PersonalDataScreen.path,
         builder: (context, state) => const PersonalDataScreen(),
       ),
       GoRoute(
         parentNavigatorKey: _rootNavigator,
-        path: '/adoption-form-questionary-1',
-        name: 'adoptionQuestionaryFirst',
+        path: QuestionaryScreen.path,
+        name: QuestionaryScreen.path,
         builder: (context, state) => const QuestionaryScreen(),
       ),
       GoRoute(
         parentNavigatorKey: _rootNavigator,
-        path: '/adoption-form-questionary-2',
-        name: 'adoptionQuestionarySecond',
+        path: QuestionaryScreen.path,
+        name: QuestionaryScreen.path,
         builder: (context, state) => const QuestionarySecondScreen(),
       ),
       GoRoute(
         parentNavigatorKey: _rootNavigator,
-        path: '/adoption-form-questionary-3',
-        name: 'adoptionQuestionaryThird',
+        path: QuestionaryScreen.path,
+        name: QuestionaryScreen.path,
         builder: (context, state) => const QuestionaryThirdScreen(),
       ),
       GoRoute(
         parentNavigatorKey: _rootNavigator,
-        path: '/adoption-form-secondary-information',
-        name: 'adoptionSecondaryData',
+        path: SecondaryDataScreen.path,
+        name: SecondaryDataScreen.path,
         builder: (context, state) => const SecondaryDataScreen(),
       ),
       GoRoute(
         parentNavigatorKey: _rootNavigator,
-        path: '/success-form-sent',
-        name: 'successFormSent',
+        path: SuccessFormSentScreen.path,
+        name: SuccessFormSentScreen.path,
         builder: (context, state) => const SuccessFormSentScreen(),
       ),
       //LOGIN ROUTES
       GoRoute(
         parentNavigatorKey: _rootNavigator,
-        path: '/login',
-        name: 'login',
+        path: LoginScreen.path,
+        name: LoginScreen.path,
         builder: (context, state) => const LoginScreen(),
       ),
       GoRoute(
         parentNavigatorKey: _rootNavigator,
-        path: '/login-index',
-        name: 'loginIndex',
+        path: LoginScreen.path,
+        name: LoginScreen.path,
         builder: (context, state) => const LoginUserScreen(),
       ),
       GoRoute(
         parentNavigatorKey: _rootNavigator,
-        path: '/register',
-        name: 'register',
+        path: RegisterScreen.path,
+        name: RegisterScreen.path,
         builder: (context, state) => const RegisterScreen(),
       ),
       GoRoute(
         parentNavigatorKey: _rootNavigator,
-        path: '/register-info',
-        name: 'registerInfo',
-        builder: (context, state) => const RegisterInfoScreen(),
+        path: RegisterInfoScreen.path,
+        name: RegisterInfoScreen.path,
+        builder: (context, state) => RegisterInfoScreen(
+          userType: state.uri.queryParameters['userType']!,
+        ),
       ),
       ShellRoute(
         navigatorKey: _shellNavigator,
@@ -114,8 +116,8 @@ final appRouterProvider = Provider<GoRouter>((ref) {
             ScaffoldWithNavBar(key: state.pageKey, widget: child),
         routes: [
           GoRoute(
-            path: '/home',
-            name: 'home',
+            path: HomeScreen.path,
+            name: HomeScreen.path,
             pageBuilder: (context, state) {
               return NoTransitionPage(
                 child: HomeScreen(
@@ -125,8 +127,8 @@ final appRouterProvider = Provider<GoRouter>((ref) {
             },
           ),
           GoRoute(
-            path: '/user-publications',
-            name: 'userPublications',
+            path: UserPublicationsScreen.path,
+            name: UserPublicationsScreen.path,
             pageBuilder: (context, state) {
               return NoTransitionPage(
                 child: UserPublicationsScreen(
@@ -136,8 +138,8 @@ final appRouterProvider = Provider<GoRouter>((ref) {
             },
           ),
           GoRoute(
-            path: '/favorites',
-            name: 'favorites',
+            path: FamilyDataScreen.path,
+            name: FamilyDataScreen.path,
             pageBuilder: (context, state) {
               return NoTransitionPage(
                 child: FavoritesScreen(

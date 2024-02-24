@@ -11,6 +11,8 @@ import '../../../core/router/router.dart';
 class SuccessFormSentScreen extends ConsumerStatefulWidget {
   const SuccessFormSentScreen({super.key});
 
+  static const path = '/success-form-sent';
+
   @override
   ConsumerState<SuccessFormSentScreen> createState() =>
       _SuccessFormSentScreenState();

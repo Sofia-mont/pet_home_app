@@ -13,6 +13,8 @@ class PublicationScreen extends ConsumerStatefulWidget {
 
   @override
   ConsumerState<PublicationScreen> createState() => _PublicationScreenState();
+
+  static const path = '/publication';
 }
 
 class _PublicationScreenState extends ConsumerState<PublicationScreen>

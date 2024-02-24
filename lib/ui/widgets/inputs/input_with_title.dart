@@ -2,11 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:pet_home/ui/constants/font_constants.dart';
 import 'package:pet_home/ui/constants/palette.dart';
 
-class InputWithText extends StatefulWidget {
-  const InputWithText({
+class InputWithTitle extends StatefulWidget {
+  const InputWithTitle({
     this.isRequired = false,
     this.obscureText = false,
     required this.title,
+    this.controller,
+    this.validator,
+    this.inputType = TextInputType.text,
+    this.isMultiline = false,
     required this.hintText,
     super.key,
   });
@@ -15,12 +19,16 @@ class InputWithText extends StatefulWidget {
   final String hintText;
   final bool isRequired;
   final bool obscureText;
+  final bool isMultiline;
+  final TextEditingController? controller;
+  final FormFieldValidator<String>? validator;
+  final TextInputType inputType;
 
   @override
-  State<InputWithText> createState() => _InputWithTextState();
+  State<InputWithTitle> createState() => _InputWithTitleState();
 }
 
-class _InputWithTextState extends State<InputWithText> {
+class _InputWithTitleState extends State<InputWithTitle> {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -45,11 +53,18 @@ class _InputWithTextState extends State<InputWithText> {
           height: 5,
         ),
         TextFormField(
+          controller: widget.controller,
           obscureText: widget.obscureText,
+          keyboardType:
+              widget.isMultiline ? TextInputType.multiline : widget.inputType,
+          minLines: widget.isMultiline ? 3 : 1,
+          maxLines: widget.isMultiline ? 10 : 1,
+          validator: widget.validator,
           style: FontConstants.body2,
           decoration: InputDecoration(
             hintText: widget.hintText,
             hintStyle: const TextStyle(color: Palette.textMedium),
+            errorMaxLines: 2,
           ),
         ),
       ],

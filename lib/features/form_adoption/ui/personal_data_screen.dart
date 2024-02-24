@@ -9,6 +9,8 @@ import 'package:pet_home/ui/widgets/inputs/input_with_title.dart';
 class PersonalDataScreen extends ConsumerStatefulWidget {
   const PersonalDataScreen({super.key});
 
+  static const path = '/adoption-form-personal-information';
+
   @override
   ConsumerState<PersonalDataScreen> createState() => _PersonalDataScreenState();
 }
@@ -46,11 +48,11 @@ class _PersonalDataScreenState extends ConsumerState<PersonalDataScreen> {
                       const SizedBox(
                         height: 10,
                       ),
-                      const InputWithText(
+                      const InputWithTitle(
                         title: 'Nombre completo',
                         hintText: 'Ingresa tu nombre completo',
                       ),
-                      const InputWithText(
+                      const InputWithTitle(
                         title: 'Edad',
                         hintText: 'Ingresa tu edad',
                       ),
@@ -58,7 +60,7 @@ class _PersonalDataScreenState extends ConsumerState<PersonalDataScreen> {
                         children: [
                           SizedBox(
                             width: (MediaQuery.of(context).size.width / 2) - 20,
-                            child: const InputWithText(
+                            child: const InputWithTitle(
                               title: 'Departamento',
                               hintText: 'Selecciona',
                             ),
@@ -66,18 +68,18 @@ class _PersonalDataScreenState extends ConsumerState<PersonalDataScreen> {
                           const Spacer(),
                           SizedBox(
                             width: (MediaQuery.of(context).size.width / 2) - 20,
-                            child: const InputWithText(
+                            child: const InputWithTitle(
                               title: 'Municipio',
                               hintText: 'Selecciona',
                             ),
                           ),
                         ],
                       ),
-                      const InputWithText(
+                      const InputWithTitle(
                         title: 'Barrio',
                         hintText: 'Selecciona',
                       ),
-                      const InputWithText(
+                      const InputWithTitle(
                         title: 'Dirección',
                         hintText: 'Ingresa la dirección completa de tu hogar',
                       ),
@@ -85,7 +87,7 @@ class _PersonalDataScreenState extends ConsumerState<PersonalDataScreen> {
                         children: [
                           SizedBox(
                             width: (MediaQuery.of(context).size.width / 2) - 20,
-                            child: const InputWithText(
+                            child: const InputWithTitle(
                               title: 'Teléfono fijo',
                               hintText: '604 123 4567',
                             ),
@@ -93,18 +95,18 @@ class _PersonalDataScreenState extends ConsumerState<PersonalDataScreen> {
                           const Spacer(),
                           SizedBox(
                             width: (MediaQuery.of(context).size.width / 2) - 20,
-                            child: const InputWithText(
+                            child: const InputWithTitle(
                               title: 'Celular',
                               hintText: '312 456 6789',
                             ),
                           ),
                         ],
                       ),
-                      const InputWithText(
+                      const InputWithTitle(
                         title: 'Correo electrónico',
                         hintText: 'micorreo@example.com',
                       ),
-                      const InputWithText(
+                      const InputWithTitle(
                         title: 'Ocupación',
                         hintText: 'Ingresa tu ocupación',
                       ),

@@ -6,10 +6,11 @@ import 'package:pet_home/ui/constants/palette.dart';
 import 'package:pet_home/ui/widgets/buttons/checkbox_text.dart';
 import 'package:pet_home/ui/widgets/buttons/large_button.dart';
 import 'package:pet_home/ui/widgets/inputs/input_with_title.dart';
-import 'package:pet_home/ui/widgets/inputs/large_input_with_title.dart';
 
 class QuestionarySecondScreen extends ConsumerStatefulWidget {
   const QuestionarySecondScreen({super.key});
+
+  static const path = '/adoption-form-questionary-2';
 
   @override
   ConsumerState<QuestionarySecondScreen> createState() =>
@@ -106,25 +107,27 @@ class _QuestionarySecondScreenState
                       const SizedBox(
                         height: 20,
                       ),
-                      const InputWithText(
+                      const InputWithTitle(
                         title:
                             '¿Cuántas horas del día permanecería solo el animal?',
                         hintText: 'Ingresa tu respuesta...',
                       ),
-                      const InputWithText(
+                      const InputWithTitle(
                         title:
                             '¿Qué tiempo diario dispone para compartir con el animal?',
                         hintText: 'Ingresa tu respuesta...',
                       ),
-                      const LargeInputWithText(
+                      const InputWithTitle(
                         title:
                             '¿Qué sucedería si alguien resultara alérgico al animal?',
                         hintText: 'Ingresa tu respuesta...',
+                        isMultiline: true,
                       ),
-                      const LargeInputWithText(
+                      const InputWithTitle(
                         title:
                             '¿Qué sucedería si usted o, en caso de ser hombre, su pareja quedara embarazada?',
                         hintText: 'Ingresa tu respuesta...',
+                        isMultiline: true,
                       ),
                     ],
                   ),

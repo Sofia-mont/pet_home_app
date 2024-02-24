@@ -8,6 +8,8 @@ import 'package:pet_home/ui/widgets/buttons/large_button.dart';
 class AdoptionAlert extends ConsumerWidget {
   const AdoptionAlert({super.key});
 
+  static const path = '/adoption-alert';
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(

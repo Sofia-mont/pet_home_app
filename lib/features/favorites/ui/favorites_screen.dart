@@ -5,6 +5,7 @@ class FavoritesScreen extends StatelessWidget {
 
   final bool showBottomBar;
 
+  static const path = '/favorites';
   @override
   Widget build(BuildContext context) {
     return const Placeholder();

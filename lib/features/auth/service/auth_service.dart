@@ -8,18 +8,28 @@ import 'package:pet_home/features/auth/model/user.dart';
 final authServiceProvider = Provider<AuthService>((ref) => AuthService());
 
 class AuthService {
-  Future<AsyncValue<User>> register() async {
-    String path = '${AppConstants.baseURL}/register';
-    Response response = await get(Uri.parse(path));
+  Future<AsyncValue<bool>> register(User user) async {
+    String path = '${AppConstants.baseURL}/auth/register';
+    var body = jsonEncode(
+      User(
+        user.name,
+        user.email,
+        user.password,
+        user.userType,
+        user.deparment,
+        user.city,
+      ).toJson(),
+    );
+    Response response = await post(
+      Uri.parse(path),
+      body: body,
+      headers: {'Content-Type': 'application/json'},
+    );
     if (response.statusCode == 200) {
-      var body = jsonDecode(response.body);
-      return AsyncValue.data(User.fromJson(body));
+      return const AsyncValue.data(true);
     }
     if (response.statusCode == 400) {
-      return AsyncValue.error(
-        'This user is already exists',
-        StackTrace.current,
-      );
+      return AsyncValue.error('The user is alredy exists', StackTrace.current);
     }
     return AsyncError('An error has ocurred', StackTrace.current);
   }
