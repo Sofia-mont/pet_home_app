@@ -26,7 +26,7 @@ final GlobalKey<NavigatorState> _shellNavigator =
 
 final appRouterProvider = Provider<GoRouter>((ref) {
   return GoRouter(
-    initialLocation: '/login',
+    initialLocation: HomeScreen.path,
     navigatorKey: _rootNavigator,
     routes: [
       GoRoute(
@@ -61,14 +61,14 @@ final appRouterProvider = Provider<GoRouter>((ref) {
       ),
       GoRoute(
         parentNavigatorKey: _rootNavigator,
-        path: QuestionaryScreen.path,
-        name: QuestionaryScreen.path,
+        path: QuestionarySecondScreen.path,
+        name: QuestionarySecondScreen.path,
         builder: (context, state) => const QuestionarySecondScreen(),
       ),
       GoRoute(
         parentNavigatorKey: _rootNavigator,
-        path: QuestionaryScreen.path,
-        name: QuestionaryScreen.path,
+        path: QuestionaryThirdScreen.path,
+        name: QuestionaryThirdScreen.path,
         builder: (context, state) => const QuestionaryThirdScreen(),
       ),
       GoRoute(
@@ -92,8 +92,8 @@ final appRouterProvider = Provider<GoRouter>((ref) {
       ),
       GoRoute(
         parentNavigatorKey: _rootNavigator,
-        path: LoginScreen.path,
-        name: LoginScreen.path,
+        path: LoginUserScreen.path,
+        name: LoginUserScreen.path,
         builder: (context, state) => const LoginUserScreen(),
       ),
       GoRoute(
@@ -138,8 +138,8 @@ final appRouterProvider = Provider<GoRouter>((ref) {
             },
           ),
           GoRoute(
-            path: FamilyDataScreen.path,
-            name: FamilyDataScreen.path,
+            path: FavoritesScreen.path,
+            name: FavoritesScreen.path,
             pageBuilder: (context, state) {
               return NoTransitionPage(
                 child: FavoritesScreen(
