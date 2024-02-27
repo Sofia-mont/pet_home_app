@@ -1,8 +1,8 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+/* import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pet_home/core/router/router.dart';
-import 'package:pet_home/features/auth/model/user.dart';
-import 'package:pet_home/features/auth/provider/auth_state.dart';
-import 'package:pet_home/features/auth/service/auth_service.dart';
+import 'package:pet_home/features/auth/domain/user.dart';
+import 'package:pet_home/features/authHttp/provider/auth_state.dart';
+import 'package:pet_home/features/authHttp/service/auth_service.dart';
 
 final authProvider = StateNotifierProvider<AuthStateNotifier, AuthState>(
   AuthStateNotifier.fromRef,
@@ -39,3 +39,5 @@ class AuthStateNotifier extends StateNotifier<AuthState> {
     }
   }
 }
+
+*/

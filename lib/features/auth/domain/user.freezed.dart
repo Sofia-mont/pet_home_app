@@ -20,11 +20,17 @@ User _$UserFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$User {
+  @JsonKey(name: 'name')
   String? get name => throw _privateConstructorUsedError;
+  @JsonKey(name: 'email')
   String? get email => throw _privateConstructorUsedError;
+  @JsonKey(name: 'password')
   String? get password => throw _privateConstructorUsedError;
+  @JsonKey(name: 'userType')
   String? get userType => throw _privateConstructorUsedError;
+  @JsonKey(name: 'deparment')
   String? get deparment => throw _privateConstructorUsedError;
+  @JsonKey(name: 'city')
   String? get city => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -38,12 +44,12 @@ abstract class $UserCopyWith<$Res> {
       _$UserCopyWithImpl<$Res, User>;
   @useResult
   $Res call(
-      {String? name,
-      String? email,
-      String? password,
-      String? userType,
-      String? deparment,
-      String? city});
+      {@JsonKey(name: 'name') String? name,
+      @JsonKey(name: 'email') String? email,
+      @JsonKey(name: 'password') String? password,
+      @JsonKey(name: 'userType') String? userType,
+      @JsonKey(name: 'deparment') String? deparment,
+      @JsonKey(name: 'city') String? city});
 }
 
 /// @nodoc
@@ -103,12 +109,12 @@ abstract class _$$UserImplCopyWith<$Res> implements $UserCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {String? name,
-      String? email,
-      String? password,
-      String? userType,
-      String? deparment,
-      String? city});
+      {@JsonKey(name: 'name') String? name,
+      @JsonKey(name: 'email') String? email,
+      @JsonKey(name: 'password') String? password,
+      @JsonKey(name: 'userType') String? userType,
+      @JsonKey(name: 'deparment') String? deparment,
+      @JsonKey(name: 'city') String? city});
 }
 
 /// @nodoc
@@ -160,23 +166,34 @@ class __$$UserImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$UserImpl implements _User {
-  const _$UserImpl(this.name, this.email, this.password, this.userType,
-      this.deparment, this.city);
+  _$UserImpl(
+      @JsonKey(name: 'name') this.name,
+      @JsonKey(name: 'email') this.email,
+      @JsonKey(name: 'password') this.password,
+      @JsonKey(name: 'userType') this.userType,
+      @JsonKey(name: 'deparment') this.deparment,
+      @JsonKey(name: 'city') this.city);
 
   factory _$UserImpl.fromJson(Map<String, dynamic> json) =>
       _$$UserImplFromJson(json);
 
   @override
+  @JsonKey(name: 'name')
   final String? name;
   @override
+  @JsonKey(name: 'email')
   final String? email;
   @override
+  @JsonKey(name: 'password')
   final String? password;
   @override
+  @JsonKey(name: 'userType')
   final String? userType;
   @override
+  @JsonKey(name: 'deparment')
   final String? deparment;
   @override
+  @JsonKey(name: 'city')
   final String? city;
 
   @override
@@ -220,27 +237,33 @@ class _$UserImpl implements _User {
 }
 
 abstract class _User implements User {
-  const factory _User(
-      final String? name,
-      final String? email,
-      final String? password,
-      final String? userType,
-      final String? deparment,
-      final String? city) = _$UserImpl;
+  factory _User(
+      @JsonKey(name: 'name') final String? name,
+      @JsonKey(name: 'email') final String? email,
+      @JsonKey(name: 'password') final String? password,
+      @JsonKey(name: 'userType') final String? userType,
+      @JsonKey(name: 'deparment') final String? deparment,
+      @JsonKey(name: 'city') final String? city) = _$UserImpl;
 
   factory _User.fromJson(Map<String, dynamic> json) = _$UserImpl.fromJson;
 
   @override
+  @JsonKey(name: 'name')
   String? get name;
   @override
+  @JsonKey(name: 'email')
   String? get email;
   @override
+  @JsonKey(name: 'password')
   String? get password;
   @override
+  @JsonKey(name: 'userType')
   String? get userType;
   @override
+  @JsonKey(name: 'deparment')
   String? get deparment;
   @override
+  @JsonKey(name: 'city')
   String? get city;
   @override
   @JsonKey(ignore: true)

@@ -1,9 +1,9 @@
-import 'dart:convert';
+/* import 'dart:convert';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:http/http.dart';
 import 'package:pet_home/core/constants/app_constants.dart';
-import 'package:pet_home/features/auth/model/user.dart';
+import 'package:pet_home/features/auth/domain/user.dart';
 
 final authServiceProvider = Provider<AuthService>((ref) => AuthService());
 
@@ -34,3 +34,5 @@ class AuthService {
     return AsyncError('An error has ocurred', StackTrace.current);
   }
 }
+
+*/
