@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pet_home/core/validators/text_validators.dart';
-import 'package:pet_home/features/auth/data/provider/auth_provider.dart';
+import 'package:pet_home/features/auth/data/register/provider/register_provider.dart';
 import 'package:pet_home/features/auth/domain/user.dart';
 import 'package:pet_home/ui/constants/font_constants.dart';
 import 'package:pet_home/ui/constants/palette.dart';
@@ -187,17 +187,16 @@ class _RegisterInfoScreenState extends ConsumerState<RegisterInfoScreen> {
   }
 
   void _handleRegister() {
-    ref.watch(
-      registerProvider(
-        user: User(
-          _nameController.text,
-          _emailController.text,
-          _passwordController.text,
-          widget.userType,
-          department,
-          city,
-        ),
-      ),
-    );
+    ref.read(registerProvider.notifier).register(
+          user: User(
+            _nameController.text,
+            _emailController.text,
+            _passwordController.text,
+            widget.userType,
+            department,
+            city,
+          ),
+          context: context,
+        );
   }
 }

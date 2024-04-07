@@ -18,7 +18,7 @@ import 'package:pet_home/features/home/ui/home_screen.dart';
 import 'package:pet_home/features/publications/ui/publication_screen.dart';
 import 'package:pet_home/features/publications/ui/user_publications_screen.dart';
 import 'package:pet_home/ui/scaffold/scaffold_with_navbar.dart';
-import 'package:pet_home/ui/widgets/errors_screen.dart';
+import 'package:pet_home/ui/widgets/response_screen.dart';
 
 final GlobalKey<NavigatorState> _rootNavigator = GlobalKey(debugLabel: 'root');
 final GlobalKey<NavigatorState> _shellNavigator =
@@ -29,6 +29,28 @@ final appRouterProvider = Provider<GoRouter>((ref) {
     initialLocation: LoginScreen.path,
     navigatorKey: _rootNavigator,
     routes: [
+      GoRoute(
+        path: ResponseScreen.path,
+        name: ResponseScreen.path,
+        builder: (context, state) {
+          final args = state.extra;
+          if (args is! ResponseScreenArgs) {
+            return const ResponseScreen(
+              isError: true,
+              title: 'Ha ocurrido un error',
+              buttonMsg: 'Reintentar',
+              message: 'No se pudo cargar la pagina',
+            );
+          }
+          return ResponseScreen(
+            isError: args.isError,
+            title: args.title,
+            buttonMsg: args.buttonMsg,
+            message: args.message,
+            onPressed: args.onPressed,
+          );
+        },
+      ),
       GoRoute(
         path: PublicationScreen.path,
         name: PublicationScreen.path,
@@ -151,8 +173,11 @@ final appRouterProvider = Provider<GoRouter>((ref) {
         ],
       ),
     ],
-    errorBuilder: (context, state) => ErrorsScreen(
-      msg: state.error.toString(),
+    errorBuilder: (context, state) => const ResponseScreen(
+      isError: true,
+      title: 'Ha ocurrido un error',
+      buttonMsg: 'Reintentar',
+      message: 'No se pudo cargar la pagina',
     ),
   );
 });
