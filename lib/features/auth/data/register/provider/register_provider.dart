@@ -37,8 +37,9 @@ class RegisterNotifier extends StateNotifier<RegisterState> {
   }) async {
     final res = await authRepository.register(user: user).toEither();
     res.fold(
-      (left) =>
-          ref.read(customModalsProvider).showAlertDialog(context: context),
+      (left) => ref
+          .read(customModalsProvider)
+          .showAlertDialog(context: context, message: left.message),
       (right) => ref.read(appRouterProvider).pushNamed(HomeScreen.path),
     );
   }

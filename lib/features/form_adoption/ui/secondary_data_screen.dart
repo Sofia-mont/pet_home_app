@@ -23,7 +23,7 @@ class _SecondaryDataScreenState extends ConsumerState<SecondaryDataScreen> {
       appBar: AppBar(
         title: Text(
           'Formulario de adopción',
-          style: FontConstants.subtitle1.copyWith(color: Palette.primary00),
+          style: FontConstants.subtitle1.copyWith(color: Palette.primary),
         ),
       ),
       body: Padding(
@@ -39,7 +39,7 @@ class _SecondaryDataScreenState extends ConsumerState<SecondaryDataScreen> {
                       Text(
                         'Datos de contacto adicional diferente a su núcleo familiar',
                         style: FontConstants.subtitle2
-                            .copyWith(color: Palette.primary00),
+                            .copyWith(color: Palette.primary),
                       ),
                       const SizedBox(
                         height: 10,

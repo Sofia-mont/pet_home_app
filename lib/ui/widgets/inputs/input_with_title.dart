@@ -55,6 +55,7 @@ class _InputWithTitleState extends State<InputWithTitle> {
         TextFormField(
           controller: widget.controller,
           obscureText: widget.obscureText,
+          onChanged: (value) => setState(() {}),
           keyboardType:
               widget.isMultiline ? TextInputType.multiline : widget.inputType,
           minLines: widget.isMultiline ? 3 : 1,

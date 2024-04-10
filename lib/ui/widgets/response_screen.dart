@@ -1,7 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:lottie/lottie.dart';
 import 'package:pet_home/ui/constants/font_constants.dart';
 import 'package:pet_home/ui/constants/palette.dart';
 import 'package:pet_home/ui/scaffold/custom_scaffold.dart';
@@ -69,15 +68,17 @@ class _ResponseScreenState extends State<ResponseScreen> {
                   Text(
                     widget.title,
                     style: FontConstants.subtitle1.copyWith(
-                      color: widget.isError
-                          ? Palette.errorDark
-                          : Palette.primary00,
+                      color:
+                          widget.isError ? Palette.errorDark : Palette.primary,
                     ),
                   ),
                   const SizedBox(
                     height: 20,
                   ),
-                  Text(widget.message),
+                  Text(
+                    widget.message,
+                    textAlign: TextAlign.center,
+                  ),
                 ],
               ),
             ),

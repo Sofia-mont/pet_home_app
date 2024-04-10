@@ -25,7 +25,7 @@ class AdoptionAlert extends ConsumerWidget {
             ),
             Text(
               'Mensaje para el posible adoptante',
-              style: FontConstants.subtitle1.copyWith(color: Palette.primary00),
+              style: FontConstants.subtitle1.copyWith(color: Palette.primary),
             ),
             const SizedBox(
               height: 20,

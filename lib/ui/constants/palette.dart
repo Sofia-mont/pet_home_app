@@ -2,42 +2,30 @@ import 'package:flutter/material.dart';
 
 class Palette {
   //PRIMARY COLORS
-  static const primary30D = Color(0xff1c2e19);
-  static const primary20D = Color(0xff385b33);
-  static const primary10D = Color(0xff54894c);
-  static const primary00 = Color(0xff70B765);
-  static const primary10L = Color(0xff94c98c);
-  static const primary20L = Color(0xffb7dbb2);
-  static const primary30L = Color(0xffdbedd8);
-
-  //SECONDARY COLORS
-  static const secondary00 = Color(0xffac65b7);
-  static const secondary10L = Color(0xff9758a0);
-  static const secondary20L = Color(0xff814c89);
-  static const secondary30L = Color(0xfF6b3f72);
-  static const secondary40L = Color(0xff56335b);
-  static const secondary50L = Color(0xff402645);
+  static const primaryDarker = Color(0xff133C55);
+  static const primaryDark = Color(0xff386FA4);
+  static const primary = Color(0xff59A5D8);
+  static const primaryLight = Color(0xff84D2F6);
+  static const primaryLighter = Color(0xff89C2D9);
 
   //TEXT COLORS
   static const textLight = Color(0xffFFFFFF);
-  static const textMedium = Color(0xff9d9d9d);
-  static const textDark = Color(0xff3C3C3C);
-  static const textHeading = Color(0xff70B765);
-  static const textSubtitle = Color(0xff385b33);
-  static const textLink = Color(0xff0073D6);
+  static const textMedium = Color(0xff5E6A73);
+  static const textDark = Color(0xff252D33);
+  static const textLink = Color(0xff59A5D8);
 
   //SUCCESS COLORS
-  static const successLight = Color(0xffDEFFD4);
-  static const successMedium = Color(0xff88D488);
-  static const successDark = Color(0xff049870);
+  static const successLight = Color(0xffB3D0BD);
+  static const successMedium = Color(0xff7BAC8B);
+  static const successDark = Color(0xff428959);
 
   //WARNING COLORS
-  static const warningLight = Color(0xffFFF0E6);
-  static const warningMedium = Color(0xffF7C28D);
-  static const warningDark = Color(0xffDE6633);
+  static const warningLight = Color(0xffFCE9CC);
+  static const warningMedium = Color(0xffF5B14D);
+  static const warningDark = Color(0xffF18F01);
 
   //ERROR COLORS
-  static const errorLight = Color(0xffFFF5F4);
-  static const errorMedium = Color(0xffEF7075);
-  static const errorDark = Color(0xffD1343C);
+  static const errorLight = Color(0xffF4D8D2);
+  static const errorMedium = Color(0xffD2654A);
+  static const errorDark = Color(0xffC73E1D);
 }

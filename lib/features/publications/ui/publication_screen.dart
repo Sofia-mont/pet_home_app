@@ -65,14 +65,14 @@ class _PublicationScreenState extends ConsumerState<PublicationScreen>
                     Text(
                       'Firulais',
                       style: FontConstants.body1.copyWith(
-                        color: Palette.primary00,
+                        color: Palette.primary,
                       ),
                     ),
                   ],
                 ),
                 const Icon(
                   Pethome.heart_outlined,
-                  color: Palette.primary00,
+                  color: Palette.primary,
                 ),
               ],
             ),
@@ -94,7 +94,7 @@ class _PublicationScreenState extends ConsumerState<PublicationScreen>
                       height: 40,
                       child: TabBar(
                         indicator: BoxDecoration(
-                          color: Palette.primary30L,
+                          color: Palette.primaryLighter,
                           borderRadius: BorderRadius.circular(100),
                         ),
                         unselectedLabelColor: Palette.textMedium,

@@ -52,7 +52,7 @@ class _CheckboxTextState extends State<CheckboxText> {
               borderRadius: BorderRadius.circular(20),
               border: Border.all(
                 width: 3,
-                color: widget.borderColor ?? Palette.primary00,
+                color: widget.borderColor ?? Palette.primary,
               ),
             ),
             child: isChecked
@@ -61,11 +61,11 @@ class _CheckboxTextState extends State<CheckboxText> {
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
                       color: isChecked
-                          ? widget.backgroundColor ?? Palette.primary00
+                          ? widget.backgroundColor ?? Palette.primary
                           : Colors.transparent,
                       border: Border.all(
                         width: 3,
-                        color: widget.borderColor ?? Palette.primary00,
+                        color: widget.borderColor ?? Palette.primary,
                       ),
                     ),
                   )

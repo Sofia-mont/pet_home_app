@@ -34,12 +34,12 @@ class _SuccessFormSentScreenState extends ConsumerState<SuccessFormSentScreen> {
                   const Icon(
                     Pethome.pet_love,
                     size: 150.0,
-                    color: Palette.primary00,
+                    color: Palette.primary,
                   ),
                   Text(
                     '¡Tu solicitud de adopción ha sido enviada!',
                     style: FontConstants.subtitle1.copyWith(
-                      color: Palette.primary00,
+                      color: Palette.primary,
                     ),
                     textAlign: TextAlign.center,
                   ),

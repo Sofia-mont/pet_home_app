@@ -28,8 +28,8 @@ mixin _$User {
   String? get password => throw _privateConstructorUsedError;
   @JsonKey(name: 'userType')
   String? get userType => throw _privateConstructorUsedError;
-  @JsonKey(name: 'deparment')
-  String? get deparment => throw _privateConstructorUsedError;
+  @JsonKey(name: 'department')
+  String? get department => throw _privateConstructorUsedError;
   @JsonKey(name: 'city')
   String? get city => throw _privateConstructorUsedError;
 
@@ -48,7 +48,7 @@ abstract class $UserCopyWith<$Res> {
       @JsonKey(name: 'email') String? email,
       @JsonKey(name: 'password') String? password,
       @JsonKey(name: 'userType') String? userType,
-      @JsonKey(name: 'deparment') String? deparment,
+      @JsonKey(name: 'department') String? department,
       @JsonKey(name: 'city') String? city});
 }
 
@@ -69,7 +69,7 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
     Object? email = freezed,
     Object? password = freezed,
     Object? userType = freezed,
-    Object? deparment = freezed,
+    Object? department = freezed,
     Object? city = freezed,
   }) {
     return _then(_value.copyWith(
@@ -89,9 +89,9 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
           ? _value.userType
           : userType // ignore: cast_nullable_to_non_nullable
               as String?,
-      deparment: freezed == deparment
-          ? _value.deparment
-          : deparment // ignore: cast_nullable_to_non_nullable
+      department: freezed == department
+          ? _value.department
+          : department // ignore: cast_nullable_to_non_nullable
               as String?,
       city: freezed == city
           ? _value.city
@@ -113,7 +113,7 @@ abstract class _$$UserImplCopyWith<$Res> implements $UserCopyWith<$Res> {
       @JsonKey(name: 'email') String? email,
       @JsonKey(name: 'password') String? password,
       @JsonKey(name: 'userType') String? userType,
-      @JsonKey(name: 'deparment') String? deparment,
+      @JsonKey(name: 'department') String? department,
       @JsonKey(name: 'city') String? city});
 }
 
@@ -131,7 +131,7 @@ class __$$UserImplCopyWithImpl<$Res>
     Object? email = freezed,
     Object? password = freezed,
     Object? userType = freezed,
-    Object? deparment = freezed,
+    Object? department = freezed,
     Object? city = freezed,
   }) {
     return _then(_$UserImpl(
@@ -151,9 +151,9 @@ class __$$UserImplCopyWithImpl<$Res>
           ? _value.userType
           : userType // ignore: cast_nullable_to_non_nullable
               as String?,
-      freezed == deparment
-          ? _value.deparment
-          : deparment // ignore: cast_nullable_to_non_nullable
+      freezed == department
+          ? _value.department
+          : department // ignore: cast_nullable_to_non_nullable
               as String?,
       freezed == city
           ? _value.city
@@ -171,7 +171,7 @@ class _$UserImpl implements _User {
       @JsonKey(name: 'email') this.email,
       @JsonKey(name: 'password') this.password,
       @JsonKey(name: 'userType') this.userType,
-      @JsonKey(name: 'deparment') this.deparment,
+      @JsonKey(name: 'department') this.department,
       @JsonKey(name: 'city') this.city);
 
   factory _$UserImpl.fromJson(Map<String, dynamic> json) =>
@@ -190,15 +190,15 @@ class _$UserImpl implements _User {
   @JsonKey(name: 'userType')
   final String? userType;
   @override
-  @JsonKey(name: 'deparment')
-  final String? deparment;
+  @JsonKey(name: 'department')
+  final String? department;
   @override
   @JsonKey(name: 'city')
   final String? city;
 
   @override
   String toString() {
-    return 'User(name: $name, email: $email, password: $password, userType: $userType, deparment: $deparment, city: $city)';
+    return 'User(name: $name, email: $email, password: $password, userType: $userType, department: $department, city: $city)';
   }
 
   @override
@@ -212,15 +212,15 @@ class _$UserImpl implements _User {
                 other.password == password) &&
             (identical(other.userType, userType) ||
                 other.userType == userType) &&
-            (identical(other.deparment, deparment) ||
-                other.deparment == deparment) &&
+            (identical(other.department, department) ||
+                other.department == department) &&
             (identical(other.city, city) || other.city == city));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
-      runtimeType, name, email, password, userType, deparment, city);
+      runtimeType, name, email, password, userType, department, city);
 
   @JsonKey(ignore: true)
   @override
@@ -242,7 +242,7 @@ abstract class _User implements User {
       @JsonKey(name: 'email') final String? email,
       @JsonKey(name: 'password') final String? password,
       @JsonKey(name: 'userType') final String? userType,
-      @JsonKey(name: 'deparment') final String? deparment,
+      @JsonKey(name: 'department') final String? department,
       @JsonKey(name: 'city') final String? city) = _$UserImpl;
 
   factory _User.fromJson(Map<String, dynamic> json) = _$UserImpl.fromJson;
@@ -260,8 +260,8 @@ abstract class _User implements User {
   @JsonKey(name: 'userType')
   String? get userType;
   @override
-  @JsonKey(name: 'deparment')
-  String? get deparment;
+  @JsonKey(name: 'department')
+  String? get department;
   @override
   @JsonKey(name: 'city')
   String? get city;

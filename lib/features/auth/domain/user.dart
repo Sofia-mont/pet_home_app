@@ -12,7 +12,7 @@ abstract class User with _$User {
     @JsonKey(name: 'email') String? email,
     @JsonKey(name: 'password') String? password,
     @JsonKey(name: 'userType') String? userType,
-    @JsonKey(name: 'deparment') String? deparment,
+    @JsonKey(name: 'department') String? department,
     @JsonKey(name: 'city') String? city,
   ) = _User;
 

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pet_home/core/router/router.dart';
 import 'package:pet_home/features/auth/presentation/register/register_info_screen.dart';
+import 'package:pet_home/ui/constants/font_constants.dart';
 import 'package:pet_home/ui/constants/palette.dart';
 import 'package:pet_home/ui/scaffold/custom_scaffold.dart';
 import 'package:pet_home/ui/widgets/buttons/large_button.dart';
@@ -35,12 +36,11 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
-            'Quiero registrarme como...',
-            style: TextStyle(
-              color: Palette.primary00,
-              fontSize: 20,
-              fontWeight: FontWeight.w700,
+          const SizedBox(height: 30),
+          Center(
+            child: Text(
+              'Quiero registrarme como...',
+              style: FontConstants.subtitle1.copyWith(color: Palette.primary),
             ),
           ),
           Container(
@@ -65,15 +65,14 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
                         side: const BorderSide(
-                          color: Palette.primary00,
+                          color: Palette.primary,
                           width: 2,
                         ),
                       ),
-                      color: (selectedOption == position)
-                          ? Palette.primary00
-                          : null,
+                      color:
+                          (selectedOption == position) ? Palette.primary : null,
                       child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           Image.asset(
                             registerOptions[position].image,
@@ -84,7 +83,7 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
                             style: TextStyle(
                               color: (selectedOption == position)
                                   ? Colors.white
-                                  : Palette.primary00,
+                                  : Palette.primary,
                               fontSize: 16,
                               fontWeight: FontWeight.w700,
                             ),

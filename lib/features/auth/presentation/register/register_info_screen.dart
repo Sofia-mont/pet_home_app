@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pet_home/core/validators/text_validators.dart';
 import 'package:pet_home/features/auth/data/register/provider/register_provider.dart';
 import 'package:pet_home/features/auth/domain/user.dart';
+import 'package:pet_home/features/location/data/provider/location_provider.dart';
 import 'package:pet_home/ui/constants/font_constants.dart';
 import 'package:pet_home/ui/constants/palette.dart';
 import 'package:pet_home/ui/constants/spacing.dart';
@@ -33,9 +34,20 @@ class _RegisterInfoScreenState extends ConsumerState<RegisterInfoScreen> {
   final _formKey = GlobalKey<FormState>();
   String city = '';
   String department = '';
+  bool get enableButton =>
+      _formKey.currentState != null && _formKey.currentState!.validate();
+  dynamic allDepartments;
+  @override
+  initState() {
+    allDepartments = ref.read(locationProvider.notifier).getDepartamentos();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
+    var ciudades = department == ''
+        ? Future.value([])
+        : ref.read(locationProvider.notifier).getCiudades(department);
     return CustomScaffold(
       body: Form(
         key: _formKey,
@@ -49,7 +61,7 @@ class _RegisterInfoScreenState extends ConsumerState<RegisterInfoScreen> {
                   TextSpan(
                     text: 'Crear cuenta\n',
                     style: FontConstants.subtitle2
-                        .copyWith(color: Palette.primary00),
+                        .copyWith(color: Palette.primary),
                   ),
                   TextSpan(
                     text:
@@ -103,45 +115,42 @@ class _RegisterInfoScreenState extends ConsumerState<RegisterInfoScreen> {
             Spacing.textField,
             Text(
               'Ubicación',
-              style: FontConstants.body1.copyWith(color: Palette.primary00),
+              style: FontConstants.body1.copyWith(color: Palette.primary),
             ),
             Spacing.xSmall,
             Row(
               children: [
-                SizedBox(
-                  width: (MediaQuery.of(context).size.width / 2) - 20,
+                Flexible(
                   child: DropdownSearchInput(
                     onChange: (value) {
-                      department = value;
+                      setState(() {
+                        department = value;
+                      });
                     },
-                    items: const [
-                      'Opcion1',
-                      'Opcion2',
-                      'Opcion3',
-                      'Opcion4',
-                      'Opcion5',
-                    ],
+                    asyncItems: (p0) => allDepartments,
                     isRequired: true,
                     title: 'Departamento',
                   ),
                 ),
-                const Spacer(),
-                SizedBox(
-                  width: (MediaQuery.of(context).size.width / 2) - 20,
-                  child: DropdownSearchInput(
-                    onChange: (value) {
-                      city = value;
-                    },
-                    items: const [
-                      'Opcion1',
-                      'Opcion2',
-                      'Opcion3',
-                      'Opcion4',
-                      'Opcion5',
-                    ],
-                    isRequired: true,
-                    title: 'Ciudad',
-                  ),
+                const SizedBox(
+                  width: 20,
+                ),
+                FutureBuilder(
+                  future: ciudades,
+                  builder: (context, snapshot) {
+                    return Flexible(
+                      child: DropdownSearchInput(
+                        onChange: (value) {
+                          setState(() {
+                            city = value;
+                          });
+                        },
+                        asyncItems: (p0) => ciudades,
+                        isRequired: true,
+                        title: 'Ciudad',
+                      ),
+                    );
+                  },
                 ),
               ],
             ),
@@ -175,8 +184,7 @@ class _RegisterInfoScreenState extends ConsumerState<RegisterInfoScreen> {
             ),
             Spacing.textField,
             LargeButton(
-              isEnabled: _formKey.currentState != null &&
-                  _formKey.currentState!.validate(),
+              isEnabled: enableButton,
               text: 'Registrarme',
               onPressed: () => _handleRegister(),
             ),

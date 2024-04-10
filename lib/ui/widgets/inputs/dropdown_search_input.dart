@@ -6,7 +6,8 @@ import 'package:pet_home/ui/constants/palette.dart';
 
 class DropdownSearchInput extends StatefulWidget {
   const DropdownSearchInput({
-    required this.items,
+    this.items = const [],
+    this.asyncItems,
     required this.onChange,
     this.isRequired = false,
     this.title,
@@ -16,13 +17,19 @@ class DropdownSearchInput extends StatefulWidget {
   final String? title;
   final ValueChanged<dynamic>? onChange;
   final bool isRequired;
-  final List<dynamic> items;
+  final List<Object?> items;
+  final Future<List<Object?>> Function(String)? asyncItems;
 
   @override
   State<DropdownSearchInput> createState() => _DropdownSearchInputState();
 }
 
 class _DropdownSearchInputState extends State<DropdownSearchInput> {
+  @override
+  initState() {
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -48,43 +55,79 @@ class _DropdownSearchInputState extends State<DropdownSearchInput> {
             height: 5,
           ),
         ],
-        DropdownSearch(
-          key: widget.key,
-          onChanged: widget.onChange,
-          onSaved: (newValue) {},
-          validator: (value) => TextValidators.textMandatory(value),
-          items: widget.items,
-          itemAsString: (item) => item.toString(),
-          popupProps: PopupProps.modalBottomSheet(
-            searchFieldProps: const TextFieldProps(
-              padding: EdgeInsets.symmetric(horizontal: 10, vertical: 20),
-            ),
-            constraints: const BoxConstraints(maxHeight: 400),
-            modalBottomSheetProps: const ModalBottomSheetProps(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.vertical(top: Radius.circular(10.0)),
+        Row(
+          children: [
+            Expanded(
+              child: DropdownSearch(
+                asyncItems: widget.asyncItems,
+                key: widget.key,
+                onChanged: widget.onChange,
+                onSaved: (newValue) {},
+                autoValidateMode: AutovalidateMode.always,
+                validator: (value) =>
+                    TextValidators.textMandatory(value.toString()),
+                items: widget.items,
+                itemAsString: (item) => item.toString(),
+                popupProps: PopupProps.dialog(
+                  isFilterOnline: true,
+                  showSearchBox: true,
+                  title: Padding(
+                    padding: const EdgeInsets.only(
+                      left: 15,
+                      top: 15,
+                    ),
+                    child: Text(
+                      widget.title != null
+                          ? 'Seleccionar ${widget.title!.toLowerCase()}'
+                          : '',
+                      style: FontConstants.subtitle2
+                          .copyWith(color: Palette.primary),
+                    ),
+                  ),
+                  searchFieldProps: TextFieldProps(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 10,
+                      vertical: 20,
+                    ),
+                    style: FontConstants.body2,
+                    decoration: const InputDecoration(
+                      hintText: 'Buscar',
+                      hintStyle: TextStyle(color: Palette.textMedium),
+                      contentPadding: EdgeInsets.symmetric(horizontal: 10),
+                    ),
+                  ),
+                  itemBuilder: (context, item, isSelected) => Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 15,
+                      vertical: 10,
+                    ),
+                    child: Text(
+                      item.toString(),
+                      style: FontConstants.body2,
+                    ),
+                  ),
+                  emptyBuilder: (context, searchEntry) => Center(
+                    child: Text(
+                      'No hay información',
+                      style:
+                          FontConstants.body2.copyWith(color: Palette.primary),
+                    ),
+                  ),
+                ),
+                dropdownDecoratorProps: DropDownDecoratorProps(
+                  dropdownSearchDecoration: InputDecoration(
+                    labelStyle: FontConstants.body2,
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    hintText: 'Selecciona',
+                    hintStyle:
+                        FontConstants.body2.copyWith(color: Palette.textMedium),
+                  ),
+                ),
               ),
             ),
-            itemBuilder: (context, item, isSelected) => Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-              child: Text(
-                item.toString(),
-                style: FontConstants.body2,
-              ),
-            ),
-            showSearchBox: true,
-            isFilterOnline: true,
-          ),
-          dropdownDecoratorProps: DropDownDecoratorProps(
-            dropdownSearchDecoration: InputDecoration(
-              labelStyle: FontConstants.body2,
-              border:
-                  OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
-              hintText: 'Selecciona',
-              hintStyle:
-                  FontConstants.body2.copyWith(color: Palette.textMedium),
-            ),
-          ),
+          ],
         ),
       ],
     );

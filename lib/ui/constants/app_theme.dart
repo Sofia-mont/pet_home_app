@@ -11,31 +11,31 @@ class AppTheme {
       shadowColor: Palette.textMedium,
       scaffoldBackgroundColor: const Color(0xFFF5F5F5),
       brightness: Brightness.light,
-      primaryColor: Palette.primary00,
-      focusColor: Palette.primary10L,
+      primaryColor: Palette.primary,
+      focusColor: Palette.primaryLight,
       appBarTheme: AppBarTheme(
         color: Colors.white,
         systemOverlayStyle: SystemUiOverlayStyle.dark,
         titleTextStyle: FontConstants.subtitle1,
         elevation: 1,
-        iconTheme: const IconThemeData(color: Palette.primary00),
+        iconTheme: const IconThemeData(color: Palette.primary),
       ),
       bottomNavigationBarTheme: const BottomNavigationBarThemeData(
         backgroundColor: Colors.white,
-        unselectedItemColor: Palette.primary00,
+        unselectedItemColor: Palette.primary,
         showSelectedLabels: false,
         showUnselectedLabels: false,
       ),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
           textStyle: FontConstants.body1,
-          backgroundColor: Palette.primary00,
+          backgroundColor: Palette.primary,
           shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.all(
-              Radius.circular(10),
+              Radius.circular(20),
             ),
           ),
-          elevation: 0.0,
+          elevation: 0,
         ),
       ),
       textButtonTheme: TextButtonThemeData(
@@ -52,7 +52,7 @@ class AppTheme {
             ),
           ),
           side: MaterialStateProperty.all(
-            const BorderSide(color: Palette.primary00, width: 2),
+            const BorderSide(color: Palette.primary, width: 2),
           ),
         ),
       ),
@@ -61,7 +61,7 @@ class AppTheme {
         displayColor: Palette.textDark,
       ),
       buttonTheme: const ButtonThemeData(
-        buttonColor: Palette.primary00,
+        buttonColor: Palette.primary,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(10)),
         ),
@@ -79,14 +79,14 @@ class AppTheme {
           } else if (states.contains(MaterialState.error)) {
             return Palette.errorDark;
           } else {
-            return Palette.primary00;
+            return Palette.primary;
           }
         }),
       ),
       inputDecorationTheme: InputDecorationTheme(
-        fillColor: Palette.primary00,
-        focusColor: Palette.primary00,
-        hoverColor: Palette.primary00,
+        fillColor: Palette.primary,
+        focusColor: Palette.primary,
+        hoverColor: Palette.primary,
         contentPadding: const EdgeInsets.all(10),
         enabledBorder: const OutlineInputBorder(
           borderSide: BorderSide(color: Palette.textMedium),
@@ -94,16 +94,22 @@ class AppTheme {
         ),
         labelStyle: FontConstants.body2.copyWith(color: Palette.textMedium),
         focusedBorder: const OutlineInputBorder(
-          borderSide: BorderSide(color: Palette.primary00, width: 1.8),
+          borderSide: BorderSide(color: Palette.primary, width: 1.8),
           borderRadius: BorderRadius.all(Radius.circular(7)),
         ),
         border: const OutlineInputBorder(
           borderRadius: BorderRadius.all(Radius.circular(7)),
         ),
+        errorBorder: const OutlineInputBorder(
+          borderRadius: BorderRadius.all(Radius.circular(7)),
+          borderSide: BorderSide(color: Palette.errorMedium),
+        ),
+        errorStyle: const TextStyle(color: Palette.errorMedium),
+        errorMaxLines: 2,
       ),
       colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.teal).copyWith(
-        primary: Palette.primary00,
-        secondary: Palette.primary00,
+        primary: Palette.primary,
+        secondary: Palette.primary,
       ),
     );
   }

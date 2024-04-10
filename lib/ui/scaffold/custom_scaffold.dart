@@ -9,7 +9,7 @@ class CustomScaffold extends ConsumerStatefulWidget {
     this.withAppbar = true,
     this.appbarColor = Colors.white,
     this.appbarElevation,
-    this.appbarIconColor = Palette.primary00,
+    this.appbarIconColor = Palette.primary,
     super.key,
   });
 

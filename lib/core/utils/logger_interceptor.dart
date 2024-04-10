@@ -7,7 +7,7 @@ class LoggerInterceptor implements Interceptor {
   void onError(DioException err, ErrorInterceptorHandler handler) {
     log('❌ Dio Error!');
     log('❌ Url: ${err.requestOptions.uri}');
-    log('❌ ${err.message}');
+    log('❌ Status Code: ${err.response?.statusCode}');
     log('❌ Response Error: ${err.response?.data}');
     return handler.next(err);
   }
@@ -15,6 +15,7 @@ class LoggerInterceptor implements Interceptor {
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
     log('🌍 Sending network request: ${options.baseUrl}${options.path}');
+    log('🌍 Request: ${options.data}');
     return handler.next(options);
   }
 

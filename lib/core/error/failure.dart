@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:equatable/equatable.dart';
 
 class Failure extends Equatable {
@@ -27,8 +28,8 @@ class Failure extends Equatable {
     try {
       await future;
       return null;
-    } on Failure catch (e) {
-      return e;
+    } on DioException catch (e) {
+      return Failure(message: e.response?.data);
     } catch (e) {
       if (throwException) rethrow;
       return Failure(message: e.toString());

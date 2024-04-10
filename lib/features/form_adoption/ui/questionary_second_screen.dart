@@ -26,7 +26,7 @@ class _QuestionarySecondScreenState
       appBar: AppBar(
         title: Text(
           'Formulario de adopción',
-          style: FontConstants.subtitle1.copyWith(color: Palette.primary00),
+          style: FontConstants.subtitle1.copyWith(color: Palette.primary),
         ),
       ),
       body: Padding(

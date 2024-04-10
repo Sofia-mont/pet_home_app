@@ -98,7 +98,7 @@ extension AsyncExtension<T> on AppAsync<T> {
               width: 80,
               padding: const EdgeInsets.all(12),
               alignment: Alignment.center,
-              child: const CircularProgressIndicator(color: Palette.primary00),
+              child: const CircularProgressIndicator(color: Palette.primary),
             ),
           );
     } else if (this is AsyncInitial) {
@@ -109,7 +109,7 @@ extension AsyncExtension<T> on AppAsync<T> {
               width: 80,
               padding: const EdgeInsets.all(12),
               alignment: Alignment.center,
-              child: const CircularProgressIndicator(color: Palette.primary00),
+              child: const CircularProgressIndicator(color: Palette.primary),
             ),
           );
     } else if (this is AsyncData<T>) {
@@ -131,7 +131,7 @@ extension AsyncExtension<T> on AppAsync<T> {
           width: 80,
           padding: const EdgeInsets.all(12),
           alignment: Alignment.center,
-          child: const CircularProgressIndicator(color: Palette.primary00),
+          child: const CircularProgressIndicator(color: Palette.primary),
         ),
       );
     } else if (this is AsyncInitial) {
@@ -140,7 +140,7 @@ extension AsyncExtension<T> on AppAsync<T> {
           width: 80,
           padding: const EdgeInsets.all(12),
           alignment: Alignment.center,
-          child: const CircularProgressIndicator(color: Palette.primary00),
+          child: const CircularProgressIndicator(color: Palette.primary),
         ),
       );
     } else if (this is AsyncData<T>) {
@@ -165,7 +165,7 @@ extension AsyncExtension<T> on AppAsync<T> {
               width: 80,
               padding: const EdgeInsets.all(12),
               alignment: Alignment.center,
-              child: const CircularProgressIndicator(color: Palette.primary00),
+              child: const CircularProgressIndicator(color: Palette.primary),
             ),
           );
     } else if (this is AsyncInitial) {
@@ -176,7 +176,7 @@ extension AsyncExtension<T> on AppAsync<T> {
               width: 80,
               padding: const EdgeInsets.all(12),
               alignment: Alignment.center,
-              child: const CircularProgressIndicator(color: Palette.primary00),
+              child: const CircularProgressIndicator(color: Palette.primary),
             ),
           );
     } else if (this is AsyncData<T>) {

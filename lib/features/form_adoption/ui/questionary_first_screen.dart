@@ -24,7 +24,7 @@ class _QuestionaryScreenState extends ConsumerState<QuestionaryScreen> {
       appBar: AppBar(
         title: Text(
           'Formulario de adopción',
-          style: FontConstants.subtitle1.copyWith(color: Palette.primary00),
+          style: FontConstants.subtitle1.copyWith(color: Palette.primary),
         ),
       ),
       body: Padding(
@@ -41,7 +41,7 @@ class _QuestionaryScreenState extends ConsumerState<QuestionaryScreen> {
                       Text(
                         'Cuestionario',
                         style: FontConstants.subtitle2
-                            .copyWith(color: Palette.primary00),
+                            .copyWith(color: Palette.primary),
                       ),
                       const SizedBox(
                         height: 10,

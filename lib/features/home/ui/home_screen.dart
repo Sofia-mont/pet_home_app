@@ -48,7 +48,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                     onPressed: () {},
                     icon: const Icon(
                       Pethome.filter,
-                      color: Palette.primary00,
+                      color: Palette.primary,
                       size: 33,
                     ),
                   ),
@@ -62,15 +62,14 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                 children: [
                   Text(
                     'Adopciones en Medellín',
-                    style:
-                        FontConstants.body1.copyWith(color: Palette.primary00),
+                    style: FontConstants.body1.copyWith(color: Palette.primary),
                   ),
                   Text(
                     'Ver más',
                     style: FontConstants.caption2.copyWith(
-                      color: Palette.primary00,
+                      color: Palette.primary,
                       decoration: TextDecoration.underline,
-                      decorationColor: Palette.primary00,
+                      decorationColor: Palette.primary,
                     ),
                   ),
                 ],
@@ -98,15 +97,14 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                 children: [
                   Text(
                     '¡Estas macotas buscan un hogar!',
-                    style:
-                        FontConstants.body1.copyWith(color: Palette.primary00),
+                    style: FontConstants.body1.copyWith(color: Palette.primary),
                   ),
                   Text(
                     'Ver más',
                     style: FontConstants.caption2.copyWith(
-                      color: Palette.primary00,
+                      color: Palette.primary,
                       decoration: TextDecoration.underline,
-                      decorationColor: Palette.primary00,
+                      decorationColor: Palette.primary,
                     ),
                   ),
                 ],

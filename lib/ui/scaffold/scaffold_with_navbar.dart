@@ -23,7 +23,7 @@ class _ScaffoldWithNavBarState extends ConsumerState<ScaffoldWithNavBar> {
     return Scaffold(
       body: widget.widget,
       bottomNavigationBar: BottomNavigationBar(
-        selectedItemColor: Palette.primary00,
+        selectedItemColor: Palette.primary,
         items: const [
           BottomNavigationBarItem(
             activeIcon: Icon(Pethome.home_filled),

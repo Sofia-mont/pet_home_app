@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:pet_home/core/error/failure.dart';
 
 sealed class Either<L, R> {
@@ -14,6 +15,11 @@ sealed class Either<L, R> {
       return Left(e);
     } catch (e) {
       if (throwException) rethrow;
+      if (e is DioException) {
+        return Left<Failure, R>(
+          Failure(message: e.response!.data['error'].toString()),
+        );
+      }
       return Left<Failure, R>(Failure(message: e.toString()));
     }
   }

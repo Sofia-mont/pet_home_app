@@ -23,35 +23,37 @@ class _LoginUserScreenState extends ConsumerState<LoginUserScreen> {
     return CustomScaffold(
       withPadding: false,
       appbarElevation: 0,
-      appbarColor: Palette.primary00,
+      appbarColor: Palette.primary,
       appbarIconColor: Colors.white,
       body: Column(
         children: [
           AnimatedContainer(
             duration: const Duration(milliseconds: 300),
-            height: 152,
+            height: MediaQuery.of(context).viewInsets.bottom == 0 ? 400 : 100,
+            width: MediaQuery.of(context).size.width,
             child: ClipPath(
               clipper: OvalBottomBorderClipper(),
               child: Container(
                 height: MediaQuery.of(context).size.height * 0.2,
-                color: Palette.primary00,
+                color: Palette.primary,
+                child: AnimatedContainer(
+                  duration: const Duration(milliseconds: 300),
+                  height:
+                      MediaQuery.of(context).viewInsets.bottom == 0 ? 152 : 0,
+                  child: SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.2,
+                    width: MediaQuery.of(context).size.height * 0.2,
+                    child: Image.asset(
+                      'assets/img/pethome_logo.png',
+                      width: 152,
+                    ),
+                  ),
+                ),
               ),
             ),
           ),
           const SizedBox(
             height: 20,
-          ),
-          AnimatedContainer(
-            duration: const Duration(milliseconds: 300),
-            height: MediaQuery.of(context).viewInsets.bottom == 0 ? 152 : 0,
-            child: SizedBox(
-              height: MediaQuery.of(context).size.height * 0.2,
-              width: MediaQuery.of(context).size.height * 0.2,
-              child: Image.asset(
-                'assets/img/pethome_logo.png',
-                width: 152,
-              ),
-            ),
           ),
           Form(
             child: Padding(
@@ -97,9 +99,9 @@ class _LoginUserScreenState extends ConsumerState<LoginUserScreen> {
                   child: Text(
                     '¡Olvidé mi contraseña!',
                     style: FontConstants.body1.copyWith(
-                      color: Palette.primary00,
+                      color: Palette.primary,
                       decoration: TextDecoration.underline,
-                      decorationColor: Palette.primary00,
+                      decorationColor: Palette.primary,
                     ),
                   ),
                 ),
