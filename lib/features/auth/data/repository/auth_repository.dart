@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:pet_home/core/constants/app_constants.dart';
 import 'package:pet_home/core/utils/dio_provider.dart';
-import 'package:pet_home/features/auth/domain/user.dart';
+import 'package:pet_home/features/auth/domain/user/user.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'auth_repository.g.dart';

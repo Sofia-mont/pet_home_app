@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:pet_home/core/sealed/custom_async_value.dart';
-import 'package:pet_home/features/auth/domain/user.dart';
+import 'package:pet_home/features/auth/domain/user/user.dart';
 
 class RegisterState extends Equatable {
   const RegisterState({required this.registerUser});

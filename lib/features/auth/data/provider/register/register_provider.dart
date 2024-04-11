@@ -3,9 +3,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pet_home/core/extension_methods/future_extension.dart';
 import 'package:pet_home/core/router/router.dart';
 import 'package:pet_home/core/sealed/either.dart';
-import 'package:pet_home/features/auth/data/register/provider/register_state.dart';
-import 'package:pet_home/features/auth/data/register/repository/auth_repository.dart';
-import 'package:pet_home/features/auth/domain/user.dart';
+import 'package:pet_home/features/auth/data/provider/register/register_state.dart';
+import 'package:pet_home/features/auth/data/repository/auth_repository.dart';
+import 'package:pet_home/features/auth/domain/user/user.dart';
 import 'package:pet_home/features/auth/presentation/login/login_user_screen.dart';
 import 'package:pet_home/ui/widgets/modals/custom_modals.dart';
 
