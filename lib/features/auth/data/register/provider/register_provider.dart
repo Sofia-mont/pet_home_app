@@ -6,7 +6,7 @@ import 'package:pet_home/core/sealed/either.dart';
 import 'package:pet_home/features/auth/data/register/provider/register_state.dart';
 import 'package:pet_home/features/auth/data/register/repository/auth_repository.dart';
 import 'package:pet_home/features/auth/domain/user.dart';
-import 'package:pet_home/features/home/ui/home_screen.dart';
+import 'package:pet_home/features/auth/presentation/login/login_user_screen.dart';
 import 'package:pet_home/ui/widgets/modals/custom_modals.dart';
 
 final registerProvider = StateNotifierProvider<RegisterNotifier, RegisterState>(
@@ -40,7 +40,13 @@ class RegisterNotifier extends StateNotifier<RegisterState> {
       (left) => ref
           .read(customModalsProvider)
           .showAlertDialog(context: context, message: left.message),
-      (right) => ref.read(appRouterProvider).pushNamed(HomeScreen.path),
+      (right) => ref.read(customModalsProvider).showAlertDialog(
+            context: context,
+            message: 'Ahora puedes iniciar sesión.',
+            title: '¡Registro exitoso!',
+            onPressed: () =>
+                ref.read(appRouterProvider).goNamed(LoginUserScreen.path),
+          ),
     );
   }
 }
