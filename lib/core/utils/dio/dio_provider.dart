@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:pet_home/core/utils/logger_interceptor.dart';
+import 'package:pet_home/core/utils/dio/logger_interceptor.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'dio_provider.g.dart';
