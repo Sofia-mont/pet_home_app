@@ -9,7 +9,6 @@ abstract class AppState {
 
   Future<void> startListeningAppState();
   BuildContext get currentContext;
-  NavigatorState get router;
   ScaffoldMessengerState get scaffoldMessenger;
   final Ref ref;
   final context = GlobalKey<NavigatorState>();
@@ -28,9 +27,6 @@ class AppStateImpl implements AppState {
   DateTime? _inactiveDate;
   @override
   BuildContext get currentContext => context.currentState!.overlay!.context;
-  @override
-  @Deprecated('Use routerProvider')
-  NavigatorState get router => context.currentState!;
   @override
   ScaffoldMessengerState get scaffoldMessenger =>
       scaffoldMessengerKey.currentState!;
