@@ -1,26 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:pet_home/core/app/app_service.dart';
+import 'package:pet_home/core/app/domain/user_data.dart';
 import 'package:pet_home/core/extension_methods/future_extension.dart';
 import 'package:pet_home/core/router/router.dart';
 import 'package:pet_home/core/sealed/either.dart';
 import 'package:pet_home/features/auth/data/provider/register/register_state.dart';
 import 'package:pet_home/features/auth/data/repository/auth_repository.dart';
-import 'package:pet_home/features/auth/domain/register_user/register_user.dart';
-import 'package:pet_home/features/auth/presentation/login/login_user_screen.dart';
+import 'package:pet_home/features/auth/domain/user/user.dart';
+import 'package:pet_home/features/home/ui/home_screen.dart';
 import 'package:pet_home/ui/widgets/modals/custom_modals.dart';
 
-final registerProvider = StateNotifierProvider<RegisterNotifier, LoginState>(
-  RegisterNotifier.fromRef,
+final loginProvider = StateNotifierProvider<LoginNotifier, LoginState>(
+  LoginNotifier.fromRef,
 );
 
-class RegisterNotifier extends StateNotifier<LoginState> {
-  RegisterNotifier({
+class LoginNotifier extends StateNotifier<LoginState> {
+  LoginNotifier({
     required this.ref,
     required this.authRepository,
   }) : super(LoginState.initial());
 
-  factory RegisterNotifier.fromRef(Ref ref) {
-    return RegisterNotifier(
+  factory LoginNotifier.fromRef(Ref ref) {
+    return LoginNotifier(
       ref: ref,
       authRepository: ref.read(authRepositoryProvider),
     );
@@ -31,22 +33,25 @@ class RegisterNotifier extends StateNotifier<LoginState> {
 
   void resetState() => state = LoginState.initial();
 
-  Future<void> register({
-    required RegisterUser user,
+  Future<void> login({
+    required User user,
     required BuildContext context,
   }) async {
-    final res = await authRepository.register(user: user).toEither();
+    final res = await authRepository.login(user: user).toEither();
     res.fold(
       (left) => ref
           .read(customModalsProvider)
           .showAlertDialog(context: context, message: left.message),
-      (right) => ref.read(customModalsProvider).showAlertDialog(
-            context: context,
-            message: 'Ahora puedes iniciar sesión.',
-            title: '¡Registro exitoso!',
-            onPressed: () =>
-                ref.read(appRouterProvider).goNamed(LoginUserScreen.path),
+      (right) {
+        AppService.instance.setUserData(
+          UserData(
+            id: DateTime.now().millisecondsSinceEpoch.toString(),
+            email: user.email,
+            token: right.token,
           ),
+        );
+        ref.read(appRouterProvider).goNamed(HomeScreen.path);
+      },
     );
   }
 }

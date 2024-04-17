@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:pet_home/core/router/router.dart';
-import 'package:pet_home/features/home/ui/home_screen.dart';
+import 'package:pet_home/features/auth/data/provider/login/login_provider.dart';
+import 'package:pet_home/features/auth/domain/user/user.dart';
 import 'package:pet_home/ui/constants/font_constants.dart';
 import 'package:pet_home/ui/constants/palette.dart';
 import 'package:pet_home/ui/scaffold/custom_scaffold.dart';
@@ -18,6 +18,8 @@ class LoginUserScreen extends ConsumerStatefulWidget {
 }
 
 class _LoginUserScreenState extends ConsumerState<LoginUserScreen> {
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return CustomScaffold(
@@ -67,6 +69,7 @@ class _LoginUserScreenState extends ConsumerState<LoginUserScreen> {
                   InputWithTitle(
                     title: 'Correo eléctronico',
                     hintText: 'micorreo@example.com',
+                    controller: _emailController,
                   ),
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.02,
@@ -74,6 +77,7 @@ class _LoginUserScreenState extends ConsumerState<LoginUserScreen> {
                   InputWithTitle(
                     title: 'Contraseña',
                     hintText: '**********',
+                    controller: _passwordController,
                   ),
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.02,
@@ -89,8 +93,13 @@ class _LoginUserScreenState extends ConsumerState<LoginUserScreen> {
               children: [
                 LargeButton(
                   text: 'Iniciar sesión',
-                  onPressed: () =>
-                      ref.read(appRouterProvider).push(HomeScreen.path),
+                  onPressed: () => ref.read(loginProvider.notifier).login(
+                        user: User(
+                          _emailController.text,
+                          _passwordController.text,
+                        ),
+                        context: context,
+                      ),
                 ),
                 TextButton(
                   onPressed: () => {

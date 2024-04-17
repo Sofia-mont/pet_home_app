@@ -1,6 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:pet_home/core/constants/app_constants.dart';
 import 'package:pet_home/core/utils/dio/dio_provider.dart';
+import 'package:pet_home/features/auth/domain/register_user/register_user.dart';
+import 'package:pet_home/features/auth/domain/token/token.dart';
 import 'package:pet_home/features/auth/domain/user/user.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -14,7 +16,10 @@ class AuthRepository {
   AuthRepository({required this.client});
   final Dio client;
 
-  Future<User> register({required User user, CancelToken? cancelToken}) async {
+  Future<RegisterUser> register({
+    required RegisterUser user,
+    CancelToken? cancelToken,
+  }) async {
     const path = '${AppConstants.baseURL}/auth/register';
     final data = user.toJson();
     final response = await client.post(
@@ -23,6 +28,17 @@ class AuthRepository {
       cancelToken: cancelToken,
       options: Options(headers: {'Content-Type': 'application/json'}),
     );
-    return User.fromJson(response.data);
+    return RegisterUser.fromJson(response.data);
+  }
+
+  Future<Token> login({required User user}) async {
+    const path = '${AppConstants.baseURL}/auth/login';
+    final data = user.toJson();
+    final response = await client.post(
+      path,
+      data: data,
+      options: Options(headers: {'Content-Type': 'application/json'}),
+    );
+    return Token.fromJson(response.data);
   }
 }
