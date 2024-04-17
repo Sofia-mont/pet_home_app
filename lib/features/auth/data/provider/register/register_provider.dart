@@ -42,8 +42,10 @@ class RegisterNotifier extends StateNotifier<LoginState> {
           .showAlertDialog(context: context, message: left.message),
       (right) => ref.read(customModalsProvider).showAlertDialog(
             context: context,
+            isError: false,
             message: 'Ahora puedes iniciar sesión.',
             title: '¡Registro exitoso!',
+            buttonMsg: 'Iniciar sesión',
             onPressed: () =>
                 ref.read(appRouterProvider).goNamed(LoginUserScreen.path),
           ),

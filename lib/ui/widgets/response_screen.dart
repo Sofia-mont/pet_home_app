@@ -50,6 +50,7 @@ class _ResponseScreenState extends State<ResponseScreen> {
   @override
   Widget build(BuildContext context) {
     return PopScope(
+      canPop: false,
       onPopInvoked: (_) {
         if (widget.onPressed != null) widget.onPressed?.call();
       },

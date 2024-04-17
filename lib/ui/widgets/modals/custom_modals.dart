@@ -73,7 +73,7 @@ class CustomModalsImpl implements CustomModals {
     String title = '¡Ops! Ha ocurrido un error',
     String message = 'Vuelve a intentarlo',
     VoidCallback? onPressed,
-    String buttonMsg = 'Continuar',
+    String buttonMsg = 'Reintentar',
     BuildContext? context,
   }) {
     return GoRouter.of(context!).pushNamed<void>(
