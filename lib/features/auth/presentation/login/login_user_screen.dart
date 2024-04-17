@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:pet_home/core/validators/text_validators.dart';
 import 'package:pet_home/features/auth/data/provider/login/login_provider.dart';
 import 'package:pet_home/features/auth/domain/user/user.dart';
 import 'package:pet_home/ui/constants/font_constants.dart';
@@ -20,6 +21,9 @@ class LoginUserScreen extends ConsumerStatefulWidget {
 class _LoginUserScreenState extends ConsumerState<LoginUserScreen> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
+  bool get enableButton =>
+      _formKey.currentState != null && _formKey.currentState!.validate();
   @override
   Widget build(BuildContext context) {
     return CustomScaffold(
@@ -28,6 +32,7 @@ class _LoginUserScreenState extends ConsumerState<LoginUserScreen> {
       appbarColor: Palette.primary,
       appbarIconColor: Colors.white,
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           AnimatedContainer(
             duration: const Duration(milliseconds: 300),
@@ -54,10 +59,9 @@ class _LoginUserScreenState extends ConsumerState<LoginUserScreen> {
               ),
             ),
           ),
-          const SizedBox(
-            height: 20,
-          ),
           Form(
+            key: _formKey,
+            autovalidateMode: AutovalidateMode.onUserInteraction,
             child: Padding(
               padding: const EdgeInsets.symmetric(
                 horizontal: 15,
@@ -70,6 +74,8 @@ class _LoginUserScreenState extends ConsumerState<LoginUserScreen> {
                     title: 'Correo eléctronico',
                     hintText: 'micorreo@example.com',
                     controller: _emailController,
+                    validator: (_) =>
+                        TextValidators.emailValidator(_emailController.text),
                   ),
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.02,
@@ -78,43 +84,39 @@ class _LoginUserScreenState extends ConsumerState<LoginUserScreen> {
                     title: 'Contraseña',
                     hintText: '**********',
                     controller: _passwordController,
+                    obscureText: true,
+                    validator: (_) => TextValidators.passwordValidator(
+                      _passwordController.text,
+                    ),
                   ),
-                  SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.02,
+                  const SizedBox(height: 30),
+                  LargeButton(
+                    isEnabled: _formKey.currentState != null &&
+                        _formKey.currentState!.validate(),
+                    text: 'Iniciar sesión',
+                    onPressed: () => ref.read(loginProvider.notifier).login(
+                          user: User(
+                            _emailController.text,
+                            _passwordController.text,
+                          ),
+                          context: context,
+                        ),
+                  ),
+                  TextButton(
+                    onPressed: () => {
+                      //TODO : URL
+                    },
+                    child: Text(
+                      '¡Olvidé mi contraseña!',
+                      style: FontConstants.body1.copyWith(
+                        color: Palette.primary,
+                        decoration: TextDecoration.underline,
+                        decorationColor: Palette.primary,
+                      ),
+                    ),
                   ),
                 ],
               ),
-            ),
-          ),
-          const Spacer(),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-            child: Column(
-              children: [
-                LargeButton(
-                  text: 'Iniciar sesión',
-                  onPressed: () => ref.read(loginProvider.notifier).login(
-                        user: User(
-                          _emailController.text,
-                          _passwordController.text,
-                        ),
-                        context: context,
-                      ),
-                ),
-                TextButton(
-                  onPressed: () => {
-                    //TODO : URL
-                  },
-                  child: Text(
-                    '¡Olvidé mi contraseña!',
-                    style: FontConstants.body1.copyWith(
-                      color: Palette.primary,
-                      decoration: TextDecoration.underline,
-                      decorationColor: Palette.primary,
-                    ),
-                  ),
-                ),
-              ],
             ),
           ),
         ],

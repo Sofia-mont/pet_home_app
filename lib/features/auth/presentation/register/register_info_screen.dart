@@ -34,8 +34,11 @@ class _RegisterInfoScreenState extends ConsumerState<RegisterInfoScreen> {
   final _formKey = GlobalKey<FormState>();
   String city = '';
   String department = '';
+  bool termsAndConditions = false;
   bool get enableButton =>
-      _formKey.currentState != null && _formKey.currentState!.validate();
+      _formKey.currentState != null &&
+      _formKey.currentState!.validate() &&
+      termsAndConditions;
   dynamic allDepartments;
   @override
   initState() {
@@ -157,8 +160,11 @@ class _RegisterInfoScreenState extends ConsumerState<RegisterInfoScreen> {
             const Spacer(),
             Spacing.textField,
             CheckboxText(
-              onChange: (value) {},
-              isChecked: true,
+              onChange: (value) {
+                termsAndConditions = value;
+                setState(() {});
+              },
+              isChecked: termsAndConditions,
               text: Expanded(
                 child: RichText(
                   maxLines: 3,
