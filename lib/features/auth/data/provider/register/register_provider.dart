@@ -39,8 +39,8 @@ class RegisterNotifier extends StateNotifier<LoginState> {
     res.fold(
       (left) => ref
           .read(customModalsProvider)
-          .showAlertDialog(context: context, message: left.message),
-      (right) => ref.read(customModalsProvider).showAlertDialog(
+          .showInformativeScreen(context: context, message: left.message),
+      (right) => ref.read(customModalsProvider).showInformativeScreen(
             context: context,
             isError: false,
             message: 'Ahora puedes iniciar sesión.',

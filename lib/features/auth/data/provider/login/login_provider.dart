@@ -39,9 +39,13 @@ class LoginNotifier extends StateNotifier<LoginState> {
   }) async {
     final res = await authRepository.login(user: user).toEither();
     res.fold(
-      (left) => ref
-          .read(customModalsProvider)
-          .showAlertDialog(context: context, message: left.message),
+      (left) => ref.read(customModalsProvider).showInfoDialog(
+            buildContext: context,
+            title: 'Error al iniciar sesión',
+            content: left.message,
+            buttonText: 'Reintentar',
+            buttonAction: () => ref.read(appRouterProvider).pop(),
+          ),
       (right) {
         AppService.instance.setUserData(
           UserData(

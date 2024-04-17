@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:pet_home/core/utils/platform_utils.dart';
@@ -10,13 +11,20 @@ final customModalsProvider = Provider<CustomModals>(CustomModalsImpl.fromRead);
 
 abstract class CustomModals {
   Future<void> showLoadingDialog(BuildContext context);
-  Future<void> showAlertDialog({
+  Future<void> showInformativeScreen({
     bool isError = true,
     String title = '¡Ops! Ha ocurrido un error',
     String message = 'Vuelve a intentarlo',
     VoidCallback? onPressed,
     String buttonMsg = 'Reintentar',
     BuildContext context,
+  });
+  Future<void> showInfoDialog({
+    required BuildContext buildContext,
+    required String title,
+    required String content,
+    required String buttonText,
+    VoidCallback? buttonAction,
   });
   void pop(BuildContext context);
 }
@@ -68,7 +76,7 @@ class CustomModalsImpl implements CustomModals {
   }
 
   @override
-  Future<void> showAlertDialog({
+  Future<void> showInformativeScreen({
     bool isError = true,
     String title = '¡Ops! Ha ocurrido un error',
     String message = 'Vuelve a intentarlo',
@@ -91,5 +99,44 @@ class CustomModalsImpl implements CustomModals {
   @override
   void pop(BuildContext context) {
     GoRouter.of(context).pop();
+  }
+
+  @override
+  Future<void> showInfoDialog({
+    required BuildContext buildContext,
+    required String title,
+    required String content,
+    required String buttonText,
+    VoidCallback? buttonAction,
+  }) {
+    return showAdaptiveDialog(
+      context: buildContext,
+      builder: (context) => AlertDialog.adaptive(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+        title: Text(
+          title,
+          style: FontConstants.subtitle2.copyWith(
+            color: Palette.primary,
+          ),
+        ),
+        content: Text(
+          content,
+          style: FontConstants.body2.copyWith(
+            color: Palette.textMedium,
+          ),
+        ),
+        actions: [
+          TextButton(
+            onPressed: buttonAction,
+            child: Text(
+              buttonText,
+              style: FontConstants.body2.copyWith(
+                color: Palette.primary,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }
