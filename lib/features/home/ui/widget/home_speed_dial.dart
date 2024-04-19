@@ -11,7 +11,7 @@ class HomeSpeedDial extends StatelessWidget {
   Widget build(BuildContext context) {
     return SpeedDial(
       icon: Pethome.dog_nose,
-      activeIcon: Icons.close,
+      spacing: 20,
       children: [
         SpeedDialChild(
           child: const Icon(
