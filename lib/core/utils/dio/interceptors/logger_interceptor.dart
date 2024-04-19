@@ -15,7 +15,6 @@ class LoggerInterceptor implements Interceptor {
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
     log('🌍 Sending network request: ${options.baseUrl}${options.path}');
-    if (options.data != null) log('🌍 Request: ${options.data}');
     return handler.next(options);
   }
 
