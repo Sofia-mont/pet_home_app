@@ -50,7 +50,7 @@ class LoginNotifier extends StateNotifier<LoginState> {
         AppService.instance.setUserData(
           UserData(
             id: DateTime.now().millisecondsSinceEpoch.toString(),
-            email: user.email,
+            refreshToken: right.refreshToken,
             token: right.token,
           ),
         );

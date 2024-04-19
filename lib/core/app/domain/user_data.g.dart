@@ -18,8 +18,8 @@ class UserDataAdapter extends TypeAdapter<UserData> {
     };
     return UserData(
       id: fields[0] as String?,
-      email: fields[1] as String?,
-      token: fields[2] as String?,
+      refreshToken: fields[2] as String?,
+      token: fields[1] as String?,
     );
   }
 
@@ -30,9 +30,9 @@ class UserDataAdapter extends TypeAdapter<UserData> {
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
-      ..write(obj.email)
+      ..write(obj.token)
       ..writeByte(2)
-      ..write(obj.token);
+      ..write(obj.refreshToken);
   }
 
   @override

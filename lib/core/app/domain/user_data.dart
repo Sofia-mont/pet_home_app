@@ -7,13 +7,13 @@ class UserData {
   @HiveField(0)
   final String? id;
   @HiveField(1)
-  final String? email;
-  @HiveField(2)
   final String? token;
+  @HiveField(2)
+  final String? refreshToken;
 
   const UserData({
     this.id,
-    this.email,
+    this.refreshToken,
     this.token,
   });
 }
