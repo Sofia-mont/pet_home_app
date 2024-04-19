@@ -23,7 +23,6 @@ class LoggerInterceptor implements Interceptor {
     log('⬅️ Received network response');
     log('${response.statusCode != 200 ? '❌ ${response.statusCode} ❌' : '✅ 200 ✅'} ${response.requestOptions.baseUrl}${response.requestOptions.path}');
     log('Response: ${response.data}');
-    log('-------------------------');
     return handler.next(response);
   }
 }
