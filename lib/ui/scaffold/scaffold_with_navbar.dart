@@ -34,12 +34,12 @@ class _ScaffoldWithNavBarState extends ConsumerState<ScaffoldWithNavBar> {
           BottomNavigationBarItem(
             activeIcon: Icon(Pethome.paw_filled),
             icon: Icon(Pethome.paw_outlined),
-            label: 'Section B',
+            label: 'Mis publicaciones',
           ),
           BottomNavigationBarItem(
             activeIcon: Icon(Pethome.heart_filled),
             icon: Icon(Pethome.heart_outlined),
-            label: 'Section C',
+            label: 'Mis postulaciones',
           ),
         ],
         currentIndex: position,

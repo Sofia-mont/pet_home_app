@@ -5,8 +5,8 @@ class Palette {
   static const primaryDarker = Color(0xff133C55);
   static const primaryDark = Color(0xff386FA4);
   static const primary = Color(0xff59A5D8);
-  static const primaryLight = Color(0xff84D2F6);
-  static const primaryLighter = Color(0xff89C2D9);
+  static const primaryLight = Color(0xff93C5E6);
+  static const primaryLighter = Color(0xffDBECF7);
 
   //TEXT COLORS
   static const textLight = Color(0xffFFFFFF);

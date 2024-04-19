@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:pet_home/core/app/app_service.dart';
-import 'package:pet_home/core/router/router.dart';
-import 'package:pet_home/features/auth/presentation/login/login_screen.dart';
 import 'package:pet_home/features/home/ui/widget/card.dart';
 import 'package:pet_home/ui/constants/font_constants.dart';
 import 'package:pet_home/ui/constants/palette.dart';
-import 'package:pet_home/ui/constants/pethome_icons.dart';
+import 'package:pet_home/ui/icons/pethome_icons.dart';
 
 class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({this.showBottomBar = true, super.key});
@@ -20,14 +19,153 @@ class HomeScreen extends ConsumerStatefulWidget {
 }
 
 class _HomeScreenState extends ConsumerState<HomeScreen> {
+  var isDialOpen = ValueNotifier<bool>(false);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: Padding(
-          padding: const EdgeInsets.all(8),
-          child: Image.asset('assets/img/pethome_logo.png'),
+      appBar: AppBar(),
+      drawer: Drawer(
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+            topRight: Radius.circular(10),
+            bottomRight: Radius.circular(10),
+          ),
         ),
+        child: Column(
+          children: [
+            Expanded(
+              child: ListView(
+                padding: EdgeInsets.zero,
+                children: [
+                  DrawerHeader(
+                    margin: const EdgeInsets.only(bottom: 20),
+                    decoration: const BoxDecoration(
+                      color: Palette.primary,
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        Image.asset(
+                          'assets/img/pethome_logo.png',
+                          height: 50,
+                        ),
+                        const SizedBox(width: 20),
+                        Text(
+                          'Pet Home',
+                          style: FontConstants.heading2
+                              .copyWith(color: Palette.textLight),
+                        ),
+                      ],
+                    ),
+                  ),
+                  ListTile(
+                    leading: const Icon(
+                      Pethome.home_heart,
+                      color: Palette.textMedium,
+                    ),
+                    title: Text(
+                      'Dar en adopción',
+                      style: FontConstants.body1,
+                    ),
+                    onTap: () {
+                      Navigator.pop(context);
+                    },
+                  ),
+                  ListTile(
+                    leading: const Icon(
+                      Pethome.dog_nose,
+                      color: Palette.textMedium,
+                    ),
+                    title: Text(
+                      'Encuentra tu mascota',
+                      style: FontConstants.body1,
+                    ),
+                    onTap: () {
+                      Navigator.pop(context);
+                    },
+                  ),
+                  const Padding(
+                    padding: EdgeInsets.symmetric(vertical: 20),
+                    child: Divider(
+                      indent: 15,
+                      endIndent: 15,
+                      color: Palette.textMedium,
+                    ),
+                  ),
+                  ListTile(
+                    leading: const Icon(
+                      Pethome.paw_filled,
+                      color: Palette.textMedium,
+                    ),
+                    title: Text(
+                      'Mis publicaciones',
+                      style: FontConstants.body1,
+                    ),
+                    onTap: () {
+                      Navigator.pop(context);
+                    },
+                  ),
+                  ListTile(
+                    leading: const Icon(
+                      Pethome.heart_filled,
+                      color: Palette.textMedium,
+                    ),
+                    title: Text(
+                      'Mis postulaciones',
+                      style: FontConstants.body1,
+                    ),
+                    onTap: () {
+                      Navigator.pop(context);
+                    },
+                  ),
+                ],
+              ),
+            ),
+            const Divider(
+              indent: 15,
+              endIndent: 15,
+              color: Palette.textMedium,
+            ),
+            ListTile(
+              leading: Transform.scale(
+                scaleX: -1,
+                child: const Icon(
+                  Icons.login_rounded,
+                  color: Palette.textMedium,
+                ),
+              ),
+              title: const Text(
+                'Cerrar sesión',
+              ),
+              onTap: () => AppService.instance.manageAutoLogout(),
+            ),
+          ],
+        ),
+      ),
+      floatingActionButton: SpeedDial(
+        icon: Pethome.dog_nose,
+        activeIcon: Icons.close,
+        children: [
+          SpeedDialChild(
+            child: const Icon(
+              Pethome.paw_filled,
+              color: Palette.primary,
+            ),
+            label: 'Dar en adopción',
+            labelStyle: FontConstants.body2.copyWith(color: Palette.textMedium),
+            labelBackgroundColor: Palette.primaryLighter,
+          ),
+          SpeedDialChild(
+            child: const Icon(
+              Pethome.dog_nose,
+              color: Palette.primary,
+            ),
+            label: 'Encuentra a tu mascota',
+            labelStyle: FontConstants.body2.copyWith(color: Palette.textMedium),
+            labelBackgroundColor: Palette.primaryLighter,
+          ),
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -35,32 +173,6 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Row(
-                children: [
-                  Expanded(
-                    child: OutlinedButton(
-                      onPressed: () async {
-                        await AppService.instance.terminate();
-                        if (mounted) {
-                          ref.read(appRouterProvider).go(LoginScreen.path);
-                        }
-                      },
-                      child: const Text('Dar en adopción'),
-                    ),
-                  ),
-                  const SizedBox(
-                    width: 10,
-                  ),
-                  IconButton(
-                    onPressed: () {},
-                    icon: const Icon(
-                      Pethome.filter,
-                      color: Palette.primary,
-                      size: 33,
-                    ),
-                  ),
-                ],
-              ),
               const SizedBox(
                 height: 15,
               ),
@@ -82,7 +194,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                 ],
               ),
               const SizedBox(
-                height: 5,
+                height: 20,
               ),
               SizedBox(
                 height: MediaQuery.of(context).size.height / 3.5,
