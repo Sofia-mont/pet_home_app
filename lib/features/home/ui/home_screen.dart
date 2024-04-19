@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:pet_home/features/home/ui/widget/card.dart';
 import 'package:pet_home/features/home/ui/widget/home_drawer.dart';
 import 'package:pet_home/features/home/ui/widget/home_speed_dial.dart';
+import 'package:pet_home/features/home/ui/widget/pet_card.dart';
 import 'package:pet_home/ui/constants/font_constants.dart';
 import 'package:pet_home/ui/constants/palette.dart';
 
@@ -32,14 +32,16 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const SizedBox(
-                height: 15,
+                height: 25,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   Text(
                     'Adopciones en Medellín',
-                    style: FontConstants.body1.copyWith(color: Palette.primary),
+                    style: FontConstants.subtitle1
+                        .copyWith(color: Palette.primary),
                   ),
                   Text(
                     'Ver más',
@@ -51,18 +53,16 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                   ),
                 ],
               ),
-              const SizedBox(
-                height: 20,
-              ),
               SizedBox(
-                height: MediaQuery.of(context).size.height / 3.5,
+                height: MediaQuery.of(context).size.height / 3,
                 child: ListView(
                   scrollDirection: Axis.horizontal,
-                  children: <Widget>[
-                    homeCard(context),
-                    homeCard(context),
-                    homeCard(context),
-                    homeCard(context),
+                  children: const <Widget>[
+                    PetCard(),
+                    PetCard(),
+                    PetCard(),
+                    PetCard(),
+                    PetCard(),
                   ],
                 ),
               ),
@@ -71,10 +71,12 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   Text(
                     '¡Estas macotas buscan un hogar!',
-                    style: FontConstants.body1.copyWith(color: Palette.primary),
+                    style: FontConstants.subtitle1
+                        .copyWith(color: Palette.primary),
                   ),
                   Text(
                     'Ver más',
@@ -86,18 +88,16 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                   ),
                 ],
               ),
-              const SizedBox(
-                height: 5,
-              ),
               SizedBox(
-                height: MediaQuery.of(context).size.height / 3.5,
+                height: MediaQuery.of(context).size.height / 3,
                 child: ListView(
                   scrollDirection: Axis.horizontal,
-                  children: <Widget>[
-                    homeCard(context),
-                    homeCard(context),
-                    homeCard(context),
-                    homeCard(context),
+                  children: const <Widget>[
+                    PetCard(),
+                    PetCard(),
+                    PetCard(),
+                    PetCard(),
+                    PetCard(),
                   ],
                 ),
               ),
