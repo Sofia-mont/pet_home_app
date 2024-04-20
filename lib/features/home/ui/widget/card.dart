@@ -24,7 +24,7 @@ Container homeCard(BuildContext context) {
       crossAxisAlignment: CrossAxisAlignment.end,
       children: [
         Container(
-          decoration: const BoxDecoration(color: Palette.textLight),
+          decoration: const BoxDecoration(color: Palette.textLighter),
           width: MediaQuery.of(context).size.width / 1.2,
           padding: const EdgeInsets.all(10),
           child: const Row(

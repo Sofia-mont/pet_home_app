@@ -50,7 +50,7 @@ class PetCard extends ConsumerWidget {
                 height: MediaQuery.of(context).size.height / 4,
                 width: MediaQuery.of(context).size.width * 0.4,
                 decoration: BoxDecoration(
-                  color: Palette.textLight,
+                  color: Palette.textLighter,
                   borderRadius: const BorderRadius.only(
                     topRight: Radius.circular(10),
                     bottomRight: Radius.circular(10),

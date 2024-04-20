@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pet_home/core/app/app_service.dart';
+import 'package:pet_home/core/router/router.dart';
+import 'package:pet_home/features/publications/ui/adopt_pet/adopt_pet_firts_screen.dart';
 import 'package:pet_home/ui/constants/font_constants.dart';
 import 'package:pet_home/ui/constants/palette.dart';
 import 'package:pet_home/ui/icons/pethome_icons.dart';
 
-class HomeDrawer extends StatelessWidget {
+class HomeDrawer extends ConsumerWidget {
   const HomeDrawer({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Drawer(
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.only(
@@ -39,7 +42,7 @@ class HomeDrawer extends StatelessWidget {
                       Text(
                         'Pet Home',
                         style: FontConstants.heading2
-                            .copyWith(color: Palette.textLight),
+                            .copyWith(color: Palette.textLighter),
                       ),
                     ],
                   ),
@@ -53,9 +56,9 @@ class HomeDrawer extends StatelessWidget {
                     'Dar en adopción',
                     style: FontConstants.body1,
                   ),
-                  onTap: () {
-                    Navigator.pop(context);
-                  },
+                  onTap: () => ref
+                      .read(appRouterProvider)
+                      .pushNamed(AdoptPetFirstScreen.path),
                 ),
                 ListTile(
                   leading: const Icon(

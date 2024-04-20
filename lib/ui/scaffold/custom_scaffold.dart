@@ -9,6 +9,7 @@ class CustomScaffold extends ConsumerStatefulWidget {
     this.withAppbar = true,
     this.appbarColor = Colors.white,
     this.appbarElevation,
+    this.appbarTitle,
     this.appbarIconColor = Palette.primary,
     super.key,
   });
@@ -19,6 +20,7 @@ class CustomScaffold extends ConsumerStatefulWidget {
   final Color appbarIconColor;
   final double? appbarElevation;
   final bool withAppbar;
+  final String? appbarTitle;
   @override
   ConsumerState<ConsumerStatefulWidget> createState() => _CustomScaffoldState();
 }
@@ -32,6 +34,12 @@ class _CustomScaffoldState extends ConsumerState<CustomScaffold> {
               backgroundColor: widget.appbarColor,
               elevation: widget.appbarElevation,
               iconTheme: IconThemeData(color: widget.appbarIconColor),
+              title: widget.appbarTitle != null
+                  ? Text(
+                      widget.appbarTitle!,
+                      style: const TextStyle(color: Palette.primary),
+                    )
+                  : null,
             )
           : null,
       body: CustomScrollView(

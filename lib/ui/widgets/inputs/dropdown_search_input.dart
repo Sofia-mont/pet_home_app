@@ -11,10 +11,12 @@ class DropdownSearchInput extends StatefulWidget {
     required this.onChange,
     this.isRequired = false,
     this.title,
+    this.hintText = 'Selecciona',
     super.key,
   });
 
   final String? title;
+  final String hintText;
   final ValueChanged<dynamic>? onChange;
   final bool isRequired;
   final List<Object?> items;
@@ -92,7 +94,7 @@ class _DropdownSearchInputState extends State<DropdownSearchInput> {
                     style: FontConstants.body2,
                     decoration: const InputDecoration(
                       hintText: 'Buscar',
-                      hintStyle: TextStyle(color: Palette.textMedium),
+                      hintStyle: TextStyle(color: Palette.textLight),
                       contentPadding: EdgeInsets.symmetric(horizontal: 10),
                     ),
                   ),
@@ -120,9 +122,9 @@ class _DropdownSearchInputState extends State<DropdownSearchInput> {
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(8),
                     ),
-                    hintText: 'Selecciona',
+                    hintText: widget.hintText,
                     hintStyle:
-                        FontConstants.body2.copyWith(color: Palette.textMedium),
+                        FontConstants.body2.copyWith(color: Palette.textLight),
                   ),
                 ),
               ),

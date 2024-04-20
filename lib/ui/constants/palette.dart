@@ -9,7 +9,8 @@ class Palette {
   static const primaryLighter = Color(0xffDBECF7);
 
   //TEXT COLORS
-  static const textLight = Color(0xffFFFFFF);
+  static const textLighter = Color(0xffFFFFFF);
+  static const textLight = Color(0xffA7A7A7);
   static const textMedium = Color(0xff5E6A73);
   static const textDark = Color(0xff252D33);
   static const textLink = Color(0xff59A5D8);

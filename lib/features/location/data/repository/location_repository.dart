@@ -16,7 +16,12 @@ class LocationRepository {
 
   Future<List<String>> fetchDepartamentos() async {
     const path = '${AppConstants.baseURL}/location/departments';
-    final response = await client.get(path);
+    final response = await client.get(
+      path,
+      options: Options(
+        headers: {'requiresToken': false},
+      ),
+    );
     if (response.statusCode == 200) {
       List<String> data = List<String>.from(response.data);
       return data;
@@ -27,7 +32,12 @@ class LocationRepository {
   Future<List<String>> fetchCiudades(String departamento) async {
     final path =
         '${AppConstants.baseURL}/location/cities?department=$departamento';
-    final response = await client.get(path);
+    final response = await client.get(
+      path,
+      options: Options(
+        headers: {'requiresToken': false},
+      ),
+    );
     if (response.statusCode == 200) {
       List<String> data = List<String>.from(response.data);
       return data;

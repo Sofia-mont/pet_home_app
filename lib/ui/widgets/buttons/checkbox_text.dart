@@ -3,8 +3,8 @@ import 'package:pet_home/ui/constants/palette.dart';
 
 // ignore: must_be_immutable
 class CheckboxText extends StatefulWidget {
-  CheckboxText({
-    Key? key,
+  const CheckboxText({
+    super.key,
     this.size,
     this.iconSize,
     required this.onChange,
@@ -14,20 +14,20 @@ class CheckboxText extends StatefulWidget {
     this.borderColor,
     required this.text,
     required this.isChecked,
-  }) : super(key: key);
+  });
 
   @override
   State<CheckboxText> createState() => _CheckboxTextState();
 
-  double? size;
-  double? iconSize;
-  Function onChange;
-  Color? backgroundColor;
-  Color? iconColor;
-  Color? borderColor;
-  IconData? icon;
-  bool isChecked;
-  Widget text;
+  final double? size;
+  final double? iconSize;
+  final Function onChange;
+  final Color? backgroundColor;
+  final Color? iconColor;
+  final Color? borderColor;
+  final IconData? icon;
+  final bool isChecked;
+  final Widget text;
 }
 
 class _CheckboxTextState extends State<CheckboxText> {

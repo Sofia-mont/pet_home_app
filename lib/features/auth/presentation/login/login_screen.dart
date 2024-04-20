@@ -44,7 +44,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                   Text(
                     'Pet Home',
                     style: FontConstants.heading1
-                        .copyWith(color: Palette.textLight),
+                        .copyWith(color: Palette.textLighter),
                   ),
                 ],
               ),

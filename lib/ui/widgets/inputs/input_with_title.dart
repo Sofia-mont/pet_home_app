@@ -64,7 +64,7 @@ class _InputWithTitleState extends State<InputWithTitle> {
           style: FontConstants.body2,
           decoration: InputDecoration(
             hintText: widget.hintText,
-            hintStyle: const TextStyle(color: Palette.textMedium),
+            hintStyle: const TextStyle(color: Palette.textLight),
             errorMaxLines: 2,
           ),
         ),
