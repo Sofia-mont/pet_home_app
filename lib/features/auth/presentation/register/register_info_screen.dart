@@ -8,7 +8,6 @@ import 'package:pet_home/ui/constants/font_constants.dart';
 import 'package:pet_home/ui/constants/palette.dart';
 import 'package:pet_home/ui/constants/spacing.dart';
 import 'package:pet_home/ui/scaffold/custom_scaffold.dart';
-import 'package:pet_home/ui/widgets/buttons/checkbox_text.dart';
 import 'package:pet_home/ui/widgets/buttons/large_button.dart';
 import 'package:pet_home/ui/widgets/inputs/dropdown_search_input.dart';
 import 'package:pet_home/ui/widgets/inputs/input_with_title.dart';
@@ -75,7 +74,7 @@ class _RegisterInfoScreenState extends ConsumerState<RegisterInfoScreen> {
                 ],
               ),
             ),
-            Spacing.textField,
+            const SizedBox(height: 20),
             InputWithTitle(
               validator: (_) =>
                   TextValidators.textMandatory(_nameController.text),
@@ -84,7 +83,6 @@ class _RegisterInfoScreenState extends ConsumerState<RegisterInfoScreen> {
               title: 'Nombre completo',
               hintText: 'Ingresa tu nombre completo',
             ),
-            Spacing.textField,
             InputWithTitle(
               validator: (_) =>
                   TextValidators.emailValidator(_emailController.text),
@@ -93,7 +91,6 @@ class _RegisterInfoScreenState extends ConsumerState<RegisterInfoScreen> {
               title: 'Correo electrónico',
               hintText: 'micorreo@example.com',
             ),
-            Spacing.textField,
             InputWithTitle(
               validator: (_) =>
                   TextValidators.passwordValidator(_passwordController.text),
@@ -103,7 +100,6 @@ class _RegisterInfoScreenState extends ConsumerState<RegisterInfoScreen> {
               title: 'Elige una contraseña',
               hintText: '****',
             ),
-            Spacing.textField,
             InputWithTitle(
               validator: (_) => TextValidators.confirmPasswordValidator(
                 _confirmPasswordController.text,
@@ -115,7 +111,6 @@ class _RegisterInfoScreenState extends ConsumerState<RegisterInfoScreen> {
               title: 'Confirma la contraseña',
               hintText: '****',
             ),
-            Spacing.textField,
             Text(
               'Ubicación',
               style: FontConstants.body1.copyWith(color: Palette.primary),
@@ -158,37 +153,47 @@ class _RegisterInfoScreenState extends ConsumerState<RegisterInfoScreen> {
               ],
             ),
             const Spacer(),
-            Spacing.textField,
-            CheckboxText(
-              onChange: (value) {
-                termsAndConditions = value;
-                setState(() {});
-              },
-              isChecked: termsAndConditions,
-              text: Expanded(
-                child: RichText(
-                  maxLines: 3,
-                  text: TextSpan(
-                    children: [
-                      TextSpan(
-                        text: 'Al continuar aceptas los ',
-                        style: FontConstants.caption2,
-                      ),
-                      TextSpan(
-                        text:
-                            'términos, condiciones y políticas de tratamientos de datos.',
-                        style: FontConstants.caption2.copyWith(
-                          color: Palette.textLink,
-                          decoration: TextDecoration.underline,
-                          decorationColor: Palette.textLink,
-                        ),
-                      ),
-                    ],
+            Row(
+              children: [
+                Transform.scale(
+                  scale: 1.16,
+                  child: Radio<bool>(
+                    value: true,
+                    groupValue: termsAndConditions,
+                    visualDensity: const VisualDensity(
+                      horizontal: VisualDensity.minimumDensity,
+                    ),
+                    onChanged: (value) {
+                      setState(() {
+                        termsAndConditions = value ?? false;
+                      });
+                    },
                   ),
                 ),
-              ),
+                Expanded(
+                  child: RichText(
+                    maxLines: 3,
+                    text: TextSpan(
+                      children: [
+                        TextSpan(
+                          text: 'Al continuar aceptas los ',
+                          style: FontConstants.caption2,
+                        ),
+                        TextSpan(
+                          text:
+                              'términos, condiciones y políticas de tratamientos de datos.',
+                          style: FontConstants.caption2.copyWith(
+                            color: Palette.textLink,
+                            decoration: TextDecoration.underline,
+                            decorationColor: Palette.textLink,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
             ),
-            Spacing.textField,
             LargeButton(
               isEnabled: enableButton,
               text: 'Registrarme',

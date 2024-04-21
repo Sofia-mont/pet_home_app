@@ -38,5 +38,6 @@ class Pethome {
   static const IconData female = IconData(0xe80f, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData dog = IconData(0xe810, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData cat = IconData(0xe811, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData form = IconData(0xe812, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData dog_nose = IconData(0xe81e, fontFamily: _kFontFam, fontPackage: _kFontPkg);
 }

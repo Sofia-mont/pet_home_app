@@ -8,6 +8,9 @@ class Palette {
   static const primaryLight = Color(0xff93C5E6);
   static const primaryLighter = Color(0xffDBECF7);
 
+  //SECONDARY COLORS
+  static const secondary = Color(0xffD9A459);
+
   //TEXT COLORS
   static const textLighter = Color(0xffFFFFFF);
   static const textLight = Color(0xffA7A7A7);

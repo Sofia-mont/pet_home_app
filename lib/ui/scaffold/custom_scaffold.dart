@@ -50,7 +50,7 @@ class _CustomScaffoldState extends ConsumerState<CustomScaffold> {
               padding: widget.withPadding
                   ? const EdgeInsets.symmetric(
                       horizontal: 15,
-                      vertical: 10,
+                      vertical: 20,
                     )
                   : EdgeInsets.zero,
               child: widget.body,

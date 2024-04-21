@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:pet_home/features/home/ui/home_screen.dart';
+import 'package:pet_home/features/adoption/presentation/my_postulations/my_postulations_screen.dart';
+import 'package:pet_home/features/home/presentation/home_screen.dart';
+import 'package:pet_home/features/publications/presentation/post/my_posts_screen.dart';
 import 'package:pet_home/ui/constants/palette.dart';
 import 'package:pet_home/ui/constants/pethome_icons.dart';
 import 'package:pet_home/ui/scaffold/scaffold_controller.dart';
@@ -55,10 +57,10 @@ class _ScaffoldWithNavBarState extends ConsumerState<ScaffoldWithNavBar> {
         context.go(HomeScreen.path);
         break;
       case 1:
-        context.go('/user-publications');
+        context.go(MyPostsScreen.path);
         break;
       case 2:
-        context.go('/favorites');
+        context.go(MyPostulationsScreen.path); // TODO : Anadir pantalla
         break;
     }
   }

@@ -131,6 +131,7 @@ class _DropdownSearchInputState extends State<DropdownSearchInput> {
             ),
           ],
         ),
+        const SizedBox(height: 20),
       ],
     );
   }

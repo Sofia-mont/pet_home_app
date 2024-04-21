@@ -77,9 +77,6 @@ class _LoginUserScreenState extends ConsumerState<LoginUserScreen> {
                     validator: (_) =>
                         TextValidators.emailValidator(_emailController.text),
                   ),
-                  SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.02,
-                  ),
                   InputWithTitle(
                     title: 'Contraseña',
                     hintText: '**********',

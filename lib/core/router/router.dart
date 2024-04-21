@@ -2,23 +2,24 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:pet_home/core/app/app_service.dart';
+import 'package:pet_home/features/adoption/presentation/my_postulations/my_postulations_screen.dart';
+import 'package:pet_home/features/adoption/presentation/postulations/postulations_list_screen.dart';
 import 'package:pet_home/features/auth/presentation/login/login_user_screen.dart';
 import 'package:pet_home/features/auth/presentation/login/login_screen.dart';
 import 'package:pet_home/features/auth/presentation/register/register_info_screen.dart';
 import 'package:pet_home/features/auth/presentation/register/register_screen.dart';
-import 'package:pet_home/features/form_adoption/ui/adoption_alert.dart';
-import 'package:pet_home/features/form_adoption/ui/family_data_screen.dart';
-import 'package:pet_home/features/form_adoption/ui/personal_data_screen.dart';
-import 'package:pet_home/features/form_adoption/ui/questionary_first_screen.dart';
-import 'package:pet_home/features/form_adoption/ui/questionary_second_screen.dart';
-import 'package:pet_home/features/form_adoption/ui/questionary_third_screen.dart';
-import 'package:pet_home/features/form_adoption/ui/secondary_data_screen.dart';
-import 'package:pet_home/features/form_adoption/ui/success_form_sent_screen.dart';
-import 'package:pet_home/features/home/ui/home_screen.dart';
-import 'package:pet_home/features/publications/ui/adopt_pet/adopt_pet_firts_screen.dart';
-import 'package:pet_home/features/publications/ui/adopt_pet/adopt_pet_second_screen.dart';
-import 'package:pet_home/features/publications/ui/publication_screen.dart';
-import 'package:pet_home/features/publications/ui/user_publications_screen.dart';
+import 'package:pet_home/features/adoption/presentation/form_adoption/adoption_alert.dart';
+import 'package:pet_home/features/adoption/presentation/form_adoption/family_data_screen.dart';
+import 'package:pet_home/features/adoption/presentation/form_adoption/personal_data_screen.dart';
+import 'package:pet_home/features/adoption/presentation/form_adoption/questionary_first_screen.dart';
+import 'package:pet_home/features/adoption/presentation/form_adoption/questionary_second_screen.dart';
+import 'package:pet_home/features/adoption/presentation/form_adoption/adoption_conditions_screen.dart';
+import 'package:pet_home/features/adoption/presentation/form_adoption/secondary_data_screen.dart';
+import 'package:pet_home/features/adoption/presentation/form_adoption/success_form_sent_screen.dart';
+import 'package:pet_home/features/home/presentation/home_screen.dart';
+import 'package:pet_home/features/publications/presentation/adopt_pet/adopt_pet_screen.dart';
+import 'package:pet_home/features/publications/presentation/post/post_screen.dart';
+import 'package:pet_home/features/publications/presentation/post/my_posts_screen.dart';
 import 'package:pet_home/ui/scaffold/scaffold_with_navbar.dart';
 import 'package:pet_home/ui/widgets/response_screen.dart';
 
@@ -45,14 +46,17 @@ final appRouterProvider = Provider<GoRouter>((ref) {
 
 class CustomRouter {
   static final routes = [
-    ...formAdoptionRoutes,
     ...authRoutes,
+    ...adoptionRoutes,
     ...adoptPetRoutes,
     GoRoute(
       parentNavigatorKey: AppService.instance.navigatorKey,
-      path: PublicationScreen.path,
-      name: PublicationScreen.path,
-      builder: (context, state) => const PublicationScreen(),
+      path: PostScreen.path,
+      name: PostScreen.path,
+      builder: (context, state) => PostScreen(
+        isOwner:
+            bool.tryParse(state.queryParameters['isOwner'] ?? 'false') ?? false,
+      ),
     ),
     ShellRoute(
       navigatorKey: _shellNavigator,
@@ -63,21 +67,56 @@ class CustomRouter {
           path: HomeScreen.path,
           name: HomeScreen.path,
           pageBuilder: (context, state) {
-            return NoTransitionPage(
+            return CustomTransitionPage(
               child: HomeScreen(
                 key: state.pageKey,
               ),
+              transitionsBuilder:
+                  (context, animation, secondaryAnimation, child) {
+                return FadeTransition(
+                  opacity: CurveTween(curve: Curves.easeInOutCirc)
+                      .animate(animation),
+                  child: child,
+                );
+              },
             );
           },
         ),
         GoRoute(
-          path: UserPublicationsScreen.path,
-          name: UserPublicationsScreen.path,
+          path: MyPostsScreen.path,
+          name: MyPostsScreen.path,
           pageBuilder: (context, state) {
-            return NoTransitionPage(
-              child: UserPublicationsScreen(
+            return CustomTransitionPage(
+              child: MyPostsScreen(
                 key: state.pageKey,
               ),
+              transitionsBuilder:
+                  (context, animation, secondaryAnimation, child) {
+                return FadeTransition(
+                  opacity: CurveTween(curve: Curves.easeInOutCirc)
+                      .animate(animation),
+                  child: child,
+                );
+              },
+            );
+          },
+        ),
+        GoRoute(
+          path: MyPostulationsScreen.path,
+          name: MyPostulationsScreen.path,
+          pageBuilder: (context, state) {
+            return CustomTransitionPage(
+              child: MyPostulationsScreen(
+                key: state.pageKey,
+              ),
+              transitionsBuilder:
+                  (context, animation, secondaryAnimation, child) {
+                return FadeTransition(
+                  opacity: CurveTween(curve: Curves.easeInOutCirc)
+                      .animate(animation),
+                  child: child,
+                );
+              },
             );
           },
         ),
@@ -110,15 +149,9 @@ class CustomRouter {
   static final adoptPetRoutes = [
     GoRoute(
       parentNavigatorKey: AppService.instance.navigatorKey,
-      path: AdoptPetFirstScreen.path,
-      name: AdoptPetFirstScreen.path,
-      builder: (context, state) => const AdoptPetFirstScreen(),
-    ),
-    GoRoute(
-      parentNavigatorKey: AppService.instance.navigatorKey,
-      path: AdoptPetSecondScreen.path,
-      name: AdoptPetSecondScreen.path,
-      builder: (context, state) => const AdoptPetSecondScreen(),
+      path: AdoptPetScreen.path,
+      name: AdoptPetScreen.path,
+      builder: (context, state) => const AdoptPetScreen(),
     ),
   ];
 
@@ -147,49 +180,62 @@ class CustomRouter {
     ),
   ];
 
-  static final formAdoptionRoutes = [
+  static final adoptionRoutes = [
     GoRoute(
+      parentNavigatorKey: AppService.instance.navigatorKey,
       path: AdoptionAlert.path,
       name: AdoptionAlert.path,
       builder: (context, state) => const AdoptionAlert(),
     ),
     GoRoute(
+      parentNavigatorKey: AppService.instance.navigatorKey,
       path: FamilyDataScreen.path,
       name: FamilyDataScreen.path,
       builder: (context, state) => const FamilyDataScreen(),
     ),
     GoRoute(
+      parentNavigatorKey: AppService.instance.navigatorKey,
       path: PersonalDataScreen.path,
       name: PersonalDataScreen.path,
       builder: (context, state) => const PersonalDataScreen(),
     ),
     GoRoute(
+      parentNavigatorKey: AppService.instance.navigatorKey,
       path: QuestionaryScreen.path,
       name: QuestionaryScreen.path,
       builder: (context, state) => const QuestionaryScreen(),
     ),
     GoRoute(
+      parentNavigatorKey: AppService.instance.navigatorKey,
       path: QuestionarySecondScreen.path,
       name: QuestionarySecondScreen.path,
       builder: (context, state) => const QuestionarySecondScreen(),
     ),
     GoRoute(
-      path: QuestionaryThirdScreen.path,
-      name: QuestionaryThirdScreen.path,
-      builder: (context, state) => const QuestionaryThirdScreen(),
+      parentNavigatorKey: AppService.instance.navigatorKey,
+      path: AdoptionConditionsScreen.path,
+      name: AdoptionConditionsScreen.path,
+      builder: (context, state) => const AdoptionConditionsScreen(),
     ),
     GoRoute(
+      parentNavigatorKey: AppService.instance.navigatorKey,
       path: SecondaryDataScreen.path,
       name: SecondaryDataScreen.path,
       builder: (context, state) => const SecondaryDataScreen(),
     ),
     GoRoute(
+      parentNavigatorKey: AppService.instance.navigatorKey,
       path: SuccessFormSentScreen.path,
       name: SuccessFormSentScreen.path,
       builder: (context, state) => const SuccessFormSentScreen(),
     ),
+    GoRoute(
+      parentNavigatorKey: AppService.instance.navigatorKey,
+      path: PostulationsListScreen.path,
+      name: PostulationsListScreen.path,
+      builder: (context, state) => const PostulationsListScreen(),
+    ),
   ];
-
   static final notProtectedRoutes = [
     ResponseScreen.path,
     LoginScreen.path,

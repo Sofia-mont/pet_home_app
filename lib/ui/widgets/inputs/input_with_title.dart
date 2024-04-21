@@ -49,9 +49,7 @@ class _InputWithTitleState extends State<InputWithTitle> {
               ),
           ],
         ),
-        const SizedBox(
-          height: 5,
-        ),
+        const SizedBox(height: 5),
         TextFormField(
           controller: widget.controller,
           obscureText: widget.obscureText,
@@ -68,6 +66,7 @@ class _InputWithTitleState extends State<InputWithTitle> {
             errorMaxLines: 2,
           ),
         ),
+        const SizedBox(height: 20),
       ],
     );
   }

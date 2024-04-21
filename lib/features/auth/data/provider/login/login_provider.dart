@@ -8,7 +8,7 @@ import 'package:pet_home/core/sealed/either.dart';
 import 'package:pet_home/features/auth/data/provider/register/register_state.dart';
 import 'package:pet_home/features/auth/data/repository/auth_repository.dart';
 import 'package:pet_home/features/auth/domain/user/user.dart';
-import 'package:pet_home/features/home/ui/home_screen.dart';
+import 'package:pet_home/features/home/presentation/home_screen.dart';
 import 'package:pet_home/ui/widgets/modals/custom_modals.dart';
 
 final loginProvider = StateNotifierProvider<LoginNotifier, LoginState>(
