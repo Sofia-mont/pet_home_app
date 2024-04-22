@@ -25,62 +25,56 @@ class _QuestionarySecondScreenState
     String cubrirEconomia = '';
     return CustomScaffold(
       appbarTitle: 'Formulario de adopción',
-      body: Column(
-        children: [
-          Form(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                CheckboxSelect(
-                  title:
-                      '¿Tú o algun miembro de la familia es alérgico al pelo de gato o perro?',
-                  options: const ['Sí', 'No'],
-                  groupValue: esAlergico,
-                ),
-                CheckboxSelect(
-                  title:
-                      '¿Puede cubrir económicamente sus necesidades: alimento, cuentas veterinarias, vacunas, correas, juguetes, medicinas, elementos de higiene?',
-                  options: const ['Sí', 'No'],
-                  groupValue: cubrirEconomia,
-                ),
-                const InputWithTitle(
-                  title: '¿Cuántas horas del día permanecería solo el animal?',
-                  hintText: 'Ingresa tu respuesta...',
-                ),
-                const InputWithTitle(
-                  title:
-                      '¿Qué tiempo diario dispone para compartir con el animal?',
-                  hintText: 'Ingresa tu respuesta...',
-                ),
-                const InputWithTitle(
-                  title:
-                      '¿Qué sucedería si alguien resultara alérgico al animal?',
-                  hintText: 'Ingresa tu respuesta...',
-                  isMultiline: true,
-                ),
-                const InputWithTitle(
-                  title:
-                      '¿Qué sucedería si usted o, en caso de ser hombre, su pareja quedara embarazada?',
-                  hintText: 'Ingresa tu respuesta...',
-                  isMultiline: true,
-                ),
-                const InputWithTitle(
-                  title:
-                      '¿Anteriormente ha tenido animales en casa? ¿Cuál (es)? ¿Qué paso con ellos?',
-                  hintText: 'Ingresa tu respuesta...',
-                  isMultiline: true,
-                ),
-              ],
+      body: Form(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            CheckboxSelect(
+              title:
+                  '¿Tú o algun miembro de la familia es alérgico al pelo de gato o perro?',
+              options: const ['Sí', 'No'],
+              groupValue: esAlergico,
             ),
-          ),
-          const Spacer(),
-          LargeButton(
-            text: 'Continuar',
-            onPressed: () =>
-                ref.read(appRouterProvider).push(AdoptionConditionsScreen.path),
-          ),
-        ],
+            CheckboxSelect(
+              title:
+                  '¿Puede cubrir económicamente sus necesidades: alimento, cuentas veterinarias, vacunas, correas, juguetes, medicinas, elementos de higiene?',
+              options: const ['Sí', 'No'],
+              groupValue: cubrirEconomia,
+            ),
+            const InputWithTitle(
+              title: '¿Cuántas horas del día permanecería solo el animal?',
+              hintText: 'Ingresa tu respuesta...',
+            ),
+            const InputWithTitle(
+              title: '¿Qué tiempo diario dispone para compartir con el animal?',
+              hintText: 'Ingresa tu respuesta...',
+            ),
+            const InputWithTitle(
+              title: '¿Qué sucedería si alguien resultara alérgico al animal?',
+              hintText: 'Ingresa tu respuesta...',
+              isMultiline: true,
+            ),
+            const InputWithTitle(
+              title:
+                  '¿Qué sucedería si usted o, en caso de ser hombre, su pareja quedara embarazada?',
+              hintText: 'Ingresa tu respuesta...',
+              isMultiline: true,
+            ),
+            const InputWithTitle(
+              title:
+                  '¿Anteriormente ha tenido animales en casa? ¿Cuál (es)? ¿Qué paso con ellos?',
+              hintText: 'Ingresa tu respuesta...',
+              isMultiline: true,
+            ),
+            LargeButton(
+              text: 'Continuar',
+              onPressed: () => ref
+                  .read(appRouterProvider)
+                  .push(AdoptionConditionsScreen.path),
+            ),
+          ],
+        ),
       ),
     );
   }

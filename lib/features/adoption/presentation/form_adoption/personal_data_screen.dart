@@ -98,24 +98,9 @@ class _PersonalDataScreenState extends ConsumerState<PersonalDataScreen> {
                   title: 'Dirección',
                   hintText: 'Ingresa la dirección completa de tu hogar',
                 ),
-                Row(
-                  children: [
-                    SizedBox(
-                      width: (MediaQuery.of(context).size.width / 2) - 20,
-                      child: const InputWithTitle(
-                        title: 'Teléfono fijo',
-                        hintText: '604 123 4567',
-                      ),
-                    ),
-                    const Spacer(),
-                    SizedBox(
-                      width: (MediaQuery.of(context).size.width / 2) - 20,
-                      child: const InputWithTitle(
-                        title: 'Celular',
-                        hintText: '312 456 6789',
-                      ),
-                    ),
-                  ],
+                const InputWithTitle(
+                  title: 'Celular',
+                  hintText: '312 456 6789',
                 ),
                 const InputWithTitle(
                   title: 'Correo electrónico',

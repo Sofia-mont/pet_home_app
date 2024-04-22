@@ -4,11 +4,11 @@ import 'package:go_router/go_router.dart';
 import 'package:pet_home/core/app/app_service.dart';
 import 'package:pet_home/features/adoption/presentation/my_postulations/my_postulations_screen.dart';
 import 'package:pet_home/features/adoption/presentation/postulations/postulations_list_screen.dart';
+import 'package:pet_home/features/adoption/presentation/user_postulation/user_postulation_screen.dart';
 import 'package:pet_home/features/auth/presentation/login/login_user_screen.dart';
 import 'package:pet_home/features/auth/presentation/login/login_screen.dart';
 import 'package:pet_home/features/auth/presentation/register/register_info_screen.dart';
 import 'package:pet_home/features/auth/presentation/register/register_screen.dart';
-import 'package:pet_home/features/adoption/presentation/form_adoption/adoption_alert.dart';
 import 'package:pet_home/features/adoption/presentation/form_adoption/family_data_screen.dart';
 import 'package:pet_home/features/adoption/presentation/form_adoption/personal_data_screen.dart';
 import 'package:pet_home/features/adoption/presentation/form_adoption/questionary_first_screen.dart';
@@ -48,7 +48,18 @@ class CustomRouter {
   static final routes = [
     ...authRoutes,
     ...adoptionRoutes,
-    ...adoptPetRoutes,
+    GoRoute(
+      parentNavigatorKey: AppService.instance.navigatorKey,
+      path: UserPostulationScreen.path,
+      name: UserPostulationScreen.path,
+      builder: (context, state) => const UserPostulationScreen(),
+    ),
+    GoRoute(
+      parentNavigatorKey: AppService.instance.navigatorKey,
+      path: AdoptPetScreen.path,
+      name: AdoptPetScreen.path,
+      builder: (context, state) => const AdoptPetScreen(),
+    ),
     GoRoute(
       parentNavigatorKey: AppService.instance.navigatorKey,
       path: PostScreen.path,
@@ -146,15 +157,6 @@ class CustomRouter {
     ),
   ];
 
-  static final adoptPetRoutes = [
-    GoRoute(
-      parentNavigatorKey: AppService.instance.navigatorKey,
-      path: AdoptPetScreen.path,
-      name: AdoptPetScreen.path,
-      builder: (context, state) => const AdoptPetScreen(),
-    ),
-  ];
-
   static final authRoutes = [
     GoRoute(
       path: LoginScreen.path,
@@ -181,12 +183,6 @@ class CustomRouter {
   ];
 
   static final adoptionRoutes = [
-    GoRoute(
-      parentNavigatorKey: AppService.instance.navigatorKey,
-      path: AdoptionAlert.path,
-      name: AdoptionAlert.path,
-      builder: (context, state) => const AdoptionAlert(),
-    ),
     GoRoute(
       parentNavigatorKey: AppService.instance.navigatorKey,
       path: FamilyDataScreen.path,
@@ -236,6 +232,7 @@ class CustomRouter {
       builder: (context, state) => const PostulationsListScreen(),
     ),
   ];
+
   static final notProtectedRoutes = [
     ResponseScreen.path,
     LoginScreen.path,

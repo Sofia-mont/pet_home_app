@@ -36,10 +36,6 @@ class _FamilyDataScreenState extends ConsumerState<FamilyDataScreen> {
                 const SizedBox(
                   height: 10,
                 ),
-                const InputWithTitle(
-                  title: 'Número de personas en el hogar',
-                  hintText: 'Ingresa el número de personas en el hogar',
-                ),
                 Row(
                   children: [
                     SizedBox(
