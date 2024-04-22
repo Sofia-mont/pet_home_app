@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:pet_home/core/utils/platform_utils.dart';
 import 'package:pet_home/ui/constants/font_constants.dart';
 import 'package:pet_home/ui/constants/palette.dart';
+import 'package:pet_home/ui/widgets/buttons/large_button.dart';
+import 'package:pet_home/ui/widgets/inputs/dropwdown_list_input.dart';
 import 'package:pet_home/ui/widgets/response_screen.dart';
 
 final customModalsProvider = Provider<CustomModals>(CustomModalsImpl.fromRead);
@@ -26,6 +27,7 @@ abstract class CustomModals {
     required String buttonText,
     VoidCallback? buttonAction,
   });
+  Future<void> showFilterDialog({required BuildContext buildContext});
   void pop(BuildContext context);
 }
 
@@ -134,6 +136,62 @@ class CustomModalsImpl implements CustomModals {
                 color: Palette.primary,
               ),
             ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  @override
+  Future<void> showFilterDialog({required BuildContext buildContext}) {
+    return showAdaptiveDialog(
+      context: buildContext,
+      builder: (context) => AlertDialog.adaptive(
+        iconPadding: const EdgeInsets.all(10),
+        icon: Align(
+          alignment: Alignment.topRight,
+          child: InkWell(
+            onTap: () {
+              Navigator.pop(context);
+            },
+            child: const Icon(
+              Icons.close,
+              color: Palette.primary,
+            ),
+          ),
+        ),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+        title: Text(
+          'Filtrar',
+          style: FontConstants.subtitle2.copyWith(
+            color: Palette.primary,
+          ),
+          textAlign: TextAlign.start,
+        ),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            DropdownListInput(
+              onChange: (value) {},
+              title: 'Tipo de mascota',
+              items: const ['Perro', 'Gato'],
+            ),
+            DropdownListInput(
+              onChange: (value) {},
+              title: 'Tamaño',
+              items: const ['Pequeño', 'Mediano', 'Grande'],
+            ),
+            DropdownListInput(
+              onChange: (value) {},
+              title: 'Sexo',
+              items: const ['Macho', 'Hembra'],
+            ),
+          ],
+        ),
+        actions: [
+          LargeButton(
+            onPressed: () {},
+            text: 'Aplicar filtros',
           ),
         ],
       ),

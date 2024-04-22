@@ -9,6 +9,7 @@ import 'package:pet_home/ui/constants/font_constants.dart';
 import 'package:pet_home/ui/constants/palette.dart';
 import 'package:pet_home/ui/icons/pethome_icons.dart';
 import 'package:pet_home/ui/scaffold/scaffold_controller.dart';
+import 'package:pet_home/ui/widgets/modals/custom_modals.dart';
 
 class HomeDrawer extends ConsumerWidget {
   const HomeDrawer({super.key});
@@ -75,6 +76,9 @@ class HomeDrawer extends ConsumerWidget {
                   ),
                   onTap: () {
                     Navigator.pop(context);
+                    ref
+                        .read(customModalsProvider)
+                        .showFilterDialog(buildContext: context);
                   },
                 ),
                 const Padding(

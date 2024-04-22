@@ -6,6 +6,7 @@ import 'package:pet_home/features/publications/presentation/adopt_pet/adopt_pet_
 import 'package:pet_home/ui/constants/font_constants.dart';
 import 'package:pet_home/ui/constants/palette.dart';
 import 'package:pet_home/ui/icons/pethome_icons.dart';
+import 'package:pet_home/ui/widgets/modals/custom_modals.dart';
 
 class HomeSpeedDial extends ConsumerWidget {
   const HomeSpeedDial({super.key});
@@ -36,6 +37,9 @@ class HomeSpeedDial extends ConsumerWidget {
           label: 'Encuentra a tu mascota',
           labelStyle: FontConstants.body2.copyWith(color: Palette.textMedium),
           labelBackgroundColor: Palette.primaryLighter,
+          onTap: () => ref
+              .read(customModalsProvider)
+              .showFilterDialog(buildContext: context),
         ),
       ],
     );
