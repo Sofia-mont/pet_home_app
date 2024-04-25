@@ -2,6 +2,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
 import 'package:pet_home/core/app/app_service.dart';
 import 'package:pet_home/core/router/router.dart';
+import 'package:pet_home/features/auth/data/provider/login/login_provider.dart';
+import 'package:pet_home/features/auth/domain/user/user.dart';
 import 'package:url_strategy/url_strategy.dart';
 import 'package:pet_home/ui/constants/app_theme.dart';
 
@@ -18,6 +20,24 @@ class _PethomeAppState extends ConsumerState<PethomeApp> {
     super.initState();
     setPathUrlStrategy();
     AppService.instance.initialize();
+    final localStorage = AppService.instance;
+
+    if (localStorage.refreshTokenHasExpired != null ||
+        localStorage.accessTokenHasExpired != null) {
+      if (localStorage.refreshTokenHasExpired!) {
+        ref.read(loginProvider.notifier).login(
+              user: User(
+                localStorage.currentUser!.user,
+                localStorage.currentUser!.pass,
+              ),
+              context: context,
+            );
+      } else if (localStorage.accessTokenHasExpired!) {
+        ref
+            .read(loginProvider.notifier)
+            .refreshToken(token: localStorage.currentUser!.refreshToken!);
+      }
+    }
   }
 
   @override

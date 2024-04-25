@@ -10,10 +10,16 @@ class UserData {
   final String? token;
   @HiveField(2)
   final String? refreshToken;
+  @HiveField(3)
+  final String? user;
+  @HiveField(4)
+  final String? pass;
 
   const UserData({
     this.id,
     this.refreshToken,
     this.token,
+    this.user,
+    this.pass,
   });
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hive/hive.dart';
+import 'package:jwt_decoder/jwt_decoder.dart';
 import 'package:pet_home/core/app/domain/user_data.dart';
 import 'package:pet_home/features/auth/presentation/login/login_screen.dart';
 
@@ -22,11 +23,26 @@ class AppService extends ChangeNotifier {
 
   UserData? currentUser;
 
+  bool? accessTokenHasExpired;
+
+  bool? refreshTokenHasExpired;
+
   bool get isLoggedIn => currentUser != null;
 
   void initialize() {
     final user = storageBox.get(_kCurrentUserKey);
-    if (user != null) currentUser = user;
+    if (user != null) {
+      currentUser = user;
+      final accessToken = currentUser?.token;
+      final refreshToken = currentUser?.refreshToken;
+      final userData = currentUser?.user;
+      if (accessToken == null || refreshToken == null || userData == null) {
+        manageAutoLogout();
+      } else {
+        accessTokenHasExpired = JwtDecoder.isExpired(accessToken);
+        refreshTokenHasExpired = JwtDecoder.isExpired(refreshToken);
+      }
+    }
   }
 
   void setUserData(UserData userData) {

@@ -20,19 +20,25 @@ class UserDataAdapter extends TypeAdapter<UserData> {
       id: fields[0] as String?,
       refreshToken: fields[2] as String?,
       token: fields[1] as String?,
+      user: fields[3] as String?,
+      pass: fields[4] as String?,
     );
   }
 
   @override
   void write(BinaryWriter writer, UserData obj) {
     writer
-      ..writeByte(3)
+      ..writeByte(5)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
       ..write(obj.token)
       ..writeByte(2)
-      ..write(obj.refreshToken);
+      ..write(obj.refreshToken)
+      ..writeByte(3)
+      ..write(obj.user)
+      ..writeByte(4)
+      ..write(obj.pass);
   }
 
   @override

@@ -26,7 +26,9 @@ class AuthRepository {
       path,
       data: data,
       cancelToken: cancelToken,
-      options: Options(headers: {'Content-Type': 'application/json', 'requiresToken':false}),
+      options: Options(
+        headers: {'Content-Type': 'application/json', 'requiresToken': false},
+      ),
     );
     return RegisterUser.fromJson(response.data);
   }
@@ -37,7 +39,21 @@ class AuthRepository {
     final response = await client.post(
       path,
       data: data,
-      options: Options(headers: {'Content-Type': 'application/json', 'requiresToken':false}),
+      options: Options(
+        headers: {'Content-Type': 'application/json', 'requiresToken': false},
+      ),
+    );
+    return Token.fromJson(response.data);
+  }
+
+  Future<Token> refreshToken({required String refreshToken}) async {
+    const path = '${AppConstants.baseURL}/auth/refresh-token';
+    final response = await client.post(
+      path,
+      data: {'token': refreshToken},
+      options: Options(
+        headers: {'Content-Type': 'application/json', 'requiresToken': false},
+      ),
     );
     return Token.fromJson(response.data);
   }

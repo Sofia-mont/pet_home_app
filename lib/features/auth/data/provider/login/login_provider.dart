@@ -52,10 +52,27 @@ class LoginNotifier extends StateNotifier<LoginState> {
             id: DateTime.now().millisecondsSinceEpoch.toString(),
             refreshToken: right.refreshToken,
             token: right.token,
+            user: user.email,
+            pass: user.password,
           ),
         );
         ref.read(appRouterProvider).goNamed(HomeScreen.path);
       },
+    );
+  }
+
+  Future<void> refreshToken({required String token}) async {
+    final res =
+        await authRepository.refreshToken(refreshToken: token).toEither();
+    res.fold(
+      (left) => AppService.instance.manageAutoLogout(),
+      (right) => AppService.instance.setUserData(
+        UserData(
+          id: DateTime.now().millisecondsSinceEpoch.toString(),
+          refreshToken: right.refreshToken,
+          token: right.token,
+        ),
+      ),
     );
   }
 }
