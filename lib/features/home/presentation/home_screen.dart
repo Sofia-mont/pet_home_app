@@ -18,7 +18,6 @@ class HomeScreen extends ConsumerStatefulWidget {
 }
 
 class _HomeScreenState extends ConsumerState<HomeScreen> {
-  var isDialOpen = ValueNotifier<bool>(false);
   @override
   Widget build(BuildContext context) {
     return Scaffold(

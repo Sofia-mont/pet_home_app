@@ -32,12 +32,7 @@ class AuthInterceptor implements Interceptor {
     var refreshed = true;
 
     if (refreshTokenHasExpired) {
-      _localStorage.manageAutoLogout();
-      final error = DioException(
-        requestOptions: options,
-        type: DioExceptionType.badCertificate,
-      );
-      return handler.reject(error);
+      refreshed = await _reLogin();
     } else if (accessTokenHasExpired) {
       refreshed = await _regenerateAccessToken();
     }
@@ -71,13 +66,54 @@ class AuthInterceptor implements Interceptor {
 
       final response = await dio.post(
         '${AppConstants.baseURL}/auth/refresh-token',
-        data: {'token': '$refreshToken'},
+        data: {'token': refreshToken},
+        options: Options(
+          headers: {'Content-Type': 'application/json', 'requiresToken': false},
+        ),
       );
 
       if (response.statusCode == 200 || response.statusCode == 201) {
-        final newAccessToken = Token.fromJson(
-          response.data,
+        final newAccessToken = Token.fromJson(response.data);
+        _localStorage.setUserData(
+          UserData(
+            id: DateTime.now().millisecondsSinceEpoch.toString(),
+            token: newAccessToken.token,
+            refreshToken: newAccessToken.refreshToken,
+          ),
         );
+        return true;
+      } else if (response.statusCode == 401 || response.statusCode == 403) {
+        _localStorage.manageAutoLogout();
+        return false;
+      } else {
+        return false;
+      }
+    } on DioException {
+      return false;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  Future<bool> _reLogin() async {
+    try {
+      var dio = Dio();
+      final user = _localStorage.currentUser?.user;
+      final pass = _localStorage.currentUser?.pass;
+
+      final response = await dio.post(
+        '${AppConstants.baseURL}/auth/login',
+        data: {
+          'email': user,
+          'password': pass,
+        },
+        options: Options(
+          headers: {'Content-Type': 'application/json', 'requiresToken': false},
+        ),
+      );
+
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        final newAccessToken = Token.fromJson(response.data);
         _localStorage.setUserData(
           UserData(
             id: DateTime.now().millisecondsSinceEpoch.toString(),
