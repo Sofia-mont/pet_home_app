@@ -5,24 +5,26 @@ import 'package:pet_home/core/app/domain/user_data.dart';
 import 'package:pet_home/core/extension_methods/future_extension.dart';
 import 'package:pet_home/core/router/router.dart';
 import 'package:pet_home/core/sealed/either.dart';
-import 'package:pet_home/features/auth/data/provider/register/register_state.dart';
+import 'package:pet_home/features/auth/data/provider/auth_state.dart';
 import 'package:pet_home/features/auth/data/repository/auth_repository.dart';
+import 'package:pet_home/features/auth/domain/register_user/register_user.dart';
 import 'package:pet_home/features/auth/domain/user/user.dart';
+import 'package:pet_home/features/auth/presentation/login/login_user_screen.dart';
 import 'package:pet_home/features/home/presentation/home_screen.dart';
 import 'package:pet_home/ui/widgets/modals/custom_modals.dart';
 
-final loginProvider = StateNotifierProvider<LoginNotifier, LoginState>(
-  LoginNotifier.fromRef,
+final authProvider = StateNotifierProvider<AuthNotifier, AuthState>(
+  AuthNotifier.fromRef,
 );
 
-class LoginNotifier extends StateNotifier<LoginState> {
-  LoginNotifier({
+class AuthNotifier extends StateNotifier<AuthState> {
+  AuthNotifier({
     required this.ref,
     required this.authRepository,
-  }) : super(LoginState.initial());
+  }) : super(AuthState.initial());
 
-  factory LoginNotifier.fromRef(Ref ref) {
-    return LoginNotifier(
+  factory AuthNotifier.fromRef(Ref ref) {
+    return AuthNotifier(
       ref: ref,
       authRepository: ref.read(authRepositoryProvider),
     );
@@ -31,7 +33,28 @@ class LoginNotifier extends StateNotifier<LoginState> {
   final AuthRepository authRepository;
   final Ref ref;
 
-  void resetState() => state = LoginState.initial();
+  void resetState() => state = AuthState.initial();
+
+  Future<void> register({
+    required RegisterUser user,
+    required BuildContext context,
+  }) async {
+    final res = await authRepository.register(user: user).toEither();
+    res.fold(
+      (left) => ref
+          .read(customModalsProvider)
+          .showInformativeScreen(context: context, message: left.message),
+      (right) => ref.read(customModalsProvider).showInformativeScreen(
+            context: context,
+            isError: false,
+            message: 'Ahora puedes iniciar sesión.',
+            title: '¡Registro exitoso!',
+            buttonMsg: 'Iniciar sesión',
+            onPressed: () =>
+                ref.read(appRouterProvider).goNamed(LoginUserScreen.path),
+          ),
+    );
+  }
 
   Future<void> login({
     required User user,
