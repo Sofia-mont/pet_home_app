@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pet_home/features/home/presentation/widget/home_drawer.dart';
 import 'package:pet_home/features/home/presentation/widget/home_speed_dial.dart';
 import 'package:pet_home/features/publications/data/provider/publications_provider.dart';
-import 'package:pet_home/features/publications/domain/posts/publications_search_query.dart';
+import 'package:pet_home/features/publications/domain/posts/publications_search_query/publications_search_query.dart';
 import 'package:pet_home/ui/widgets/cards/pet_card.dart';
 import 'package:pet_home/ui/constants/font_constants.dart';
 import 'package:pet_home/ui/constants/palette.dart';

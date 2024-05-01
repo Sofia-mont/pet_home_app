@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:pet_home/features/publications/domain/post/publication.dart';
+import 'package:pet_home/features/publications/domain/post/publication/publication.dart';
 
 part 'publications_response.freezed.dart';
 part 'publications_response.g.dart';

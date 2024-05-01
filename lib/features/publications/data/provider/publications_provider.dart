@@ -2,8 +2,8 @@ import 'dart:async';
 
 import 'package:dio/dio.dart';
 import 'package:pet_home/features/publications/data/repository/publications_repository.dart';
-import 'package:pet_home/features/publications/domain/posts/publications_response.dart';
-import 'package:pet_home/features/publications/domain/posts/publications_search_query.dart';
+import 'package:pet_home/features/publications/domain/posts/publications_response/publications_response.dart';
+import 'package:pet_home/features/publications/domain/posts/publications_search_query/publications_search_query.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'publications_provider.g.dart';

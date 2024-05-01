@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:pet_home/features/publications/domain/post/post_owner/post_owner.dart';
 
 part 'publication.freezed.dart';
 part 'publication.g.dart';
@@ -20,6 +21,8 @@ class Publication with _$Publication {
     required bool vaccinated,
     required bool dewormed,
     required bool neutered,
+    @JsonKey(name: 'created_at') DateTime? createdAt,
+    PostOwner? user,
   }) = _Publication;
 
   factory Publication.fromJson(Map<String, dynamic> json) =>
