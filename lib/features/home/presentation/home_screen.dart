@@ -61,32 +61,45 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                   ),
                 ],
               ),
-              SizedBox(
-                height: MediaQuery.of(context).size.height / 3,
-                child: ListView.builder(
-                  itemCount: totalResults,
-                  itemBuilder: (_, index) {
-                    final indexInPage = index % 10;
-                    final responseAsync = ref.watch(
-                      fetchPublicationsProvider(
-                        page: 1,
-                        query: PublicationsResponseQuery(petType: 'Perro'),
+              Builder(
+                builder: (context) {
+                  final responseAsync = ref.watch(
+                    fetchPublicationsProvider(
+                      page: 1,
+                      query: PublicationsResponseQuery(petType: 'Perro'),
+                    ),
+                  );
+                  return responseAsync.when(
+                    data: (data) {
+                      return SizedBox(
+                        height: MediaQuery.of(context).size.height / 3,
+                        child: ListView.builder(
+                          itemCount: totalResults,
+                          itemBuilder: (_, index) {
+                            final indexInPage = index % 10;
+                            if (indexInPage >= data.data.length) {
+                              return null;
+                            }
+                            final post = data.data[index];
+                            return PetCard(petName: post.petName);
+                          },
+                          scrollDirection: Axis.horizontal,
+                        ),
+                      );
+                    },
+                    error: (error, stackTrace) {
+                      return const SizedBox.shrink();
+                    },
+                    loading: () => const Center(
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(vertical: 50),
+                        child: CircularProgressIndicator(
+                          color: Palette.secondary,
+                        ),
                       ),
-                    );
-                    return responseAsync.when(
-                      data: (data) {
-                        if (indexInPage >= data.data.length) {
-                          return null;
-                        }
-                        final post = data.data[index];
-                        return PetCard(petName: post.petName);
-                      },
-                      error: (error, stackTrace) => Text(error.toString()),
-                      loading: () => const CircularProgressIndicator(),
-                    );
-                  },
-                  scrollDirection: Axis.horizontal,
-                ),
+                    ),
+                  );
+                },
               ),
               const SizedBox(
                 height: 20,
@@ -110,39 +123,45 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                   ),
                 ],
               ),
-              SizedBox(
-                height: MediaQuery.of(context).size.height / 3,
-                child: ListView.builder(
-                  itemCount: totalResults,
-                  itemBuilder: (_, index) {
-                    final indexInPage = index % 10;
-                    final responseAsync = ref.watch(
-                      fetchPublicationsProvider(
-                        page: 1,
-                        query: PublicationsResponseQuery(petType: 'Gato'),
-                      ),
-                    );
-                    return responseAsync.when(
-                      data: (data) {
-                        if (indexInPage >= data.data.length) {
-                          return null;
-                        }
-                        final post = data.data[index];
-                        return PetCard(petName: post.petName);
-                      },
-                      error: (error, stackTrace) {
-                        return const SizedBox.shrink();
-                      },
-                      loading: () => const Center(
-                        child: Padding(
-                          padding: EdgeInsets.all(8.0),
-                          child: CircularProgressIndicator(),
+              Builder(
+                builder: (context) {
+                  final responseAsync = ref.watch(
+                    fetchPublicationsProvider(
+                      page: 1,
+                      query: PublicationsResponseQuery(petType: 'Gato'),
+                    ),
+                  );
+                  return responseAsync.when(
+                    data: (data) {
+                      return SizedBox(
+                        height: MediaQuery.of(context).size.height / 3,
+                        child: ListView.builder(
+                          itemCount: totalResults,
+                          itemBuilder: (_, index) {
+                            final indexInPage = index % 10;
+                            if (indexInPage >= data.data.length) {
+                              return null;
+                            }
+                            final post = data.data[index];
+                            return PetCard(petName: post.petName);
+                          },
+                          scrollDirection: Axis.horizontal,
+                        ),
+                      );
+                    },
+                    error: (error, stackTrace) {
+                      return const SizedBox.shrink();
+                    },
+                    loading: () => const Center(
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(vertical: 50),
+                        child: CircularProgressIndicator(
+                          color: Palette.secondary,
                         ),
                       ),
-                    );
-                  },
-                  scrollDirection: Axis.horizontal,
-                ),
+                    ),
+                  );
+                },
               ),
             ],
           ),
