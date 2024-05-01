@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pet_home/features/home/presentation/widget/home_drawer.dart';
 import 'package:pet_home/features/home/presentation/widget/home_speed_dial.dart';
+import 'package:pet_home/features/publications/data/provider/publications_provider.dart';
+import 'package:pet_home/features/publications/domain/posts/publications_search_query.dart';
 import 'package:pet_home/ui/widgets/cards/pet_card.dart';
 import 'package:pet_home/ui/constants/font_constants.dart';
 import 'package:pet_home/ui/constants/palette.dart';
@@ -19,7 +21,16 @@ class HomeScreen extends ConsumerStatefulWidget {
 
 class _HomeScreenState extends ConsumerState<HomeScreen> {
   @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    final responseAsync = ref.watch(
+      fetchPublicationsProvider(page: 0),
+    );
+    final totalResults = responseAsync.valueOrNull?.data.length;
     return Scaffold(
       appBar: AppBar(),
       drawer: const HomeDrawer(),
@@ -36,7 +47,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   Text(
-                    'Adopciones en Medellín',
+                    'Perros en adopción',
                     style: FontConstants.subtitle1
                         .copyWith(color: Palette.primary),
                   ),
@@ -52,15 +63,29 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
               ),
               SizedBox(
                 height: MediaQuery.of(context).size.height / 3,
-                child: ListView(
+                child: ListView.builder(
+                  itemCount: totalResults,
+                  itemBuilder: (_, index) {
+                    final indexInPage = index % 10;
+                    final responseAsync = ref.watch(
+                      fetchPublicationsProvider(
+                        page: 1,
+                        query: PublicationsResponseQuery(petType: 'Perro'),
+                      ),
+                    );
+                    return responseAsync.when(
+                      data: (data) {
+                        if (indexInPage >= data.data.length) {
+                          return null;
+                        }
+                        final post = data.data[index];
+                        return PetCard(petName: post.petName);
+                      },
+                      error: (error, stackTrace) => Text(error.toString()),
+                      loading: () => const CircularProgressIndicator(),
+                    );
+                  },
                   scrollDirection: Axis.horizontal,
-                  children: const <Widget>[
-                    PetCard(),
-                    PetCard(),
-                    PetCard(),
-                    PetCard(),
-                    PetCard(),
-                  ],
                 ),
               ),
               const SizedBox(
@@ -71,7 +96,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   Text(
-                    '¡Estas macotas buscan un hogar!',
+                    'Gatos en adopción',
                     style: FontConstants.subtitle1
                         .copyWith(color: Palette.primary),
                   ),
@@ -87,15 +112,36 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
               ),
               SizedBox(
                 height: MediaQuery.of(context).size.height / 3,
-                child: ListView(
+                child: ListView.builder(
+                  itemCount: totalResults,
+                  itemBuilder: (_, index) {
+                    final indexInPage = index % 10;
+                    final responseAsync = ref.watch(
+                      fetchPublicationsProvider(
+                        page: 1,
+                        query: PublicationsResponseQuery(petType: 'Gato'),
+                      ),
+                    );
+                    return responseAsync.when(
+                      data: (data) {
+                        if (indexInPage >= data.data.length) {
+                          return null;
+                        }
+                        final post = data.data[index];
+                        return PetCard(petName: post.petName);
+                      },
+                      error: (error, stackTrace) {
+                        return const SizedBox.shrink();
+                      },
+                      loading: () => const Center(
+                        child: Padding(
+                          padding: EdgeInsets.all(8.0),
+                          child: CircularProgressIndicator(),
+                        ),
+                      ),
+                    );
+                  },
                   scrollDirection: Axis.horizontal,
-                  children: const <Widget>[
-                    PetCard(),
-                    PetCard(),
-                    PetCard(),
-                    PetCard(),
-                    PetCard(),
-                  ],
                 ),
               ),
             ],

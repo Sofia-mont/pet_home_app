@@ -30,14 +30,30 @@ class _MyPostulationsScreenState extends ConsumerState<MyPostulationsScreen> {
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: 10),
-          const PetCard(),
-          const PetCard(),
-          const PetCard(),
-          const PetCard(),
-          const PetCard(),
-          const PetCard(),
-          const PetCard(),
-          const PetCard(),
+          const PetCard(
+            petName: 'Firulais',
+          ),
+          const PetCard(
+            petName: 'Firulais',
+          ),
+          const PetCard(
+            petName: 'Firulais',
+          ),
+          const PetCard(
+            petName: 'Firulais',
+          ),
+          const PetCard(
+            petName: 'Firulais',
+          ),
+          const PetCard(
+            petName: 'Firulais',
+          ),
+          const PetCard(
+            petName: 'Firulais',
+          ),
+          const PetCard(
+            petName: 'Firulais',
+          ),
         ],
       ),
     );

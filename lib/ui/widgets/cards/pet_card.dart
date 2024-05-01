@@ -7,7 +7,12 @@ import 'package:pet_home/ui/constants/palette.dart';
 import 'package:pet_home/ui/icons/pethome_icons.dart';
 
 class PetCard extends ConsumerWidget {
-  const PetCard({super.key});
+  const PetCard({
+    required this.petName,
+    super.key,
+  });
+
+  final String petName;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -54,10 +59,14 @@ class PetCard extends ConsumerWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
-                            'Firulais',
-                            style: FontConstants.subtitle1
-                                .copyWith(color: Palette.primaryDarker),
+                          Expanded(
+                            child: Text(
+                              petName,
+                              style: FontConstants.subtitle1.copyWith(
+                                color: Palette.primaryDarker,
+                                fontSize: 18,
+                              ),
+                            ),
                           ),
                           const Icon(
                             Pethome.female,
@@ -74,7 +83,7 @@ class PetCard extends ConsumerWidget {
                         style: FontConstants.caption1
                             .copyWith(color: Palette.textMedium),
                       ),
-                      const SizedBox(height: 10),
+                      const Spacer(),
                       Row(
                         children: [
                           const Icon(
