@@ -88,7 +88,15 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                       );
                     },
                     error: (error, stackTrace) {
-                      return const SizedBox.shrink();
+                      ref.invalidate(fetchPublicationsProvider);
+                      return const Center(
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(vertical: 50),
+                          child: CircularProgressIndicator(
+                            color: Palette.secondary,
+                          ),
+                        ),
+                      );
                     },
                     loading: () => const Center(
                       child: Padding(
@@ -136,7 +144,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                       return SizedBox(
                         height: MediaQuery.of(context).size.height / 3,
                         child: ListView.builder(
-                          itemCount: totalResults,
+                          itemCount: data.data.length,
                           itemBuilder: (_, index) {
                             final indexInPage = index % 10;
                             if (indexInPage >= data.data.length) {
@@ -150,7 +158,15 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                       );
                     },
                     error: (error, stackTrace) {
-                      return const SizedBox.shrink();
+                      ref.invalidate(fetchPublicationsProvider);
+                      return const Center(
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(vertical: 50),
+                          child: CircularProgressIndicator(
+                            color: Palette.secondary,
+                          ),
+                        ),
+                      );
                     },
                     loading: () => const Center(
                       child: Padding(
