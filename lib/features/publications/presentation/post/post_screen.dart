@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:intl/date_symbol_data_local.dart';
+import 'package:intl/intl.dart';
 import 'package:pet_home/core/router/router.dart';
 import 'package:pet_home/features/adoption/presentation/form_adoption/personal_data_screen.dart';
+import 'package:pet_home/features/publications/domain/post/publication/publication.dart';
 import 'package:pet_home/features/publications/presentation/post/widgets/own_post_dial.dart';
 import 'package:pet_home/ui/constants/font_constants.dart';
 import 'package:pet_home/ui/constants/palette.dart';
@@ -10,7 +13,11 @@ import 'package:pet_home/ui/widgets/buttons/large_button.dart';
 import 'package:pet_home/ui/widgets/modals/custom_modals.dart';
 
 class PostScreen extends ConsumerStatefulWidget {
-  const PostScreen({this.isOwner = false, super.key});
+  const PostScreen({
+    required this.publication,
+    this.isOwner = false,
+    super.key,
+  });
 
   @override
   ConsumerState<PostScreen> createState() => _PublicationScreenState();
@@ -18,6 +25,7 @@ class PostScreen extends ConsumerStatefulWidget {
   static const path = '/publication';
 
   final bool isOwner;
+  final Publication publication;
 }
 
 class _PublicationScreenState extends ConsumerState<PostScreen>
@@ -27,6 +35,7 @@ class _PublicationScreenState extends ConsumerState<PostScreen>
   @override
   void initState() {
     super.initState();
+    initializeDateFormatting('es_ES');
     tabController = TabController(length: 2, vsync: this);
   }
 
@@ -87,20 +96,24 @@ class _PublicationScreenState extends ConsumerState<PostScreen>
                           Row(
                             children: [
                               const Icon(
-                                Icons.pin_drop,
+                                Pethome.map_pin,
                                 color: Palette.textMedium,
                                 size: 20,
                               ),
                               Text(
-                                'Antioquia, Itagüí',
+                                '${widget.publication.department}, ${widget.publication.city}',
                                 style: FontConstants.body2
                                     .copyWith(color: Palette.textMedium),
                               ),
                             ],
                           ),
-                          const Icon(
-                            Pethome.female,
-                            color: Palette.textMedium,
+                          Icon(
+                            widget.publication.petSex == 'Macho'
+                                ? Pethome.male
+                                : Pethome.female,
+                            color: widget.publication.petSex == 'Macho'
+                                ? Palette.primary
+                                : Palette.softPink,
                           ),
                         ],
                       ),
@@ -108,7 +121,7 @@ class _PublicationScreenState extends ConsumerState<PostScreen>
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            'Firulais',
+                            widget.publication.petName,
                             style: FontConstants.heading3
                                 .copyWith(color: Palette.primaryDarker),
                           ),
@@ -117,19 +130,31 @@ class _PublicationScreenState extends ConsumerState<PostScreen>
                             children: [
                               Icon(
                                 Pethome.dog,
-                                color: Palette.textMedium.withOpacity(0.3),
+                                color: Palette.textMedium.withOpacity(
+                                  widget.publication.petSize == 'Grande'
+                                      ? 1
+                                      : 0.3,
+                                ),
                                 size: 35,
                               ),
                               const SizedBox(width: 5),
                               Icon(
                                 Pethome.dog,
-                                color: Palette.textMedium.withOpacity(0.3),
+                                color: Palette.textMedium.withOpacity(
+                                  widget.publication.petSize == 'Mediano'
+                                      ? 1
+                                      : 0.3,
+                                ),
                                 size: 30,
                               ),
                               const SizedBox(width: 5),
                               Icon(
                                 Pethome.dog,
-                                color: Palette.textMedium.withOpacity(1),
+                                color: Palette.textMedium.withOpacity(
+                                  widget.publication.petSize == 'Pequeño'
+                                      ? 1
+                                      : 0.3,
+                                ),
                                 size: 20,
                               ),
                             ],
@@ -137,7 +162,7 @@ class _PublicationScreenState extends ConsumerState<PostScreen>
                         ],
                       ),
                       Text(
-                        '2 años',
+                        widget.publication.petAge,
                         style: FontConstants.body2
                             .copyWith(color: Palette.textMedium),
                       ),
@@ -147,9 +172,13 @@ class _PublicationScreenState extends ConsumerState<PostScreen>
                         children: [
                           Row(
                             children: [
-                              const Icon(
-                                Icons.check_circle,
-                                color: Palette.successDark,
+                              Icon(
+                                widget.publication.vaccinated
+                                    ? Icons.check_circle
+                                    : Icons.cancel,
+                                color: widget.publication.vaccinated
+                                    ? Palette.successDark
+                                    : Palette.errorDark,
                                 size: 20,
                               ),
                               Text(
@@ -160,9 +189,13 @@ class _PublicationScreenState extends ConsumerState<PostScreen>
                           ),
                           Row(
                             children: [
-                              const Icon(
-                                Icons.check_circle,
-                                color: Palette.successDark,
+                              Icon(
+                                widget.publication.neutered
+                                    ? Icons.check_circle
+                                    : Icons.cancel,
+                                color: widget.publication.neutered
+                                    ? Palette.successDark
+                                    : Palette.errorDark,
                                 size: 20,
                               ),
                               Text(
@@ -173,9 +206,13 @@ class _PublicationScreenState extends ConsumerState<PostScreen>
                           ),
                           Row(
                             children: [
-                              const Icon(
-                                Icons.check_circle,
-                                color: Palette.successDark,
+                              Icon(
+                                widget.publication.dewormed
+                                    ? Icons.check_circle
+                                    : Icons.cancel,
+                                color: widget.publication.dewormed
+                                    ? Palette.successDark
+                                    : Palette.errorDark,
                                 size: 20,
                               ),
                               Text(
@@ -216,7 +253,7 @@ class _PublicationScreenState extends ConsumerState<PostScreen>
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                      'Sofia Montoya',
+                                      widget.publication.postOwner.name,
                                       style: FontConstants.body1,
                                     ),
                                     Text(
@@ -230,7 +267,7 @@ class _PublicationScreenState extends ConsumerState<PostScreen>
                                 ),
                               ),
                               Text(
-                                'May 10, 2024',
+                                'Publicado en \n${DateFormat('MMM d, yyyy', 'es_ES').format(widget.publication.createdAt)}',
                                 style: FontConstants.body2
                                     .copyWith(color: Palette.textMedium),
                               ),
@@ -239,10 +276,13 @@ class _PublicationScreenState extends ConsumerState<PostScreen>
                           const SizedBox(
                             height: 20,
                           ),
-                          Text(
-                            'Proident sit cupidatat enim eu proident tempor elit consequat qui aliquip id. Consectetur voluptate dolore tempor est et. Cillum sit nulla fugiat consectetur laborum reprehenderit culpa dolore dolor esse et non.em. Proident sit cupidatat enim eu proident tempor elit consequat qui aliquip id. Consectetur voluptate dolore tempor est et. Cillum sit nulla fugiat consectetur laborum reprehenderit culpa dolore dolor esse et non.em',
-                            style: FontConstants.body2
-                                .copyWith(color: Palette.textMedium),
+                          Align(
+                            alignment: Alignment.centerLeft,
+                            child: Text(
+                              widget.publication.petHistory,
+                              style: FontConstants.body2
+                                  .copyWith(color: Palette.textMedium),
+                            ),
                           ),
                           if (!widget.isOwner) ...[
                             const Spacer(),

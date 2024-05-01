@@ -17,6 +17,7 @@ import 'package:pet_home/features/adoption/presentation/form_adoption/adoption_c
 import 'package:pet_home/features/adoption/presentation/form_adoption/secondary_data_screen.dart';
 import 'package:pet_home/features/adoption/presentation/form_adoption/success_form_sent_screen.dart';
 import 'package:pet_home/features/home/presentation/home_screen.dart';
+import 'package:pet_home/features/publications/domain/post/publication/publication.dart';
 import 'package:pet_home/features/publications/presentation/adopt_pet/adopt_pet_screen.dart';
 import 'package:pet_home/features/publications/presentation/post/post_screen.dart';
 import 'package:pet_home/features/publications/presentation/post/my_posts_screen.dart';
@@ -64,10 +65,14 @@ class CustomRouter {
       parentNavigatorKey: AppService.instance.navigatorKey,
       path: PostScreen.path,
       name: PostScreen.path,
-      builder: (context, state) => PostScreen(
-        isOwner:
-            bool.tryParse(state.queryParameters['isOwner'] ?? 'false') ?? false,
-      ),
+      builder: (context, state) {
+        Publication publication = state.extra as Publication;
+        return PostScreen(
+          isOwner: bool.tryParse(state.queryParameters['isOwner'] ?? 'false') ??
+              false,
+          publication: publication,
+        );
+      },
     ),
     ShellRoute(
       navigatorKey: _shellNavigator,

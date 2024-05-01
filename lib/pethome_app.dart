@@ -44,6 +44,7 @@ class _PethomeAppState extends ConsumerState<PethomeApp> {
   Widget build(BuildContext context) {
     final routerProv = ref.read(appRouterProvider);
     return MaterialApp.router(
+      locale: const Locale('es', 'ES'),
       title: 'Pethome',
       debugShowCheckedModeBanner: false,
       routerDelegate: routerProv.routerDelegate,

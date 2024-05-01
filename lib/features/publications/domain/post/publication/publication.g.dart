@@ -22,12 +22,8 @@ _$PublicationImpl _$$PublicationImplFromJson(Map<String, dynamic> json) =>
       vaccinated: json['vaccinated'] as bool,
       dewormed: json['dewormed'] as bool,
       neutered: json['neutered'] as bool,
-      createdAt: json['created_at'] == null
-          ? null
-          : DateTime.parse(json['created_at'] as String),
-      user: json['user'] == null
-          ? null
-          : PostOwner.fromJson(json['user'] as Map<String, dynamic>),
+      createdAt: DateTime.parse(json['createdAt'] as String),
+      postOwner: PostOwner.fromJson(json['postOwner'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$PublicationImplToJson(_$PublicationImpl instance) =>
@@ -46,6 +42,6 @@ Map<String, dynamic> _$$PublicationImplToJson(_$PublicationImpl instance) =>
       'vaccinated': instance.vaccinated,
       'dewormed': instance.dewormed,
       'neutered': instance.neutered,
-      'created_at': instance.createdAt?.toIso8601String(),
-      'user': instance.user,
+      'createdAt': instance.createdAt.toIso8601String(),
+      'postOwner': instance.postOwner,
     };

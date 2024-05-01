@@ -27,10 +27,6 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final responseAsync = ref.watch(
-      fetchPublicationsProvider(page: 0),
-    );
-    final totalResults = responseAsync.valueOrNull?.data.length;
     return Scaffold(
       appBar: AppBar(),
       drawer: const HomeDrawer(),
@@ -74,7 +70,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                       return SizedBox(
                         height: MediaQuery.of(context).size.height / 3,
                         child: ListView.builder(
-                          itemCount: totalResults,
+                          itemCount: data.data.length,
                           itemBuilder: (_, index) {
                             final indexInPage = index % 10;
                             if (indexInPage >= data.data.length) {

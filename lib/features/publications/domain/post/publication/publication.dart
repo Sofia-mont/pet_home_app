@@ -21,8 +21,8 @@ class Publication with _$Publication {
     required bool vaccinated,
     required bool dewormed,
     required bool neutered,
-    @JsonKey(name: 'created_at') DateTime? createdAt,
-    PostOwner? user,
+    required DateTime createdAt,
+    required PostOwner postOwner,
   }) = _Publication;
 
   factory Publication.fromJson(Map<String, dynamic> json) =>

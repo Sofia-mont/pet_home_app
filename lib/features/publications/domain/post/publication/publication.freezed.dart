@@ -34,9 +34,8 @@ mixin _$Publication {
   bool get vaccinated => throw _privateConstructorUsedError;
   bool get dewormed => throw _privateConstructorUsedError;
   bool get neutered => throw _privateConstructorUsedError;
-  @JsonKey(name: 'created_at')
-  DateTime? get createdAt => throw _privateConstructorUsedError;
-  PostOwner? get user => throw _privateConstructorUsedError;
+  DateTime get createdAt => throw _privateConstructorUsedError;
+  PostOwner get postOwner => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -65,10 +64,10 @@ abstract class $PublicationCopyWith<$Res> {
       bool vaccinated,
       bool dewormed,
       bool neutered,
-      @JsonKey(name: 'created_at') DateTime? createdAt,
-      PostOwner? user});
+      DateTime createdAt,
+      PostOwner postOwner});
 
-  $PostOwnerCopyWith<$Res>? get user;
+  $PostOwnerCopyWith<$Res> get postOwner;
 }
 
 /// @nodoc
@@ -98,8 +97,8 @@ class _$PublicationCopyWithImpl<$Res, $Val extends Publication>
     Object? vaccinated = null,
     Object? dewormed = null,
     Object? neutered = null,
-    Object? createdAt = freezed,
-    Object? user = freezed,
+    Object? createdAt = null,
+    Object? postOwner = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -158,26 +157,22 @@ class _$PublicationCopyWithImpl<$Res, $Val extends Publication>
           ? _value.neutered
           : neutered // ignore: cast_nullable_to_non_nullable
               as bool,
-      createdAt: freezed == createdAt
+      createdAt: null == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      user: freezed == user
-          ? _value.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as PostOwner?,
+              as DateTime,
+      postOwner: null == postOwner
+          ? _value.postOwner
+          : postOwner // ignore: cast_nullable_to_non_nullable
+              as PostOwner,
     ) as $Val);
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $PostOwnerCopyWith<$Res>? get user {
-    if (_value.user == null) {
-      return null;
-    }
-
-    return $PostOwnerCopyWith<$Res>(_value.user!, (value) {
-      return _then(_value.copyWith(user: value) as $Val);
+  $PostOwnerCopyWith<$Res> get postOwner {
+    return $PostOwnerCopyWith<$Res>(_value.postOwner, (value) {
+      return _then(_value.copyWith(postOwner: value) as $Val);
     });
   }
 }
@@ -205,11 +200,11 @@ abstract class _$$PublicationImplCopyWith<$Res>
       bool vaccinated,
       bool dewormed,
       bool neutered,
-      @JsonKey(name: 'created_at') DateTime? createdAt,
-      PostOwner? user});
+      DateTime createdAt,
+      PostOwner postOwner});
 
   @override
-  $PostOwnerCopyWith<$Res>? get user;
+  $PostOwnerCopyWith<$Res> get postOwner;
 }
 
 /// @nodoc
@@ -237,8 +232,8 @@ class __$$PublicationImplCopyWithImpl<$Res>
     Object? vaccinated = null,
     Object? dewormed = null,
     Object? neutered = null,
-    Object? createdAt = freezed,
-    Object? user = freezed,
+    Object? createdAt = null,
+    Object? postOwner = null,
   }) {
     return _then(_$PublicationImpl(
       id: null == id
@@ -297,14 +292,14 @@ class __$$PublicationImplCopyWithImpl<$Res>
           ? _value.neutered
           : neutered // ignore: cast_nullable_to_non_nullable
               as bool,
-      createdAt: freezed == createdAt
+      createdAt: null == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      user: freezed == user
-          ? _value.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as PostOwner?,
+              as DateTime,
+      postOwner: null == postOwner
+          ? _value.postOwner
+          : postOwner // ignore: cast_nullable_to_non_nullable
+              as PostOwner,
     ));
   }
 }
@@ -327,8 +322,8 @@ class _$PublicationImpl implements _Publication {
       required this.vaccinated,
       required this.dewormed,
       required this.neutered,
-      @JsonKey(name: 'created_at') this.createdAt,
-      this.user});
+      required this.createdAt,
+      required this.postOwner});
 
   factory _$PublicationImpl.fromJson(Map<String, dynamic> json) =>
       _$$PublicationImplFromJson(json);
@@ -362,14 +357,13 @@ class _$PublicationImpl implements _Publication {
   @override
   final bool neutered;
   @override
-  @JsonKey(name: 'created_at')
-  final DateTime? createdAt;
+  final DateTime createdAt;
   @override
-  final PostOwner? user;
+  final PostOwner postOwner;
 
   @override
   String toString() {
-    return 'Publication(id: $id, department: $department, city: $city, petName: $petName, petHistory: $petHistory, petPersonality: $petPersonality, petType: $petType, petSex: $petSex, petAge: $petAge, petSize: $petSize, postState: $postState, vaccinated: $vaccinated, dewormed: $dewormed, neutered: $neutered, createdAt: $createdAt, user: $user)';
+    return 'Publication(id: $id, department: $department, city: $city, petName: $petName, petHistory: $petHistory, petPersonality: $petPersonality, petType: $petType, petSex: $petSex, petAge: $petAge, petSize: $petSize, postState: $postState, vaccinated: $vaccinated, dewormed: $dewormed, neutered: $neutered, createdAt: $createdAt, postOwner: $postOwner)';
   }
 
   @override
@@ -400,7 +394,8 @@ class _$PublicationImpl implements _Publication {
                 other.neutered == neutered) &&
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt) &&
-            (identical(other.user, user) || other.user == user));
+            (identical(other.postOwner, postOwner) ||
+                other.postOwner == postOwner));
   }
 
   @JsonKey(ignore: true)
@@ -422,7 +417,7 @@ class _$PublicationImpl implements _Publication {
       dewormed,
       neutered,
       createdAt,
-      user);
+      postOwner);
 
   @JsonKey(ignore: true)
   @override
@@ -454,8 +449,8 @@ abstract class _Publication implements Publication {
       required final bool vaccinated,
       required final bool dewormed,
       required final bool neutered,
-      @JsonKey(name: 'created_at') final DateTime? createdAt,
-      final PostOwner? user}) = _$PublicationImpl;
+      required final DateTime createdAt,
+      required final PostOwner postOwner}) = _$PublicationImpl;
 
   factory _Publication.fromJson(Map<String, dynamic> json) =
       _$PublicationImpl.fromJson;
@@ -489,10 +484,9 @@ abstract class _Publication implements Publication {
   @override
   bool get neutered;
   @override
-  @JsonKey(name: 'created_at')
-  DateTime? get createdAt;
+  DateTime get createdAt;
   @override
-  PostOwner? get user;
+  PostOwner get postOwner;
   @override
   @JsonKey(ignore: true)
   _$$PublicationImplCopyWith<_$PublicationImpl> get copyWith =>

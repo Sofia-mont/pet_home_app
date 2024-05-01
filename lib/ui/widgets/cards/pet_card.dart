@@ -24,6 +24,7 @@ class PetCard extends ConsumerWidget {
       child: InkWell(
         onTap: () => ref.read(appRouterProvider).pushNamed(
               PostScreen.path,
+              extra: publicationInfo,
             ),
         child: Stack(
           alignment: Alignment.center,
