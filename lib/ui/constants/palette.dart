@@ -32,4 +32,7 @@ class Palette {
   static const errorLight = Color(0xffF4D8D2);
   static const errorMedium = Color(0xffD2654A);
   static const errorDark = Color(0xffC73E1D);
+
+  //OTHER COLORS
+  static const softPink = Color(0xffFBA6DD);
 }

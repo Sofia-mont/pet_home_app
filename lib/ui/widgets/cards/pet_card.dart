@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pet_home/core/router/router.dart';
+import 'package:pet_home/features/publications/domain/post/publication.dart';
 import 'package:pet_home/features/publications/presentation/post/post_screen.dart';
 import 'package:pet_home/ui/constants/font_constants.dart';
 import 'package:pet_home/ui/constants/palette.dart';
@@ -8,11 +9,11 @@ import 'package:pet_home/ui/icons/pethome_icons.dart';
 
 class PetCard extends ConsumerWidget {
   const PetCard({
-    required this.petName,
+    required this.publicationInfo,
     super.key,
   });
 
-  final String petName;
+  final Publication publicationInfo;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -61,36 +62,47 @@ class PetCard extends ConsumerWidget {
                         children: [
                           Expanded(
                             child: Text(
-                              petName,
+                              publicationInfo.petName,
                               style: FontConstants.subtitle1.copyWith(
                                 color: Palette.primaryDarker,
                                 fontSize: 18,
                               ),
                             ),
                           ),
-                          const Icon(
-                            Pethome.female,
-                            color: Palette.textMedium,
+                          Icon(
+                            publicationInfo.petSex == 'Macho'
+                                ? Pethome.male
+                                : Pethome.female,
+                            color: publicationInfo.petSex == 'Macho'
+                                ? Palette.primary
+                                : Palette.softPink,
                           ),
                         ],
                       ),
                       Text(
-                        'Medellín, Itagüí',
+                        '${publicationInfo.department}, ${publicationInfo.city}',
                         style: FontConstants.caption2,
                       ),
                       Text(
-                        '2 años',
+                        publicationInfo.petAge,
                         style: FontConstants.caption1
                             .copyWith(color: Palette.textMedium),
                       ),
                       const Spacer(),
                       Row(
                         children: [
-                          const Icon(
-                            Icons.check_circle,
-                            color: Palette.primaryDark,
-                            size: 20,
-                          ),
+                          if (publicationInfo.vaccinated)
+                            const Icon(
+                              Icons.check_circle,
+                              color: Palette.successDark,
+                              size: 20,
+                            )
+                          else
+                            const Icon(
+                              Icons.cancel,
+                              color: Palette.errorDark,
+                              size: 20,
+                            ),
                           Text(
                             'Vacunado',
                             style: FontConstants.caption2,
@@ -99,11 +111,18 @@ class PetCard extends ConsumerWidget {
                       ),
                       Row(
                         children: [
-                          const Icon(
-                            Icons.check_circle,
-                            color: Palette.primaryDark,
-                            size: 20,
-                          ),
+                          if (publicationInfo.neutered)
+                            const Icon(
+                              Icons.check_circle,
+                              color: Palette.successDark,
+                              size: 20,
+                            )
+                          else
+                            const Icon(
+                              Icons.cancel,
+                              color: Palette.errorDark,
+                              size: 20,
+                            ),
                           Text(
                             'Castrado',
                             style: FontConstants.caption2,
@@ -112,11 +131,18 @@ class PetCard extends ConsumerWidget {
                       ),
                       Row(
                         children: [
-                          const Icon(
-                            Icons.check_circle,
-                            color: Palette.primaryDark,
-                            size: 20,
-                          ),
+                          if (publicationInfo.dewormed)
+                            const Icon(
+                              Icons.check_circle,
+                              color: Palette.successDark,
+                              size: 20,
+                            )
+                          else
+                            const Icon(
+                              Icons.cancel,
+                              color: Palette.errorDark,
+                              size: 20,
+                            ),
                           Text(
                             'Desparasitado',
                             style: FontConstants.caption2,
@@ -129,19 +155,25 @@ class PetCard extends ConsumerWidget {
                         children: [
                           Icon(
                             Pethome.dog,
-                            color: Palette.textMedium.withOpacity(0.3),
+                            color: Palette.textMedium.withOpacity(
+                              publicationInfo.petSize == 'Grande' ? 1 : 0.3,
+                            ),
                             size: 35,
                           ),
                           const SizedBox(width: 5),
                           Icon(
                             Pethome.dog,
-                            color: Palette.textMedium.withOpacity(0.3),
+                            color: Palette.textMedium.withOpacity(
+                              publicationInfo.petSize == 'Mediano' ? 1 : 0.3,
+                            ),
                             size: 30,
                           ),
                           const SizedBox(width: 5),
-                          const Icon(
+                          Icon(
                             Pethome.dog,
-                            color: Palette.primaryDark,
+                            color: Palette.textMedium.withOpacity(
+                              publicationInfo.petSize == 'Pequeño' ? 1 : 0.3,
+                            ),
                             size: 20,
                           ),
                         ],

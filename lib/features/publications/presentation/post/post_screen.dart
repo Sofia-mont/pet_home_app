@@ -127,9 +127,9 @@ class _PublicationScreenState extends ConsumerState<PostScreen>
                                 size: 30,
                               ),
                               const SizedBox(width: 5),
-                              const Icon(
+                              Icon(
                                 Pethome.dog,
-                                color: Palette.primaryDark,
+                                color: Palette.textMedium.withOpacity(1),
                                 size: 20,
                               ),
                             ],
@@ -149,7 +149,7 @@ class _PublicationScreenState extends ConsumerState<PostScreen>
                             children: [
                               const Icon(
                                 Icons.check_circle,
-                                color: Palette.primaryDark,
+                                color: Palette.successDark,
                                 size: 20,
                               ),
                               Text(
@@ -162,7 +162,7 @@ class _PublicationScreenState extends ConsumerState<PostScreen>
                             children: [
                               const Icon(
                                 Icons.check_circle,
-                                color: Palette.primaryDark,
+                                color: Palette.successDark,
                                 size: 20,
                               ),
                               Text(
@@ -175,7 +175,7 @@ class _PublicationScreenState extends ConsumerState<PostScreen>
                             children: [
                               const Icon(
                                 Icons.check_circle,
-                                color: Palette.primaryDark,
+                                color: Palette.successDark,
                                 size: 20,
                               ),
                               Text(

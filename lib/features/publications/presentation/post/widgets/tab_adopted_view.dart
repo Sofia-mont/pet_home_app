@@ -26,30 +26,6 @@ class _TabAdoptedViewState extends ConsumerState<TabAdoptedView> {
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: 10),
-          const PetCard(
-            petName: 'Firulais',
-          ),
-          const PetCard(
-            petName: 'Firulais',
-          ),
-          const PetCard(
-            petName: 'Firulais',
-          ),
-          const PetCard(
-            petName: 'Firulais',
-          ),
-          const PetCard(
-            petName: 'Firulais',
-          ),
-          const PetCard(
-            petName: 'Firulais',
-          ),
-          const PetCard(
-            petName: 'Firulais',
-          ),
-          const PetCard(
-            petName: 'Firulais',
-          ),
         ],
       ),
     );

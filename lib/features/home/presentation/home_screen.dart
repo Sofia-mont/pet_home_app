@@ -65,7 +65,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                 builder: (context) {
                   final responseAsync = ref.watch(
                     fetchPublicationsProvider(
-                      page: 1,
+                      page: 0,
                       query: PublicationsResponseQuery(petType: 'Perro'),
                     ),
                   );
@@ -81,7 +81,9 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                               return null;
                             }
                             final post = data.data[index];
-                            return PetCard(petName: post.petName);
+                            return PetCard(
+                              publicationInfo: post,
+                            );
                           },
                           scrollDirection: Axis.horizontal,
                         ),
@@ -135,7 +137,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                 builder: (context) {
                   final responseAsync = ref.watch(
                     fetchPublicationsProvider(
-                      page: 1,
+                      page: 0,
                       query: PublicationsResponseQuery(petType: 'Gato'),
                     ),
                   );
@@ -151,7 +153,9 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                               return null;
                             }
                             final post = data.data[index];
-                            return PetCard(petName: post.petName);
+                            return PetCard(
+                              publicationInfo: post,
+                            );
                           },
                           scrollDirection: Axis.horizontal,
                         ),
