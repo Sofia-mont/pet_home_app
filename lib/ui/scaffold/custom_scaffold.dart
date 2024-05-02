@@ -11,6 +11,7 @@ class CustomScaffold extends ConsumerStatefulWidget {
     this.appbarElevation,
     this.appbarTitle,
     this.appbarIconColor = Palette.primary,
+    this.floatingActionButton,
     super.key,
   });
 
@@ -21,6 +22,7 @@ class CustomScaffold extends ConsumerStatefulWidget {
   final double? appbarElevation;
   final bool withAppbar;
   final String? appbarTitle;
+  final Widget? floatingActionButton;
   @override
   ConsumerState<ConsumerStatefulWidget> createState() => _CustomScaffoldState();
 }
@@ -42,6 +44,7 @@ class _CustomScaffoldState extends ConsumerState<CustomScaffold> {
                   : null,
             )
           : null,
+      floatingActionButton: widget.floatingActionButton,
       body: CustomScrollView(
         slivers: [
           SliverFillRemaining(

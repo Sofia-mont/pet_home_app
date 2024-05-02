@@ -31,14 +31,14 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
             clipper: OvalBottomBorderClipper(),
             child: Container(
               width: MediaQuery.of(context).size.width,
-              height: 400,
+              height: MediaQuery.of(context).size.height * 0.4,
               color: Palette.primary,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Image.asset(
                     'assets/img/pethome_logo.png',
-                    width: 152,
+                    width: MediaQuery.of(context).size.width * 0.25,
                   ),
                   const SizedBox(height: 20),
                   Text(

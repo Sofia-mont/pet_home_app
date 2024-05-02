@@ -36,6 +36,7 @@ mixin _$Publication {
   bool get neutered => throw _privateConstructorUsedError;
   DateTime get createdAt => throw _privateConstructorUsedError;
   PostOwner get postOwner => throw _privateConstructorUsedError;
+  List<String> get petImages => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -65,7 +66,8 @@ abstract class $PublicationCopyWith<$Res> {
       bool dewormed,
       bool neutered,
       DateTime createdAt,
-      PostOwner postOwner});
+      PostOwner postOwner,
+      List<String> petImages});
 
   $PostOwnerCopyWith<$Res> get postOwner;
 }
@@ -99,6 +101,7 @@ class _$PublicationCopyWithImpl<$Res, $Val extends Publication>
     Object? neutered = null,
     Object? createdAt = null,
     Object? postOwner = null,
+    Object? petImages = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -165,6 +168,10 @@ class _$PublicationCopyWithImpl<$Res, $Val extends Publication>
           ? _value.postOwner
           : postOwner // ignore: cast_nullable_to_non_nullable
               as PostOwner,
+      petImages: null == petImages
+          ? _value.petImages
+          : petImages // ignore: cast_nullable_to_non_nullable
+              as List<String>,
     ) as $Val);
   }
 
@@ -201,7 +208,8 @@ abstract class _$$PublicationImplCopyWith<$Res>
       bool dewormed,
       bool neutered,
       DateTime createdAt,
-      PostOwner postOwner});
+      PostOwner postOwner,
+      List<String> petImages});
 
   @override
   $PostOwnerCopyWith<$Res> get postOwner;
@@ -234,6 +242,7 @@ class __$$PublicationImplCopyWithImpl<$Res>
     Object? neutered = null,
     Object? createdAt = null,
     Object? postOwner = null,
+    Object? petImages = null,
   }) {
     return _then(_$PublicationImpl(
       id: null == id
@@ -300,6 +309,10 @@ class __$$PublicationImplCopyWithImpl<$Res>
           ? _value.postOwner
           : postOwner // ignore: cast_nullable_to_non_nullable
               as PostOwner,
+      petImages: null == petImages
+          ? _value._petImages
+          : petImages // ignore: cast_nullable_to_non_nullable
+              as List<String>,
     ));
   }
 }
@@ -323,7 +336,9 @@ class _$PublicationImpl implements _Publication {
       required this.dewormed,
       required this.neutered,
       required this.createdAt,
-      required this.postOwner});
+      required this.postOwner,
+      required final List<String> petImages})
+      : _petImages = petImages;
 
   factory _$PublicationImpl.fromJson(Map<String, dynamic> json) =>
       _$$PublicationImplFromJson(json);
@@ -360,10 +375,17 @@ class _$PublicationImpl implements _Publication {
   final DateTime createdAt;
   @override
   final PostOwner postOwner;
+  final List<String> _petImages;
+  @override
+  List<String> get petImages {
+    if (_petImages is EqualUnmodifiableListView) return _petImages;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_petImages);
+  }
 
   @override
   String toString() {
-    return 'Publication(id: $id, department: $department, city: $city, petName: $petName, petHistory: $petHistory, petPersonality: $petPersonality, petType: $petType, petSex: $petSex, petAge: $petAge, petSize: $petSize, postState: $postState, vaccinated: $vaccinated, dewormed: $dewormed, neutered: $neutered, createdAt: $createdAt, postOwner: $postOwner)';
+    return 'Publication(id: $id, department: $department, city: $city, petName: $petName, petHistory: $petHistory, petPersonality: $petPersonality, petType: $petType, petSex: $petSex, petAge: $petAge, petSize: $petSize, postState: $postState, vaccinated: $vaccinated, dewormed: $dewormed, neutered: $neutered, createdAt: $createdAt, postOwner: $postOwner, petImages: $petImages)';
   }
 
   @override
@@ -395,7 +417,9 @@ class _$PublicationImpl implements _Publication {
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt) &&
             (identical(other.postOwner, postOwner) ||
-                other.postOwner == postOwner));
+                other.postOwner == postOwner) &&
+            const DeepCollectionEquality()
+                .equals(other._petImages, _petImages));
   }
 
   @JsonKey(ignore: true)
@@ -417,7 +441,8 @@ class _$PublicationImpl implements _Publication {
       dewormed,
       neutered,
       createdAt,
-      postOwner);
+      postOwner,
+      const DeepCollectionEquality().hash(_petImages));
 
   @JsonKey(ignore: true)
   @override
@@ -450,7 +475,8 @@ abstract class _Publication implements Publication {
       required final bool dewormed,
       required final bool neutered,
       required final DateTime createdAt,
-      required final PostOwner postOwner}) = _$PublicationImpl;
+      required final PostOwner postOwner,
+      required final List<String> petImages}) = _$PublicationImpl;
 
   factory _Publication.fromJson(Map<String, dynamic> json) =
       _$PublicationImpl.fromJson;
@@ -487,6 +513,8 @@ abstract class _Publication implements Publication {
   DateTime get createdAt;
   @override
   PostOwner get postOwner;
+  @override
+  List<String> get petImages;
   @override
   @JsonKey(ignore: true)
   _$$PublicationImplCopyWith<_$PublicationImpl> get copyWith =>

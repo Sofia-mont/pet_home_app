@@ -32,7 +32,7 @@ class PetCard extends ConsumerWidget {
             Positioned(
               right: 0,
               child: Container(
-                height: MediaQuery.of(context).size.height / 4,
+                height: 230,
                 width: MediaQuery.of(context).size.width * 0.4,
                 decoration: BoxDecoration(
                   color: Palette.textLighter,
@@ -187,7 +187,7 @@ class PetCard extends ConsumerWidget {
             Positioned(
               left: 0,
               child: Container(
-                height: MediaQuery.of(context).size.height / 3.2,
+                height: 260,
                 width: MediaQuery.of(context).size.width * 0.5,
                 decoration: BoxDecoration(
                   borderRadius: const BorderRadius.all(Radius.circular(10)),

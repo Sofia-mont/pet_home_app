@@ -23,6 +23,7 @@ class Publication with _$Publication {
     required bool neutered,
     required DateTime createdAt,
     required PostOwner postOwner,
+    required List<String> petImages,
   }) = _Publication;
 
   factory Publication.fromJson(Map<String, dynamic> json) =>

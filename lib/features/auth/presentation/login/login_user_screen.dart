@@ -36,7 +36,9 @@ class _LoginUserScreenState extends ConsumerState<LoginUserScreen> {
         children: [
           AnimatedContainer(
             duration: const Duration(milliseconds: 300),
-            height: MediaQuery.of(context).viewInsets.bottom == 0 ? 400 : 100,
+            height: MediaQuery.of(context).viewInsets.bottom == 0
+                ? MediaQuery.of(context).size.height * 0.4
+                : 100,
             width: MediaQuery.of(context).size.width,
             child: ClipPath(
               clipper: OvalBottomBorderClipper(),
@@ -86,7 +88,6 @@ class _LoginUserScreenState extends ConsumerState<LoginUserScreen> {
                       _passwordController.text,
                     ),
                   ),
-                  const SizedBox(height: 30),
                   LargeButton(
                     isEnabled: _formKey.currentState != null &&
                         _formKey.currentState!.validate(),

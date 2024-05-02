@@ -24,6 +24,8 @@ _$PublicationImpl _$$PublicationImplFromJson(Map<String, dynamic> json) =>
       neutered: json['neutered'] as bool,
       createdAt: DateTime.parse(json['createdAt'] as String),
       postOwner: PostOwner.fromJson(json['postOwner'] as Map<String, dynamic>),
+      petImages:
+          (json['petImages'] as List<dynamic>).map((e) => e as String).toList(),
     );
 
 Map<String, dynamic> _$$PublicationImplToJson(_$PublicationImpl instance) =>
@@ -44,4 +46,5 @@ Map<String, dynamic> _$$PublicationImplToJson(_$PublicationImpl instance) =>
       'neutered': instance.neutered,
       'createdAt': instance.createdAt.toIso8601String(),
       'postOwner': instance.postOwner,
+      'petImages': instance.petImages,
     };
