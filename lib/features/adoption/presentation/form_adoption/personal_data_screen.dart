@@ -25,7 +25,8 @@ class _PersonalDataScreenState extends ConsumerState<PersonalDataScreen> {
   dynamic allDepartments;
   @override
   void initState() {
-    allDepartments = ref.read(locationProvider.notifier).getDepartamentos();
+    allDepartments =
+        ref.read(locationNotifierProvider.notifier).getDepartamentos();
     super.initState();
   }
 
@@ -33,7 +34,7 @@ class _PersonalDataScreenState extends ConsumerState<PersonalDataScreen> {
   Widget build(BuildContext context) {
     var ciudades = department == ''
         ? Future.value([])
-        : ref.read(locationProvider.notifier).getCiudades(department);
+        : ref.read(locationNotifierProvider.notifier).getCiudades(department);
     return CustomScaffold(
       appbarTitle: 'Formulario de adopción',
       body: Column(

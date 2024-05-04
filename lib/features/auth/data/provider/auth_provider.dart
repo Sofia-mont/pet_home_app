@@ -1,5 +1,5 @@
+// ignore_for_file: avoid_build_context_in_providers
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pet_home/core/app/app_service.dart';
 import 'package:pet_home/core/app/domain/user_data.dart';
 import 'package:pet_home/core/extension_methods/future_extension.dart';
@@ -12,26 +12,14 @@ import 'package:pet_home/features/auth/domain/user/user.dart';
 import 'package:pet_home/features/auth/presentation/login/login_user_screen.dart';
 import 'package:pet_home/features/home/presentation/home_screen.dart';
 import 'package:pet_home/ui/widgets/modals/custom_modals.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-final authProvider = StateNotifierProvider<AuthNotifier, AuthState>(
-  AuthNotifier.fromRef,
-);
+part 'auth_provider.g.dart';
 
-class AuthNotifier extends StateNotifier<AuthState> {
-  AuthNotifier({
-    required this.ref,
-    required this.authRepository,
-  }) : super(AuthState.initial());
-
-  factory AuthNotifier.fromRef(Ref ref) {
-    return AuthNotifier(
-      ref: ref,
-      authRepository: ref.read(authRepositoryProvider),
-    );
-  }
-
-  final AuthRepository authRepository;
-  final Ref ref;
+@riverpod
+class AuthNotifier extends _$AuthNotifier {
+  @override
+  AuthState build() => AuthState.initial();
 
   void resetState() => state = AuthState.initial();
 
@@ -39,7 +27,8 @@ class AuthNotifier extends StateNotifier<AuthState> {
     required RegisterUser user,
     required BuildContext context,
   }) async {
-    final res = await authRepository.register(user: user).toEither();
+    final res =
+        await ref.read(authRepositoryProvider).register(user: user).toEither();
     res.fold(
       (left) => ref
           .read(customModalsProvider)
@@ -60,7 +49,8 @@ class AuthNotifier extends StateNotifier<AuthState> {
     required User user,
     required BuildContext context,
   }) async {
-    final res = await authRepository.login(user: user).toEither();
+    final res =
+        await ref.read(authRepositoryProvider).login(user: user).toEither();
     res.fold(
       (left) => ref.read(customModalsProvider).showInfoDialog(
             buildContext: context,
@@ -85,8 +75,10 @@ class AuthNotifier extends StateNotifier<AuthState> {
   }
 
   Future<void> refreshToken({required String token}) async {
-    final res =
-        await authRepository.refreshToken(refreshToken: token).toEither();
+    final res = await ref
+        .read(authRepositoryProvider)
+        .refreshToken(refreshToken: token)
+        .toEither();
     res.fold(
       (left) => AppService.instance.manageAutoLogout(),
       (right) => AppService.instance.setUserData(

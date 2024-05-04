@@ -92,13 +92,14 @@ class _LoginUserScreenState extends ConsumerState<LoginUserScreen> {
                     isEnabled: _formKey.currentState != null &&
                         _formKey.currentState!.validate(),
                     text: 'Iniciar sesión',
-                    onPressed: () => ref.read(authProvider.notifier).login(
-                          user: User(
-                            _emailController.text,
-                            _passwordController.text,
-                          ),
-                          context: context,
-                        ),
+                    onPressed: () =>
+                        ref.read(authNotifierProvider.notifier).login(
+                              user: User(
+                                _emailController.text,
+                                _passwordController.text,
+                              ),
+                              context: context,
+                            ),
                   ),
                   TextButton(
                     onPressed: () => {

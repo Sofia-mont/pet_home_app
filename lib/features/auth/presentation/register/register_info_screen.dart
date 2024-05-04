@@ -41,7 +41,8 @@ class _RegisterInfoScreenState extends ConsumerState<RegisterInfoScreen> {
   dynamic allDepartments;
   @override
   initState() {
-    allDepartments = ref.read(locationProvider.notifier).getDepartamentos();
+    allDepartments =
+        ref.read(locationNotifierProvider.notifier).getDepartamentos();
     super.initState();
   }
 
@@ -49,7 +50,7 @@ class _RegisterInfoScreenState extends ConsumerState<RegisterInfoScreen> {
   Widget build(BuildContext context) {
     var ciudades = department == ''
         ? Future.value([])
-        : ref.read(locationProvider.notifier).getCiudades(department);
+        : ref.read(locationNotifierProvider.notifier).getCiudades(department);
     return CustomScaffold(
       body: Form(
         key: _formKey,
@@ -206,7 +207,7 @@ class _RegisterInfoScreenState extends ConsumerState<RegisterInfoScreen> {
   }
 
   void _handleRegister() {
-    ref.read(authProvider.notifier).register(
+    ref.read(authNotifierProvider.notifier).register(
           user: RegisterUser(
             _nameController.text,
             _emailController.text,

@@ -25,7 +25,8 @@ class _AdoptPetFirstScreenState extends ConsumerState<AdoptPetScreen> {
 
   @override
   initState() {
-    allDepartments = ref.read(locationProvider.notifier).getDepartamentos();
+    allDepartments =
+        ref.read(locationNotifierProvider.notifier).getDepartamentos();
     super.initState();
   }
 
@@ -39,7 +40,7 @@ class _AdoptPetFirstScreenState extends ConsumerState<AdoptPetScreen> {
     String petSize = '';
     var ciudades = department == ''
         ? Future.value([])
-        : ref.read(locationProvider.notifier).getCiudades(department);
+        : ref.read(locationNotifierProvider.notifier).getCiudades(department);
     return CustomScaffold(
       appbarTitle: 'Dar en adopción',
       body: Form(
