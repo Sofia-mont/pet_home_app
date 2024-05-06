@@ -6,7 +6,7 @@ import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
 import 'package:pet_home/core/router/router.dart';
 import 'package:pet_home/features/adoption/presentation/form_adoption/personal_data_screen.dart';
-import 'package:pet_home/features/publications/domain/post/publication/publication.dart';
+import 'package:pet_home/features/publications/domain/post/post/post.dart';
 import 'package:pet_home/features/publications/presentation/post/widgets/own_post_dial.dart';
 import 'package:pet_home/ui/constants/font_constants.dart';
 import 'package:pet_home/ui/constants/palette.dart';
@@ -28,7 +28,7 @@ class PostScreen extends ConsumerStatefulWidget {
   static const path = '/publication';
 
   final bool isOwner;
-  final Publication publication;
+  final Post publication;
 }
 
 class _PublicationScreenState extends ConsumerState<PostScreen>

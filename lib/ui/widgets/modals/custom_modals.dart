@@ -129,7 +129,7 @@ class CustomModalsImpl implements CustomModals {
         ),
         actions: [
           TextButton(
-            onPressed: buttonAction,
+            onPressed: buttonAction ?? () => Navigator.pop(buildContext),
             child: Text(
               buttonText,
               style: FontConstants.body2.copyWith(

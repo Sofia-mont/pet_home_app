@@ -1,18 +1,17 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:pet_home/features/publications/domain/post/post_owner/post_owner.dart';
 
-part 'publication.freezed.dart';
-part 'publication.g.dart';
+part 'post.freezed.dart';
+part 'post.g.dart';
 
 @freezed
-class Publication with _$Publication {
-  factory Publication({
+class Post with _$Post {
+  factory Post({
     required int id,
     required String department,
     required String city,
     required String petName,
     required String petHistory,
-    required String petPersonality,
     required String petType,
     required String petSex,
     required String petAge,
@@ -24,8 +23,7 @@ class Publication with _$Publication {
     required DateTime createdAt,
     required PostOwner postOwner,
     required List<String> petImages,
-  }) = _Publication;
+  }) = _Post;
 
-  factory Publication.fromJson(Map<String, dynamic> json) =>
-      _$PublicationFromJson(json);
+  factory Post.fromJson(Map<String, dynamic> json) => _$PostFromJson(json);
 }

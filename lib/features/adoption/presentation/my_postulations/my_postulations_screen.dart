@@ -3,7 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pet_home/ui/constants/font_constants.dart';
 import 'package:pet_home/ui/constants/palette.dart';
 import 'package:pet_home/ui/scaffold/custom_scaffold.dart';
-import 'package:pet_home/ui/widgets/cards/pet_card.dart';
 
 class MyPostulationsScreen extends ConsumerStatefulWidget {
   const MyPostulationsScreen({super.key});

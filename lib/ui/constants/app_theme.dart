@@ -89,7 +89,7 @@ class AppTheme {
         hoverColor: Palette.primary,
         contentPadding: const EdgeInsets.all(10),
         enabledBorder: const OutlineInputBorder(
-          borderSide: BorderSide(color: Palette.textMedium),
+          borderSide: BorderSide(color: Palette.textLight),
           borderRadius: BorderRadius.all(Radius.circular(7)),
         ),
         labelStyle: FontConstants.body2.copyWith(color: Palette.textMedium),

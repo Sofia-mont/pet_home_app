@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pet_home/ui/constants/font_constants.dart';
 import 'package:pet_home/ui/constants/palette.dart';
-import 'package:pet_home/ui/widgets/cards/pet_card.dart';
 
 class TabPendingView extends ConsumerStatefulWidget {
   const TabPendingView({super.key});

@@ -65,7 +65,7 @@ class _DropdownSearchInputState extends State<DropdownSearchInput> {
                 key: widget.key,
                 onChanged: widget.onChange,
                 onSaved: (newValue) {},
-                autoValidateMode: AutovalidateMode.always,
+                autoValidateMode: AutovalidateMode.onUserInteraction,
                 validator: (value) =>
                     TextValidators.textMandatory(value.toString()),
                 items: widget.items,
@@ -125,6 +125,10 @@ class _DropdownSearchInputState extends State<DropdownSearchInput> {
                     hintText: widget.hintText,
                     hintStyle:
                         FontConstants.body2.copyWith(color: Palette.textLight),
+                    errorBorder: const OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(7)),
+                      borderSide: BorderSide(color: Palette.errorMedium),
+                    ),
                   ),
                 ),
               ),

@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'publication.dart';
+part of 'post.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,18 +14,17 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
-Publication _$PublicationFromJson(Map<String, dynamic> json) {
-  return _Publication.fromJson(json);
+Post _$PostFromJson(Map<String, dynamic> json) {
+  return _Post.fromJson(json);
 }
 
 /// @nodoc
-mixin _$Publication {
+mixin _$Post {
   int get id => throw _privateConstructorUsedError;
   String get department => throw _privateConstructorUsedError;
   String get city => throw _privateConstructorUsedError;
   String get petName => throw _privateConstructorUsedError;
   String get petHistory => throw _privateConstructorUsedError;
-  String get petPersonality => throw _privateConstructorUsedError;
   String get petType => throw _privateConstructorUsedError;
   String get petSex => throw _privateConstructorUsedError;
   String get petAge => throw _privateConstructorUsedError;
@@ -40,15 +39,13 @@ mixin _$Publication {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $PublicationCopyWith<Publication> get copyWith =>
-      throw _privateConstructorUsedError;
+  $PostCopyWith<Post> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $PublicationCopyWith<$Res> {
-  factory $PublicationCopyWith(
-          Publication value, $Res Function(Publication) then) =
-      _$PublicationCopyWithImpl<$Res, Publication>;
+abstract class $PostCopyWith<$Res> {
+  factory $PostCopyWith(Post value, $Res Function(Post) then) =
+      _$PostCopyWithImpl<$Res, Post>;
   @useResult
   $Res call(
       {int id,
@@ -56,7 +53,6 @@ abstract class $PublicationCopyWith<$Res> {
       String city,
       String petName,
       String petHistory,
-      String petPersonality,
       String petType,
       String petSex,
       String petAge,
@@ -73,9 +69,9 @@ abstract class $PublicationCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$PublicationCopyWithImpl<$Res, $Val extends Publication>
-    implements $PublicationCopyWith<$Res> {
-  _$PublicationCopyWithImpl(this._value, this._then);
+class _$PostCopyWithImpl<$Res, $Val extends Post>
+    implements $PostCopyWith<$Res> {
+  _$PostCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -90,7 +86,6 @@ class _$PublicationCopyWithImpl<$Res, $Val extends Publication>
     Object? city = null,
     Object? petName = null,
     Object? petHistory = null,
-    Object? petPersonality = null,
     Object? petType = null,
     Object? petSex = null,
     Object? petAge = null,
@@ -123,10 +118,6 @@ class _$PublicationCopyWithImpl<$Res, $Val extends Publication>
       petHistory: null == petHistory
           ? _value.petHistory
           : petHistory // ignore: cast_nullable_to_non_nullable
-              as String,
-      petPersonality: null == petPersonality
-          ? _value.petPersonality
-          : petPersonality // ignore: cast_nullable_to_non_nullable
               as String,
       petType: null == petType
           ? _value.petType
@@ -185,11 +176,10 @@ class _$PublicationCopyWithImpl<$Res, $Val extends Publication>
 }
 
 /// @nodoc
-abstract class _$$PublicationImplCopyWith<$Res>
-    implements $PublicationCopyWith<$Res> {
-  factory _$$PublicationImplCopyWith(
-          _$PublicationImpl value, $Res Function(_$PublicationImpl) then) =
-      __$$PublicationImplCopyWithImpl<$Res>;
+abstract class _$$PostImplCopyWith<$Res> implements $PostCopyWith<$Res> {
+  factory _$$PostImplCopyWith(
+          _$PostImpl value, $Res Function(_$PostImpl) then) =
+      __$$PostImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -198,7 +188,6 @@ abstract class _$$PublicationImplCopyWith<$Res>
       String city,
       String petName,
       String petHistory,
-      String petPersonality,
       String petType,
       String petSex,
       String petAge,
@@ -216,11 +205,10 @@ abstract class _$$PublicationImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$PublicationImplCopyWithImpl<$Res>
-    extends _$PublicationCopyWithImpl<$Res, _$PublicationImpl>
-    implements _$$PublicationImplCopyWith<$Res> {
-  __$$PublicationImplCopyWithImpl(
-      _$PublicationImpl _value, $Res Function(_$PublicationImpl) _then)
+class __$$PostImplCopyWithImpl<$Res>
+    extends _$PostCopyWithImpl<$Res, _$PostImpl>
+    implements _$$PostImplCopyWith<$Res> {
+  __$$PostImplCopyWithImpl(_$PostImpl _value, $Res Function(_$PostImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -231,7 +219,6 @@ class __$$PublicationImplCopyWithImpl<$Res>
     Object? city = null,
     Object? petName = null,
     Object? petHistory = null,
-    Object? petPersonality = null,
     Object? petType = null,
     Object? petSex = null,
     Object? petAge = null,
@@ -244,7 +231,7 @@ class __$$PublicationImplCopyWithImpl<$Res>
     Object? postOwner = null,
     Object? petImages = null,
   }) {
-    return _then(_$PublicationImpl(
+    return _then(_$PostImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -264,10 +251,6 @@ class __$$PublicationImplCopyWithImpl<$Res>
       petHistory: null == petHistory
           ? _value.petHistory
           : petHistory // ignore: cast_nullable_to_non_nullable
-              as String,
-      petPersonality: null == petPersonality
-          ? _value.petPersonality
-          : petPersonality // ignore: cast_nullable_to_non_nullable
               as String,
       petType: null == petType
           ? _value.petType
@@ -319,14 +302,13 @@ class __$$PublicationImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$PublicationImpl implements _Publication {
-  _$PublicationImpl(
+class _$PostImpl implements _Post {
+  _$PostImpl(
       {required this.id,
       required this.department,
       required this.city,
       required this.petName,
       required this.petHistory,
-      required this.petPersonality,
       required this.petType,
       required this.petSex,
       required this.petAge,
@@ -340,8 +322,8 @@ class _$PublicationImpl implements _Publication {
       required final List<String> petImages})
       : _petImages = petImages;
 
-  factory _$PublicationImpl.fromJson(Map<String, dynamic> json) =>
-      _$$PublicationImplFromJson(json);
+  factory _$PostImpl.fromJson(Map<String, dynamic> json) =>
+      _$$PostImplFromJson(json);
 
   @override
   final int id;
@@ -353,8 +335,6 @@ class _$PublicationImpl implements _Publication {
   final String petName;
   @override
   final String petHistory;
-  @override
-  final String petPersonality;
   @override
   final String petType;
   @override
@@ -385,14 +365,14 @@ class _$PublicationImpl implements _Publication {
 
   @override
   String toString() {
-    return 'Publication(id: $id, department: $department, city: $city, petName: $petName, petHistory: $petHistory, petPersonality: $petPersonality, petType: $petType, petSex: $petSex, petAge: $petAge, petSize: $petSize, postState: $postState, vaccinated: $vaccinated, dewormed: $dewormed, neutered: $neutered, createdAt: $createdAt, postOwner: $postOwner, petImages: $petImages)';
+    return 'Post(id: $id, department: $department, city: $city, petName: $petName, petHistory: $petHistory, petType: $petType, petSex: $petSex, petAge: $petAge, petSize: $petSize, postState: $postState, vaccinated: $vaccinated, dewormed: $dewormed, neutered: $neutered, createdAt: $createdAt, postOwner: $postOwner, petImages: $petImages)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$PublicationImpl &&
+            other is _$PostImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.department, department) ||
                 other.department == department) &&
@@ -400,8 +380,6 @@ class _$PublicationImpl implements _Publication {
             (identical(other.petName, petName) || other.petName == petName) &&
             (identical(other.petHistory, petHistory) ||
                 other.petHistory == petHistory) &&
-            (identical(other.petPersonality, petPersonality) ||
-                other.petPersonality == petPersonality) &&
             (identical(other.petType, petType) || other.petType == petType) &&
             (identical(other.petSex, petSex) || other.petSex == petSex) &&
             (identical(other.petAge, petAge) || other.petAge == petAge) &&
@@ -431,7 +409,6 @@ class _$PublicationImpl implements _Publication {
       city,
       petName,
       petHistory,
-      petPersonality,
       petType,
       petSex,
       petAge,
@@ -447,25 +424,24 @@ class _$PublicationImpl implements _Publication {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$PublicationImplCopyWith<_$PublicationImpl> get copyWith =>
-      __$$PublicationImplCopyWithImpl<_$PublicationImpl>(this, _$identity);
+  _$$PostImplCopyWith<_$PostImpl> get copyWith =>
+      __$$PostImplCopyWithImpl<_$PostImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$PublicationImplToJson(
+    return _$$PostImplToJson(
       this,
     );
   }
 }
 
-abstract class _Publication implements Publication {
-  factory _Publication(
+abstract class _Post implements Post {
+  factory _Post(
       {required final int id,
       required final String department,
       required final String city,
       required final String petName,
       required final String petHistory,
-      required final String petPersonality,
       required final String petType,
       required final String petSex,
       required final String petAge,
@@ -476,10 +452,9 @@ abstract class _Publication implements Publication {
       required final bool neutered,
       required final DateTime createdAt,
       required final PostOwner postOwner,
-      required final List<String> petImages}) = _$PublicationImpl;
+      required final List<String> petImages}) = _$PostImpl;
 
-  factory _Publication.fromJson(Map<String, dynamic> json) =
-      _$PublicationImpl.fromJson;
+  factory _Post.fromJson(Map<String, dynamic> json) = _$PostImpl.fromJson;
 
   @override
   int get id;
@@ -491,8 +466,6 @@ abstract class _Publication implements Publication {
   String get petName;
   @override
   String get petHistory;
-  @override
-  String get petPersonality;
   @override
   String get petType;
   @override
@@ -517,6 +490,6 @@ abstract class _Publication implements Publication {
   List<String> get petImages;
   @override
   @JsonKey(ignore: true)
-  _$$PublicationImplCopyWith<_$PublicationImpl> get copyWith =>
+  _$$PostImplCopyWith<_$PostImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

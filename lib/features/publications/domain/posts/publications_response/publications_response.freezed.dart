@@ -21,7 +21,7 @@ PublicationsResponse _$PublicationsResponseFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$PublicationsResponse {
   @JsonKey(name: 'data')
-  List<Publication> get data => throw _privateConstructorUsedError;
+  List<Post> get data => throw _privateConstructorUsedError;
   @JsonKey(name: 'actualPage')
   int get actualPage => throw _privateConstructorUsedError;
   @JsonKey(name: 'totalPages')
@@ -43,7 +43,7 @@ abstract class $PublicationsResponseCopyWith<$Res> {
       _$PublicationsResponseCopyWithImpl<$Res, PublicationsResponse>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'data') List<Publication> data,
+      {@JsonKey(name: 'data') List<Post> data,
       @JsonKey(name: 'actualPage') int actualPage,
       @JsonKey(name: 'totalPages') int totalPages,
       @JsonKey(name: 'last') bool last,
@@ -74,7 +74,7 @@ class _$PublicationsResponseCopyWithImpl<$Res,
       data: null == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
-              as List<Publication>,
+              as List<Post>,
       actualPage: null == actualPage
           ? _value.actualPage
           : actualPage // ignore: cast_nullable_to_non_nullable
@@ -104,7 +104,7 @@ abstract class _$$PublicationsResponseImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'data') List<Publication> data,
+      {@JsonKey(name: 'data') List<Post> data,
       @JsonKey(name: 'actualPage') int actualPage,
       @JsonKey(name: 'totalPages') int totalPages,
       @JsonKey(name: 'last') bool last,
@@ -132,7 +132,7 @@ class __$$PublicationsResponseImplCopyWithImpl<$Res>
       data: null == data
           ? _value._data
           : data // ignore: cast_nullable_to_non_nullable
-              as List<Publication>,
+              as List<Post>,
       actualPage: null == actualPage
           ? _value.actualPage
           : actualPage // ignore: cast_nullable_to_non_nullable
@@ -157,7 +157,7 @@ class __$$PublicationsResponseImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$PublicationsResponseImpl implements _PublicationsResponse {
   _$PublicationsResponseImpl(
-      {@JsonKey(name: 'data') required final List<Publication> data,
+      {@JsonKey(name: 'data') required final List<Post> data,
       @JsonKey(name: 'actualPage') required this.actualPage,
       @JsonKey(name: 'totalPages') required this.totalPages,
       @JsonKey(name: 'last') required this.last,
@@ -168,10 +168,10 @@ class _$PublicationsResponseImpl implements _PublicationsResponse {
   factory _$PublicationsResponseImpl.fromJson(Map<String, dynamic> json) =>
       _$$PublicationsResponseImplFromJson(json);
 
-  final List<Publication> _data;
+  final List<Post> _data;
   @override
   @JsonKey(name: 'data')
-  List<Publication> get data {
+  List<Post> get data {
     if (_data is EqualUnmodifiableListView) return _data;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_data);
@@ -242,7 +242,7 @@ class _$PublicationsResponseImpl implements _PublicationsResponse {
 
 abstract class _PublicationsResponse implements PublicationsResponse {
   factory _PublicationsResponse(
-      {@JsonKey(name: 'data') required final List<Publication> data,
+      {@JsonKey(name: 'data') required final List<Post> data,
       @JsonKey(name: 'actualPage') required final int actualPage,
       @JsonKey(name: 'totalPages') required final int totalPages,
       @JsonKey(name: 'last') required final bool last,
@@ -253,7 +253,7 @@ abstract class _PublicationsResponse implements PublicationsResponse {
 
   @override
   @JsonKey(name: 'data')
-  List<Publication> get data;
+  List<Post> get data;
   @override
   @JsonKey(name: 'actualPage')
   int get actualPage;

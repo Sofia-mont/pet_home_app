@@ -10,7 +10,7 @@ _$PublicationsResponseImpl _$$PublicationsResponseImplFromJson(
         Map<String, dynamic> json) =>
     _$PublicationsResponseImpl(
       data: (json['data'] as List<dynamic>)
-          .map((e) => Publication.fromJson(e as Map<String, dynamic>))
+          .map((e) => Post.fromJson(e as Map<String, dynamic>))
           .toList(),
       actualPage: json['actualPage'] as int,
       totalPages: json['totalPages'] as int,

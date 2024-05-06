@@ -49,12 +49,7 @@ class _CheckboxSelectState extends State<CheckboxSelect> {
                               ),
                               value: option,
                               groupValue: widget.groupValue,
-                              onChanged: (value) {
-                                setState(() {
-                                  widget.groupValue = value ?? '';
-                                  widget.onChanged;
-                                });
-                              },
+                              onChanged: widget.onChanged,
                             ),
                           ),
                           const SizedBox(width: 5),

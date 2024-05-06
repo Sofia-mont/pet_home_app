@@ -1,19 +1,17 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'publication.dart';
+part of 'post.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$PublicationImpl _$$PublicationImplFromJson(Map<String, dynamic> json) =>
-    _$PublicationImpl(
+_$PostImpl _$$PostImplFromJson(Map<String, dynamic> json) => _$PostImpl(
       id: json['id'] as int,
       department: json['department'] as String,
       city: json['city'] as String,
       petName: json['petName'] as String,
       petHistory: json['petHistory'] as String,
-      petPersonality: json['petPersonality'] as String,
       petType: json['petType'] as String,
       petSex: json['petSex'] as String,
       petAge: json['petAge'] as String,
@@ -28,14 +26,13 @@ _$PublicationImpl _$$PublicationImplFromJson(Map<String, dynamic> json) =>
           (json['petImages'] as List<dynamic>).map((e) => e as String).toList(),
     );
 
-Map<String, dynamic> _$$PublicationImplToJson(_$PublicationImpl instance) =>
+Map<String, dynamic> _$$PostImplToJson(_$PostImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'department': instance.department,
       'city': instance.city,
       'petName': instance.petName,
       'petHistory': instance.petHistory,
-      'petPersonality': instance.petPersonality,
       'petType': instance.petType,
       'petSex': instance.petSex,
       'petAge': instance.petAge,

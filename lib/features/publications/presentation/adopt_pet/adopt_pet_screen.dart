@@ -1,12 +1,18 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:pet_home/core/utils/pick_image.dart';
 import 'package:pet_home/features/location/data/provider/location_provider.dart';
+import 'package:pet_home/features/publications/data/provider/publications_provider.dart';
+import 'package:pet_home/features/publications/domain/post/post_request.dart/post_request.dart';
+import 'package:pet_home/ui/constants/font_constants.dart';
 import 'package:pet_home/ui/constants/palette.dart';
 import 'package:pet_home/ui/scaffold/custom_scaffold.dart';
 import 'package:pet_home/ui/widgets/buttons/checkbox_select.dart';
 import 'package:pet_home/ui/widgets/buttons/large_button.dart';
 import 'package:pet_home/ui/widgets/inputs/dropdown_search_input.dart';
 import 'package:pet_home/ui/widgets/inputs/input_with_title.dart';
+import 'package:pet_home/ui/widgets/modals/custom_modals.dart';
 
 class AdoptPetScreen extends ConsumerStatefulWidget {
   const AdoptPetScreen({this.showBottomBar = true, super.key});
@@ -19,9 +25,22 @@ class AdoptPetScreen extends ConsumerStatefulWidget {
 }
 
 class _AdoptPetFirstScreenState extends ConsumerState<AdoptPetScreen> {
+  final ImageSelector _imageSelector = ImageSelector();
+  final formKey = const Key('formPostKey');
+  dynamic allDepartments;
+  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _historyController = TextEditingController();
+  final TextEditingController _ageYearsController = TextEditingController();
+  final TextEditingController _ageMonthsController = TextEditingController();
+  List<MultipartFile> selectedImages = [];
   String city = '';
   String department = '';
-  dynamic allDepartments;
+  String petType = '';
+  String petSex = '';
+  String isVaccinated = '';
+  String isDewormed = '';
+  String isNeutered = '';
+  String petSize = '';
 
   @override
   initState() {
@@ -32,60 +51,89 @@ class _AdoptPetFirstScreenState extends ConsumerState<AdoptPetScreen> {
 
   @override
   Widget build(BuildContext context) {
-    String petType = '';
-    String petSex = '';
-    String isVaccinated = '';
-    String isDewormed = '';
-    String isNeutered = '';
-    String petSize = '';
     var ciudades = department == ''
         ? Future.value([])
         : ref.read(locationNotifierProvider.notifier).getCiudades(department);
     return CustomScaffold(
       appbarTitle: 'Dar en adopción',
       body: Form(
+        key: formKey,
+        autovalidateMode: AutovalidateMode.always,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const SizedBox(height: 10),
-            const Center(
-              child: Column(
-                children: [
-                  Text('Foto'),
-                  SizedBox(
-                    height: 5,
-                  ),
-                  CircleAvatar(
-                    maxRadius: 30,
-                    backgroundColor: Palette.textLighter,
-                    child: Icon(
-                      Icons.add,
+            InkWell(
+              onTap: () async {
+                final tempFile = await _imageSelector.selectImagesFromGallery();
+                setState(() {
+                  selectedImages = tempFile;
+                });
+              },
+              child: Container(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                decoration: BoxDecoration(
+                  color: const Color(0xFFF5F5F5),
+                  borderRadius: BorderRadius.circular(7),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Palette.textMedium.withOpacity(0.25),
+                      offset: const Offset(0, 5),
+                      blurRadius: 10,
+                      spreadRadius: 0,
+                    ),
+                  ],
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      selectedImages.isEmpty
+                          ? 'Agrega fotos de la mascota'
+                          : '${selectedImages.length} fotos seleccionadas',
+                      style:
+                          FontConstants.body1.copyWith(color: Palette.primary),
+                    ),
+                    Icon(
+                      selectedImages.isEmpty ? Icons.add : Icons.edit,
                       color: Palette.primary,
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
-            const InputWithTitle(
+            const SizedBox(height: 20),
+            InputWithTitle(
               title: 'Nombre',
               hintText: 'Nombre de la mascota',
+              controller: _nameController,
             ),
-            const InputWithTitle(
+            InputWithTitle(
               title: 'Historia',
               hintText:
                   'Hablanos sobre tu mascota, su historia y su personalidad.',
               isMultiline: true,
+              controller: _historyController,
             ),
-            const Row(
+            Row(
               children: [
                 Flexible(
-                  child: InputWithTitle(title: 'Edad', hintText: 'Años'),
+                  child: InputWithTitle(
+                    title: 'Edad',
+                    hintText: 'Años',
+                    inputType: TextInputType.number,
+                    controller: _ageYearsController,
+                  ),
                 ),
-                SizedBox(
-                  width: 10,
-                ),
+                const SizedBox(width: 10),
                 Flexible(
-                  child: InputWithTitle(title: '', hintText: 'Meses'),
+                  child: InputWithTitle(
+                    title: '',
+                    hintText: 'Meses',
+                    inputType: TextInputType.number,
+                    controller: _ageMonthsController,
+                  ),
                 ),
               ],
             ),
@@ -184,10 +232,63 @@ class _AdoptPetFirstScreenState extends ConsumerState<AdoptPetScreen> {
               },
             ),
             const SizedBox(height: 20),
-            LargeButton(text: 'Publicar', onPressed: () {}),
+            LargeButton(text: 'Publicar', onPressed: _submitHandler),
           ],
         ),
       ),
     );
+  }
+
+  bool _validateForm() {
+    return city != '' &&
+        department != '' &&
+        petType != '' &&
+        petSex != '' &&
+        petSize != '' &&
+        isDewormed != '' &&
+        isNeutered != '' &&
+        isVaccinated != '' &&
+        _nameController.text.isNotEmpty &&
+        _historyController.text.isNotEmpty &&
+        (_ageYearsController.text != '' || _ageMonthsController.text != '') &&
+        selectedImages.isNotEmpty;
+  }
+
+  void _submitHandler() {
+    final isValid = _validateForm();
+    if (isValid) {
+      final request = PostRequest(
+        department: department,
+        city: city,
+        petName: _nameController.text,
+        petHistory: _historyController.text,
+        petType: petType,
+        petSex: petSex,
+        petAge: getPetAge(_ageMonthsController.text, _ageYearsController.text),
+        petSize: petSize,
+        vaccinated: isVaccinated == 'Sí' ? true : false,
+        dewormed: isDewormed == 'Sí' ? true : false,
+        neutered: isNeutered == 'Sí' ? true : false,
+        images: selectedImages,
+      );
+      ref.read(postPetProvider(context: context, request: request));
+    } else {
+      ref.read(customModalsProvider).showInfoDialog(
+            buildContext: context,
+            title: 'Información incompleta',
+            content: 'Por favor, ingresa toda la información',
+            buttonText: 'Aceptar',
+          );
+    }
+  }
+
+  String getPetAge(String months, String years) {
+    String yearsString = years == '' ? '' : '$years años';
+    String monthsString = months == '' ? '' : '$months meses';
+    String connection = (yearsString == '' && monthsString != '') ||
+            (yearsString != '' && monthsString == '')
+        ? ''
+        : ' y ';
+    return '$yearsString$connection$monthsString';
   }
 }

@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:pet_home/core/constants/app_constants.dart';
 import 'package:pet_home/core/utils/dio/dio_provider.dart';
+import 'package:pet_home/features/publications/domain/post/post_request.dart/post_request.dart';
 import 'package:pet_home/features/publications/domain/posts/publications_response/publications_response.dart';
 import 'package:pet_home/features/publications/domain/posts/publications_search_query/publications_search_query.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -27,6 +28,25 @@ class PublicationsRepository {
       queryParameters: generatedQuery,
     );
     return PublicationsResponse.fromJson(response.data);
+  }
+
+  Future<void> postPet({required PostRequest post}) async {
+    const path = '${AppConstants.baseURL}/post';
+    var formData = FormData.fromMap({
+      'images': post.images,
+      'petName': post.petName,
+      'petHistory': post.petHistory,
+      'petAge': post.petAge,
+      'department': post.department,
+      'city': post.city,
+      'petType': post.petType,
+      'petSex': post.petSex,
+      'petSize': post.petSize,
+      'vaccinated': post.vaccinated,
+      'dewormed': post.dewormed,
+      'neutered': post.neutered,
+    });
+    await client.post(path, data: formData);
   }
 }
 
