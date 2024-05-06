@@ -32,20 +32,34 @@ class PublicationsRepository {
 
   Future<void> postPet({required PostRequest post}) async {
     const path = '${AppConstants.baseURL}/post';
-    var formData = FormData.fromMap({
-      'images': post.images,
-      'petName': post.petName,
-      'petHistory': post.petHistory,
-      'petAge': post.petAge,
-      'department': post.department,
-      'city': post.city,
-      'petType': post.petType,
-      'petSex': post.petSex,
-      'petSize': post.petSize,
-      'vaccinated': post.vaccinated,
-      'dewormed': post.dewormed,
-      'neutered': post.neutered,
-    });
+    var formData = FormData();
+    for (var image in post.images) {
+      formData.files.add(
+        MapEntry(
+          'images',
+          MultipartFile.fromBytes(
+            await image.readAsBytes(),
+            filename: image.path,
+          ),
+        ),
+      );
+    }
+
+    formData.fields.addAll(
+      {
+        'petName': post.petName,
+        'petHistory': post.petHistory,
+        'petAge': post.petAge,
+        'department': post.department,
+        'city': post.city,
+        'petType': post.petType,
+        'petSex': post.petSex,
+        'petSize': post.petSize,
+        'vaccinated': post.vaccinated.toString(),
+        'dewormed': post.dewormed.toString(),
+        'neutered': post.neutered.toString(),
+      }.entries.map((e) => MapEntry(e.key, e.value)),
+    );
     await client.post(path, data: formData);
   }
 }

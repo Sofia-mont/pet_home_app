@@ -1,4 +1,4 @@
-// ignore_for_file: avoid_build_context_in_providers
+// ignore_for_file: avoid_build_context_in_providers, avoid_manual_providers_as_generated_provider_dependency
 import 'dart:async';
 
 import 'package:dio/dio.dart';

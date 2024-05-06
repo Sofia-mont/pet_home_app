@@ -1,6 +1,6 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:pet_home/core/utils/pick_image.dart';
 import 'package:pet_home/features/location/data/provider/location_provider.dart';
 import 'package:pet_home/features/publications/data/provider/publications_provider.dart';
@@ -32,7 +32,7 @@ class _AdoptPetFirstScreenState extends ConsumerState<AdoptPetScreen> {
   final TextEditingController _historyController = TextEditingController();
   final TextEditingController _ageYearsController = TextEditingController();
   final TextEditingController _ageMonthsController = TextEditingController();
-  List<MultipartFile> selectedImages = [];
+  List<XFile> selectedImages = [];
   String city = '';
   String department = '';
   String petType = '';
@@ -271,7 +271,7 @@ class _AdoptPetFirstScreenState extends ConsumerState<AdoptPetScreen> {
         neutered: isNeutered == 'Sí' ? true : false,
         images: selectedImages,
       );
-      ref.read(postPetProvider(context: context, request: request));
+      ref.watch(postPetProvider(context: context, request: request));
     } else {
       ref.read(customModalsProvider).showInfoDialog(
             buildContext: context,

@@ -1,5 +1,5 @@
-import 'package:dio/dio.dart';
 import 'package:equatable/equatable.dart';
+import 'package:image_picker/image_picker.dart';
 
 class PostRequest extends Equatable {
   const PostRequest({
@@ -28,7 +28,7 @@ class PostRequest extends Equatable {
   final bool vaccinated;
   final bool dewormed;
   final bool neutered;
-  final List<MultipartFile> images;
+  final List<XFile> images;
 
   @override
   List<Object?> get props => [

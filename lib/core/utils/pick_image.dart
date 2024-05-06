@@ -1,22 +1,16 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:image_picker/image_picker.dart';
 
 class ImageSelector {
   final ImagePicker _picker = ImagePicker();
 
-  Future<List<MultipartFile>> selectImagesFromGallery() async {
-    List<MultipartFile> selectedImages = [];
+  Future<List<XFile>> selectImagesFromGallery() async {
+    List<XFile> selectedImages = [];
     try {
       final pickedFileList = await _picker.pickMultiImage();
 
       for (var pickedFile in pickedFileList) {
-        selectedImages.add(
-          MultipartFile.fromBytes(
-            await pickedFile.readAsBytes(),
-            filename: pickedFile.name,
-          ),
-        );
+        selectedImages.add(pickedFile);
       }
     } catch (e) {
       if (kDebugMode) {
