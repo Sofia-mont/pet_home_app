@@ -232,7 +232,7 @@ class _AdoptPetFirstScreenState extends ConsumerState<AdoptPetScreen> {
               },
             ),
             const SizedBox(height: 20),
-            LargeButton(text: 'Publicar', onPressed: _submitHandler),
+            LargeButton(text: 'Publicar', onPressed: () => _submitHandler()),
           ],
         ),
       ),
@@ -271,7 +271,9 @@ class _AdoptPetFirstScreenState extends ConsumerState<AdoptPetScreen> {
         neutered: isNeutered == 'Sí' ? true : false,
         images: selectedImages,
       );
-      ref.watch(postPetProvider(context: context, request: request));
+      ref
+          .read(publicationsNotifierProvider.notifier)
+          .postPet(context: context, request: request);
     } else {
       ref.read(customModalsProvider).showInfoDialog(
             buildContext: context,

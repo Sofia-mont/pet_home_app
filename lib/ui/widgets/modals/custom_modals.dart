@@ -18,7 +18,7 @@ abstract class CustomModals {
     String message = 'Vuelve a intentarlo',
     VoidCallback? onPressed,
     String buttonMsg = 'Reintentar',
-    BuildContext context,
+    required BuildContext context,
   });
   Future<void> showInfoDialog({
     required BuildContext buildContext,
@@ -84,9 +84,9 @@ class CustomModalsImpl implements CustomModals {
     String message = 'Vuelve a intentarlo',
     VoidCallback? onPressed,
     String buttonMsg = 'Reintentar',
-    BuildContext? context,
-  }) {
-    return GoRouter.of(context!).pushNamed<void>(
+    required BuildContext context,
+  }) async {
+    GoRouter.of(context).goNamed(
       ResponseScreen.path,
       extra: ResponseScreenArgs(
         isError: isError,

@@ -34,11 +34,12 @@ class PublicationsRepository {
     const path = '${AppConstants.baseURL}/post';
     var formData = FormData();
     for (var image in post.images) {
+      final imageBytes = await image.readAsBytes();
       formData.files.add(
         MapEntry(
           'images',
           MultipartFile.fromBytes(
-            await image.readAsBytes(),
+            imageBytes,
             filename: image.path,
           ),
         ),

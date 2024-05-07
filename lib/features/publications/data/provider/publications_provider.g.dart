@@ -177,148 +177,22 @@ class _FetchPublicationsProviderElement
       (origin as FetchPublicationsProvider).query;
 }
 
-String _$postPetHash() => r'5b575e2f7b94581b7a7aa495b69324589fad512f';
+String _$publicationsNotifierHash() =>
+    r'da8a161031951f892ce23cedcb9be55de5c7a7cc';
 
-/// See also [postPet].
-@ProviderFor(postPet)
-const postPetProvider = PostPetFamily();
+/// See also [PublicationsNotifier].
+@ProviderFor(PublicationsNotifier)
+final publicationsNotifierProvider =
+    AutoDisposeNotifierProvider<PublicationsNotifier, void>.internal(
+  PublicationsNotifier.new,
+  name: r'publicationsNotifierProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$publicationsNotifierHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
 
-/// See also [postPet].
-class PostPetFamily extends Family<AsyncValue<void>> {
-  /// See also [postPet].
-  const PostPetFamily();
-
-  /// See also [postPet].
-  PostPetProvider call({
-    required BuildContext context,
-    required PostRequest request,
-  }) {
-    return PostPetProvider(
-      context: context,
-      request: request,
-    );
-  }
-
-  @override
-  PostPetProvider getProviderOverride(
-    covariant PostPetProvider provider,
-  ) {
-    return call(
-      context: provider.context,
-      request: provider.request,
-    );
-  }
-
-  static const Iterable<ProviderOrFamily>? _dependencies = null;
-
-  @override
-  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
-
-  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
-
-  @override
-  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
-      _allTransitiveDependencies;
-
-  @override
-  String? get name => r'postPetProvider';
-}
-
-/// See also [postPet].
-class PostPetProvider extends AutoDisposeFutureProvider<void> {
-  /// See also [postPet].
-  PostPetProvider({
-    required BuildContext context,
-    required PostRequest request,
-  }) : this._internal(
-          (ref) => postPet(
-            ref as PostPetRef,
-            context: context,
-            request: request,
-          ),
-          from: postPetProvider,
-          name: r'postPetProvider',
-          debugGetCreateSourceHash:
-              const bool.fromEnvironment('dart.vm.product')
-                  ? null
-                  : _$postPetHash,
-          dependencies: PostPetFamily._dependencies,
-          allTransitiveDependencies: PostPetFamily._allTransitiveDependencies,
-          context: context,
-          request: request,
-        );
-
-  PostPetProvider._internal(
-    super._createNotifier, {
-    required super.name,
-    required super.dependencies,
-    required super.allTransitiveDependencies,
-    required super.debugGetCreateSourceHash,
-    required super.from,
-    required this.context,
-    required this.request,
-  }) : super.internal();
-
-  final BuildContext context;
-  final PostRequest request;
-
-  @override
-  Override overrideWith(
-    FutureOr<void> Function(PostPetRef provider) create,
-  ) {
-    return ProviderOverride(
-      origin: this,
-      override: PostPetProvider._internal(
-        (ref) => create(ref as PostPetRef),
-        from: from,
-        name: null,
-        dependencies: null,
-        allTransitiveDependencies: null,
-        debugGetCreateSourceHash: null,
-        context: context,
-        request: request,
-      ),
-    );
-  }
-
-  @override
-  AutoDisposeFutureProviderElement<void> createElement() {
-    return _PostPetProviderElement(this);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return other is PostPetProvider &&
-        other.context == context &&
-        other.request == request;
-  }
-
-  @override
-  int get hashCode {
-    var hash = _SystemHash.combine(0, runtimeType.hashCode);
-    hash = _SystemHash.combine(hash, context.hashCode);
-    hash = _SystemHash.combine(hash, request.hashCode);
-
-    return _SystemHash.finish(hash);
-  }
-}
-
-mixin PostPetRef on AutoDisposeFutureProviderRef<void> {
-  /// The parameter `context` of this provider.
-  BuildContext get context;
-
-  /// The parameter `request` of this provider.
-  PostRequest get request;
-}
-
-class _PostPetProviderElement extends AutoDisposeFutureProviderElement<void>
-    with PostPetRef {
-  _PostPetProviderElement(super.provider);
-
-  @override
-  BuildContext get context => (origin as PostPetProvider).context;
-  @override
-  PostRequest get request => (origin as PostPetProvider).request;
-}
+typedef _$PublicationsNotifier = AutoDisposeNotifier<void>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

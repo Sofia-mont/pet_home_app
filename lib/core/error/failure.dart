@@ -28,10 +28,13 @@ class Failure extends Equatable {
     try {
       await future;
       return null;
-    } on DioException catch (e) {
-      return Failure(message: e.response?.data);
+    } on Failure catch (e) {
+      return Failure(message: e.message);
     } catch (e) {
       if (throwException) rethrow;
+      if (e is DioException) {
+        return Failure(message: e.response!.data['error'].toString());
+      }
       return Failure(message: e.toString());
     }
   }

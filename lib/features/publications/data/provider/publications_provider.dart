@@ -1,11 +1,10 @@
-// ignore_for_file: avoid_build_context_in_providers, avoid_manual_providers_as_generated_provider_dependency
+// ignore_for_file: avoid_build_context_in_providers, avoid_manual_providers_as_generated_provider_dependency, use_build_context_synchronously
 import 'dart:async';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:pet_home/core/extension_methods/future_extension.dart';
 import 'package:pet_home/core/router/router.dart';
-import 'package:pet_home/core/sealed/either.dart';
 import 'package:pet_home/features/home/presentation/home_screen.dart';
 import 'package:pet_home/features/publications/data/repository/publications_repository.dart';
 import 'package:pet_home/features/publications/domain/post/post_request.dart/post_request.dart';
@@ -46,27 +45,37 @@ Future<PublicationsResponse> fetchPublications(
 }
 
 @riverpod
-Future<void> postPet(
-  PostPetRef ref, {
-  required BuildContext context,
-  required PostRequest request,
-}) async {
-  final res = await ref
-      .read(publicationsRepositoryProvider)
-      .postPet(post: request)
-      .toEither();
-  res.fold(
-    (left) => ref
-        .read(customModalsProvider)
-        .showInformativeScreen(context: context, message: left.message),
-    (right) => ref.read(customModalsProvider).showInformativeScreen(
-          context: context,
-          isError: false,
-          message: '¡Hemos publicado tu mascota!',
-          title:
-              'En cualquier momento podrían llegarte solicitudes de adopción, asegurate de revisar sus formularios con toda la información para determinar si es un candidato apto.',
-          buttonMsg: 'Continuar',
-          onPressed: () => ref.read(appRouterProvider).goNamed(HomeScreen.path),
-        ),
-  );
+class PublicationsNotifier extends _$PublicationsNotifier {
+  @override
+  void build() {}
+
+  Future<void> postPet({
+    required BuildContext context,
+    required PostRequest request,
+  }) async {
+    final res = await ref
+        .read(publicationsRepositoryProvider)
+        .postPet(post: request)
+        .toFailure();
+    if (res != null) {
+      ref.read(customModalsProvider).showInfoDialog(
+            buildContext: context,
+            title: 'Error',
+            content: res.message,
+            buttonText: 'Reintentar',
+          );
+      return;
+    } else {
+      ref.read(customModalsProvider).showInformativeScreen(
+            context: context,
+            isError: false,
+            title: '¡Hemos publicado tu mascota!',
+            message:
+                'En cualquier momento podrían llegarte solicitudes de adopción, asegurate de revisar sus formularios con toda la información para determinar si es un candidato apto.',
+            buttonMsg: 'Continuar',
+            onPressed: () =>
+                ref.read(appRouterProvider).goNamed(HomeScreen.path),
+          );
+    }
+  }
 }
