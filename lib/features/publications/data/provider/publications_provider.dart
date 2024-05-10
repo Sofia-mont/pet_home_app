@@ -7,11 +7,13 @@ import 'package:pet_home/core/extension_methods/future_extension.dart';
 import 'package:pet_home/core/router/router.dart';
 import 'package:pet_home/features/home/presentation/home_screen.dart';
 import 'package:pet_home/features/publications/data/repository/publications_repository.dart';
+import 'package:pet_home/features/publications/domain/post/post/post.dart';
 import 'package:pet_home/features/publications/domain/post/post_request.dart/post_request.dart';
 import 'package:pet_home/features/publications/domain/posts/publications_response/publications_response.dart';
 import 'package:pet_home/features/publications/domain/posts/publications_search_query/publications_search_query.dart';
 import 'package:pet_home/ui/widgets/modals/custom_modals.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:riverpod_infinite_scroll_pagination/riverpod_infinite_scroll_pagination.dart';
 
 part 'publications_provider.g.dart';
 
@@ -42,6 +44,64 @@ Future<PublicationsResponse> fetchPublications(
     timer?.cancel();
   });
   return res.getAllPost(page: page, query: query, cancelToken: cancelToken);
+}
+
+@riverpod
+class PendingPostList extends _$PendingPostList
+    with PaginatedDataMixin<Post>
+    implements PaginatedNotifier<Post> {
+  @override
+  FutureOr<List<Post>> build() async {
+    final link = ref.keepAlive();
+    Timer? timer;
+    ref.onDispose(() {
+      timer?.cancel();
+    });
+
+    ref.onCancel(() {
+      timer = Timer(const Duration(seconds: 50), () {
+        link.close();
+      });
+    });
+    ref.onResume(() {
+      timer?.cancel();
+    });
+    return init(
+      dataFetcher: PaginatedDataRepository(
+        fetcher:
+            ref.watch(publicationsRepositoryProvider).getPendingPostsByUser,
+      ),
+    );
+  }
+}
+
+@riverpod
+class AdoptedPostList extends _$AdoptedPostList
+    with PaginatedDataMixin<Post>
+    implements PaginatedNotifier<Post> {
+  @override
+  FutureOr<List<Post>> build() async {
+    final link = ref.keepAlive();
+    Timer? timer;
+    ref.onDispose(() {
+      timer?.cancel();
+    });
+
+    ref.onCancel(() {
+      timer = Timer(const Duration(seconds: 50), () {
+        link.close();
+      });
+    });
+    ref.onResume(() {
+      timer?.cancel();
+    });
+    return init(
+      dataFetcher: PaginatedDataRepository(
+        fetcher:
+            ref.watch(publicationsRepositoryProvider).getAdoptedPostsByUser,
+      ),
+    );
+  }
 }
 
 @riverpod

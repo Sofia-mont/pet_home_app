@@ -28,6 +28,10 @@ mixin _$PublicationsResponse {
   int get totalPages => throw _privateConstructorUsedError;
   @JsonKey(name: 'last')
   bool get last => throw _privateConstructorUsedError;
+  @JsonKey(name: 'pageSize')
+  int get pageSize => throw _privateConstructorUsedError;
+  @JsonKey(name: 'totalResults')
+  int get totalResults => throw _privateConstructorUsedError;
   List<String> get errors => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -47,6 +51,8 @@ abstract class $PublicationsResponseCopyWith<$Res> {
       @JsonKey(name: 'actualPage') int actualPage,
       @JsonKey(name: 'totalPages') int totalPages,
       @JsonKey(name: 'last') bool last,
+      @JsonKey(name: 'pageSize') int pageSize,
+      @JsonKey(name: 'totalResults') int totalResults,
       List<String> errors});
 }
 
@@ -68,6 +74,8 @@ class _$PublicationsResponseCopyWithImpl<$Res,
     Object? actualPage = null,
     Object? totalPages = null,
     Object? last = null,
+    Object? pageSize = null,
+    Object? totalResults = null,
     Object? errors = null,
   }) {
     return _then(_value.copyWith(
@@ -87,6 +95,14 @@ class _$PublicationsResponseCopyWithImpl<$Res,
           ? _value.last
           : last // ignore: cast_nullable_to_non_nullable
               as bool,
+      pageSize: null == pageSize
+          ? _value.pageSize
+          : pageSize // ignore: cast_nullable_to_non_nullable
+              as int,
+      totalResults: null == totalResults
+          ? _value.totalResults
+          : totalResults // ignore: cast_nullable_to_non_nullable
+              as int,
       errors: null == errors
           ? _value.errors
           : errors // ignore: cast_nullable_to_non_nullable
@@ -108,6 +124,8 @@ abstract class _$$PublicationsResponseImplCopyWith<$Res>
       @JsonKey(name: 'actualPage') int actualPage,
       @JsonKey(name: 'totalPages') int totalPages,
       @JsonKey(name: 'last') bool last,
+      @JsonKey(name: 'pageSize') int pageSize,
+      @JsonKey(name: 'totalResults') int totalResults,
       List<String> errors});
 }
 
@@ -126,6 +144,8 @@ class __$$PublicationsResponseImplCopyWithImpl<$Res>
     Object? actualPage = null,
     Object? totalPages = null,
     Object? last = null,
+    Object? pageSize = null,
+    Object? totalResults = null,
     Object? errors = null,
   }) {
     return _then(_$PublicationsResponseImpl(
@@ -145,6 +165,14 @@ class __$$PublicationsResponseImplCopyWithImpl<$Res>
           ? _value.last
           : last // ignore: cast_nullable_to_non_nullable
               as bool,
+      pageSize: null == pageSize
+          ? _value.pageSize
+          : pageSize // ignore: cast_nullable_to_non_nullable
+              as int,
+      totalResults: null == totalResults
+          ? _value.totalResults
+          : totalResults // ignore: cast_nullable_to_non_nullable
+              as int,
       errors: null == errors
           ? _value._errors
           : errors // ignore: cast_nullable_to_non_nullable
@@ -161,6 +189,8 @@ class _$PublicationsResponseImpl implements _PublicationsResponse {
       @JsonKey(name: 'actualPage') required this.actualPage,
       @JsonKey(name: 'totalPages') required this.totalPages,
       @JsonKey(name: 'last') required this.last,
+      @JsonKey(name: 'pageSize') required this.pageSize,
+      @JsonKey(name: 'totalResults') required this.totalResults,
       final List<String> errors = const []})
       : _data = data,
         _errors = errors;
@@ -186,6 +216,12 @@ class _$PublicationsResponseImpl implements _PublicationsResponse {
   @override
   @JsonKey(name: 'last')
   final bool last;
+  @override
+  @JsonKey(name: 'pageSize')
+  final int pageSize;
+  @override
+  @JsonKey(name: 'totalResults')
+  final int totalResults;
   final List<String> _errors;
   @override
   @JsonKey()
@@ -197,7 +233,7 @@ class _$PublicationsResponseImpl implements _PublicationsResponse {
 
   @override
   String toString() {
-    return 'PublicationsResponse(data: $data, actualPage: $actualPage, totalPages: $totalPages, last: $last, errors: $errors)';
+    return 'PublicationsResponse(data: $data, actualPage: $actualPage, totalPages: $totalPages, last: $last, pageSize: $pageSize, totalResults: $totalResults, errors: $errors)';
   }
 
   @override
@@ -211,6 +247,10 @@ class _$PublicationsResponseImpl implements _PublicationsResponse {
             (identical(other.totalPages, totalPages) ||
                 other.totalPages == totalPages) &&
             (identical(other.last, last) || other.last == last) &&
+            (identical(other.pageSize, pageSize) ||
+                other.pageSize == pageSize) &&
+            (identical(other.totalResults, totalResults) ||
+                other.totalResults == totalResults) &&
             const DeepCollectionEquality().equals(other._errors, _errors));
   }
 
@@ -222,6 +262,8 @@ class _$PublicationsResponseImpl implements _PublicationsResponse {
       actualPage,
       totalPages,
       last,
+      pageSize,
+      totalResults,
       const DeepCollectionEquality().hash(_errors));
 
   @JsonKey(ignore: true)
@@ -246,6 +288,8 @@ abstract class _PublicationsResponse implements PublicationsResponse {
       @JsonKey(name: 'actualPage') required final int actualPage,
       @JsonKey(name: 'totalPages') required final int totalPages,
       @JsonKey(name: 'last') required final bool last,
+      @JsonKey(name: 'pageSize') required final int pageSize,
+      @JsonKey(name: 'totalResults') required final int totalResults,
       final List<String> errors}) = _$PublicationsResponseImpl;
 
   factory _PublicationsResponse.fromJson(Map<String, dynamic> json) =
@@ -263,6 +307,12 @@ abstract class _PublicationsResponse implements PublicationsResponse {
   @override
   @JsonKey(name: 'last')
   bool get last;
+  @override
+  @JsonKey(name: 'pageSize')
+  int get pageSize;
+  @override
+  @JsonKey(name: 'totalResults')
+  int get totalResults;
   @override
   List<String> get errors;
   @override

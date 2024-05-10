@@ -129,7 +129,10 @@ class _PublicationScreenState extends ConsumerState<PostScreen>
                       text: 'Adoptame',
                     ),
                   ),
-                ],
+                ] else
+                  const SizedBox(
+                    height: 90,
+                  ),
               ],
             ),
           ),

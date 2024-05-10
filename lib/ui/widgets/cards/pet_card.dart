@@ -10,22 +10,29 @@ import 'package:pet_home/ui/icons/pethome_icons.dart';
 class PetCard extends ConsumerWidget {
   const PetCard({
     required this.publicationInfo,
+    this.isHome = false,
+    this.isOwner = false,
     super.key,
   });
 
   final Post publicationInfo;
+  final bool isHome;
+  final bool isOwner;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Container(
       width: MediaQuery.of(context).size.width * 0.9,
       height: MediaQuery.of(context).size.height / 3,
-      margin: const EdgeInsets.only(right: 10),
+      margin: EdgeInsets.only(right: 10, left: isHome ? 0 : 10),
       child: InkWell(
         onTap: () => ref.read(appRouterProvider).pushNamed(
-              PostScreen.path,
-              extra: publicationInfo,
-            ),
+          PostScreen.path,
+          extra: publicationInfo,
+          queryParameters: {
+            'isOwner': isOwner.toString(),
+          },
+        ),
         child: Stack(
           alignment: Alignment.center,
           children: [

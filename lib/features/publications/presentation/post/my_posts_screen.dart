@@ -28,32 +28,34 @@ class _MyPostsScreenState extends ConsumerState<MyPostsScreen>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          'Mis publicaciones',
-          style: TextStyle(color: Palette.primary),
+        title: const Center(
+          child: Text(
+            'Mis publicaciones',
+            style: TextStyle(color: Palette.primary),
+          ),
+        ),
+        elevation: 0,
+        bottom: TabBar(
+          padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 5),
+          indicator: const BoxDecoration(
+            color: Palette.primaryLighter,
+            borderRadius: BorderRadius.all(Radius.circular(50)),
+          ),
+          labelStyle:
+              FontConstants.body1.copyWith(color: Palette.primaryDarker),
+          unselectedLabelStyle:
+              FontConstants.body2.copyWith(color: Palette.textLight),
+          controller: tabController,
+          tabs: const [
+            Tab(text: 'En adopción'),
+            Tab(text: 'Adoptados'),
+          ],
         ),
       ),
-      body: Container(
-        padding: const EdgeInsets.all(10),
-        height: MediaQuery.of(context).size.height * 0.9,
-        width: MediaQuery.of(context).size.width,
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 10),
         child: Column(
           children: [
-            TabBar(
-              indicator: const BoxDecoration(
-                color: Palette.primaryLighter,
-                borderRadius: BorderRadius.all(Radius.circular(50)),
-              ),
-              labelStyle:
-                  FontConstants.body1.copyWith(color: Palette.primaryDarker),
-              unselectedLabelStyle:
-                  FontConstants.body2.copyWith(color: Palette.textLight),
-              controller: tabController,
-              tabs: const [
-                Tab(text: 'En proceso'),
-                Tab(text: 'Adoptados'),
-              ],
-            ),
             Expanded(
               child: TabBarView(
                 physics: const NeverScrollableScrollPhysics(),

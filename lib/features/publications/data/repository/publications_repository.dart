@@ -1,10 +1,12 @@
 import 'package:dio/dio.dart';
 import 'package:pet_home/core/constants/app_constants.dart';
 import 'package:pet_home/core/utils/dio/dio_provider.dart';
+import 'package:pet_home/features/publications/domain/post/post/post.dart';
 import 'package:pet_home/features/publications/domain/post/post_request.dart/post_request.dart';
 import 'package:pet_home/features/publications/domain/posts/publications_response/publications_response.dart';
 import 'package:pet_home/features/publications/domain/posts/publications_search_query/publications_search_query.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:riverpod_infinite_scroll_pagination/riverpod_infinite_scroll_pagination.dart';
 
 part 'publications_repository.g.dart';
 
@@ -28,6 +30,42 @@ class PublicationsRepository {
       queryParameters: generatedQuery,
     );
     return PublicationsResponse.fromJson(response.data);
+  }
+
+  Future<PaginatedResponse<Post>> getPendingPostsByUser({
+    int page = 1,
+    String? query = '',
+  }) async {
+    await Future<void>.delayed(const Duration(seconds: 1));
+    const path = '${AppConstants.baseURL}/post/pending';
+    final response = await client.get(path, queryParameters: {'page': page});
+    return PaginatedResponse.fromJson(
+      response.data,
+      dataMapper: Post.fromJson,
+      paginationParser: (data) => Pagination(
+        totalNumber: data['totalResults'] as int,
+        currentPage: data['actualPage'] as int,
+        lastPage: data['totalPages'] as int,
+      ),
+    );
+  }
+
+  Future<PaginatedResponse<Post>> getAdoptedPostsByUser({
+    int page = 1,
+    String? query = '',
+  }) async {
+    await Future<void>.delayed(const Duration(seconds: 1));
+    const path = '${AppConstants.baseURL}/post/adopted';
+    final response = await client.get(path, queryParameters: {'page': page});
+    return PaginatedResponse.fromJson(
+      response.data,
+      dataMapper: Post.fromJson,
+      paginationParser: (data) => Pagination(
+        totalNumber: data['totalResults'] as int,
+        currentPage: data['actualPage'] as int,
+        lastPage: data['totalPages'] as int,
+      ),
+    );
   }
 
   Future<void> postPet({required PostRequest post}) async {

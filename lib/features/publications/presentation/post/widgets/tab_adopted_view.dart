@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:pet_home/features/publications/data/provider/publications_provider.dart';
 import 'package:pet_home/ui/constants/font_constants.dart';
 import 'package:pet_home/ui/constants/palette.dart';
+import 'package:pet_home/ui/widgets/cards/pet_card.dart';
+import 'package:riverpod_infinite_scroll_pagination/riverpod_infinite_scroll_pagination.dart';
 
 class TabAdoptedView extends ConsumerStatefulWidget {
   const TabAdoptedView({super.key});
@@ -13,20 +16,21 @@ class TabAdoptedView extends ConsumerStatefulWidget {
 class _TabAdoptedViewState extends ConsumerState<TabAdoptedView> {
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        children: [
-          const SizedBox(height: 20),
-          Text(
-            'Aquí encontrarás todas las mascotas que ya han sido adoptadas',
-            style: FontConstants.caption2.copyWith(
-              color: Palette.textLight,
-            ),
-            textAlign: TextAlign.center,
-          ),
-          const SizedBox(height: 10),
-        ],
+    final post = ref.watch(adoptedPostListProvider);
+    return PaginatedListView(
+      state: post,
+      itemBuilder: (_, data) => PetCard(
+        publicationInfo: data,
+        isOwner: true,
       ),
+      emptyListBuilder: (context) => Center(
+        child: Text(
+          'No has dado en adopción a ninguna mascota por el momento',
+          style: FontConstants.body2.copyWith(color: Palette.textMedium),
+          textAlign: TextAlign.center,
+        ),
+      ),
+      notifier: ref.read(adoptedPostListProvider.notifier),
     );
   }
 }

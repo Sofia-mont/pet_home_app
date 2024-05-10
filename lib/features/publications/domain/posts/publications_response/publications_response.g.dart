@@ -15,6 +15,8 @@ _$PublicationsResponseImpl _$$PublicationsResponseImplFromJson(
       actualPage: json['actualPage'] as int,
       totalPages: json['totalPages'] as int,
       last: json['last'] as bool,
+      pageSize: json['pageSize'] as int,
+      totalResults: json['totalResults'] as int,
       errors: (json['errors'] as List<dynamic>?)
               ?.map((e) => e as String)
               .toList() ??
@@ -28,5 +30,7 @@ Map<String, dynamic> _$$PublicationsResponseImplToJson(
       'actualPage': instance.actualPage,
       'totalPages': instance.totalPages,
       'last': instance.last,
+      'pageSize': instance.pageSize,
+      'totalResults': instance.totalResults,
       'errors': instance.errors,
     };

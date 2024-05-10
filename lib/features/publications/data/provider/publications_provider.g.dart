@@ -177,6 +177,38 @@ class _FetchPublicationsProviderElement
       (origin as FetchPublicationsProvider).query;
 }
 
+String _$pendingPostListHash() => r'd19240d1daf4b6197f339128ac30e168b84b745b';
+
+/// See also [PendingPostList].
+@ProviderFor(PendingPostList)
+final pendingPostListProvider =
+    AutoDisposeAsyncNotifierProvider<PendingPostList, List<Post>>.internal(
+  PendingPostList.new,
+  name: r'pendingPostListProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$pendingPostListHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef _$PendingPostList = AutoDisposeAsyncNotifier<List<Post>>;
+String _$adoptedPostListHash() => r'3ffc2179e5c017b2af4f46c5f9f859db6f41ff23';
+
+/// See also [AdoptedPostList].
+@ProviderFor(AdoptedPostList)
+final adoptedPostListProvider =
+    AutoDisposeAsyncNotifierProvider<AdoptedPostList, List<Post>>.internal(
+  AdoptedPostList.new,
+  name: r'adoptedPostListProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$adoptedPostListHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef _$AdoptedPostList = AutoDisposeAsyncNotifier<List<Post>>;
 String _$publicationsNotifierHash() =>
     r'da8a161031951f892ce23cedcb9be55de5c7a7cc';
 

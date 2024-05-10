@@ -11,6 +11,8 @@ class PublicationsResponse with _$PublicationsResponse {
     @JsonKey(name: 'actualPage') required int actualPage,
     @JsonKey(name: 'totalPages') required int totalPages,
     @JsonKey(name: 'last') required bool last,
+    @JsonKey(name: 'pageSize') required int pageSize,
+    @JsonKey(name: 'totalResults') required int totalResults,
     @Default([]) List<String> errors,
   }) = _PublicationsResponse;
 

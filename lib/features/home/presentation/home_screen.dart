@@ -78,6 +78,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                             }
                             final post = data.data[index];
                             return PetCard(
+                              isHome: true,
                               publicationInfo: post,
                             );
                           },
@@ -150,6 +151,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                             }
                             final post = data.data[index];
                             return PetCard(
+                              isHome: true,
                               publicationInfo: post,
                             );
                           },
