@@ -9,7 +9,6 @@ import 'package:pet_home/features/home/presentation/home_screen.dart';
 import 'package:pet_home/features/publications/data/repository/publications_repository.dart';
 import 'package:pet_home/features/publications/domain/post/post/post.dart';
 import 'package:pet_home/features/publications/domain/post/post_request.dart/post_request.dart';
-import 'package:pet_home/features/publications/domain/posts/publications_response/publications_response.dart';
 import 'package:pet_home/features/publications/domain/posts/publications_search_query/publications_search_query.dart';
 import 'package:pet_home/ui/widgets/modals/custom_modals.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -18,32 +17,55 @@ import 'package:riverpod_infinite_scroll_pagination/riverpod_infinite_scroll_pag
 part 'publications_provider.g.dart';
 
 @riverpod
-Future<PublicationsResponse> fetchPublications(
-  FetchPublicationsRef ref, {
-  required int page,
-  PublicationsResponseQuery? query,
-}) async {
-  final res = ref.watch(publicationsRepositoryProvider);
+class FetchFilteredPosts extends _$FetchFilteredPosts
+    with PaginatedDataMixinGeneric<Post>
+    implements PaginatedNotifier<Post> {
+  @override
+  FutureOr<List<Post>> build(PublicationsResponseQuery? filters) async {
+    state = const AsyncValue.loading();
+    final cancelToken = CancelToken();
+    final link = ref.keepAlive();
 
-  final cancelToken = CancelToken();
-  final link = ref.keepAlive();
+    Timer? timer;
 
-  Timer? timer;
-
-  ref.onDispose(() {
-    cancelToken.cancel();
-    timer?.cancel();
-  });
-
-  ref.onCancel(() {
-    timer = Timer(const Duration(seconds: 30), () {
-      link.close();
+    ref.onDispose(() {
+      cancelToken.cancel();
+      timer?.cancel();
     });
-  });
-  ref.onResume(() {
-    timer?.cancel();
-  });
-  return res.getAllPost(page: page, query: query, cancelToken: cancelToken);
+
+    ref.onCancel(() {
+      timer = Timer(const Duration(seconds: 30), () {
+        link.close();
+      });
+    });
+    ref.onResume(() {
+      timer?.cancel();
+    });
+    return await init(
+      dataFetcher: PaginatedDataRepository(
+        fetcher: ({int page = 1, String? query}) async {
+          return ref.watch(publicationsRepositoryProvider).getFilteredPosts(
+                filters: filters,
+                page: page,
+                query: query,
+                cancelToken: cancelToken,
+              );
+        },
+        queryFilter: filters.toString(),
+      ),
+    );
+  }
+
+  @override
+  Future<void> getNextPage() async {
+    state = const AsyncLoading();
+    state = AsyncData(await fetchData());
+  }
+
+  @override
+  Future<void> refresh() async {
+    state = const AsyncLoading();
+  }
 }
 
 @riverpod
@@ -53,14 +75,18 @@ class MyPostList extends _$MyPostList
   @override
   FutureOr<List<Post>> build(String status) async {
     state = const AsyncValue.loading();
+    final cancelToken = CancelToken();
     final link = ref.keepAlive();
+
     Timer? timer;
+
     ref.onDispose(() {
+      cancelToken.cancel();
       timer?.cancel();
     });
 
     ref.onCancel(() {
-      timer = Timer(const Duration(seconds: 50), () {
+      timer = Timer(const Duration(seconds: 30), () {
         link.close();
       });
     });
@@ -72,7 +98,12 @@ class MyPostList extends _$MyPostList
         fetcher: ({int page = 1, String? query}) async {
           return ref
               .watch(publicationsRepositoryProvider)
-              .getPostsByUserAndState(status: status, page: page, query: query);
+              .getPostsByUserAndState(
+                status: status,
+                page: page,
+                query: query,
+                cancelToken: cancelToken,
+              );
         },
         queryFilter: status,
       ),

@@ -7,6 +7,7 @@ import 'package:pet_home/features/publications/domain/posts/publications_search_
 import 'package:pet_home/ui/widgets/cards/pet_card.dart';
 import 'package:pet_home/ui/constants/font_constants.dart';
 import 'package:pet_home/ui/constants/palette.dart';
+import 'package:riverpod_infinite_scroll_pagination/riverpod_infinite_scroll_pagination.dart';
 
 class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({this.showBottomBar = true, super.key});
@@ -57,56 +58,41 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                   ),
                 ],
               ),
-              Builder(
-                builder: (context) {
-                  final responseAsync = ref.watch(
-                    fetchPublicationsProvider(
-                      page: 0,
-                      query: PublicationsResponseQuery(petType: 'Perro'),
-                    ),
-                  );
-                  return responseAsync.when(
-                    data: (data) {
-                      return SizedBox(
-                        height: MediaQuery.of(context).size.height / 3,
-                        child: ListView.builder(
-                          itemCount: data.data.length,
-                          itemBuilder: (_, index) {
-                            final indexInPage = index % 10;
-                            if (indexInPage >= data.data.length) {
-                              return null;
-                            }
-                            final post = data.data[index];
-                            return PetCard(
-                              isHome: true,
-                              publicationInfo: post,
-                            );
-                          },
-                          scrollDirection: Axis.horizontal,
-                        ),
-                      );
-                    },
-                    error: (error, stackTrace) {
-                      ref.invalidate(fetchPublicationsProvider);
-                      return const Center(
-                        child: Padding(
-                          padding: EdgeInsets.symmetric(vertical: 50),
-                          child: CircularProgressIndicator(
-                            color: Palette.secondary,
-                          ),
-                        ),
-                      );
-                    },
-                    loading: () => const Center(
-                      child: Padding(
-                        padding: EdgeInsets.symmetric(vertical: 50),
-                        child: CircularProgressIndicator(
-                          color: Palette.secondary,
-                        ),
-                      ),
+              PaginatedListView(
+                state: ref.watch(
+                  fetchFilteredPostsProvider(
+                    PublicationsResponseQuery(petType: 'Perro'),
+                  ),
+                ),
+                itemBuilder: (_, data) => PetCard(
+                  publicationInfo: data,
+                  isOwner: true,
+                ),
+                listViewBuilder: (context, data) {
+                  return SizedBox(
+                    height: MediaQuery.of(context).size.height / 3,
+                    child: ListView.builder(
+                      itemCount: data.length,
+                      itemBuilder: (_, index) {
+                        final indexInPage = index % 10;
+                        if (indexInPage >= data.length) {
+                          return null;
+                        }
+                        final post = data[index];
+                        return PetCard(
+                          isHome: true,
+                          publicationInfo: post,
+                        );
+                      },
+                      scrollDirection: Axis.horizontal,
                     ),
                   );
                 },
+                notifier: ref.read(
+                  fetchFilteredPostsProvider(
+                    PublicationsResponseQuery(petType: 'Perro'),
+                  ).notifier,
+                ),
               ),
               const SizedBox(
                 height: 20,
@@ -130,56 +116,41 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                   ),
                 ],
               ),
-              Builder(
-                builder: (context) {
-                  final responseAsync = ref.watch(
-                    fetchPublicationsProvider(
-                      page: 0,
-                      query: PublicationsResponseQuery(petType: 'Gato'),
-                    ),
-                  );
-                  return responseAsync.when(
-                    data: (data) {
-                      return SizedBox(
-                        height: 280,
-                        child: ListView.builder(
-                          itemCount: data.data.length,
-                          itemBuilder: (_, index) {
-                            final indexInPage = index % 10;
-                            if (indexInPage >= data.data.length) {
-                              return null;
-                            }
-                            final post = data.data[index];
-                            return PetCard(
-                              isHome: true,
-                              publicationInfo: post,
-                            );
-                          },
-                          scrollDirection: Axis.horizontal,
-                        ),
-                      );
-                    },
-                    error: (error, stackTrace) {
-                      ref.invalidate(fetchPublicationsProvider);
-                      return const Center(
-                        child: Padding(
-                          padding: EdgeInsets.symmetric(vertical: 50),
-                          child: CircularProgressIndicator(
-                            color: Palette.secondary,
-                          ),
-                        ),
-                      );
-                    },
-                    loading: () => const Center(
-                      child: Padding(
-                        padding: EdgeInsets.symmetric(vertical: 50),
-                        child: CircularProgressIndicator(
-                          color: Palette.secondary,
-                        ),
-                      ),
+              PaginatedListView(
+                state: ref.watch(
+                  fetchFilteredPostsProvider(
+                    PublicationsResponseQuery(petType: 'Gato'),
+                  ),
+                ),
+                itemBuilder: (_, data) => PetCard(
+                  publicationInfo: data,
+                  isOwner: true,
+                ),
+                listViewBuilder: (context, data) {
+                  return SizedBox(
+                    height: MediaQuery.of(context).size.height / 3,
+                    child: ListView.builder(
+                      itemCount: data.length,
+                      itemBuilder: (_, index) {
+                        final indexInPage = index % 10;
+                        if (indexInPage >= data.length) {
+                          return null;
+                        }
+                        final post = data[index];
+                        return PetCard(
+                          isHome: true,
+                          publicationInfo: post,
+                        );
+                      },
+                      scrollDirection: Axis.horizontal,
                     ),
                   );
                 },
+                notifier: ref.read(
+                  fetchFilteredPostsProvider(
+                    PublicationsResponseQuery(petType: 'Gato'),
+                  ).notifier,
+                ),
               ),
             ],
           ),

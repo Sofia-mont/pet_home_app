@@ -198,9 +198,9 @@ class PetCard extends ConsumerWidget {
                 width: MediaQuery.of(context).size.width * 0.5,
                 decoration: BoxDecoration(
                   borderRadius: const BorderRadius.all(Radius.circular(10)),
-                  image: const DecorationImage(
+                  image: DecorationImage(
                     image: NetworkImage(
-                      'https://estaticos-cdn.prensaiberica.es/clip/823f515c-8143-4044-8f13-85ea1ef58f3a_16-9-discover-aspect-ratio_default_0.jpg',
+                      publicationInfo.petImages.first,
                     ),
                     fit: BoxFit.cover,
                   ),

@@ -6,7 +6,8 @@ part of 'publications_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$fetchPublicationsHash() => r'e9c3216b85a942a1a23aaf159902ed7ad12494df';
+String _$fetchFilteredPostsHash() =>
+    r'e52f5410b3ae95e2ec3fa6c6ca0559321cab3c22';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -29,33 +30,39 @@ class _SystemHash {
   }
 }
 
-/// See also [fetchPublications].
-@ProviderFor(fetchPublications)
-const fetchPublicationsProvider = FetchPublicationsFamily();
+abstract class _$FetchFilteredPosts
+    extends BuildlessAutoDisposeAsyncNotifier<List<Post>> {
+  late final PublicationsResponseQuery? filters;
 
-/// See also [fetchPublications].
-class FetchPublicationsFamily extends Family<AsyncValue<PublicationsResponse>> {
-  /// See also [fetchPublications].
-  const FetchPublicationsFamily();
+  FutureOr<List<Post>> build(
+    PublicationsResponseQuery? filters,
+  );
+}
 
-  /// See also [fetchPublications].
-  FetchPublicationsProvider call({
-    required int page,
-    PublicationsResponseQuery? query,
-  }) {
-    return FetchPublicationsProvider(
-      page: page,
-      query: query,
+/// See also [FetchFilteredPosts].
+@ProviderFor(FetchFilteredPosts)
+const fetchFilteredPostsProvider = FetchFilteredPostsFamily();
+
+/// See also [FetchFilteredPosts].
+class FetchFilteredPostsFamily extends Family<AsyncValue<List<Post>>> {
+  /// See also [FetchFilteredPosts].
+  const FetchFilteredPostsFamily();
+
+  /// See also [FetchFilteredPosts].
+  FetchFilteredPostsProvider call(
+    PublicationsResponseQuery? filters,
+  ) {
+    return FetchFilteredPostsProvider(
+      filters,
     );
   }
 
   @override
-  FetchPublicationsProvider getProviderOverride(
-    covariant FetchPublicationsProvider provider,
+  FetchFilteredPostsProvider getProviderOverride(
+    covariant FetchFilteredPostsProvider provider,
   ) {
     return call(
-      page: provider.page,
-      query: provider.query,
+      provider.filters,
     );
   }
 
@@ -71,113 +78,102 @@ class FetchPublicationsFamily extends Family<AsyncValue<PublicationsResponse>> {
       _allTransitiveDependencies;
 
   @override
-  String? get name => r'fetchPublicationsProvider';
+  String? get name => r'fetchFilteredPostsProvider';
 }
 
-/// See also [fetchPublications].
-class FetchPublicationsProvider
-    extends AutoDisposeFutureProvider<PublicationsResponse> {
-  /// See also [fetchPublications].
-  FetchPublicationsProvider({
-    required int page,
-    PublicationsResponseQuery? query,
-  }) : this._internal(
-          (ref) => fetchPublications(
-            ref as FetchPublicationsRef,
-            page: page,
-            query: query,
-          ),
-          from: fetchPublicationsProvider,
-          name: r'fetchPublicationsProvider',
+/// See also [FetchFilteredPosts].
+class FetchFilteredPostsProvider extends AutoDisposeAsyncNotifierProviderImpl<
+    FetchFilteredPosts, List<Post>> {
+  /// See also [FetchFilteredPosts].
+  FetchFilteredPostsProvider(
+    PublicationsResponseQuery? filters,
+  ) : this._internal(
+          () => FetchFilteredPosts()..filters = filters,
+          from: fetchFilteredPostsProvider,
+          name: r'fetchFilteredPostsProvider',
           debugGetCreateSourceHash:
               const bool.fromEnvironment('dart.vm.product')
                   ? null
-                  : _$fetchPublicationsHash,
-          dependencies: FetchPublicationsFamily._dependencies,
+                  : _$fetchFilteredPostsHash,
+          dependencies: FetchFilteredPostsFamily._dependencies,
           allTransitiveDependencies:
-              FetchPublicationsFamily._allTransitiveDependencies,
-          page: page,
-          query: query,
+              FetchFilteredPostsFamily._allTransitiveDependencies,
+          filters: filters,
         );
 
-  FetchPublicationsProvider._internal(
+  FetchFilteredPostsProvider._internal(
     super._createNotifier, {
     required super.name,
     required super.dependencies,
     required super.allTransitiveDependencies,
     required super.debugGetCreateSourceHash,
     required super.from,
-    required this.page,
-    required this.query,
+    required this.filters,
   }) : super.internal();
 
-  final int page;
-  final PublicationsResponseQuery? query;
+  final PublicationsResponseQuery? filters;
 
   @override
-  Override overrideWith(
-    FutureOr<PublicationsResponse> Function(FetchPublicationsRef provider)
-        create,
+  FutureOr<List<Post>> runNotifierBuild(
+    covariant FetchFilteredPosts notifier,
   ) {
+    return notifier.build(
+      filters,
+    );
+  }
+
+  @override
+  Override overrideWith(FetchFilteredPosts Function() create) {
     return ProviderOverride(
       origin: this,
-      override: FetchPublicationsProvider._internal(
-        (ref) => create(ref as FetchPublicationsRef),
+      override: FetchFilteredPostsProvider._internal(
+        () => create()..filters = filters,
         from: from,
         name: null,
         dependencies: null,
         allTransitiveDependencies: null,
         debugGetCreateSourceHash: null,
-        page: page,
-        query: query,
+        filters: filters,
       ),
     );
   }
 
   @override
-  AutoDisposeFutureProviderElement<PublicationsResponse> createElement() {
-    return _FetchPublicationsProviderElement(this);
+  AutoDisposeAsyncNotifierProviderElement<FetchFilteredPosts, List<Post>>
+      createElement() {
+    return _FetchFilteredPostsProviderElement(this);
   }
 
   @override
   bool operator ==(Object other) {
-    return other is FetchPublicationsProvider &&
-        other.page == page &&
-        other.query == query;
+    return other is FetchFilteredPostsProvider && other.filters == filters;
   }
 
   @override
   int get hashCode {
     var hash = _SystemHash.combine(0, runtimeType.hashCode);
-    hash = _SystemHash.combine(hash, page.hashCode);
-    hash = _SystemHash.combine(hash, query.hashCode);
+    hash = _SystemHash.combine(hash, filters.hashCode);
 
     return _SystemHash.finish(hash);
   }
 }
 
-mixin FetchPublicationsRef
-    on AutoDisposeFutureProviderRef<PublicationsResponse> {
-  /// The parameter `page` of this provider.
-  int get page;
-
-  /// The parameter `query` of this provider.
-  PublicationsResponseQuery? get query;
+mixin FetchFilteredPostsRef on AutoDisposeAsyncNotifierProviderRef<List<Post>> {
+  /// The parameter `filters` of this provider.
+  PublicationsResponseQuery? get filters;
 }
 
-class _FetchPublicationsProviderElement
-    extends AutoDisposeFutureProviderElement<PublicationsResponse>
-    with FetchPublicationsRef {
-  _FetchPublicationsProviderElement(super.provider);
+class _FetchFilteredPostsProviderElement
+    extends AutoDisposeAsyncNotifierProviderElement<FetchFilteredPosts,
+        List<Post>> with FetchFilteredPostsRef {
+  _FetchFilteredPostsProviderElement(super.provider);
 
   @override
-  int get page => (origin as FetchPublicationsProvider).page;
-  @override
-  PublicationsResponseQuery? get query =>
-      (origin as FetchPublicationsProvider).query;
+  PublicationsResponseQuery? get filters =>
+      (origin as FetchFilteredPostsProvider).filters;
 }
 
-String _$myPostListHash() => r'7dccba45ec7ee42d9dbbe7428703585b6b9b099e';
+String _$myPostListHash() => r'cd175fbf97d61f21ac0580aa7574dc3ddab97d44';
 
 abstract class _$MyPostList
     extends BuildlessAutoDisposeAsyncNotifier<List<Post>> {

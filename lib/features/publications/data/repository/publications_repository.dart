@@ -28,19 +28,48 @@ class PublicationsRepository {
     final response = await client.get(
       path,
       queryParameters: generatedQuery,
+      cancelToken: cancelToken,
     );
     return PublicationsResponse.fromJson(response.data);
+  }
+
+  Future<PaginatedResponse<Post>> getFilteredPosts({
+    int page = 1,
+    String? query = '',
+    PublicationsResponseQuery? filters,
+    CancelToken? cancelToken,
+  }) async {
+    const path = '${AppConstants.baseURL}/post/search';
+    final generatedQuery = _generateQuery(filters, page);
+    final response = await client.get(
+      path,
+      queryParameters: generatedQuery,
+      cancelToken: cancelToken,
+    );
+    return PaginatedResponse.fromJson(
+      response.data,
+      dataMapper: Post.fromJson,
+      paginationParser: (data) => Pagination(
+        totalNumber: data['totalResults'] as int,
+        currentPage: data['actualPage'] as int,
+        lastPage: data['totalPages'] as int,
+      ),
+    );
   }
 
   Future<PaginatedResponse<Post>> getPostsByUserAndState({
     int page = 1,
     String? query = '',
     required String status,
+    CancelToken? cancelToken,
   }) async {
     await Future<void>.delayed(const Duration(seconds: 1));
     const path = '${AppConstants.baseURL}/post/user';
-    final response = await client
-        .get(path, queryParameters: {'page': page, 'state': status});
+    final response = await client.get(
+      path,
+      queryParameters: {'page': page, 'state': status},
+      cancelToken: cancelToken,
+    );
     return PaginatedResponse.fromJson(
       response.data,
       dataMapper: Post.fromJson,

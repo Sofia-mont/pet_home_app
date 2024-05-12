@@ -26,7 +26,7 @@ class _TabPendingViewState extends ConsumerState<TabPendingView> {
       ),
       emptyListBuilder: (context) => Center(
         child: Text(
-          'No has dado en adopción a ninguna mascota por el momento',
+          'No tienes ninguna publicación',
           style: FontConstants.body2.copyWith(color: Palette.textMedium),
           textAlign: TextAlign.center,
         ),
