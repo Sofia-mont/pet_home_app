@@ -47,11 +47,12 @@ Future<PublicationsResponse> fetchPublications(
 }
 
 @riverpod
-class PendingPostList extends _$PendingPostList
-    with PaginatedDataMixin<Post>
+class MyPostList extends _$MyPostList
+    with PaginatedDataMixinGeneric<Post>
     implements PaginatedNotifier<Post> {
   @override
-  FutureOr<List<Post>> build() async {
+  FutureOr<List<Post>> build(String status) async {
+    state = const AsyncValue.loading();
     final link = ref.keepAlive();
     Timer? timer;
     ref.onDispose(() {
@@ -66,41 +67,27 @@ class PendingPostList extends _$PendingPostList
     ref.onResume(() {
       timer?.cancel();
     });
-    return init(
+    return await init(
       dataFetcher: PaginatedDataRepository(
-        fetcher:
-            ref.watch(publicationsRepositoryProvider).getPendingPostsByUser,
+        fetcher: ({int page = 1, String? query}) async {
+          return ref
+              .watch(publicationsRepositoryProvider)
+              .getPostsByUserAndState(status: status, page: page, query: query);
+        },
+        queryFilter: status,
       ),
     );
   }
-}
 
-@riverpod
-class AdoptedPostList extends _$AdoptedPostList
-    with PaginatedDataMixin<Post>
-    implements PaginatedNotifier<Post> {
   @override
-  FutureOr<List<Post>> build() async {
-    final link = ref.keepAlive();
-    Timer? timer;
-    ref.onDispose(() {
-      timer?.cancel();
-    });
+  Future<void> getNextPage() async {
+    state = const AsyncLoading();
+    state = AsyncData(await fetchData());
+  }
 
-    ref.onCancel(() {
-      timer = Timer(const Duration(seconds: 50), () {
-        link.close();
-      });
-    });
-    ref.onResume(() {
-      timer?.cancel();
-    });
-    return init(
-      dataFetcher: PaginatedDataRepository(
-        fetcher:
-            ref.watch(publicationsRepositoryProvider).getAdoptedPostsByUser,
-      ),
-    );
+  @override
+  Future<void> refresh() async {
+    state = const AsyncLoading();
   }
 }
 

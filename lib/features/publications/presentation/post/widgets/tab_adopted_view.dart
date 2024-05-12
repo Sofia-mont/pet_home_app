@@ -16,7 +16,7 @@ class TabAdoptedView extends ConsumerStatefulWidget {
 class _TabAdoptedViewState extends ConsumerState<TabAdoptedView> {
   @override
   Widget build(BuildContext context) {
-    final post = ref.watch(adoptedPostListProvider);
+    final post = ref.watch(myPostListProvider('ADOPTADO'));
     return PaginatedListView(
       state: post,
       itemBuilder: (_, data) => PetCard(
@@ -30,7 +30,9 @@ class _TabAdoptedViewState extends ConsumerState<TabAdoptedView> {
           textAlign: TextAlign.center,
         ),
       ),
-      notifier: ref.read(adoptedPostListProvider.notifier),
+      notifier: ref.read(
+        myPostListProvider('ADOPTADO').notifier,
+      ),
     );
   }
 }

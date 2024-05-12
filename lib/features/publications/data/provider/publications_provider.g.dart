@@ -177,38 +177,150 @@ class _FetchPublicationsProviderElement
       (origin as FetchPublicationsProvider).query;
 }
 
-String _$pendingPostListHash() => r'd19240d1daf4b6197f339128ac30e168b84b745b';
+String _$myPostListHash() => r'7dccba45ec7ee42d9dbbe7428703585b6b9b099e';
 
-/// See also [PendingPostList].
-@ProviderFor(PendingPostList)
-final pendingPostListProvider =
-    AutoDisposeAsyncNotifierProvider<PendingPostList, List<Post>>.internal(
-  PendingPostList.new,
-  name: r'pendingPostListProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$pendingPostListHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+abstract class _$MyPostList
+    extends BuildlessAutoDisposeAsyncNotifier<List<Post>> {
+  late final String status;
 
-typedef _$PendingPostList = AutoDisposeAsyncNotifier<List<Post>>;
-String _$adoptedPostListHash() => r'3ffc2179e5c017b2af4f46c5f9f859db6f41ff23';
+  FutureOr<List<Post>> build(
+    String status,
+  );
+}
 
-/// See also [AdoptedPostList].
-@ProviderFor(AdoptedPostList)
-final adoptedPostListProvider =
-    AutoDisposeAsyncNotifierProvider<AdoptedPostList, List<Post>>.internal(
-  AdoptedPostList.new,
-  name: r'adoptedPostListProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$adoptedPostListHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+/// See also [MyPostList].
+@ProviderFor(MyPostList)
+const myPostListProvider = MyPostListFamily();
 
-typedef _$AdoptedPostList = AutoDisposeAsyncNotifier<List<Post>>;
+/// See also [MyPostList].
+class MyPostListFamily extends Family<AsyncValue<List<Post>>> {
+  /// See also [MyPostList].
+  const MyPostListFamily();
+
+  /// See also [MyPostList].
+  MyPostListProvider call(
+    String status,
+  ) {
+    return MyPostListProvider(
+      status,
+    );
+  }
+
+  @override
+  MyPostListProvider getProviderOverride(
+    covariant MyPostListProvider provider,
+  ) {
+    return call(
+      provider.status,
+    );
+  }
+
+  static const Iterable<ProviderOrFamily>? _dependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
+
+  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
+      _allTransitiveDependencies;
+
+  @override
+  String? get name => r'myPostListProvider';
+}
+
+/// See also [MyPostList].
+class MyPostListProvider
+    extends AutoDisposeAsyncNotifierProviderImpl<MyPostList, List<Post>> {
+  /// See also [MyPostList].
+  MyPostListProvider(
+    String status,
+  ) : this._internal(
+          () => MyPostList()..status = status,
+          from: myPostListProvider,
+          name: r'myPostListProvider',
+          debugGetCreateSourceHash:
+              const bool.fromEnvironment('dart.vm.product')
+                  ? null
+                  : _$myPostListHash,
+          dependencies: MyPostListFamily._dependencies,
+          allTransitiveDependencies:
+              MyPostListFamily._allTransitiveDependencies,
+          status: status,
+        );
+
+  MyPostListProvider._internal(
+    super._createNotifier, {
+    required super.name,
+    required super.dependencies,
+    required super.allTransitiveDependencies,
+    required super.debugGetCreateSourceHash,
+    required super.from,
+    required this.status,
+  }) : super.internal();
+
+  final String status;
+
+  @override
+  FutureOr<List<Post>> runNotifierBuild(
+    covariant MyPostList notifier,
+  ) {
+    return notifier.build(
+      status,
+    );
+  }
+
+  @override
+  Override overrideWith(MyPostList Function() create) {
+    return ProviderOverride(
+      origin: this,
+      override: MyPostListProvider._internal(
+        () => create()..status = status,
+        from: from,
+        name: null,
+        dependencies: null,
+        allTransitiveDependencies: null,
+        debugGetCreateSourceHash: null,
+        status: status,
+      ),
+    );
+  }
+
+  @override
+  AutoDisposeAsyncNotifierProviderElement<MyPostList, List<Post>>
+      createElement() {
+    return _MyPostListProviderElement(this);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return other is MyPostListProvider && other.status == status;
+  }
+
+  @override
+  int get hashCode {
+    var hash = _SystemHash.combine(0, runtimeType.hashCode);
+    hash = _SystemHash.combine(hash, status.hashCode);
+
+    return _SystemHash.finish(hash);
+  }
+}
+
+mixin MyPostListRef on AutoDisposeAsyncNotifierProviderRef<List<Post>> {
+  /// The parameter `status` of this provider.
+  String get status;
+}
+
+class _MyPostListProviderElement
+    extends AutoDisposeAsyncNotifierProviderElement<MyPostList, List<Post>>
+    with MyPostListRef {
+  _MyPostListProviderElement(super.provider);
+
+  @override
+  String get status => (origin as MyPostListProvider).status;
+}
+
 String _$publicationsNotifierHash() =>
     r'da8a161031951f892ce23cedcb9be55de5c7a7cc';
 

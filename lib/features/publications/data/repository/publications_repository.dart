@@ -32,31 +32,15 @@ class PublicationsRepository {
     return PublicationsResponse.fromJson(response.data);
   }
 
-  Future<PaginatedResponse<Post>> getPendingPostsByUser({
+  Future<PaginatedResponse<Post>> getPostsByUserAndState({
     int page = 1,
     String? query = '',
+    required String status,
   }) async {
     await Future<void>.delayed(const Duration(seconds: 1));
-    const path = '${AppConstants.baseURL}/post/pending';
-    final response = await client.get(path, queryParameters: {'page': page});
-    return PaginatedResponse.fromJson(
-      response.data,
-      dataMapper: Post.fromJson,
-      paginationParser: (data) => Pagination(
-        totalNumber: data['totalResults'] as int,
-        currentPage: data['actualPage'] as int,
-        lastPage: data['totalPages'] as int,
-      ),
-    );
-  }
-
-  Future<PaginatedResponse<Post>> getAdoptedPostsByUser({
-    int page = 1,
-    String? query = '',
-  }) async {
-    await Future<void>.delayed(const Duration(seconds: 1));
-    const path = '${AppConstants.baseURL}/post/adopted';
-    final response = await client.get(path, queryParameters: {'page': page});
+    const path = '${AppConstants.baseURL}/post/user';
+    final response = await client
+        .get(path, queryParameters: {'page': page, 'state': status});
     return PaginatedResponse.fromJson(
       response.data,
       dataMapper: Post.fromJson,

@@ -14,9 +14,10 @@ class TabPendingView extends ConsumerStatefulWidget {
 }
 
 class _TabPendingViewState extends ConsumerState<TabPendingView> {
+  final scrollController = ScrollController();
   @override
   Widget build(BuildContext context) {
-    final post = ref.watch(pendingPostListProvider);
+    final post = ref.watch(myPostListProvider('NO ADOPTADO'));
     return PaginatedListView(
       state: post,
       itemBuilder: (_, data) => PetCard(
@@ -25,12 +26,12 @@ class _TabPendingViewState extends ConsumerState<TabPendingView> {
       ),
       emptyListBuilder: (context) => Center(
         child: Text(
-          'No tienes ninguna publicación',
+          'No has dado en adopción a ninguna mascota por el momento',
           style: FontConstants.body2.copyWith(color: Palette.textMedium),
           textAlign: TextAlign.center,
         ),
       ),
-      notifier: ref.read(pendingPostListProvider.notifier),
+      notifier: ref.read((myPostListProvider('NO ADOPTADO').notifier)),
     );
   }
 }
