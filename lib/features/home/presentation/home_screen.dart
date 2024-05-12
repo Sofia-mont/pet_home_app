@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:pet_home/core/router/router.dart';
+import 'package:pet_home/features/home/presentation/home_more_screen.dart';
 import 'package:pet_home/features/home/presentation/widget/home_drawer.dart';
 import 'package:pet_home/features/home/presentation/widget/home_speed_dial.dart';
 import 'package:pet_home/features/publications/data/provider/publications_provider.dart';
@@ -48,12 +50,18 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                     style: FontConstants.subtitle1
                         .copyWith(color: Palette.primary),
                   ),
-                  Text(
-                    'Ver más',
-                    style: FontConstants.caption2.copyWith(
-                      color: Palette.primary,
-                      decoration: TextDecoration.underline,
-                      decorationColor: Palette.primary,
+                  InkWell(
+                    onTap: () => ref.read(appRouterProvider).pushNamed(
+                      HomeMore.path,
+                      queryParameters: {'petType': 'Perro'},
+                    ),
+                    child: Text(
+                      'Ver más',
+                      style: FontConstants.caption2.copyWith(
+                        color: Palette.primary,
+                        decoration: TextDecoration.underline,
+                        decorationColor: Palette.primary,
+                      ),
                     ),
                   ),
                 ],
@@ -67,6 +75,12 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                 itemBuilder: (_, data) => PetCard(
                   publicationInfo: data,
                   isOwner: true,
+                ),
+                loadingBuilder: (context, pagination) => SizedBox(
+                  height: MediaQuery.of(context).size.height / 3,
+                  child: const Center(
+                    child: CircularProgressIndicator(),
+                  ),
                 ),
                 listViewBuilder: (context, data) {
                   return SizedBox(
@@ -106,12 +120,18 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                     style: FontConstants.subtitle1
                         .copyWith(color: Palette.primary),
                   ),
-                  Text(
-                    'Ver más',
-                    style: FontConstants.caption2.copyWith(
-                      color: Palette.primary,
-                      decoration: TextDecoration.underline,
-                      decorationColor: Palette.primary,
+                  InkWell(
+                    onTap: () => ref.read(appRouterProvider).pushNamed(
+                      HomeMore.path,
+                      queryParameters: {'petType': 'Gato'},
+                    ),
+                    child: Text(
+                      'Ver más',
+                      style: FontConstants.caption2.copyWith(
+                        color: Palette.primary,
+                        decoration: TextDecoration.underline,
+                        decorationColor: Palette.primary,
+                      ),
                     ),
                   ),
                 ],
@@ -125,6 +145,12 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                 itemBuilder: (_, data) => PetCard(
                   publicationInfo: data,
                   isOwner: true,
+                ),
+                loadingBuilder: (context, pagination) => SizedBox(
+                  height: MediaQuery.of(context).size.height / 3,
+                  child: const Center(
+                    child: CircularProgressIndicator(),
+                  ),
                 ),
                 listViewBuilder: (context, data) {
                   return SizedBox(

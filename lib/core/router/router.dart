@@ -16,6 +16,7 @@ import 'package:pet_home/features/adoption/presentation/form_adoption/questionar
 import 'package:pet_home/features/adoption/presentation/form_adoption/adoption_conditions_screen.dart';
 import 'package:pet_home/features/adoption/presentation/form_adoption/secondary_data_screen.dart';
 import 'package:pet_home/features/adoption/presentation/form_adoption/success_form_sent_screen.dart';
+import 'package:pet_home/features/home/presentation/home_more_screen.dart';
 import 'package:pet_home/features/home/presentation/home_screen.dart';
 import 'package:pet_home/features/publications/domain/post/post/post.dart';
 import 'package:pet_home/features/publications/presentation/adopt_pet/adopt_pet_screen.dart';
@@ -49,6 +50,14 @@ class CustomRouter {
   static final routes = [
     ...authRoutes,
     ...adoptionRoutes,
+    GoRoute(
+      parentNavigatorKey: AppService.instance.navigatorKey,
+      path: HomeMore.path,
+      name: HomeMore.path,
+      builder: (context, state) => HomeMore(
+        petType: state.queryParameters['petType']!,
+      ),
+    ),
     GoRoute(
       parentNavigatorKey: AppService.instance.navigatorKey,
       path: UserPostulationScreen.path,
