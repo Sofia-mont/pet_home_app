@@ -55,7 +55,6 @@ class _FilterPetScreenState extends ConsumerState<FilterPetScreen> {
             onChange: (value) => setState(() => department = value),
             asyncItems: (p0) =>
                 ref.read(locationNotifierProvider.notifier).getDepartamentos(),
-            isRequired: true,
             title: 'Departamento',
           ),
           FutureBuilder(
@@ -65,7 +64,6 @@ class _FilterPetScreenState extends ConsumerState<FilterPetScreen> {
                 child: DropdownSearchInput(
                   onChange: (value) => setState(() => city = value),
                   asyncItems: (p0) => ciudades,
-                  isRequired: true,
                   title: 'Ciudad',
                 ),
               );
@@ -74,9 +72,6 @@ class _FilterPetScreenState extends ConsumerState<FilterPetScreen> {
           const Spacer(),
           LargeButton(
             onPressed: () {
-              print(
-                'petType: $petType, petSex:$petSex, petSize:$petSize, city:$city, department:$department',
-              );
               ref.read(appRouterProvider).pushReplacement(
                     FilteredPostsScreen.path,
                     extra: PublicationsResponseQuery(
