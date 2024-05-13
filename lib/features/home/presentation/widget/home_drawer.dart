@@ -3,13 +3,13 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pet_home/core/app/app_service.dart';
 import 'package:pet_home/core/router/router.dart';
 import 'package:pet_home/features/adoption/presentation/my_postulations/my_postulations_screen.dart';
-import 'package:pet_home/features/publications/presentation/adopt_pet/adopt_pet_screen.dart';
-import 'package:pet_home/features/publications/presentation/post/my_posts_screen.dart';
+import 'package:pet_home/features/posts/presentation/adopt_pet/adopt_pet_screen.dart';
+import 'package:pet_home/features/posts/presentation/post/filter_pet_screen.dart';
+import 'package:pet_home/features/posts/presentation/post/my_posts_screen.dart';
 import 'package:pet_home/ui/constants/font_constants.dart';
 import 'package:pet_home/ui/constants/palette.dart';
 import 'package:pet_home/ui/icons/pethome_icons.dart';
 import 'package:pet_home/ui/scaffold/scaffold_controller.dart';
-import 'package:pet_home/ui/widgets/modals/custom_modals.dart';
 
 class HomeDrawer extends ConsumerWidget {
   const HomeDrawer({super.key});
@@ -76,9 +76,7 @@ class HomeDrawer extends ConsumerWidget {
                   ),
                   onTap: () {
                     Navigator.pop(context);
-                    ref
-                        .read(customModalsProvider)
-                        .showFilterDialog(buildContext: context);
+                    ref.read(appRouterProvider).pushNamed(FilterPetScreen.path);
                   },
                 ),
                 const Padding(

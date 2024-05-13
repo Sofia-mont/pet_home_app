@@ -14,14 +14,15 @@ import 'package:pet_home/features/adoption/presentation/form_adoption/personal_d
 import 'package:pet_home/features/adoption/presentation/form_adoption/questionary_first_screen.dart';
 import 'package:pet_home/features/adoption/presentation/form_adoption/questionary_second_screen.dart';
 import 'package:pet_home/features/adoption/presentation/form_adoption/adoption_conditions_screen.dart';
-import 'package:pet_home/features/adoption/presentation/form_adoption/secondary_data_screen.dart';
-import 'package:pet_home/features/adoption/presentation/form_adoption/success_form_sent_screen.dart';
 import 'package:pet_home/features/home/presentation/home_more_screen.dart';
 import 'package:pet_home/features/home/presentation/home_screen.dart';
-import 'package:pet_home/features/publications/domain/post/post/post.dart';
-import 'package:pet_home/features/publications/presentation/adopt_pet/adopt_pet_screen.dart';
-import 'package:pet_home/features/publications/presentation/post/post_screen.dart';
-import 'package:pet_home/features/publications/presentation/post/my_posts_screen.dart';
+import 'package:pet_home/features/posts/domain/post/post/post.dart';
+import 'package:pet_home/features/posts/domain/posts/publications_search_query/publications_search_query.dart';
+import 'package:pet_home/features/posts/presentation/adopt_pet/adopt_pet_screen.dart';
+import 'package:pet_home/features/posts/presentation/post/filter_pet_screen.dart';
+import 'package:pet_home/features/posts/presentation/post/filtered_post_screen.dart';
+import 'package:pet_home/features/posts/presentation/post/post_screen.dart';
+import 'package:pet_home/features/posts/presentation/post/my_posts_screen.dart';
 import 'package:pet_home/ui/scaffold/scaffold_with_navbar.dart';
 import 'package:pet_home/ui/widgets/response_screen.dart';
 
@@ -63,6 +64,24 @@ class CustomRouter {
       path: UserPostulationScreen.path,
       name: UserPostulationScreen.path,
       builder: (context, state) => const UserPostulationScreen(),
+    ),
+    GoRoute(
+      parentNavigatorKey: AppService.instance.navigatorKey,
+      path: FilterPetScreen.path,
+      name: FilterPetScreen.path,
+      builder: (context, state) {
+        return const FilterPetScreen();
+      },
+    ),
+    GoRoute(
+      parentNavigatorKey: AppService.instance.navigatorKey,
+      path: FilteredPostsScreen.path,
+      name: FilteredPostsScreen.path,
+      builder: (context, state) {
+        PublicationsResponseQuery query =
+            state.extra as PublicationsResponseQuery;
+        return FilteredPostsScreen(query: query);
+      },
     ),
     GoRoute(
       parentNavigatorKey: AppService.instance.navigatorKey,
@@ -148,6 +167,7 @@ class CustomRouter {
       ],
     ),
     GoRoute(
+      parentNavigatorKey: AppService.instance.navigatorKey,
       path: ResponseScreen.path,
       name: ResponseScreen.path,
       builder: (context, state) {
@@ -226,18 +246,6 @@ class CustomRouter {
       path: AdoptionConditionsScreen.path,
       name: AdoptionConditionsScreen.path,
       builder: (context, state) => const AdoptionConditionsScreen(),
-    ),
-    GoRoute(
-      parentNavigatorKey: AppService.instance.navigatorKey,
-      path: SecondaryDataScreen.path,
-      name: SecondaryDataScreen.path,
-      builder: (context, state) => const SecondaryDataScreen(),
-    ),
-    GoRoute(
-      parentNavigatorKey: AppService.instance.navigatorKey,
-      path: SuccessFormSentScreen.path,
-      name: SuccessFormSentScreen.path,
-      builder: (context, state) => const SuccessFormSentScreen(),
     ),
     GoRoute(
       parentNavigatorKey: AppService.instance.navigatorKey,

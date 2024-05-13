@@ -6,8 +6,8 @@ import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
 import 'package:pet_home/core/router/router.dart';
 import 'package:pet_home/features/adoption/presentation/form_adoption/personal_data_screen.dart';
-import 'package:pet_home/features/publications/domain/post/post/post.dart';
-import 'package:pet_home/features/publications/presentation/post/widgets/own_post_dial.dart';
+import 'package:pet_home/features/posts/domain/post/post/post.dart';
+import 'package:pet_home/features/posts/presentation/post/widgets/own_post_dial.dart';
 import 'package:pet_home/ui/constants/font_constants.dart';
 import 'package:pet_home/ui/constants/palette.dart';
 import 'package:pet_home/ui/icons/pethome_icons.dart';
@@ -66,7 +66,8 @@ class _PublicationScreenState extends ConsumerState<PostScreen>
                   child: Container(
                     height: MediaQuery.of(context).size.height * 0.3,
                     margin: const EdgeInsets.fromLTRB(10, 100, 10, 0),
-                    child: ListView(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -95,44 +96,47 @@ class _PublicationScreenState extends ConsumerState<PostScreen>
                           ],
                         ),
                         const SizedBox(height: 10),
-                        Text(
-                          widget.publication.petHistory,
-                          textAlign: TextAlign.justify,
-                          style: FontConstants.body2
-                              .copyWith(color: Palette.textMedium),
+                        Expanded(
+                          child: ListView(
+                            children: [
+                              Text(
+                                widget.publication.petHistory,
+                                textAlign: TextAlign.justify,
+                                style: FontConstants.body2
+                                    .copyWith(color: Palette.textMedium),
+                              ),
+                            ],
+                          ),
+                        ),
+                        const Spacer(),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(
+                            vertical: 20,
+                            horizontal: 10,
+                          ),
+                          child: LargeButton(
+                            onPressed: () => ref
+                                .read(customModalsProvider)
+                                .showInfoDialog(
+                                  buildContext: context,
+                                  title: 'Mensaje para el posible adoptante',
+                                  content:
+                                      'Si decides que quieres en tu vida la compañía de una vida animal, debes ser consciente del compromiso que esto implica. La vida está llena de cambios y en los 15 años que vive en promedio un perro o un gato se van a presentar una infinidad de situaciones que deberás enfrentar de manera seria y responsable. \n Si decides adoptar un animal debes acogerlo como un miembro más de tu casa. Esto quiere decir que, pase lo que pase, el animal siempre será tenido en cuenta en las decisiones de la familia y por ningún motivo se desharán de él, como si fuera un objeto o un juguete. Ningún problema es excusa para abandonarlo, del mismo modo que no es excusa para abandonar a cualquier otro integrante de tu familia',
+                                  buttonText: 'Aceptar',
+                                  buttonAction: () {
+                                    ref.read(appRouterProvider).pop();
+                                    ref
+                                        .read(appRouterProvider)
+                                        .pushNamed(PersonalDataScreen.path);
+                                  },
+                                ),
+                            text: 'Adoptame',
+                          ),
                         ),
                       ],
                     ),
                   ),
                 ),
-                if (!widget.isOwner) ...[
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                      vertical: 20,
-                      horizontal: 10,
-                    ),
-                    child: LargeButton(
-                      onPressed: () =>
-                          ref.read(customModalsProvider).showInfoDialog(
-                                buildContext: context,
-                                title: 'Mensaje para el posible adoptante',
-                                content:
-                                    'Si decides que quieres en tu vida la compañía de una vida animal, debes ser consciente del compromiso que esto implica. La vida está llena de cambios y en los 15 años que vive en promedio un perro o un gato se van a presentar una infinidad de situaciones que deberás enfrentar de manera seria y responsable. \n Si decides adoptar un animal debes acogerlo como un miembro más de tu casa. Esto quiere decir que, pase lo que pase, el animal siempre será tenido en cuenta en las decisiones de la familia y por ningún motivo se desharán de él, como si fuera un objeto o un juguete. Ningún problema es excusa para abandonarlo, del mismo modo que no es excusa para abandonar a cualquier otro integrante de tu familia',
-                                buttonText: 'Aceptar',
-                                buttonAction: () {
-                                  ref.read(appRouterProvider).pop();
-                                  ref
-                                      .read(appRouterProvider)
-                                      .pushNamed(PersonalDataScreen.path);
-                                },
-                              ),
-                      text: 'Adoptame',
-                    ),
-                  ),
-                ] else
-                  const SizedBox(
-                    height: 90,
-                  ),
               ],
             ),
           ),

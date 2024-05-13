@@ -1,10 +1,10 @@
 import 'package:dio/dio.dart';
 import 'package:pet_home/core/constants/app_constants.dart';
 import 'package:pet_home/core/utils/dio/dio_provider.dart';
-import 'package:pet_home/features/publications/domain/post/post/post.dart';
-import 'package:pet_home/features/publications/domain/post/post_request.dart/post_request.dart';
-import 'package:pet_home/features/publications/domain/posts/publications_response/publications_response.dart';
-import 'package:pet_home/features/publications/domain/posts/publications_search_query/publications_search_query.dart';
+import 'package:pet_home/features/posts/domain/post/post/post.dart';
+import 'package:pet_home/features/posts/domain/post/post_request.dart/post_request.dart';
+import 'package:pet_home/features/posts/domain/posts/publications_response/publications_response.dart';
+import 'package:pet_home/features/posts/domain/posts/publications_search_query/publications_search_query.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:riverpod_infinite_scroll_pagination/riverpod_infinite_scroll_pagination.dart';
 

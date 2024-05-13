@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:pet_home/features/adoption/presentation/my_postulations/my_postulations_screen.dart';
 import 'package:pet_home/features/home/presentation/home_screen.dart';
-import 'package:pet_home/features/publications/presentation/post/my_posts_screen.dart';
+import 'package:pet_home/features/posts/presentation/post/my_posts_screen.dart';
 import 'package:pet_home/ui/constants/palette.dart';
 import 'package:pet_home/ui/constants/pethome_icons.dart';
 import 'package:pet_home/ui/scaffold/scaffold_controller.dart';

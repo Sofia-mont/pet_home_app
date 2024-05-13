@@ -7,6 +7,7 @@ import 'package:pet_home/ui/constants/palette.dart';
 class DropdownListInput extends StatefulWidget {
   const DropdownListInput({
     this.items = const [],
+    this.asyncItems,
     required this.onChange,
     this.title,
     this.hintText = 'Selecciona',
@@ -17,6 +18,7 @@ class DropdownListInput extends StatefulWidget {
   final String hintText;
   final List<String> items;
   final ValueChanged<dynamic>? onChange;
+  final Future<List<String>> Function(String)? asyncItems;
 
   @override
   State<DropdownListInput> createState() => _DropdownListInputState();
@@ -43,7 +45,8 @@ class _DropdownListInputState extends State<DropdownListInput> {
         ),
         DropdownSearch<String>(
           key: widget.key,
-          onChanged: (value) {},
+          asyncItems: widget.asyncItems,
+          onChanged: widget.onChange,
           autoValidateMode: AutovalidateMode.always,
           validator: (value) => TextValidators.textMandatory(value.toString()),
           items: widget.items,

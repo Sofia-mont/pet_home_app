@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:pet_home/core/router/router.dart';
-import 'package:pet_home/features/adoption/presentation/form_adoption/success_form_sent_screen.dart';
+import 'package:pet_home/features/home/presentation/home_screen.dart';
 import 'package:pet_home/ui/constants/font_constants.dart';
 import 'package:pet_home/ui/constants/palette.dart';
 import 'package:pet_home/ui/icons/pethome_icons.dart';
 import 'package:pet_home/ui/scaffold/custom_scaffold.dart';
 import 'package:pet_home/ui/widgets/buttons/large_button.dart';
+import 'package:pet_home/ui/widgets/modals/custom_modals.dart';
 
 class AdoptionConditionsScreen extends ConsumerStatefulWidget {
   const AdoptionConditionsScreen({super.key});
@@ -197,10 +199,25 @@ class _QuestionaryThirdScreenState
             isEnabled: termsAndConditions,
             text: 'Enviar solicitud',
             onPressed: () =>
-                ref.read(appRouterProvider).push(SuccessFormSentScreen.path),
+                ref.read(customModalsProvider).showInformativeScreen(
+                      context: context,
+                      isError: false,
+                      title: '¡Tu solicitud de adopción ha sido enviada!',
+                      message:
+                          'Ten en cuenta que el diligenciamiento de este formulario no significa que se te dará el animal en adopción. Tus datos y referencias personales serán evaluados y se tomará una decisión basada en el bienestar del animal. ',
+                      buttonMsg: 'Finalizar',
+                      onPressed: () =>
+                          ref.read(appRouterProvider).goNamed(HomeScreen.path),
+                    ),
           ),
         ],
       ),
     );
+  }
+
+  popUntil() {
+    while (GoRouter.of(context).canPop()) {
+      GoRouter.of(context).pop();
+    }
   }
 }

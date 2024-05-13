@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:pet_home/features/publications/presentation/post/widgets/tab_adopted_view.dart';
-import 'package:pet_home/features/publications/presentation/post/widgets/tab_pendig_view.dart';
+import 'package:pet_home/features/posts/presentation/post/widgets/tab_adopted_view.dart';
+import 'package:pet_home/features/posts/presentation/post/widgets/tab_pendig_view.dart';
 import 'package:pet_home/ui/constants/font_constants.dart';
 import 'package:pet_home/ui/constants/palette.dart';
 

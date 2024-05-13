@@ -38,13 +38,6 @@ class _RegisterInfoScreenState extends ConsumerState<RegisterInfoScreen> {
       _formKey.currentState != null &&
       _formKey.currentState!.validate() &&
       termsAndConditions;
-  dynamic allDepartments;
-  @override
-  initState() {
-    allDepartments =
-        ref.read(locationNotifierProvider.notifier).getDepartamentos();
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -126,7 +119,9 @@ class _RegisterInfoScreenState extends ConsumerState<RegisterInfoScreen> {
                         department = value;
                       });
                     },
-                    asyncItems: (p0) => allDepartments,
+                    asyncItems: (p0) => ref
+                        .read(locationNotifierProvider.notifier)
+                        .getDepartamentos(),
                     isRequired: true,
                     title: 'Departamento',
                   ),

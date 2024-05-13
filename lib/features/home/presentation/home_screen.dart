@@ -4,8 +4,8 @@ import 'package:pet_home/core/router/router.dart';
 import 'package:pet_home/features/home/presentation/home_more_screen.dart';
 import 'package:pet_home/features/home/presentation/widget/home_drawer.dart';
 import 'package:pet_home/features/home/presentation/widget/home_speed_dial.dart';
-import 'package:pet_home/features/publications/data/provider/publications_provider.dart';
-import 'package:pet_home/features/publications/domain/posts/publications_search_query/publications_search_query.dart';
+import 'package:pet_home/features/posts/data/provider/publications_provider.dart';
+import 'package:pet_home/features/posts/domain/posts/publications_search_query/publications_search_query.dart';
 import 'package:pet_home/ui/widgets/cards/pet_card.dart';
 import 'package:pet_home/ui/constants/font_constants.dart';
 import 'package:pet_home/ui/constants/palette.dart';
@@ -72,10 +72,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                     PublicationsResponseQuery(petType: 'Perro'),
                   ),
                 ),
-                itemBuilder: (_, data) => PetCard(
-                  publicationInfo: data,
-                  isOwner: true,
-                ),
+                itemBuilder: (_, data) => PetCard(publicationInfo: data),
                 loadingBuilder: (context, pagination) => SizedBox(
                   height: MediaQuery.of(context).size.height / 3,
                   child: const Center(
@@ -142,10 +139,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                     PublicationsResponseQuery(petType: 'Gato'),
                   ),
                 ),
-                itemBuilder: (_, data) => PetCard(
-                  publicationInfo: data,
-                  isOwner: true,
-                ),
+                itemBuilder: (_, data) => PetCard(publicationInfo: data),
                 loadingBuilder: (context, pagination) => SizedBox(
                   height: MediaQuery.of(context).size.height / 3,
                   child: const Center(
@@ -163,10 +157,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                           return null;
                         }
                         final post = data[index];
-                        return PetCard(
-                          isHome: true,
-                          publicationInfo: post,
-                        );
+                        return PetCard(isHome: true, publicationInfo: post);
                       },
                       scrollDirection: Axis.horizontal,
                     ),

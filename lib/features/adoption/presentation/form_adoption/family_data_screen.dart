@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pet_home/core/router/router.dart';
-import 'package:pet_home/features/adoption/presentation/form_adoption/secondary_data_screen.dart';
+import 'package:pet_home/features/adoption/presentation/form_adoption/questionary_first_screen.dart';
 import 'package:pet_home/ui/constants/font_constants.dart';
 import 'package:pet_home/ui/constants/palette.dart';
 import 'package:pet_home/ui/scaffold/custom_scaffold.dart';
@@ -78,7 +78,7 @@ class _FamilyDataScreenState extends ConsumerState<FamilyDataScreen> {
           LargeButton(
             text: 'Continuar',
             onPressed: () =>
-                ref.read(appRouterProvider).push(SecondaryDataScreen.path),
+                ref.read(appRouterProvider).push(QuestionaryScreen.path),
           ),
         ],
       ),
