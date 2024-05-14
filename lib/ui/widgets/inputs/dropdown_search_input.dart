@@ -72,7 +72,7 @@ class _DropdownSearchInputState extends State<DropdownSearchInput> {
                 itemAsString: (item) => item.toString(),
                 popupProps: PopupProps.dialog(
                   isFilterOnline: true,
-                  showSearchBox: true,
+                  showSearchBox: false,
                   title: Padding(
                     padding: const EdgeInsets.only(
                       left: 15,
