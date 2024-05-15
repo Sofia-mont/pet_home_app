@@ -90,6 +90,20 @@ class MyPostList extends _$MyPostList
 }
 
 @riverpod
+class MyPostulations extends _$MyPostulations
+    with PaginatedDataMixin<Post>
+    implements PaginatedNotifier<Post> {
+  @override
+  FutureOr<List<Post>> build() async {
+    return init(
+      dataFetcher: PaginatedDataRepository(
+        fetcher: ref.watch(publicationsRepositoryProvider).getPostByPostulation,
+      ),
+    );
+  }
+}
+
+@riverpod
 class PublicationsNotifier extends _$PublicationsNotifier {
   @override
   void build() {}

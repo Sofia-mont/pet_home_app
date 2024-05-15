@@ -81,6 +81,26 @@ class PublicationsRepository {
     );
   }
 
+  Future<PaginatedResponse<Post>> getPostByPostulation({
+    int page = 1,
+    String? query = '',
+  }) async {
+    const path = '${AppConstants.baseURL}/adoption-application/my-postulations';
+    final response = await client.get(
+      path,
+      queryParameters: {'page': page},
+    );
+    return PaginatedResponse.fromJson(
+      response.data!,
+      dataMapper: Post.fromJson,
+      paginationParser: (data) => Pagination(
+        totalNumber: data['totalResults'] as int,
+        currentPage: data['actualPage'] as int,
+        lastPage: data['totalPages'] as int,
+      ),
+    );
+  }
+
   Future<void> postPet({required PostRequest post}) async {
     const path = '${AppConstants.baseURL}/post';
     var formData = FormData();

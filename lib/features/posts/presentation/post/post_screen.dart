@@ -180,6 +180,15 @@ class _PublicationScreenState extends ConsumerState<PostScreen>
                                   ),
                               text: 'Adoptame',
                             ),
+                          )
+                        else
+                          Center(
+                            child: Text(
+                              'Mascota adoptada',
+                              style: FontConstants.body1.copyWith(
+                                color: Palette.successDark,
+                              ),
+                            ),
                           ),
                       ],
                     ),

@@ -7,7 +7,7 @@ part of 'publications_provider.dart';
 // **************************************************************************
 
 String _$fetchFilteredPostsHash() =>
-    r'e52f5410b3ae95e2ec3fa6c6ca0559321cab3c22';
+    r'22445c53bc222c59bc7cdda26da7852f8f5afd43';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -173,7 +173,7 @@ class _FetchFilteredPostsProviderElement
       (origin as FetchFilteredPostsProvider).filters;
 }
 
-String _$myPostListHash() => r'cd175fbf97d61f21ac0580aa7574dc3ddab97d44';
+String _$myPostListHash() => r'9d6aba44d4635c77058f0eac4598e4f94a693499';
 
 abstract class _$MyPostList
     extends BuildlessAutoDisposeAsyncNotifier<List<Post>> {
@@ -317,8 +317,24 @@ class _MyPostListProviderElement
   String get status => (origin as MyPostListProvider).status;
 }
 
+String _$myPostulationsHash() => r'd50f6db69e965ea1c181472ddf045ff13276e733';
+
+/// See also [MyPostulations].
+@ProviderFor(MyPostulations)
+final myPostulationsProvider =
+    AutoDisposeAsyncNotifierProvider<MyPostulations, List<Post>>.internal(
+  MyPostulations.new,
+  name: r'myPostulationsProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$myPostulationsHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef _$MyPostulations = AutoDisposeAsyncNotifier<List<Post>>;
 String _$publicationsNotifierHash() =>
-    r'da8a161031951f892ce23cedcb9be55de5c7a7cc';
+    r'e30646ac535841e847a232fa736dac64323e54d9';
 
 /// See also [PublicationsNotifier].
 @ProviderFor(PublicationsNotifier)
