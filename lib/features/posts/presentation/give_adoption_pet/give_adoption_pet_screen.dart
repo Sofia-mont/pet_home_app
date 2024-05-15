@@ -14,16 +14,17 @@ import 'package:pet_home/ui/widgets/inputs/dropdown_search_input.dart';
 import 'package:pet_home/ui/widgets/inputs/input_with_title.dart';
 import 'package:pet_home/ui/widgets/modals/custom_modals.dart';
 
-class AdoptPetScreen extends ConsumerStatefulWidget {
-  const AdoptPetScreen({super.key});
+class GiveAdoptionPetScreen extends ConsumerStatefulWidget {
+  const GiveAdoptionPetScreen({super.key});
 
-  static const path = '/adopt-pet';
+  static const path = '/give-in-adoption';
 
   @override
-  ConsumerState<AdoptPetScreen> createState() => _AdoptPetFirstScreenState();
+  ConsumerState<GiveAdoptionPetScreen> createState() =>
+      _AdoptPetFirstScreenState();
 }
 
-class _AdoptPetFirstScreenState extends ConsumerState<AdoptPetScreen> {
+class _AdoptPetFirstScreenState extends ConsumerState<GiveAdoptionPetScreen> {
   final ImageSelector _imageSelector = ImageSelector();
   final formKey = const Key('formPostKey');
   final TextEditingController _nameController = TextEditingController();

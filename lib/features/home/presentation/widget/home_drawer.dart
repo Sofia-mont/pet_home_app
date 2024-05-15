@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pet_home/core/app/app_service.dart';
 import 'package:pet_home/core/router/router.dart';
 import 'package:pet_home/features/adoption/presentation/my_postulations/my_postulations_screen.dart';
-import 'package:pet_home/features/posts/presentation/adopt_pet/adopt_pet_screen.dart';
+import 'package:pet_home/features/posts/presentation/give_adoption_pet/give_adoption_pet_screen.dart';
 import 'package:pet_home/features/posts/presentation/post/filter_pet_screen.dart';
 import 'package:pet_home/features/posts/presentation/post/my_posts_screen.dart';
 import 'package:pet_home/ui/constants/font_constants.dart';
@@ -62,7 +62,9 @@ class HomeDrawer extends ConsumerWidget {
                   ),
                   onTap: () {
                     ref.read(appRouterProvider).pop();
-                    ref.read(appRouterProvider).pushNamed(AdoptPetScreen.path);
+                    ref
+                        .read(appRouterProvider)
+                        .pushNamed(GiveAdoptionPetScreen.path);
                   },
                 ),
                 ListTile(
