@@ -60,7 +60,7 @@ class _ScaffoldWithNavBarState extends ConsumerState<ScaffoldWithNavBar> {
         context.go(MyPostsScreen.path);
         break;
       case 2:
-        context.go(MyPostulationsScreen.path); // TODO : Anadir pantalla
+        context.go(MyPostulationsScreen.path);
         break;
     }
   }

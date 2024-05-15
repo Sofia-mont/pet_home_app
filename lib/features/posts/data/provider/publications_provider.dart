@@ -10,6 +10,7 @@ import 'package:pet_home/features/posts/data/repository/publications_repository.
 import 'package:pet_home/features/posts/domain/post/post/post.dart';
 import 'package:pet_home/features/posts/domain/post/post_request.dart/post_request.dart';
 import 'package:pet_home/features/posts/domain/posts/publications_search_query/publications_search_query.dart';
+import 'package:pet_home/ui/scaffold/scaffold_controller.dart';
 import 'package:pet_home/ui/widgets/modals/custom_modals.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:riverpod_infinite_scroll_pagination/riverpod_infinite_scroll_pagination.dart';
@@ -24,7 +25,6 @@ class FetchFilteredPosts extends _$FetchFilteredPosts
   FutureOr<List<Post>> build(PublicationsResponseQuery? filters) async {
     state = const AsyncValue.loading();
     final cancelToken = CancelToken();
-
     return await init(
       dataFetcher: PaginatedDataRepository(
         fetcher: ({int page = 1, String? query}) async {
@@ -60,23 +60,6 @@ class MyPostList extends _$MyPostList
   FutureOr<List<Post>> build(String status) async {
     state = const AsyncValue.loading();
     final cancelToken = CancelToken();
-    final link = ref.keepAlive();
-
-    Timer? timer;
-
-    ref.onDispose(() {
-      cancelToken.cancel();
-      timer?.cancel();
-    });
-
-    ref.onCancel(() {
-      timer = Timer(const Duration(seconds: 30), () {
-        link.close();
-      });
-    });
-    ref.onResume(() {
-      timer?.cancel();
-    });
     return await init(
       dataFetcher: PaginatedDataRepository(
         fetcher: ({int page = 1, String? query}) async {
@@ -137,6 +120,38 @@ class PublicationsNotifier extends _$PublicationsNotifier {
             buttonMsg: 'Continuar',
             onPressed: () =>
                 ref.read(appRouterProvider).goNamed(HomeScreen.path),
+          );
+    }
+  }
+
+  Future<void> deletePost({
+    required BuildContext context,
+    required int postId,
+  }) async {
+    final res = await ref
+        .read(publicationsRepositoryProvider)
+        .deletePost(postId: postId.toString())
+        .toFailure();
+    if (res != null) {
+      ref.read(customModalsProvider).showInfoDialog(
+            buildContext: context,
+            title: 'Error',
+            content: res.message,
+            buttonText: 'Reintentar',
+          );
+      return;
+    } else {
+      MyPostListRef;
+      ref.read(customModalsProvider).showInfoDialog(
+            buildContext: context,
+            title: 'Eliminado',
+            content: 'La publicación ha sido eliminada exitosamente',
+            buttonText: 'Continuar',
+            buttonAction: () {
+              ref.read(appRouterProvider).pop();
+              ref.watch(scaffoldControllerProvider.notifier).setPosition(0);
+              ref.read(appRouterProvider).goNamed(HomeScreen.path);
+            },
           );
     }
   }

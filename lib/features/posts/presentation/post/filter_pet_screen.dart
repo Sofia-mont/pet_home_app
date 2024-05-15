@@ -71,6 +71,11 @@ class _FilterPetScreenState extends ConsumerState<FilterPetScreen> {
           ),
           const Spacer(),
           LargeButton(
+            isEnabled: petType != '' ||
+                petSex != '' ||
+                petSize != '' ||
+                city != '' ||
+                department != '',
             onPressed: () {
               ref.read(appRouterProvider).pushReplacement(
                     FilteredPostsScreen.path,

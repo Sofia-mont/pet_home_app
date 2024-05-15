@@ -54,15 +54,9 @@ class _CheckboxSelectState extends State<CheckboxSelect> {
                           ),
                           const SizedBox(width: 5),
                           Expanded(
-                            child: InkWell(
-                              onTap: () => setState(() {
-                                widget.groupValue = option;
-                                widget.onChanged;
-                              }),
-                              child: Text(
-                                option,
-                                style: FontConstants.body2,
-                              ),
+                            child: Text(
+                              option,
+                              style: FontConstants.body2,
                             ),
                           ),
                         ],

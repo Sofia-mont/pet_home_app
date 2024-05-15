@@ -114,6 +114,13 @@ class PublicationsRepository {
     );
     await client.post(path, data: formData);
   }
+
+  Future<void> deletePost({
+    required String postId,
+  }) async {
+    final path = '${AppConstants.baseURL}/post/$postId';
+    await client.delete(path);
+  }
 }
 
 Map<String, dynamic> _generateQuery(

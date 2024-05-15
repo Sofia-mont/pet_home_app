@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -34,18 +36,51 @@ class PostScreen extends ConsumerStatefulWidget {
 class _PublicationScreenState extends ConsumerState<PostScreen>
     with SingleTickerProviderStateMixin {
   late TabController tabController;
+  late PageController _pageController;
+  late Timer _timer;
 
   @override
   void initState() {
     super.initState();
+    _pageController = PageController();
+    _startTimer();
     initializeDateFormatting('es_ES');
     tabController = TabController(length: 2, vsync: this);
   }
 
   @override
+  void dispose() {
+    _timer.cancel();
+    _pageController.dispose();
+    super.dispose();
+  }
+
+  void _startTimer() {
+    _timer = Timer.periodic(const Duration(seconds: 5), (timer) {
+      if (_pageController.page != null &&
+          _pageController.page! < widget.publication.petImages.length - 1) {
+        _pageController.nextPage(
+          duration: const Duration(milliseconds: 500),
+          curve: Curves.ease,
+        );
+      } else {
+        _pageController.animateToPage(
+          0,
+          duration: const Duration(milliseconds: 500),
+          curve: Curves.ease,
+        );
+      }
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     return CustomScaffold(
-      floatingActionButton: widget.isOwner ? const OwnPostDial() : null,
+      floatingActionButton: widget.isOwner
+          ? OwnPostDial(
+              postId: widget.publication.id,
+            )
+          : null,
       withAppbar: false,
       withPadding: false,
       body: Stack(
@@ -54,11 +89,25 @@ class _PublicationScreenState extends ConsumerState<PostScreen>
             child: Column(
               children: [
                 Expanded(
-                  child: Align(
-                    alignment: Alignment.center,
-                    child: Hero(
-                      tag: 'pet',
-                      child: Image.network(widget.publication.petImages[0]),
+                  child: SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.35,
+                    width: MediaQuery.of(context).size.width,
+                    child: PageView.builder(
+                      controller: _pageController,
+                      itemCount: widget.publication.petImages.length,
+                      pageSnapping: true,
+                      itemBuilder: (context, pagePosition) {
+                        return Container(
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                              fit: BoxFit.cover,
+                              image: NetworkImage(
+                                widget.publication.petImages[pagePosition],
+                              ),
+                            ),
+                          ),
+                        );
+                      },
                     ),
                   ),
                 ),
@@ -109,30 +158,31 @@ class _PublicationScreenState extends ConsumerState<PostScreen>
                           ),
                         ),
                         const Spacer(),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(
-                            vertical: 20,
-                            horizontal: 10,
+                        if (!widget.isOwner)
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                              vertical: 20,
+                              horizontal: 10,
+                            ),
+                            child: LargeButton(
+                              onPressed: () => ref
+                                  .read(customModalsProvider)
+                                  .showInfoDialog(
+                                    buildContext: context,
+                                    title: 'Mensaje para el posible adoptante',
+                                    content:
+                                        'Si decides que quieres en tu vida la compañía de una vida animal, debes ser consciente del compromiso que esto implica. La vida está llena de cambios y en los 15 años que vive en promedio un perro o un gato se van a presentar una infinidad de situaciones que deberás enfrentar de manera seria y responsable. \n Si decides adoptar un animal debes acogerlo como un miembro más de tu casa. Esto quiere decir que, pase lo que pase, el animal siempre será tenido en cuenta en las decisiones de la familia y por ningún motivo se desharán de él, como si fuera un objeto o un juguete. Ningún problema es excusa para abandonarlo, del mismo modo que no es excusa para abandonar a cualquier otro integrante de tu familia',
+                                    buttonText: 'Aceptar',
+                                    buttonAction: () {
+                                      ref.read(appRouterProvider).pop();
+                                      ref
+                                          .read(appRouterProvider)
+                                          .pushNamed(PersonalDataScreen.path);
+                                    },
+                                  ),
+                              text: 'Adoptame',
+                            ),
                           ),
-                          child: LargeButton(
-                            onPressed: () => ref
-                                .read(customModalsProvider)
-                                .showInfoDialog(
-                                  buildContext: context,
-                                  title: 'Mensaje para el posible adoptante',
-                                  content:
-                                      'Si decides que quieres en tu vida la compañía de una vida animal, debes ser consciente del compromiso que esto implica. La vida está llena de cambios y en los 15 años que vive en promedio un perro o un gato se van a presentar una infinidad de situaciones que deberás enfrentar de manera seria y responsable. \n Si decides adoptar un animal debes acogerlo como un miembro más de tu casa. Esto quiere decir que, pase lo que pase, el animal siempre será tenido en cuenta en las decisiones de la familia y por ningún motivo se desharán de él, como si fuera un objeto o un juguete. Ningún problema es excusa para abandonarlo, del mismo modo que no es excusa para abandonar a cualquier otro integrante de tu familia',
-                                  buttonText: 'Aceptar',
-                                  buttonAction: () {
-                                    ref.read(appRouterProvider).pop();
-                                    ref
-                                        .read(appRouterProvider)
-                                        .pushNamed(PersonalDataScreen.path);
-                                  },
-                                ),
-                            text: 'Adoptame',
-                          ),
-                        ),
                       ],
                     ),
                   ),

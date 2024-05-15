@@ -41,20 +41,12 @@ class PetCard extends ConsumerWidget {
               child: Container(
                 height: 230,
                 width: MediaQuery.of(context).size.width * 0.4,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   color: Palette.textLighter,
-                  borderRadius: const BorderRadius.only(
+                  borderRadius: BorderRadius.only(
                     topRight: Radius.circular(10),
                     bottomRight: Radius.circular(10),
                   ),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Palette.textMedium.withOpacity(0.25),
-                      offset: const Offset(0, 5),
-                      blurRadius: 10,
-                      spreadRadius: 0,
-                    ),
-                  ],
                 ),
                 child: Padding(
                   padding: const EdgeInsets.symmetric(
@@ -204,14 +196,6 @@ class PetCard extends ConsumerWidget {
                     ),
                     fit: BoxFit.cover,
                   ),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Palette.textMedium.withOpacity(0.3),
-                      offset: const Offset(2, 3),
-                      blurRadius: 5,
-                      spreadRadius: 0,
-                    ),
-                  ],
                 ),
               ),
             ),
