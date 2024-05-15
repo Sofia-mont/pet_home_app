@@ -141,11 +141,42 @@ class PublicationsNotifier extends _$PublicationsNotifier {
           );
       return;
     } else {
-      MyPostListRef;
       ref.read(customModalsProvider).showInfoDialog(
             buildContext: context,
             title: 'Eliminado',
             content: 'La publicación ha sido eliminada exitosamente',
+            buttonText: 'Continuar',
+            buttonAction: () {
+              ref.read(appRouterProvider).pop();
+              ref.watch(scaffoldControllerProvider.notifier).setPosition(0);
+              ref.read(appRouterProvider).goNamed(HomeScreen.path);
+            },
+          );
+    }
+  }
+
+  Future<void> editPet({
+    required BuildContext context,
+    required PostRequest request,
+    required String postId,
+  }) async {
+    final res = await ref
+        .read(publicationsRepositoryProvider)
+        .editPet(post: request, postId: postId)
+        .toFailure();
+    if (res != null) {
+      ref.read(customModalsProvider).showInfoDialog(
+            buildContext: context,
+            title: 'Error',
+            content: res.message,
+            buttonText: 'Reintentar',
+          );
+      return;
+    } else {
+      ref.read(customModalsProvider).showInfoDialog(
+            buildContext: context,
+            title: '',
+            content: 'La publicación ha sido modificada exitosamente',
             buttonText: 'Continuar',
             buttonAction: () {
               ref.read(appRouterProvider).pop();

@@ -9,6 +9,7 @@ class InputWithTitle extends StatefulWidget {
     required this.title,
     this.controller,
     this.validator,
+    this.initialValue,
     this.inputType = TextInputType.text,
     this.isMultiline = false,
     required this.hintText,
@@ -17,6 +18,7 @@ class InputWithTitle extends StatefulWidget {
 
   final String title;
   final String hintText;
+  final String? initialValue;
   final bool isRequired;
   final bool obscureText;
   final bool isMultiline;
@@ -51,6 +53,7 @@ class _InputWithTitleState extends State<InputWithTitle> {
         ),
         const SizedBox(height: 5),
         TextFormField(
+          initialValue: widget.initialValue,
           controller: widget.controller,
           obscureText: widget.obscureText,
           onChanged: (value) => setState(() {}),

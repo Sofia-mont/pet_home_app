@@ -19,6 +19,7 @@ import 'package:pet_home/features/home/presentation/home_screen.dart';
 import 'package:pet_home/features/posts/domain/post/post/post.dart';
 import 'package:pet_home/features/posts/domain/posts/publications_search_query/publications_search_query.dart';
 import 'package:pet_home/features/posts/presentation/adopt_pet/adopt_pet_screen.dart';
+import 'package:pet_home/features/posts/presentation/post/edit_post_Screen.dart';
 import 'package:pet_home/features/posts/presentation/post/filter_pet_screen.dart';
 import 'package:pet_home/features/posts/presentation/post/filtered_post_screen.dart';
 import 'package:pet_home/features/posts/presentation/post/post_screen.dart';
@@ -100,6 +101,15 @@ class CustomRouter {
               false,
           publication: publication,
         );
+      },
+    ),
+    GoRoute(
+      parentNavigatorKey: AppService.instance.navigatorKey,
+      path: EditPostScreen.path,
+      name: EditPostScreen.path,
+      builder: (context, state) {
+        Post publication = state.extra as Post;
+        return EditPostScreen(publication: publication);
       },
     ),
     ShellRoute(

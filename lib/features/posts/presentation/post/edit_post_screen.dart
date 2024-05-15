@@ -4,6 +4,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:pet_home/core/utils/pick_image.dart';
 import 'package:pet_home/features/location/data/provider/location_provider.dart';
 import 'package:pet_home/features/posts/data/provider/publications_provider.dart';
+import 'package:pet_home/features/posts/domain/post/post/post.dart';
 import 'package:pet_home/features/posts/domain/post/post_request.dart/post_request.dart';
 import 'package:pet_home/ui/constants/font_constants.dart';
 import 'package:pet_home/ui/constants/palette.dart';
@@ -14,22 +15,24 @@ import 'package:pet_home/ui/widgets/inputs/dropdown_search_input.dart';
 import 'package:pet_home/ui/widgets/inputs/input_with_title.dart';
 import 'package:pet_home/ui/widgets/modals/custom_modals.dart';
 
-class AdoptPetScreen extends ConsumerStatefulWidget {
-  const AdoptPetScreen({super.key});
+class EditPostScreen extends ConsumerStatefulWidget {
+  const EditPostScreen({required this.publication, super.key});
 
-  static const path = '/adopt-pet';
+  final Post publication;
+
+  static const path = '/edit';
 
   @override
-  ConsumerState<AdoptPetScreen> createState() => _AdoptPetFirstScreenState();
+  ConsumerState<EditPostScreen> createState() => _AdoptPetFirstScreenState();
 }
 
-class _AdoptPetFirstScreenState extends ConsumerState<AdoptPetScreen> {
+class _AdoptPetFirstScreenState extends ConsumerState<EditPostScreen> {
   final ImageSelector _imageSelector = ImageSelector();
   final formKey = const Key('formPostKey');
-  final TextEditingController _nameController = TextEditingController();
-  final TextEditingController _historyController = TextEditingController();
-  final TextEditingController _ageYearsController = TextEditingController();
-  final TextEditingController _ageMonthsController = TextEditingController();
+  TextEditingController _nameController = TextEditingController();
+  TextEditingController _historyController = TextEditingController();
+  TextEditingController _ageYearsController = TextEditingController();
+  TextEditingController _ageMonthsController = TextEditingController();
   List<XFile> selectedImages = [];
   String city = '';
   String department = '';
@@ -41,12 +44,38 @@ class _AdoptPetFirstScreenState extends ConsumerState<AdoptPetScreen> {
   String petSize = '';
 
   @override
+  void initState() {
+    super.initState();
+    department = widget.publication.department;
+    city = widget.publication.city;
+    isVaccinated = widget.publication.vaccinated ? 'Sí' : 'No';
+    isDewormed = widget.publication.dewormed ? 'Sí' : 'No';
+    isNeutered = widget.publication.neutered ? 'Sí' : 'No';
+    petType = widget.publication.petType;
+    petSex = widget.publication.petSex;
+    petSize = widget.publication.petSize;
+    _nameController = TextEditingController(text: widget.publication.petName);
+    _historyController =
+        TextEditingController(text: widget.publication.petHistory);
+    _ageYearsController = TextEditingController(
+      text: RegExp(r'(\d+)\s*año')
+          .firstMatch(widget.publication.petAge)!
+          .group(1),
+    );
+    _ageMonthsController = TextEditingController(
+      text: RegExp(r'(\d+)\s*mes')
+          .firstMatch(widget.publication.petAge)
+          ?.group(1),
+    );
+  }
+
+  @override
   Widget build(BuildContext context) {
     var ciudades = department == ''
         ? Future.value([])
         : ref.read(locationNotifierProvider.notifier).getCiudades(department);
     return CustomScaffold(
-      appbarTitle: 'Dar en adopción',
+      appbarTitle: 'Editar publicación',
       body: Form(
         key: formKey,
         autovalidateMode: AutovalidateMode.always,
@@ -81,13 +110,13 @@ class _AdoptPetFirstScreenState extends ConsumerState<AdoptPetScreen> {
                   children: [
                     Text(
                       selectedImages.isEmpty
-                          ? 'Agrega fotos de la mascota'
+                          ? '${widget.publication.petImages.length} fotos seleccionadas'
                           : '${selectedImages.length} fotos seleccionadas',
                       style:
                           FontConstants.body1.copyWith(color: Palette.primary),
                     ),
-                    Icon(
-                      selectedImages.isEmpty ? Icons.add : Icons.edit,
+                    const Icon(
+                      Icons.add,
                       color: Palette.primary,
                     ),
                   ],
@@ -129,14 +158,17 @@ class _AdoptPetFirstScreenState extends ConsumerState<AdoptPetScreen> {
               ],
             ),
             Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Flexible(
                   child: DropdownSearchInput(
                     onChange: (value) {
                       setState(() {
                         department = value;
+                        city = '';
                       });
                     },
+                    selectedItem: department,
                     asyncItems: (p0) => ref
                         .read(locationNotifierProvider.notifier)
                         .getDepartamentos(),
@@ -156,6 +188,7 @@ class _AdoptPetFirstScreenState extends ConsumerState<AdoptPetScreen> {
                           });
                         },
                         asyncItems: (p0) => ciudades,
+                        selectedItem: city,
                         title: '',
                         hintText: 'Ciudad',
                       ),
@@ -233,17 +266,24 @@ class _AdoptPetFirstScreenState extends ConsumerState<AdoptPetScreen> {
   }
 
   bool _validateForm() {
-    return city != '' &&
-        department != '' &&
-        petType != '' &&
-        petSex != '' &&
-        petSize != '' &&
-        isDewormed != '' &&
-        isNeutered != '' &&
-        isVaccinated != '' &&
-        _nameController.text.isNotEmpty &&
-        _historyController.text.isNotEmpty &&
-        (_ageYearsController.text != '' || _ageMonthsController.text != '') &&
+    return city != widget.publication.city ||
+        department != widget.publication.department ||
+        petType != widget.publication.petType ||
+        petSex != widget.publication.petSex ||
+        petSize != widget.publication.petSize ||
+        (isDewormed != (widget.publication.dewormed ? 'Sí' : 'No')) ||
+        (isNeutered != (widget.publication.neutered ? 'Sí' : 'No')) ||
+        (isVaccinated != (widget.publication.vaccinated ? 'Sí' : 'No')) ||
+        _nameController.text != widget.publication.petName ||
+        _historyController.text != widget.publication.petHistory ||
+        _ageYearsController.text !=
+            RegExp(r'(\d+)\s*año')
+                .firstMatch(widget.publication.petAge)!
+                .group(1) ||
+        _ageMonthsController.text !=
+            RegExp(r'(\d+)\s*mes')
+                .firstMatch(widget.publication.petAge)!
+                .group(1) ||
         selectedImages.isNotEmpty;
   }
 
@@ -264,14 +304,16 @@ class _AdoptPetFirstScreenState extends ConsumerState<AdoptPetScreen> {
         neutered: isNeutered == 'Sí' ? true : false,
         images: selectedImages,
       );
-      ref
-          .read(publicationsNotifierProvider.notifier)
-          .postPet(context: context, request: request);
+      ref.read(publicationsNotifierProvider.notifier).editPet(
+            context: context,
+            request: request,
+            postId: widget.publication.id.toString(),
+          );
     } else {
       ref.read(customModalsProvider).showInfoDialog(
             buildContext: context,
             title: 'Información incompleta',
-            content: 'Por favor, ingresa toda la información',
+            content: 'Debes modificar por lo menos un campo',
             buttonText: 'Aceptar',
           );
     }

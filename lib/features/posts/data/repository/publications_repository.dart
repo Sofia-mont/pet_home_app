@@ -84,7 +84,7 @@ class PublicationsRepository {
   Future<void> postPet({required PostRequest post}) async {
     const path = '${AppConstants.baseURL}/post';
     var formData = FormData();
-    for (var image in post.images) {
+    for (var image in post.images!) {
       final imageBytes = await image.readAsBytes();
       formData.files.add(
         MapEntry(
@@ -110,9 +110,55 @@ class PublicationsRepository {
         'vaccinated': post.vaccinated.toString(),
         'dewormed': post.dewormed.toString(),
         'neutered': post.neutered.toString(),
-      }.entries.map((e) => MapEntry(e.key, e.value)),
+      }.entries.map((e) => MapEntry(e.key, e.value!)),
     );
     await client.post(path, data: formData);
+  }
+
+  Future<void> editPet({
+    required PostRequest post,
+    required String postId,
+  }) async {
+    final path = '${AppConstants.baseURL}/post/$postId';
+    var formData = FormData();
+    if (post.images == null || post.images!.isEmpty) {
+      formData.files.add(
+        MapEntry(
+          'petImages',
+          MultipartFile.fromString('', filename: 'empty_image.jpg'),
+        ),
+      );
+    } else {
+      for (var image in post.images!) {
+        final imageBytes = await image.readAsBytes();
+        formData.files.add(
+          MapEntry(
+            'petImages',
+            MultipartFile.fromBytes(
+              imageBytes,
+              filename: image.path,
+            ),
+          ),
+        );
+      }
+    }
+
+    formData.fields.addAll(
+      {
+        'petName': post.petName,
+        'petHistory': post.petHistory,
+        'petAge': post.petAge,
+        'department': post.department,
+        'city': post.city,
+        'petType': post.petType,
+        'petSex': post.petSex,
+        'petSize': post.petSize,
+        'vaccinated': post.vaccinated.toString(),
+        'dewormed': post.dewormed.toString(),
+        'neutered': post.neutered.toString(),
+      }.entries.map((e) => MapEntry(e.key, e.value!)),
+    );
+    await client.put(path, data: formData);
   }
 
   Future<void> deletePost({

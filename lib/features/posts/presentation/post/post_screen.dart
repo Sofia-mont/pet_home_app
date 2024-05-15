@@ -1,8 +1,6 @@
 import 'dart:async';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
@@ -76,11 +74,10 @@ class _PublicationScreenState extends ConsumerState<PostScreen>
   @override
   Widget build(BuildContext context) {
     return CustomScaffold(
-      floatingActionButton: widget.isOwner
-          ? OwnPostDial(
-              postId: widget.publication.id,
-            )
-          : null,
+      floatingActionButton:
+          widget.isOwner && widget.publication.postState != 'ADOPTADO'
+              ? OwnPostDial(post: widget.publication)
+              : null,
       withAppbar: false,
       withPadding: false,
       body: Stack(
@@ -158,7 +155,8 @@ class _PublicationScreenState extends ConsumerState<PostScreen>
                           ),
                         ),
                         const Spacer(),
-                        if (!widget.isOwner)
+                        if (!widget.isOwner &&
+                            widget.publication.postState != 'ADOPTADO')
                           Padding(
                             padding: const EdgeInsets.symmetric(
                               vertical: 20,

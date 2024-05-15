@@ -4,6 +4,8 @@ import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:pet_home/core/router/router.dart';
 import 'package:pet_home/features/adoption/presentation/postulations/postulations_list_screen.dart';
 import 'package:pet_home/features/posts/data/provider/publications_provider.dart';
+import 'package:pet_home/features/posts/domain/post/post/post.dart';
+import 'package:pet_home/features/posts/presentation/post/edit_post_Screen.dart';
 import 'package:pet_home/ui/constants/font_constants.dart';
 import 'package:pet_home/ui/constants/palette.dart';
 import 'package:pet_home/ui/icons/pethome_icons.dart';
@@ -11,11 +13,11 @@ import 'package:pet_home/ui/widgets/modals/custom_modals.dart';
 
 class OwnPostDial extends ConsumerStatefulWidget {
   const OwnPostDial({
-    required this.postId,
+    required this.post,
     super.key,
   });
 
-  final int postId;
+  final Post post;
 
   @override
   ConsumerState<OwnPostDial> createState() => _OwnPostDialState();
@@ -48,6 +50,9 @@ class _OwnPostDialState extends ConsumerState<OwnPostDial> {
           ),
           label: 'Editar',
           labelStyle: FontConstants.body2.copyWith(color: Palette.textMedium),
+          onTap: () => ref
+              .read(appRouterProvider)
+              .pushNamed(EditPostScreen.path, extra: widget.post),
         ),
         SpeedDialChild(
           child: const Icon(
@@ -66,7 +71,7 @@ class _OwnPostDialState extends ConsumerState<OwnPostDial> {
                   ref.read(appRouterProvider).pop();
                   ref
                       .read(publicationsNotifierProvider.notifier)
-                      .deletePost(context: context, postId: widget.postId);
+                      .deletePost(context: context, postId: widget.post.id);
                 },
               ),
         ),

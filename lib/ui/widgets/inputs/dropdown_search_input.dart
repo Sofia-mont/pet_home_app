@@ -11,12 +11,14 @@ class DropdownSearchInput extends StatefulWidget {
     required this.onChange,
     this.isRequired = false,
     this.title,
+    this.selectedItem,
     this.hintText = 'Selecciona',
     super.key,
   });
 
   final String? title;
   final String hintText;
+  final Object? selectedItem;
   final ValueChanged<dynamic>? onChange;
   final bool isRequired;
   final List<Object?> items;
@@ -61,13 +63,15 @@ class _DropdownSearchInputState extends State<DropdownSearchInput> {
           children: [
             Expanded(
               child: DropdownSearch(
+                selectedItem: widget.selectedItem,
                 asyncItems: widget.asyncItems,
                 key: widget.key,
                 onChanged: widget.onChange,
                 onSaved: (newValue) {},
                 autoValidateMode: AutovalidateMode.onUserInteraction,
-                validator: (value) =>
-                    TextValidators.textMandatory(value.toString()),
+                validator: (value) => widget.isRequired
+                    ? TextValidators.textMandatory(value.toString())
+                    : null,
                 items: widget.items,
                 itemAsString: (item) => item.toString(),
                 popupProps: PopupProps.dialog(
