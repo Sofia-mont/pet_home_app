@@ -229,33 +229,67 @@ class CustomRouter {
   static final adoptionRoutes = [
     GoRoute(
       parentNavigatorKey: AppService.instance.navigatorKey,
-      path: FamilyDataScreen.path,
-      name: FamilyDataScreen.path,
-      builder: (context, state) => const FamilyDataScreen(),
+      path: PersonalDataScreen.path,
+      name: PersonalDataScreen.path,
+      builder: (context, state) => PersonalDataScreen(
+        postId: int.parse(state.queryParameters['postId']!),
+      ),
     ),
     GoRoute(
       parentNavigatorKey: AppService.instance.navigatorKey,
-      path: PersonalDataScreen.path,
-      name: PersonalDataScreen.path,
-      builder: (context, state) => const PersonalDataScreen(),
+      path: FamilyDataScreen.path,
+      name: FamilyDataScreen.path,
+      builder: (context, state) {
+        final args = state.extra;
+        if (args is! FamilyDataScreenArgs) return CustomRouter.errorScreen();
+        return FamilyDataScreen(
+          form: args.form,
+          postId: args.postId,
+        );
+      },
     ),
     GoRoute(
       parentNavigatorKey: AppService.instance.navigatorKey,
       path: QuestionaryScreen.path,
       name: QuestionaryScreen.path,
-      builder: (context, state) => const QuestionaryScreen(),
+      builder: (context, state) {
+        final args = state.extra;
+        if (args is! QuestionaryScreenArgs) return CustomRouter.errorScreen();
+        return QuestionaryScreen(
+          form: args.form,
+          postId: args.postId,
+        );
+      },
     ),
     GoRoute(
       parentNavigatorKey: AppService.instance.navigatorKey,
       path: QuestionarySecondScreen.path,
       name: QuestionarySecondScreen.path,
-      builder: (context, state) => const QuestionarySecondScreen(),
+      builder: (context, state) {
+        final args = state.extra;
+        if (args is! QuestionarySecondScreenArgs) {
+          return CustomRouter.errorScreen();
+        }
+        return QuestionarySecondScreen(
+          form: args.form,
+          postId: args.postId,
+        );
+      },
     ),
     GoRoute(
       parentNavigatorKey: AppService.instance.navigatorKey,
       path: AdoptionConditionsScreen.path,
       name: AdoptionConditionsScreen.path,
-      builder: (context, state) => const AdoptionConditionsScreen(),
+      builder: (context, state) {
+        final args = state.extra;
+        if (args is! AdoptionConditionsScreenArgs) {
+          return CustomRouter.errorScreen();
+        }
+        return AdoptionConditionsScreen(
+          form: args.form,
+          postId: args.postId,
+        );
+      },
     ),
     GoRoute(
       parentNavigatorKey: AppService.instance.navigatorKey,
@@ -272,4 +306,13 @@ class CustomRouter {
     RegisterScreen.path,
     RegisterInfoScreen.path,
   ];
+
+  static Widget errorScreen([String? message]) {
+    return ResponseScreen(
+      isError: true,
+      buttonMsg: 'Ok',
+      title: 'Oops, ha ocurrido un error',
+      message: 'No se pudo cargar la página ${message ?? ''}',
+    );
+  }
 }

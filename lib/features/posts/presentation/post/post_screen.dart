@@ -173,9 +173,13 @@ class _PublicationScreenState extends ConsumerState<PostScreen>
                                     buttonText: 'Aceptar',
                                     buttonAction: () {
                                       ref.read(appRouterProvider).pop();
-                                      ref
-                                          .read(appRouterProvider)
-                                          .pushNamed(PersonalDataScreen.path);
+                                      ref.read(appRouterProvider).pushNamed(
+                                        PersonalDataScreen.path,
+                                        queryParameters: {
+                                          'postId':
+                                              widget.publication.id.toString(),
+                                        },
+                                      );
                                     },
                                   ),
                               text: 'Adoptame',

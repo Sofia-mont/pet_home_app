@@ -135,6 +135,7 @@ class _AdoptPetFirstScreenState extends ConsumerState<GiveAdoptionPetScreen> {
                   child: DropdownSearchInput(
                     onChange: (value) {
                       setState(() {
+                        city = '';
                         department = value;
                       });
                     },
@@ -156,6 +157,7 @@ class _AdoptPetFirstScreenState extends ConsumerState<GiveAdoptionPetScreen> {
                             city = value;
                           });
                         },
+                        selectedItem: city != '' ? city : null,
                         asyncItems: (p0) => ciudades,
                         title: '',
                         hintText: 'Ciudad',

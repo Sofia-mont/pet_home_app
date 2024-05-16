@@ -1,17 +1,37 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:pet_home/core/router/router.dart';
-import 'package:pet_home/features/home/presentation/home_screen.dart';
+import 'package:pet_home/features/adoption/data/provider/adoption_provider.dart';
+import 'package:pet_home/features/adoption/domain/form_adoption/form_adoption_request/form_adoption_request.dart';
 import 'package:pet_home/ui/constants/font_constants.dart';
 import 'package:pet_home/ui/constants/palette.dart';
 import 'package:pet_home/ui/icons/pethome_icons.dart';
 import 'package:pet_home/ui/scaffold/custom_scaffold.dart';
 import 'package:pet_home/ui/widgets/buttons/large_button.dart';
-import 'package:pet_home/ui/widgets/modals/custom_modals.dart';
+
+class AdoptionConditionsScreenArgs {
+  const AdoptionConditionsScreenArgs({
+    required this.form,
+    required this.postId,
+  });
+
+  final int postId;
+  final FormAdoptionRequest form;
+
+  @override
+  String toString() =>
+      'AdoptionConditionsScreenArgs(form: $form, postId: $postId)';
+}
 
 class AdoptionConditionsScreen extends ConsumerStatefulWidget {
-  const AdoptionConditionsScreen({super.key});
+  const AdoptionConditionsScreen({
+    required this.form,
+    required this.postId,
+    super.key,
+  });
+
+  final int postId;
+  final FormAdoptionRequest form;
 
   static const path = '/adoption-conditions';
 
@@ -198,17 +218,7 @@ class _QuestionaryThirdScreenState
           LargeButton(
             isEnabled: termsAndConditions,
             text: 'Enviar solicitud',
-            onPressed: () =>
-                ref.read(customModalsProvider).showInformativeScreen(
-                      context: context,
-                      isError: false,
-                      title: '¡Tu solicitud de adopción ha sido enviada!',
-                      message:
-                          'Ten en cuenta que el diligenciamiento de este formulario no significa que se te dará el animal en adopción. Tus datos y referencias personales serán evaluados y se tomará una decisión basada en el bienestar del animal. ',
-                      buttonMsg: 'Finalizar',
-                      onPressed: () =>
-                          ref.read(appRouterProvider).goNamed(HomeScreen.path),
-                    ),
+            onPressed: () => handleSubmit(),
           ),
         ],
       ),
@@ -219,5 +229,13 @@ class _QuestionaryThirdScreenState
     while (GoRouter.of(context).canPop()) {
       GoRouter.of(context).pop();
     }
+  }
+
+  handleSubmit() {
+    ref.read(adoptionNotifierProvider.notifier).sendAdoptionForm(
+          postId: widget.postId,
+          form: widget.form,
+          context: context,
+        );
   }
 }
