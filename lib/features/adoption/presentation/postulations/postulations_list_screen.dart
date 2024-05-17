@@ -6,8 +6,9 @@ import 'package:pet_home/ui/constants/font_constants.dart';
 import 'package:pet_home/ui/constants/palette.dart';
 
 class PostulationsListScreen extends ConsumerStatefulWidget {
-  const PostulationsListScreen({super.key});
+  const PostulationsListScreen({required this.postId, super.key});
 
+  final String postId;
   static const path = '/postulations';
 
   @override
@@ -54,9 +55,13 @@ class _PostulationsListScreenState extends ConsumerState<PostulationsListScreen>
               child: TabBarView(
                 physics: const NeverScrollableScrollPhysics(),
                 controller: tabController,
-                children: const [
-                  TabPostulationsPending(),
-                  TabPostulationsRejected(),
+                children: [
+                  TabPostulationsPending(
+                    postId: widget.postId,
+                  ),
+                  TabPostulationsRejected(
+                    postId: widget.postId,
+                  ),
                 ],
               ),
             ),

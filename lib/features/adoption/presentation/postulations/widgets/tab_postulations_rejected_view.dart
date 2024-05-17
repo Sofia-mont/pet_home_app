@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:pet_home/features/adoption/data/provider/adoption_provider.dart';
+import 'package:pet_home/features/adoption/domain/postulation_search_query/postulation_search_query.dart';
 import 'package:pet_home/features/adoption/presentation/postulations/widgets/postulation_card.dart';
 import 'package:pet_home/ui/constants/font_constants.dart';
 import 'package:pet_home/ui/constants/palette.dart';
+import 'package:riverpod_infinite_scroll_pagination/riverpod_infinite_scroll_pagination.dart';
 
 class TabPostulationsRejected extends ConsumerStatefulWidget {
-  const TabPostulationsRejected({super.key});
+  const TabPostulationsRejected({required this.postId, super.key});
+
+  final String postId;
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() =>
@@ -14,30 +19,35 @@ class TabPostulationsRejected extends ConsumerStatefulWidget {
 
 class _TabPostulationsRejectedState
     extends ConsumerState<TabPostulationsRejected> {
+  final scrollController = ScrollController();
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        children: [
-          const SizedBox(height: 20),
-          Text(
-            'Aquí podrás ver los formularios de adopción que has rechazado',
-            style: FontConstants.caption2.copyWith(
-              color: Palette.textLight,
-            ),
-            textAlign: TextAlign.center,
+    final forms = ref.watch(
+      adoptionFormsListProvider(
+        PostulationSearchQuery(status: 'RECHAZADO', postId: widget.postId),
+      ),
+    );
+    return PaginatedListView(
+      state: forms,
+      itemBuilder: (_, data) => PostulationCard(
+        nombre: data.candidateFullName,
+        date: data.sentAt,
+      ),
+      emptyListBuilder: (_) => Center(
+        child: Text(
+          'No tienes formularios rechazados',
+          style: FontConstants.body2.copyWith(
+            color: Palette.textMedium,
           ),
-          const SizedBox(height: 20),
-          const PostulationCard(),
-          const PostulationCard(),
-          const PostulationCard(),
-          const PostulationCard(),
-          const PostulationCard(),
-          const PostulationCard(),
-          const PostulationCard(),
-          const PostulationCard(),
-          const PostulationCard(),
-        ],
+        ),
+      ),
+      notifier: ref.read(
+        (adoptionFormsListProvider(
+          PostulationSearchQuery(
+            status: 'RECHAZADO',
+            postId: widget.postId,
+          ),
+        ).notifier),
       ),
     );
   }

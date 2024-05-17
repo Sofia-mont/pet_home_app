@@ -38,9 +38,10 @@ class _OwnPostDialState extends ConsumerState<OwnPostDial> {
           ),
           label: 'Solicitudes de adopción',
           labelStyle: FontConstants.body2.copyWith(color: Palette.textMedium),
-          onTap: () => ref
-              .read(appRouterProvider)
-              .pushNamed(PostulationsListScreen.path),
+          onTap: () => ref.read(appRouterProvider).pushNamed(
+            PostulationsListScreen.path,
+            queryParameters: {'postId': widget.post.id.toString()},
+          ),
         ),
         SpeedDialChild(
           child: const Icon(

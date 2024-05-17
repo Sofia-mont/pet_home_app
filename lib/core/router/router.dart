@@ -295,7 +295,9 @@ class CustomRouter {
       parentNavigatorKey: AppService.instance.navigatorKey,
       path: PostulationsListScreen.path,
       name: PostulationsListScreen.path,
-      builder: (context, state) => const PostulationsListScreen(),
+      builder: (context, state) => PostulationsListScreen(
+        postId: state.queryParameters['postId']!,
+      ),
     ),
   ];
 

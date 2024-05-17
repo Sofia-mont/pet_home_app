@@ -21,10 +21,10 @@ FormAdoptionProjection _$FormAdoptionProjectionFromJson(
 
 /// @nodoc
 mixin _$FormAdoptionProjection {
-  int get getId => throw _privateConstructorUsedError;
-  DateTime get getSentAt => throw _privateConstructorUsedError;
-  String get getCandidateFullName => throw _privateConstructorUsedError;
-  String get getPostPetName => throw _privateConstructorUsedError;
+  int get id => throw _privateConstructorUsedError;
+  DateTime get sentAt => throw _privateConstructorUsedError;
+  String get candidateFullName => throw _privateConstructorUsedError;
+  String get postPetName => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -39,10 +39,7 @@ abstract class $FormAdoptionProjectionCopyWith<$Res> {
       _$FormAdoptionProjectionCopyWithImpl<$Res, FormAdoptionProjection>;
   @useResult
   $Res call(
-      {int getId,
-      DateTime getSentAt,
-      String getCandidateFullName,
-      String getPostPetName});
+      {int id, DateTime sentAt, String candidateFullName, String postPetName});
 }
 
 /// @nodoc
@@ -59,27 +56,27 @@ class _$FormAdoptionProjectionCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? getId = null,
-    Object? getSentAt = null,
-    Object? getCandidateFullName = null,
-    Object? getPostPetName = null,
+    Object? id = null,
+    Object? sentAt = null,
+    Object? candidateFullName = null,
+    Object? postPetName = null,
   }) {
     return _then(_value.copyWith(
-      getId: null == getId
-          ? _value.getId
-          : getId // ignore: cast_nullable_to_non_nullable
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as int,
-      getSentAt: null == getSentAt
-          ? _value.getSentAt
-          : getSentAt // ignore: cast_nullable_to_non_nullable
+      sentAt: null == sentAt
+          ? _value.sentAt
+          : sentAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      getCandidateFullName: null == getCandidateFullName
-          ? _value.getCandidateFullName
-          : getCandidateFullName // ignore: cast_nullable_to_non_nullable
+      candidateFullName: null == candidateFullName
+          ? _value.candidateFullName
+          : candidateFullName // ignore: cast_nullable_to_non_nullable
               as String,
-      getPostPetName: null == getPostPetName
-          ? _value.getPostPetName
-          : getPostPetName // ignore: cast_nullable_to_non_nullable
+      postPetName: null == postPetName
+          ? _value.postPetName
+          : postPetName // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
   }
@@ -95,10 +92,7 @@ abstract class _$$FormAdoptionProjectionImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int getId,
-      DateTime getSentAt,
-      String getCandidateFullName,
-      String getPostPetName});
+      {int id, DateTime sentAt, String candidateFullName, String postPetName});
 }
 
 /// @nodoc
@@ -114,27 +108,27 @@ class __$$FormAdoptionProjectionImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? getId = null,
-    Object? getSentAt = null,
-    Object? getCandidateFullName = null,
-    Object? getPostPetName = null,
+    Object? id = null,
+    Object? sentAt = null,
+    Object? candidateFullName = null,
+    Object? postPetName = null,
   }) {
     return _then(_$FormAdoptionProjectionImpl(
-      getId: null == getId
-          ? _value.getId
-          : getId // ignore: cast_nullable_to_non_nullable
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as int,
-      getSentAt: null == getSentAt
-          ? _value.getSentAt
-          : getSentAt // ignore: cast_nullable_to_non_nullable
+      sentAt: null == sentAt
+          ? _value.sentAt
+          : sentAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      getCandidateFullName: null == getCandidateFullName
-          ? _value.getCandidateFullName
-          : getCandidateFullName // ignore: cast_nullable_to_non_nullable
+      candidateFullName: null == candidateFullName
+          ? _value.candidateFullName
+          : candidateFullName // ignore: cast_nullable_to_non_nullable
               as String,
-      getPostPetName: null == getPostPetName
-          ? _value.getPostPetName
-          : getPostPetName // ignore: cast_nullable_to_non_nullable
+      postPetName: null == postPetName
+          ? _value.postPetName
+          : postPetName // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -144,26 +138,26 @@ class __$$FormAdoptionProjectionImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$FormAdoptionProjectionImpl implements _FormAdoptionProjection {
   _$FormAdoptionProjectionImpl(
-      {required this.getId,
-      required this.getSentAt,
-      required this.getCandidateFullName,
-      required this.getPostPetName});
+      {required this.id,
+      required this.sentAt,
+      required this.candidateFullName,
+      required this.postPetName});
 
   factory _$FormAdoptionProjectionImpl.fromJson(Map<String, dynamic> json) =>
       _$$FormAdoptionProjectionImplFromJson(json);
 
   @override
-  final int getId;
+  final int id;
   @override
-  final DateTime getSentAt;
+  final DateTime sentAt;
   @override
-  final String getCandidateFullName;
+  final String candidateFullName;
   @override
-  final String getPostPetName;
+  final String postPetName;
 
   @override
   String toString() {
-    return 'FormAdoptionProjection(getId: $getId, getSentAt: $getSentAt, getCandidateFullName: $getCandidateFullName, getPostPetName: $getPostPetName)';
+    return 'FormAdoptionProjection(id: $id, sentAt: $sentAt, candidateFullName: $candidateFullName, postPetName: $postPetName)';
   }
 
   @override
@@ -171,19 +165,18 @@ class _$FormAdoptionProjectionImpl implements _FormAdoptionProjection {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$FormAdoptionProjectionImpl &&
-            (identical(other.getId, getId) || other.getId == getId) &&
-            (identical(other.getSentAt, getSentAt) ||
-                other.getSentAt == getSentAt) &&
-            (identical(other.getCandidateFullName, getCandidateFullName) ||
-                other.getCandidateFullName == getCandidateFullName) &&
-            (identical(other.getPostPetName, getPostPetName) ||
-                other.getPostPetName == getPostPetName));
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.sentAt, sentAt) || other.sentAt == sentAt) &&
+            (identical(other.candidateFullName, candidateFullName) ||
+                other.candidateFullName == candidateFullName) &&
+            (identical(other.postPetName, postPetName) ||
+                other.postPetName == postPetName));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, getId, getSentAt, getCandidateFullName, getPostPetName);
+  int get hashCode =>
+      Object.hash(runtimeType, id, sentAt, candidateFullName, postPetName);
 
   @JsonKey(ignore: true)
   @override
@@ -202,22 +195,22 @@ class _$FormAdoptionProjectionImpl implements _FormAdoptionProjection {
 
 abstract class _FormAdoptionProjection implements FormAdoptionProjection {
   factory _FormAdoptionProjection(
-      {required final int getId,
-      required final DateTime getSentAt,
-      required final String getCandidateFullName,
-      required final String getPostPetName}) = _$FormAdoptionProjectionImpl;
+      {required final int id,
+      required final DateTime sentAt,
+      required final String candidateFullName,
+      required final String postPetName}) = _$FormAdoptionProjectionImpl;
 
   factory _FormAdoptionProjection.fromJson(Map<String, dynamic> json) =
       _$FormAdoptionProjectionImpl.fromJson;
 
   @override
-  int get getId;
+  int get id;
   @override
-  DateTime get getSentAt;
+  DateTime get sentAt;
   @override
-  String get getCandidateFullName;
+  String get candidateFullName;
   @override
-  String get getPostPetName;
+  String get postPetName;
   @override
   @JsonKey(ignore: true)
   _$$FormAdoptionProjectionImplCopyWith<_$FormAdoptionProjectionImpl>
