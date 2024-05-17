@@ -27,28 +27,29 @@ class _PostulationsListScreenState extends ConsumerState<PostulationsListScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
-      body: Container(
-        padding: const EdgeInsets.all(10),
-        height: MediaQuery.of(context).size.height * 0.9,
-        width: MediaQuery.of(context).size.width,
+      appBar: AppBar(
+        elevation: 0,
+        bottom: TabBar(
+          padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 5),
+          indicator: const BoxDecoration(
+            color: Palette.primaryLighter,
+            borderRadius: BorderRadius.all(Radius.circular(50)),
+          ),
+          labelStyle:
+              FontConstants.body1.copyWith(color: Palette.primaryDarker),
+          unselectedLabelStyle:
+              FontConstants.body2.copyWith(color: Palette.textLight),
+          controller: tabController,
+          tabs: const [
+            Tab(text: 'Pendientes'),
+            Tab(text: 'Rechazados'),
+          ],
+        ),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 10),
         child: Column(
           children: [
-            TabBar(
-              indicator: const BoxDecoration(
-                color: Palette.primaryLighter,
-                borderRadius: BorderRadius.all(Radius.circular(50)),
-              ),
-              labelStyle:
-                  FontConstants.body1.copyWith(color: Palette.primaryDarker),
-              unselectedLabelStyle:
-                  FontConstants.body2.copyWith(color: Palette.textLight),
-              controller: tabController,
-              tabs: const [
-                Tab(text: 'Pendientes'),
-                Tab(text: 'Rechazados'),
-              ],
-            ),
             Expanded(
               child: TabBarView(
                 physics: const NeverScrollableScrollPhysics(),

@@ -154,7 +154,6 @@ class _PublicationScreenState extends ConsumerState<PostScreen>
                             ],
                           ),
                         ),
-                        const Spacer(),
                         if (!widget.isOwner &&
                             widget.publication.postState != 'ADOPTADO')
                           Padding(
@@ -184,13 +183,17 @@ class _PublicationScreenState extends ConsumerState<PostScreen>
                                   ),
                               text: 'Adoptame',
                             ),
-                          )
-                        else
-                          Center(
-                            child: Text(
-                              'Mascota adoptada',
-                              style: FontConstants.body1.copyWith(
-                                color: Palette.successDark,
+                          ),
+                        if (!widget.isOwner &&
+                            widget.publication.postState != 'ADOPTADO')
+                          SizedBox(
+                            height: 60,
+                            child: Center(
+                              child: Text(
+                                'Mascota adoptada',
+                                style: FontConstants.subtitle1.copyWith(
+                                  color: Palette.successDark,
+                                ),
                               ),
                             ),
                           ),

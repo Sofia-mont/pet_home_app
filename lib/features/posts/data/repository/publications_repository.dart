@@ -3,7 +3,6 @@ import 'package:pet_home/core/constants/app_constants.dart';
 import 'package:pet_home/core/utils/dio/dio_provider.dart';
 import 'package:pet_home/features/posts/domain/post/post/post.dart';
 import 'package:pet_home/features/posts/domain/post/post_request.dart/post_request.dart';
-import 'package:pet_home/features/posts/domain/posts/publications_response/publications_response.dart';
 import 'package:pet_home/features/posts/domain/posts/publications_search_query/publications_search_query.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:riverpod_infinite_scroll_pagination/riverpod_infinite_scroll_pagination.dart';
@@ -17,21 +16,6 @@ PublicationsRepository publicationsRepository(PublicationsRepositoryRef ref) =>
 class PublicationsRepository {
   PublicationsRepository({required this.client});
   final Dio client;
-
-  Future<PublicationsResponse> getAllPost({
-    required int page,
-    PublicationsResponseQuery? query,
-    CancelToken? cancelToken,
-  }) async {
-    const path = '${AppConstants.baseURL}/post/search';
-    final generatedQuery = _generateQuery(query, page);
-    final response = await client.get(
-      path,
-      queryParameters: generatedQuery,
-      cancelToken: cancelToken,
-    );
-    return PublicationsResponse.fromJson(response.data);
-  }
 
   Future<PaginatedResponse<Post>> getFilteredPosts({
     int page = 1,

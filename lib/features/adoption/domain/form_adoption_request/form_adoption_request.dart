@@ -1,7 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:pet_home/features/adoption/domain/form_adoption/candidate_info/candidate_info.dart';
-import 'package:pet_home/features/adoption/domain/form_adoption/family_composition/family_composition.dart';
-import 'package:pet_home/features/adoption/domain/form_adoption/questionnaire/questionnaire.dart';
+import 'package:pet_home/features/adoption/domain/candidate_info/candidate_info.dart';
+import 'package:pet_home/features/adoption/domain/family_composition/family_composition.dart';
+import 'package:pet_home/features/adoption/domain/questionnaire/questionnaire.dart';
 
 part 'form_adoption_request.freezed.dart';
 part 'form_adoption_request.g.dart';
