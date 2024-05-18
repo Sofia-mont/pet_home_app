@@ -30,6 +30,7 @@ class _TabPostulationsRejectedState
     return PaginatedListView(
       state: forms,
       itemBuilder: (_, data) => PostulationCard(
+        isPending: false,
         form: data,
       ),
       emptyListBuilder: (_) => Center(

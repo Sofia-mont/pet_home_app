@@ -69,6 +69,7 @@ class CustomRouter {
         final FormAdoptionResponse args = state.extra as FormAdoptionResponse;
         return UserPostulationScreen(
           form: args,
+          isPending: bool.parse(state.queryParameters['isPending']!),
         );
       },
     ),

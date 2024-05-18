@@ -53,6 +53,7 @@ class _PostulationTabPendingState
             useSliver: true,
             state: forms,
             itemBuilder: (context, data) => PostulationCard(
+              isPending: true,
               form: data,
             ),
             notifier: ref.read(

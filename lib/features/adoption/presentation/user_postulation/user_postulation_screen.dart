@@ -7,11 +7,16 @@ import 'package:pet_home/ui/constants/font_constants.dart';
 import 'package:pet_home/ui/constants/palette.dart';
 
 class UserPostulationScreen extends ConsumerStatefulWidget {
-  const UserPostulationScreen({required this.form, super.key});
+  const UserPostulationScreen({
+    required this.isPending,
+    required this.form,
+    super.key,
+  });
 
   static const path = '/postulation';
 
   final FormAdoptionResponse form;
+  final bool isPending;
 
   @override
   ConsumerState<UserPostulationScreen> createState() =>
@@ -63,35 +68,38 @@ class _UserPostulationScreenState extends ConsumerState<UserPostulationScreen>
                 ],
               ),
             ),
-            Row(
-              children: [
-                Expanded(
-                  child: ElevatedButton(
-                    onPressed: () {},
-                    style: ElevatedButton.styleFrom(
-                      minimumSize: Size(MediaQuery.of(context).size.width, 42),
-                    ),
-                    child: const Text(
-                      'Aprobar',
-                      style: TextStyle(color: Colors.white),
-                    ),
-                  ),
-                ),
-                const SizedBox(width: 10),
-                Expanded(
-                  child: ElevatedButton(
-                    onPressed: () {},
-                    style: ElevatedButton.styleFrom(
-                      minimumSize: Size(MediaQuery.of(context).size.width, 42),
-                    ),
-                    child: const Text(
-                      'Rechazar',
-                      style: TextStyle(color: Colors.white),
+            if (widget.isPending)
+              Row(
+                children: [
+                  Expanded(
+                    child: ElevatedButton(
+                      onPressed: () {},
+                      style: ElevatedButton.styleFrom(
+                        minimumSize:
+                            Size(MediaQuery.of(context).size.width, 42),
+                      ),
+                      child: const Text(
+                        'Aprobar',
+                        style: TextStyle(color: Colors.white),
+                      ),
                     ),
                   ),
-                ),
-              ],
-            ),
+                  const SizedBox(width: 10),
+                  Expanded(
+                    child: ElevatedButton(
+                      onPressed: () {},
+                      style: ElevatedButton.styleFrom(
+                        minimumSize:
+                            Size(MediaQuery.of(context).size.width, 42),
+                      ),
+                      child: const Text(
+                        'Rechazar',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
           ],
         ),
       ),

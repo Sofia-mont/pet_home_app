@@ -8,9 +8,14 @@ import 'package:pet_home/ui/constants/font_constants.dart';
 import 'package:pet_home/ui/constants/palette.dart';
 
 class PostulationCard extends ConsumerStatefulWidget {
-  const PostulationCard({required this.form, super.key});
+  const PostulationCard({
+    required this.isPending,
+    required this.form,
+    super.key,
+  });
 
   final FormAdoptionProjection form;
+  final bool isPending;
   @override
   ConsumerState<PostulationCard> createState() => _PostulationCardState();
 }
@@ -60,9 +65,12 @@ class _PostulationCardState extends ConsumerState<PostulationCard> {
           CircleAvatar(
             backgroundColor: Palette.primaryLighter,
             child: IconButton(
-              onPressed: () => ref
-                  .read(adoptionNotifierProvider.notifier)
-                  .getFormById(context: context, formId: widget.form.id),
+              onPressed: () =>
+                  ref.read(adoptionNotifierProvider.notifier).getFormById(
+                        context: context,
+                        formId: widget.form.id,
+                        isPending: widget.isPending.toString(),
+                      ),
               icon: const Icon(
                 Icons.keyboard_double_arrow_right_rounded,
                 color: Palette.primaryDark,

@@ -88,6 +88,7 @@ class AdoptionNotifier extends _$AdoptionNotifier {
   Future<void> getFormById({
     required BuildContext context,
     required int formId,
+    required String isPending,
   }) async {
     final res = await ref
         .read(adoptionRepositoryProvider)
@@ -102,9 +103,10 @@ class AdoptionNotifier extends _$AdoptionNotifier {
             buttonText: 'Ok',
           ),
       (right) => ref.read(appRouterProvider).pushNamed(
-            UserPostulationScreen.path,
-            extra: right,
-          ),
+        UserPostulationScreen.path,
+        extra: right,
+        queryParameters: {'isPending': isPending},
+      ),
     );
   }
 }
