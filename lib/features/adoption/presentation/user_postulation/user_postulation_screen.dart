@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:pet_home/features/adoption/domain/form_adoption_response/form_adoption_response.dart';
 import 'package:pet_home/features/adoption/presentation/user_postulation/widgets/tab_postulation_info.dart';
 import 'package:pet_home/features/adoption/presentation/user_postulation/widgets/tab_postulation_questionnary.dart';
 import 'package:pet_home/ui/constants/font_constants.dart';
 import 'package:pet_home/ui/constants/palette.dart';
 
 class UserPostulationScreen extends ConsumerStatefulWidget {
-  const UserPostulationScreen({super.key});
+  const UserPostulationScreen({required this.form, super.key});
 
   static const path = '/postulation';
+
+  final FormAdoptionResponse form;
 
   @override
   ConsumerState<UserPostulationScreen> createState() =>
@@ -50,9 +53,13 @@ class _UserPostulationScreenState extends ConsumerState<UserPostulationScreen>
             Expanded(
               child: TabBarView(
                 controller: tabController,
-                children: const [
-                  TabPostulationInfo(),
-                  TabPostulationQuestionnary(),
+                children: [
+                  TabPostulationInfo(
+                    form: widget.form,
+                  ),
+                  TabPostulationQuestionnary(
+                    form: widget.form,
+                  ),
                 ],
               ),
             ),
@@ -64,9 +71,9 @@ class _UserPostulationScreenState extends ConsumerState<UserPostulationScreen>
                     style: ElevatedButton.styleFrom(
                       minimumSize: Size(MediaQuery.of(context).size.width, 42),
                     ),
-                    child: Text(
+                    child: const Text(
                       'Aprobar',
-                      style: const TextStyle(color: Colors.white),
+                      style: TextStyle(color: Colors.white),
                     ),
                   ),
                 ),
@@ -77,12 +84,12 @@ class _UserPostulationScreenState extends ConsumerState<UserPostulationScreen>
                     style: ElevatedButton.styleFrom(
                       minimumSize: Size(MediaQuery.of(context).size.width, 42),
                     ),
-                    child: Text(
+                    child: const Text(
                       'Rechazar',
-                      style: const TextStyle(color: Colors.white),
+                      style: TextStyle(color: Colors.white),
                     ),
                   ),
-                )
+                ),
               ],
             ),
           ],

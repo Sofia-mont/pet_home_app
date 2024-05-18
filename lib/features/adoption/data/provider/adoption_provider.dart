@@ -8,6 +8,7 @@ import 'package:pet_home/features/adoption/data/repository/adoption_repository.d
 import 'package:pet_home/features/adoption/domain/form_adoption_projection/form_adoption_projection.dart';
 import 'package:pet_home/features/adoption/domain/form_adoption_request/form_adoption_request.dart';
 import 'package:pet_home/features/adoption/domain/postulation_search_query/postulation_search_query.dart';
+import 'package:pet_home/features/adoption/presentation/user_postulation/user_postulation_screen.dart';
 import 'package:pet_home/features/home/presentation/home_screen.dart';
 import 'package:pet_home/ui/widgets/modals/custom_modals.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -80,6 +81,29 @@ class AdoptionNotifier extends _$AdoptionNotifier {
             buttonMsg: 'Continuar',
             onPressed: () =>
                 ref.read(appRouterProvider).goNamed(HomeScreen.path),
+          ),
+    );
+  }
+
+  Future<void> getFormById({
+    required BuildContext context,
+    required int formId,
+  }) async {
+    final res = await ref
+        .read(adoptionRepositoryProvider)
+        .getFormById(formId: formId)
+        .toEither();
+
+    res.fold(
+      (left) => ref.read(customModalsProvider).showInfoDialog(
+            buildContext: context,
+            title: 'Oops! Ha surgido un error',
+            content: left.message,
+            buttonText: 'Ok',
+          ),
+      (right) => ref.read(appRouterProvider).pushNamed(
+            UserPostulationScreen.path,
+            extra: right,
           ),
     );
   }

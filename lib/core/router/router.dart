@@ -2,6 +2,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:pet_home/core/app/app_service.dart';
+import 'package:pet_home/features/adoption/domain/form_adoption_response/form_adoption_response.dart';
 import 'package:pet_home/features/adoption/presentation/my_postulations/my_postulations_screen.dart';
 import 'package:pet_home/features/adoption/presentation/postulations/postulations_list_screen.dart';
 import 'package:pet_home/features/adoption/presentation/user_postulation/user_postulation_screen.dart';
@@ -64,7 +65,12 @@ class CustomRouter {
       parentNavigatorKey: AppService.instance.navigatorKey,
       path: UserPostulationScreen.path,
       name: UserPostulationScreen.path,
-      builder: (context, state) => const UserPostulationScreen(),
+      builder: (context, state) {
+        final FormAdoptionResponse args = state.extra as FormAdoptionResponse;
+        return UserPostulationScreen(
+          form: args,
+        );
+      },
     ),
     GoRoute(
       parentNavigatorKey: AppService.instance.navigatorKey,

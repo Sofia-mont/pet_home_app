@@ -20,7 +20,7 @@ CandidateInfo _$CandidateInfoFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$CandidateInfo {
-  String get fullname => throw _privateConstructorUsedError;
+  String get fullName => throw _privateConstructorUsedError;
   String get age => throw _privateConstructorUsedError;
   String get department => throw _privateConstructorUsedError;
   String get city => throw _privateConstructorUsedError;
@@ -43,7 +43,7 @@ abstract class $CandidateInfoCopyWith<$Res> {
       _$CandidateInfoCopyWithImpl<$Res, CandidateInfo>;
   @useResult
   $Res call(
-      {String fullname,
+      {String fullName,
       String age,
       String department,
       String city,
@@ -67,7 +67,7 @@ class _$CandidateInfoCopyWithImpl<$Res, $Val extends CandidateInfo>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fullname = null,
+    Object? fullName = null,
     Object? age = null,
     Object? department = null,
     Object? city = null,
@@ -78,9 +78,9 @@ class _$CandidateInfoCopyWithImpl<$Res, $Val extends CandidateInfo>
     Object? occupation = null,
   }) {
     return _then(_value.copyWith(
-      fullname: null == fullname
-          ? _value.fullname
-          : fullname // ignore: cast_nullable_to_non_nullable
+      fullName: null == fullName
+          ? _value.fullName
+          : fullName // ignore: cast_nullable_to_non_nullable
               as String,
       age: null == age
           ? _value.age
@@ -127,7 +127,7 @@ abstract class _$$CandidateInfoImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String fullname,
+      {String fullName,
       String age,
       String department,
       String city,
@@ -149,7 +149,7 @@ class __$$CandidateInfoImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fullname = null,
+    Object? fullName = null,
     Object? age = null,
     Object? department = null,
     Object? city = null,
@@ -160,9 +160,9 @@ class __$$CandidateInfoImplCopyWithImpl<$Res>
     Object? occupation = null,
   }) {
     return _then(_$CandidateInfoImpl(
-      fullname: null == fullname
-          ? _value.fullname
-          : fullname // ignore: cast_nullable_to_non_nullable
+      fullName: null == fullName
+          ? _value.fullName
+          : fullName // ignore: cast_nullable_to_non_nullable
               as String,
       age: null == age
           ? _value.age
@@ -204,7 +204,7 @@ class __$$CandidateInfoImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$CandidateInfoImpl implements _CandidateInfo {
   _$CandidateInfoImpl(
-      {required this.fullname,
+      {required this.fullName,
       required this.age,
       required this.department,
       required this.city,
@@ -218,7 +218,7 @@ class _$CandidateInfoImpl implements _CandidateInfo {
       _$$CandidateInfoImplFromJson(json);
 
   @override
-  final String fullname;
+  final String fullName;
   @override
   final String age;
   @override
@@ -238,7 +238,7 @@ class _$CandidateInfoImpl implements _CandidateInfo {
 
   @override
   String toString() {
-    return 'CandidateInfo(fullname: $fullname, age: $age, department: $department, city: $city, neighborhood: $neighborhood, address: $address, phoneNumber: $phoneNumber, email: $email, occupation: $occupation)';
+    return 'CandidateInfo(fullName: $fullName, age: $age, department: $department, city: $city, neighborhood: $neighborhood, address: $address, phoneNumber: $phoneNumber, email: $email, occupation: $occupation)';
   }
 
   @override
@@ -246,8 +246,8 @@ class _$CandidateInfoImpl implements _CandidateInfo {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CandidateInfoImpl &&
-            (identical(other.fullname, fullname) ||
-                other.fullname == fullname) &&
+            (identical(other.fullName, fullName) ||
+                other.fullName == fullName) &&
             (identical(other.age, age) || other.age == age) &&
             (identical(other.department, department) ||
                 other.department == department) &&
@@ -264,7 +264,7 @@ class _$CandidateInfoImpl implements _CandidateInfo {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, fullname, age, department, city,
+  int get hashCode => Object.hash(runtimeType, fullName, age, department, city,
       neighborhood, address, phoneNumber, email, occupation);
 
   @JsonKey(ignore: true)
@@ -283,7 +283,7 @@ class _$CandidateInfoImpl implements _CandidateInfo {
 
 abstract class _CandidateInfo implements CandidateInfo {
   factory _CandidateInfo(
-      {required final String fullname,
+      {required final String fullName,
       required final String age,
       required final String department,
       required final String city,
@@ -297,7 +297,7 @@ abstract class _CandidateInfo implements CandidateInfo {
       _$CandidateInfoImpl.fromJson;
 
   @override
-  String get fullname;
+  String get fullName;
   @override
   String get age;
   @override

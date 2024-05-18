@@ -53,8 +53,7 @@ class _PostulationTabPendingState
             useSliver: true,
             state: forms,
             itemBuilder: (context, data) => PostulationCard(
-              nombre: data.candidateFullName,
-              date: data.sentAt,
+              form: data,
             ),
             notifier: ref.read(
               (adoptionFormsListProvider(

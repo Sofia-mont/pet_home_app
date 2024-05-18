@@ -1,26 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:pet_home/features/adoption/domain/form_adoption_response/form_adoption_response.dart';
 import 'package:pet_home/ui/constants/font_constants.dart';
 import 'package:pet_home/ui/constants/palette.dart';
 import 'package:pet_home/ui/icons/pethome_icons.dart';
 import 'package:pet_home/ui/widgets/texts/text_with_title.dart';
 
-class TabPostulationInfo extends ConsumerStatefulWidget {
-  const TabPostulationInfo({super.key});
+class TabPostulationInfo extends ConsumerWidget {
+  const TabPostulationInfo({required this.form, super.key});
+
+  final FormAdoptionResponse form;
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() =>
-      _TabPostulationInfoState();
-}
-
-class _TabPostulationInfoState extends ConsumerState<TabPostulationInfo> {
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Column(
       children: [
         const SizedBox(height: 10),
         Container(
-          height: MediaQuery.of(context).size.height * 0.72,
           padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
           decoration: BoxDecoration(
             color: const Color(0xFFF5F5F5),
@@ -42,16 +38,22 @@ class _TabPostulationInfoState extends ConsumerState<TabPostulationInfo> {
                   child: Column(
                     children: [
                       Text(
-                        'Sofia Montoya Bolivar',
+                        form.candidateInfo.fullName,
                         style: FontConstants.subtitle1
                             .copyWith(color: Palette.primaryDark),
                       ),
                       Text(
-                        'sofia.montoya@gmail.com',
+                        form.candidateInfo.email,
                         style: FontConstants.caption2,
                       ),
-                      Text('Abogada', style: FontConstants.body1),
-                      Text('21 años', style: FontConstants.body2),
+                      Text(
+                        form.candidateInfo.occupation,
+                        style: FontConstants.body1,
+                      ),
+                      Text(
+                        '${form.candidateInfo.age} años',
+                        style: FontConstants.body2,
+                      ),
                     ],
                   ),
                 ),
@@ -70,16 +72,16 @@ class _TabPostulationInfoState extends ConsumerState<TabPostulationInfo> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              'Itagüí, Antioquia',
+                              '${form.candidateInfo.city}, ${form.candidateInfo.department}',
                               style: FontConstants.body1,
                             ),
                             Text(
-                              'Carrera 49 # 47-26',
+                              form.candidateInfo.address,
                               style: FontConstants.caption2
                                   .copyWith(color: Palette.textMedium),
                             ),
                             Text(
-                              'Barrio Asturias',
+                              'Barrio ${form.candidateInfo.neighborhood.toLowerCase()}',
                               style: FontConstants.caption2
                                   .copyWith(color: Palette.textMedium),
                             ),
@@ -94,7 +96,10 @@ class _TabPostulationInfoState extends ConsumerState<TabPostulationInfo> {
                           color: Palette.textMedium,
                         ),
                         const SizedBox(width: 10),
-                        Text('3135273327', style: FontConstants.body1),
+                        Text(
+                          form.candidateInfo.phoneNumber,
+                          style: FontConstants.body1,
+                        ),
                       ],
                     ),
                   ],
@@ -112,114 +117,51 @@ class _TabPostulationInfoState extends ConsumerState<TabPostulationInfo> {
                   style: FontConstants.body1,
                 ),
                 const SizedBox(height: 10),
-                const Row(
+                Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     Row(
                       children: [
-                        Icon(
+                        const Icon(
                           Pethome.baby,
                           color: Palette.textMedium,
                         ),
-                        SizedBox(width: 5),
-                        Text('1'),
+                        const SizedBox(width: 5),
+                        Text(form.familyComposition.babiesHome.toString()),
                       ],
                     ),
                     Row(
                       children: [
-                        Icon(
+                        const Icon(
                           Pethome.kid,
                           size: 35,
                           color: Palette.textMedium,
                         ),
-                        SizedBox(width: 5),
-                        Text('1'),
+                        const SizedBox(width: 5),
+                        Text(form.familyComposition.kidsHome.toString()),
                       ],
                     ),
                     Row(
                       children: [
-                        Icon(
+                        const Icon(
                           Pethome.man,
                           color: Palette.textMedium,
                         ),
-                        SizedBox(width: 5),
-                        Text('1'),
+                        const SizedBox(width: 5),
+                        Text(form.familyComposition.adultsHome.toString()),
                       ],
                     ),
                   ],
                 ),
                 const SizedBox(height: 10),
-                const TextWithTitle(
+                TextWithTitle(
                   title: 'Edades de cada uno',
-                  text: '38, 58, 21, 13',
+                  text: form.familyComposition.ages,
                 ),
-                const TextWithTitle(
+                TextWithTitle(
                   title: 'Composición del grupo familiar',
-                  text: 'Abuela, Mamá, Hermanas',
-                ),
-                const Padding(
-                  padding: EdgeInsets.symmetric(vertical: 20),
-                  child: Divider(
-                    thickness: 0.5,
-                    height: 1,
-                    color: Palette.textLight,
-                  ),
-                ),
-                Text(
-                  'Datos de contacto adicional diferente a núcleo familiar',
-                  style: FontConstants.body1,
-                ),
-                const SizedBox(height: 10),
-                Center(
-                  child: Text(
-                    'Ana Maria Madariaga Arce',
-                    style: FontConstants.body2,
-                  ),
-                ),
-                const SizedBox(height: 10),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Row(
-                      children: [
-                        const Icon(
-                          Pethome.map_pin,
-                          color: Palette.textMedium,
-                        ),
-                        const SizedBox(width: 10),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'Itagüí, Antioquia',
-                              style: FontConstants.body1,
-                            ),
-                            Text(
-                              'Carrera 49 # 47-26',
-                              style: FontConstants.caption2
-                                  .copyWith(color: Palette.textMedium),
-                            ),
-                            Text(
-                              'Barrio Asturias',
-                              style: FontConstants.caption2
-                                  .copyWith(color: Palette.textMedium),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        const Icon(
-                          Pethome.phone,
-                          color: Palette.textMedium,
-                        ),
-                        const SizedBox(width: 10),
-                        Text('3135273327', style: FontConstants.body1),
-                      ],
-                    ),
-                  ],
+                  text: form.familyComposition.composition,
                 ),
               ],
             ),

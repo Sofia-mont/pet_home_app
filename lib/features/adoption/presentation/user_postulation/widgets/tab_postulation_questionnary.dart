@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:pet_home/features/adoption/domain/form_adoption_response/form_adoption_response.dart';
 import 'package:pet_home/ui/constants/font_constants.dart';
 import 'package:pet_home/ui/constants/palette.dart';
 import 'package:pet_home/ui/icons/pethome_icons.dart';
 import 'package:pet_home/ui/widgets/texts/text_with_title.dart';
 
 class TabPostulationQuestionnary extends ConsumerWidget {
-  const TabPostulationQuestionnary({super.key});
+  const TabPostulationQuestionnary({required this.form, super.key});
+
+  final FormAdoptionResponse form;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -32,12 +35,10 @@ class TabPostulationQuestionnary extends ConsumerWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const TextWithTitle(
-                  alignment: CrossAxisAlignment.center,
+                TextWithTitle(
                   boldTitle: true,
                   title: 'Razón de adopción',
-                  text:
-                      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+                  text: form.questionnaire.reason!,
                 ),
                 const Padding(
                   padding: EdgeInsets.symmetric(vertical: 20),
@@ -60,8 +61,14 @@ class TabPostulationQuestionnary extends ConsumerWidget {
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text('Apartamento', style: FontConstants.body1),
-                            Text('Propia', style: FontConstants.caption2),
+                            Text(
+                              form.questionnaire.houseType!,
+                              style: FontConstants.body1,
+                            ),
+                            Text(
+                              form.questionnaire.ownRent!,
+                              style: FontConstants.caption2,
+                            ),
                           ],
                         ),
                       ],
@@ -70,8 +77,10 @@ class TabPostulationQuestionnary extends ConsumerWidget {
                       children: [
                         Row(
                           children: [
-                            const Icon(
-                              Icons.check,
+                            Icon(
+                              form.questionnaire.regulationAllow == 'Sí'
+                                  ? Icons.check
+                                  : Icons.clear_outlined,
                               color: Palette.textMedium,
                             ),
                             const SizedBox(width: 5),
@@ -88,8 +97,10 @@ class TabPostulationQuestionnary extends ConsumerWidget {
                 const SizedBox(height: 10),
                 Row(
                   children: [
-                    const Icon(
-                      Icons.clear_outlined,
+                    Icon(
+                      form.questionnaire.patioTerraceCover == 'Sí'
+                          ? Icons.check
+                          : Icons.clear_outlined,
                       color: Palette.textMedium,
                     ),
                     const SizedBox(width: 5),
@@ -104,8 +115,10 @@ class TabPostulationQuestionnary extends ConsumerWidget {
                 const SizedBox(height: 10),
                 Row(
                   children: [
-                    const Icon(
-                      Icons.check,
+                    Icon(
+                      form.questionnaire.mindedProtections == 'Sí'
+                          ? Icons.check
+                          : Icons.clear_outlined,
                       color: Palette.textMedium,
                     ),
                     const SizedBox(width: 5),
@@ -118,12 +131,12 @@ class TabPostulationQuestionnary extends ConsumerWidget {
                   ],
                 ),
                 const SizedBox(height: 10),
-                const Center(
+                Center(
                   child: TextWithTitle(
                     alignment: CrossAxisAlignment.center,
                     boldTitle: true,
                     title: 'Vivienda destinada al animal',
-                    text: 'Toda la casa',
+                    text: form.questionnaire.destinedPlace!,
                   ),
                 ),
                 const Padding(
@@ -136,8 +149,10 @@ class TabPostulationQuestionnary extends ConsumerWidget {
                 ),
                 Row(
                   children: [
-                    const Icon(
-                      Icons.clear_outlined,
+                    Icon(
+                      form.questionnaire.allergic == 'Sí'
+                          ? Icons.check
+                          : Icons.clear_outlined,
                       color: Palette.textMedium,
                     ),
                     const SizedBox(width: 5),
@@ -152,8 +167,10 @@ class TabPostulationQuestionnary extends ConsumerWidget {
                 const SizedBox(height: 10),
                 Row(
                   children: [
-                    const Icon(
-                      Icons.check,
+                    Icon(
+                      form.questionnaire.needsEconomically == 'Sí'
+                          ? Icons.check
+                          : Icons.clear_outlined,
                       color: Palette.textMedium,
                     ),
                     const SizedBox(width: 5),
@@ -176,7 +193,10 @@ class TabPostulationQuestionnary extends ConsumerWidget {
                               'Horas al día que permanecería solo el animal: ',
                           style: FontConstants.body2,
                         ),
-                        TextSpan(text: '2', style: FontConstants.body1),
+                        TextSpan(
+                          text: form.questionnaire.hoursAlone,
+                          style: FontConstants.body1,
+                        ),
                       ],
                     ),
                   ),
@@ -191,7 +211,10 @@ class TabPostulationQuestionnary extends ConsumerWidget {
                           text: 'Tiempo diario para compartir con el animal: ',
                           style: FontConstants.body2,
                         ),
-                        TextSpan(text: '2', style: FontConstants.body1),
+                        TextSpan(
+                          text: form.questionnaire.availableTime,
+                          style: FontConstants.body1,
+                        ),
                       ],
                     ),
                   ),
@@ -204,31 +227,25 @@ class TabPostulationQuestionnary extends ConsumerWidget {
                     color: Palette.textLight,
                   ),
                 ),
-                const TextWithTitle(
-                  alignment: CrossAxisAlignment.center,
+                TextWithTitle(
                   boldTitle: true,
                   title:
                       '¿Qué sucedería si alguien resultara alérgico al animal?',
-                  text:
-                      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+                  text: form.questionnaire.allergyHappened!,
                 ),
                 const SizedBox(height: 10),
-                const TextWithTitle(
-                  alignment: CrossAxisAlignment.center,
+                TextWithTitle(
                   boldTitle: true,
                   title:
                       '¿Qué sucedería si el candidato o, en caso de ser hombre, su pareja quedara embarazada?',
-                  text:
-                      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+                  text: form.questionnaire.pregnancyHappened!,
                 ),
                 const SizedBox(height: 10),
-                const TextWithTitle(
-                  alignment: CrossAxisAlignment.center,
+                TextWithTitle(
                   boldTitle: true,
                   title:
                       '¿Anteriormente ha tenido animales en casa? ¿Cuál (es)? ¿Qué paso con ellos?',
-                  text:
-                      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+                  text: form.questionnaire.petsBefore!,
                 ),
               ],
             ),

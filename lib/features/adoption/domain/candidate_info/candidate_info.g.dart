@@ -8,7 +8,7 @@ part of 'candidate_info.dart';
 
 _$CandidateInfoImpl _$$CandidateInfoImplFromJson(Map<String, dynamic> json) =>
     _$CandidateInfoImpl(
-      fullname: json['fullname'] as String,
+      fullName: json['fullName'] as String,
       age: json['age'] as String,
       department: json['department'] as String,
       city: json['city'] as String,
@@ -21,7 +21,7 @@ _$CandidateInfoImpl _$$CandidateInfoImplFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$$CandidateInfoImplToJson(_$CandidateInfoImpl instance) =>
     <String, dynamic>{
-      'fullname': instance.fullname,
+      'fullName': instance.fullName,
       'age': instance.age,
       'department': instance.department,
       'city': instance.city,

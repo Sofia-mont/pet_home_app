@@ -174,7 +174,7 @@ class _AdoptionFormsListProviderElement
       (origin as AdoptionFormsListProvider).filters;
 }
 
-String _$adoptionNotifierHash() => r'55c2d2e59e7c6b41d915c7ce0bf3bdabc929c029';
+String _$adoptionNotifierHash() => r'f5e9164fba423e2e19d6719371e70397eaee53e4';
 
 /// See also [AdoptionNotifier].
 @ProviderFor(AdoptionNotifier)

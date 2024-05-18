@@ -2,16 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
-import 'package:pet_home/core/router/router.dart';
-import 'package:pet_home/features/adoption/presentation/user_postulation/user_postulation_screen.dart';
+import 'package:pet_home/features/adoption/data/provider/adoption_provider.dart';
+import 'package:pet_home/features/adoption/domain/form_adoption_projection/form_adoption_projection.dart';
 import 'package:pet_home/ui/constants/font_constants.dart';
 import 'package:pet_home/ui/constants/palette.dart';
 
 class PostulationCard extends ConsumerStatefulWidget {
-  const PostulationCard({required this.nombre, required this.date, super.key});
+  const PostulationCard({required this.form, super.key});
 
-  final String nombre;
-  final DateTime date;
+  final FormAdoptionProjection form;
   @override
   ConsumerState<PostulationCard> createState() => _PostulationCardState();
 }
@@ -47,12 +46,12 @@ class _PostulationCardState extends ConsumerState<PostulationCard> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                widget.nombre,
+                widget.form.candidateFullName,
                 style:
                     FontConstants.body1.copyWith(color: Palette.primaryDarker),
               ),
               Text(
-                'Enviado el ${DateFormat('d/MM/y', 'es_ES').format(widget.date)}',
+                'Enviado el ${DateFormat('d/MM/y', 'es_ES').format(widget.form.sentAt)}',
                 style:
                     FontConstants.caption2.copyWith(color: Palette.textLight),
               ),
@@ -62,8 +61,8 @@ class _PostulationCardState extends ConsumerState<PostulationCard> {
             backgroundColor: Palette.primaryLighter,
             child: IconButton(
               onPressed: () => ref
-                  .read(appRouterProvider)
-                  .pushNamed(UserPostulationScreen.path),
+                  .read(adoptionNotifierProvider.notifier)
+                  .getFormById(context: context, formId: widget.form.id),
               icon: const Icon(
                 Icons.keyboard_double_arrow_right_rounded,
                 color: Palette.primaryDark,

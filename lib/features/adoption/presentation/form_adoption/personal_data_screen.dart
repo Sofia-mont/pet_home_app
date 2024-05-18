@@ -164,7 +164,7 @@ class _PersonalDataScreenState extends ConsumerState<PersonalDataScreen> {
             extra: FamilyDataScreenArgs(
               form: form.copyWith(
                 candidateInfo: CandidateInfo(
-                  fullname: _nameController.text,
+                  fullName: _nameController.text,
                   age: _ageController.text,
                   department: department,
                   city: city,
