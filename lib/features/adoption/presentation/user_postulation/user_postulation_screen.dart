@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:pet_home/core/router/router.dart';
+import 'package:pet_home/features/adoption/data/provider/adoption_provider.dart';
 import 'package:pet_home/features/adoption/domain/form_adoption_response/form_adoption_response.dart';
 import 'package:pet_home/features/adoption/presentation/user_postulation/widgets/tab_postulation_info.dart';
 import 'package:pet_home/features/adoption/presentation/user_postulation/widgets/tab_postulation_questionnary.dart';
 import 'package:pet_home/ui/constants/font_constants.dart';
 import 'package:pet_home/ui/constants/palette.dart';
+import 'package:pet_home/ui/widgets/modals/custom_modals.dart';
 
 class UserPostulationScreen extends ConsumerStatefulWidget {
   const UserPostulationScreen({
@@ -73,7 +76,23 @@ class _UserPostulationScreenState extends ConsumerState<UserPostulationScreen>
                 children: [
                   Expanded(
                     child: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () =>
+                          ref.read(customModalsProvider).showInfoDialog(
+                                buildContext: context,
+                                title: '¿Estás seguro?',
+                                content:
+                                    'Si apruebas este formulario, no podrás deshacer esta acción',
+                                buttonText: 'Aceptar',
+                                buttonAction: () {
+                                  ref.read(appRouterProvider).pop();
+                                  ref
+                                      .read(adoptionNotifierProvider.notifier)
+                                      .approveApplication(
+                                        context: context,
+                                        formId: widget.form.id,
+                                      );
+                                },
+                              ),
                       style: ElevatedButton.styleFrom(
                         minimumSize:
                             Size(MediaQuery.of(context).size.width, 42),
@@ -87,7 +106,23 @@ class _UserPostulationScreenState extends ConsumerState<UserPostulationScreen>
                   const SizedBox(width: 10),
                   Expanded(
                     child: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () =>
+                          ref.read(customModalsProvider).showInfoDialog(
+                                buildContext: context,
+                                title: '¿Estás seguro?',
+                                content:
+                                    'Si rechazas este formulario, no podrás deshacer esta acción',
+                                buttonText: 'Aceptar',
+                                buttonAction: () {
+                                  ref.read(appRouterProvider).pop();
+                                  ref
+                                      .read(adoptionNotifierProvider.notifier)
+                                      .declineApplication(
+                                        context: context,
+                                        formId: widget.form.id,
+                                      );
+                                },
+                              ),
                       style: ElevatedButton.styleFrom(
                         minimumSize:
                             Size(MediaQuery.of(context).size.width, 42),

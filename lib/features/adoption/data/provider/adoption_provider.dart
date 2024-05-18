@@ -10,6 +10,7 @@ import 'package:pet_home/features/adoption/domain/form_adoption_request/form_ado
 import 'package:pet_home/features/adoption/domain/postulation_search_query/postulation_search_query.dart';
 import 'package:pet_home/features/adoption/presentation/user_postulation/user_postulation_screen.dart';
 import 'package:pet_home/features/home/presentation/home_screen.dart';
+import 'package:pet_home/ui/scaffold/scaffold_controller.dart';
 import 'package:pet_home/ui/widgets/modals/custom_modals.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:riverpod_infinite_scroll_pagination/riverpod_infinite_scroll_pagination.dart';
@@ -107,6 +108,52 @@ class AdoptionNotifier extends _$AdoptionNotifier {
         extra: right,
         queryParameters: {'isPending': isPending},
       ),
+    );
+  }
+
+  Future<void> approveApplication({
+    required BuildContext context,
+    required int formId,
+  }) async {
+    final res = await ref
+        .read(adoptionRepositoryProvider)
+        .approvePostulation(formId: formId)
+        .toEither();
+
+    res.fold(
+      (left) => ref.read(customModalsProvider).showInfoDialog(
+            buildContext: context,
+            title: 'Oops! Ha surgido un error',
+            content: left.message,
+            buttonText: 'Ok',
+          ),
+      (right) {
+        ref.watch(scaffoldControllerProvider.notifier).setPosition(0);
+        ref.read(appRouterProvider).goNamed(HomeScreen.path);
+      },
+    );
+  }
+
+  Future<void> declineApplication({
+    required BuildContext context,
+    required int formId,
+  }) async {
+    final res = await ref
+        .read(adoptionRepositoryProvider)
+        .declinePostulation(formId: formId)
+        .toEither();
+
+    res.fold(
+      (left) => ref.read(customModalsProvider).showInfoDialog(
+            buildContext: context,
+            title: 'Oops! Ha surgido un error',
+            content: left.message,
+            buttonText: 'Ok',
+          ),
+      (right) {
+        ref.watch(scaffoldControllerProvider.notifier).setPosition(0);
+        ref.read(appRouterProvider).goNamed(HomeScreen.path);
+      },
     );
   }
 }

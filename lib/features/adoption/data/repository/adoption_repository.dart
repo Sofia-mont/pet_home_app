@@ -57,11 +57,21 @@ class AdoptionRepository {
     );
   }
 
-  Future<FormAdoptionResponse> getFormById({
-    required int formId,
-  }) async {
+  Future<FormAdoptionResponse> getFormById({required int formId}) async {
     final path = '${AppConstants.baseURL}/adoption-application/form/$formId';
     final response = await client.get(path);
     return FormAdoptionResponse.fromJson(response.data);
+  }
+
+  Future<void> approvePostulation({required int formId}) async {
+    final path =
+        '${AppConstants.baseURL}/adoption-application/approve-form$formId';
+    await client.get(path);
+  }
+
+  Future<void> declinePostulation({required int formId}) async {
+    final path =
+        '${AppConstants.baseURL}/adoption-application/decline-form$formId';
+    await client.get(path);
   }
 }
