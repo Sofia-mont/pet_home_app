@@ -1,4 +1,4 @@
-// ignore_for_file: avoid_build_context_in_providers, avoid_manual_providers_as_generated_provider_dependency
+// ignore_for_file: avoid_build_context_in_providers, avoid_manual_providers_as_generated_provider_dependency, use_build_context_synchronously
 import 'package:flutter/material.dart';
 import 'package:pet_home/core/app/app_service.dart';
 import 'package:pet_home/core/app/domain/user_data.dart';
@@ -27,8 +27,10 @@ class AuthNotifier extends _$AuthNotifier {
     required RegisterUser user,
     required BuildContext context,
   }) async {
+    ref.read(customModalsProvider).showLoadingDialog(context);
     final res =
         await ref.read(authRepositoryProvider).register(user: user).toEither();
+    ref.read(customModalsProvider).pop(context);
     res.fold(
       (left) => ref
           .read(customModalsProvider)
@@ -49,8 +51,10 @@ class AuthNotifier extends _$AuthNotifier {
     required User user,
     required BuildContext context,
   }) async {
+    ref.read(customModalsProvider).showLoadingDialog(context);
     final res =
         await ref.read(authRepositoryProvider).login(user: user).toEither();
+    ref.read(customModalsProvider).pop(context);
     res.fold(
       (left) => ref.read(customModalsProvider).showInfoDialog(
             buildContext: context,

@@ -1,4 +1,4 @@
-// ignore_for_file: avoid_build_context_in_providers, avoid_manual_providers_as_generated_provider_dependency
+// ignore_for_file: avoid_build_context_in_providers, avoid_manual_providers_as_generated_provider_dependency, use_build_context_synchronously
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:pet_home/core/extension_methods/future_extension.dart';
@@ -91,11 +91,12 @@ class AdoptionNotifier extends _$AdoptionNotifier {
     required int formId,
     required String isPending,
   }) async {
+    ref.read(customModalsProvider).showLoadingDialog(context);
     final res = await ref
         .read(adoptionRepositoryProvider)
         .getFormById(formId: formId)
         .toEither();
-
+    ref.read(customModalsProvider).pop(context);
     res.fold(
       (left) => ref.read(customModalsProvider).showInfoDialog(
             buildContext: context,
@@ -115,11 +116,12 @@ class AdoptionNotifier extends _$AdoptionNotifier {
     required BuildContext context,
     required int formId,
   }) async {
+    ref.read(customModalsProvider).showLoadingDialog(context);
     final res = await ref
         .read(adoptionRepositoryProvider)
         .approvePostulation(formId: formId)
         .toEither();
-
+    ref.read(customModalsProvider).pop(context);
     res.fold(
       (left) => ref.read(customModalsProvider).showInfoDialog(
             buildContext: context,
@@ -138,11 +140,12 @@ class AdoptionNotifier extends _$AdoptionNotifier {
     required BuildContext context,
     required int formId,
   }) async {
+    ref.read(customModalsProvider).showLoadingDialog(context);
     final res = await ref
         .read(adoptionRepositoryProvider)
         .declinePostulation(formId: formId)
         .toEither();
-
+    ref.read(customModalsProvider).pop(context);
     res.fold(
       (left) => ref.read(customModalsProvider).showInfoDialog(
             buildContext: context,

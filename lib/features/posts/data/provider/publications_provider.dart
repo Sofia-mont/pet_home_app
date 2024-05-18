@@ -112,10 +112,12 @@ class PublicationsNotifier extends _$PublicationsNotifier {
     required BuildContext context,
     required PostRequest request,
   }) async {
+    ref.read(customModalsProvider).showLoadingDialog(context);
     final res = await ref
         .read(publicationsRepositoryProvider)
         .postPet(post: request)
         .toFailure();
+    ref.read(customModalsProvider).pop(context);
     if (res != null) {
       ref.read(customModalsProvider).showInfoDialog(
             buildContext: context,
@@ -142,10 +144,12 @@ class PublicationsNotifier extends _$PublicationsNotifier {
     required BuildContext context,
     required int postId,
   }) async {
+    ref.read(customModalsProvider).showLoadingDialog(context);
     final res = await ref
         .read(publicationsRepositoryProvider)
         .deletePost(postId: postId.toString())
         .toFailure();
+    ref.read(customModalsProvider).pop(context);
     if (res != null) {
       ref.read(customModalsProvider).showInfoDialog(
             buildContext: context,
@@ -174,10 +178,12 @@ class PublicationsNotifier extends _$PublicationsNotifier {
     required PostRequest request,
     required String postId,
   }) async {
+    ref.read(customModalsProvider).showLoadingDialog(context);
     final res = await ref
         .read(publicationsRepositoryProvider)
         .editPet(post: request, postId: postId)
         .toFailure();
+    ref.read(customModalsProvider).pop(context);
     if (res != null) {
       ref.read(customModalsProvider).showInfoDialog(
             buildContext: context,
