@@ -305,13 +305,11 @@ class _AdoptPetFirstScreenState extends ConsumerState<EditPostScreen> {
         images: selectedImages,
       );
       ref.read(publicationsNotifierProvider.notifier).editPet(
-            context: context,
             request: request,
             postId: widget.publication.id.toString(),
           );
     } else {
       ref.read(customModalsProvider).showInfoDialog(
-            buildContext: context,
             title: 'Información incompleta',
             content: 'Debes modificar por lo menos un campo',
             buttonText: 'Aceptar',

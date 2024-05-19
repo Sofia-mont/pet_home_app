@@ -63,7 +63,6 @@ class _OwnPostDialState extends ConsumerState<OwnPostDial> {
           label: 'Eliminar',
           labelStyle: FontConstants.body2.copyWith(color: Palette.textMedium),
           onTap: () => ref.read(customModalsProvider).showInfoDialog(
-                buildContext: context,
                 title: '¿Estás seguro?',
                 content:
                     'La publicacion será eliminada de forma permanente y no podrás recuperarla.',
@@ -72,7 +71,7 @@ class _OwnPostDialState extends ConsumerState<OwnPostDial> {
                   ref.read(appRouterProvider).pop();
                   ref
                       .read(publicationsNotifierProvider.notifier)
-                      .deletePost(context: context, postId: widget.post.id);
+                      .deletePost(postId: widget.post.id);
                 },
               ),
         ),

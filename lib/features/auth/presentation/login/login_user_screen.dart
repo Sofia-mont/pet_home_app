@@ -98,7 +98,6 @@ class _LoginUserScreenState extends ConsumerState<LoginUserScreen> {
                                 _emailController.text,
                                 _passwordController.text,
                               ),
-                              context: context,
                             ),
                   ),
                   TextButton(

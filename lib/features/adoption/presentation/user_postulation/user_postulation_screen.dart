@@ -78,7 +78,6 @@ class _UserPostulationScreenState extends ConsumerState<UserPostulationScreen>
                     child: ElevatedButton(
                       onPressed: () =>
                           ref.read(customModalsProvider).showInfoDialog(
-                                buildContext: context,
                                 title: '¿Estás seguro?',
                                 content:
                                     'Si apruebas este formulario, no podrás deshacer esta acción',
@@ -88,7 +87,6 @@ class _UserPostulationScreenState extends ConsumerState<UserPostulationScreen>
                                   ref
                                       .read(adoptionNotifierProvider.notifier)
                                       .approveApplication(
-                                        context: context,
                                         formId: widget.form.id,
                                       );
                                 },
@@ -108,7 +106,6 @@ class _UserPostulationScreenState extends ConsumerState<UserPostulationScreen>
                     child: ElevatedButton(
                       onPressed: () =>
                           ref.read(customModalsProvider).showInfoDialog(
-                                buildContext: context,
                                 title: '¿Estás seguro?',
                                 content:
                                     'Si rechazas este formulario, no podrás deshacer esta acción',
@@ -118,7 +115,6 @@ class _UserPostulationScreenState extends ConsumerState<UserPostulationScreen>
                                   ref
                                       .read(adoptionNotifierProvider.notifier)
                                       .declineApplication(
-                                        context: context,
                                         formId: widget.form.id,
                                       );
                                 },

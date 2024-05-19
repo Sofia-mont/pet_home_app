@@ -211,7 +211,6 @@ class _RegisterInfoScreenState extends ConsumerState<RegisterInfoScreen> {
             department,
             city,
           ),
-          context: context,
         );
   }
 }

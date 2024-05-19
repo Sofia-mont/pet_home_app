@@ -1,5 +1,4 @@
-// ignore_for_file: avoid_build_context_in_providers, avoid_manual_providers_as_generated_provider_dependency, use_build_context_synchronously
-import 'package:flutter/material.dart';
+// ignore_for_file: avoid_manual_providers_as_generated_provider_dependency
 import 'package:pet_home/core/app/app_service.dart';
 import 'package:pet_home/core/app/domain/user_data.dart';
 import 'package:pet_home/core/extension_methods/future_extension.dart';
@@ -23,20 +22,16 @@ class AuthNotifier extends _$AuthNotifier {
 
   void resetState() => state = AuthState.initial();
 
-  Future<void> register({
-    required RegisterUser user,
-    required BuildContext context,
-  }) async {
-    ref.read(customModalsProvider).showLoadingDialog(context);
+  Future<void> register({required RegisterUser user}) async {
+    ref.read(customModalsProvider).showLoadingDialog();
     final res =
         await ref.read(authRepositoryProvider).register(user: user).toEither();
-    ref.read(customModalsProvider).pop(context);
+    ref.read(customModalsProvider).pop();
     res.fold(
       (left) => ref
           .read(customModalsProvider)
-          .showInformativeScreen(context: context, message: left.message),
+          .showInformativeScreen(message: left.message),
       (right) => ref.read(customModalsProvider).showInformativeScreen(
-            context: context,
             isError: false,
             message: 'Ahora puedes iniciar sesión.',
             title: '¡Registro exitoso!',
@@ -47,17 +42,13 @@ class AuthNotifier extends _$AuthNotifier {
     );
   }
 
-  Future<void> login({
-    required User user,
-    required BuildContext context,
-  }) async {
-    ref.read(customModalsProvider).showLoadingDialog(context);
+  Future<void> login({required User user}) async {
+    ref.read(customModalsProvider).showLoadingDialog();
     final res =
         await ref.read(authRepositoryProvider).login(user: user).toEither();
-    ref.read(customModalsProvider).pop(context);
+    ref.read(customModalsProvider).pop();
     res.fold(
       (left) => ref.read(customModalsProvider).showInfoDialog(
-            buildContext: context,
             title: 'Error al iniciar sesión',
             content: left.message,
             buttonText: 'Reintentar',

@@ -1,6 +1,5 @@
-// ignore_for_file: avoid_build_context_in_providers, avoid_manual_providers_as_generated_provider_dependency, use_build_context_synchronously
+// ignore_for_file: avoid_manual_providers_as_generated_provider_dependency
 import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
 import 'package:pet_home/core/extension_methods/future_extension.dart';
 import 'package:pet_home/core/router/router.dart';
 import 'package:pet_home/core/sealed/either.dart';
@@ -60,7 +59,6 @@ class AdoptionNotifier extends _$AdoptionNotifier {
   void build() {}
 
   Future<void> sendAdoptionForm({
-    required BuildContext context,
     required FormAdoptionRequest form,
     required int postId,
   }) async {
@@ -72,9 +70,8 @@ class AdoptionNotifier extends _$AdoptionNotifier {
     res.fold(
       (left) => ref
           .read(customModalsProvider)
-          .showInformativeScreen(context: context, message: left.message),
+          .showInformativeScreen(message: left.message),
       (right) => ref.read(customModalsProvider).showInformativeScreen(
-            context: context,
             isError: false,
             title: '¡Hemos publicado tu mascota!',
             message:
@@ -87,19 +84,17 @@ class AdoptionNotifier extends _$AdoptionNotifier {
   }
 
   Future<void> getFormById({
-    required BuildContext context,
     required int formId,
     required String isPending,
   }) async {
-    ref.read(customModalsProvider).showLoadingDialog(context);
+    ref.read(customModalsProvider).showLoadingDialog();
     final res = await ref
         .read(adoptionRepositoryProvider)
         .getFormById(formId: formId)
         .toEither();
-    ref.read(customModalsProvider).pop(context);
+    ref.read(customModalsProvider).pop();
     res.fold(
       (left) => ref.read(customModalsProvider).showInfoDialog(
-            buildContext: context,
             title: 'Oops! Ha surgido un error',
             content: left.message,
             buttonText: 'Ok',
@@ -113,18 +108,16 @@ class AdoptionNotifier extends _$AdoptionNotifier {
   }
 
   Future<void> approveApplication({
-    required BuildContext context,
     required int formId,
   }) async {
-    ref.read(customModalsProvider).showLoadingDialog(context);
+    ref.read(customModalsProvider).showLoadingDialog();
     final res = await ref
         .read(adoptionRepositoryProvider)
         .approvePostulation(formId: formId)
         .toEither();
-    ref.read(customModalsProvider).pop(context);
+    ref.read(customModalsProvider).pop();
     res.fold(
       (left) => ref.read(customModalsProvider).showInfoDialog(
-            buildContext: context,
             title: 'Oops! Ha surgido un error',
             content: left.message,
             buttonText: 'Ok',
@@ -137,18 +130,16 @@ class AdoptionNotifier extends _$AdoptionNotifier {
   }
 
   Future<void> declineApplication({
-    required BuildContext context,
     required int formId,
   }) async {
-    ref.read(customModalsProvider).showLoadingDialog(context);
+    ref.read(customModalsProvider).showLoadingDialog();
     final res = await ref
         .read(adoptionRepositoryProvider)
         .declinePostulation(formId: formId)
         .toEither();
-    ref.read(customModalsProvider).pop(context);
+    ref.read(customModalsProvider).pop();
     res.fold(
       (left) => ref.read(customModalsProvider).showInfoDialog(
-            buildContext: context,
             title: 'Oops! Ha surgido un error',
             content: left.message,
             buttonText: 'Ok',

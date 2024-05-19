@@ -1,8 +1,7 @@
-// ignore_for_file: avoid_build_context_in_providers, avoid_manual_providers_as_generated_provider_dependency, use_build_context_synchronously
+// ignore_for_file: avoid_manual_providers_as_generated_provider_dependency
 import 'dart:async';
 
 import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
 import 'package:pet_home/core/extension_methods/future_extension.dart';
 import 'package:pet_home/core/router/router.dart';
 import 'package:pet_home/features/home/presentation/home_screen.dart';
@@ -108,19 +107,15 @@ class PublicationsNotifier extends _$PublicationsNotifier {
   @override
   void build() {}
 
-  Future<void> postPet({
-    required BuildContext context,
-    required PostRequest request,
-  }) async {
-    ref.read(customModalsProvider).showLoadingDialog(context);
+  Future<void> postPet({required PostRequest request}) async {
+    ref.read(customModalsProvider).showLoadingDialog();
     final res = await ref
         .read(publicationsRepositoryProvider)
         .postPet(post: request)
         .toFailure();
-    ref.read(customModalsProvider).pop(context);
+    ref.read(customModalsProvider).pop();
     if (res != null) {
       ref.read(customModalsProvider).showInfoDialog(
-            buildContext: context,
             title: 'Error',
             content: res.message,
             buttonText: 'Reintentar',
@@ -128,7 +123,6 @@ class PublicationsNotifier extends _$PublicationsNotifier {
       return;
     } else {
       ref.read(customModalsProvider).showInformativeScreen(
-            context: context,
             isError: false,
             title: '¡Hemos publicado tu mascota!',
             message:
@@ -140,19 +134,15 @@ class PublicationsNotifier extends _$PublicationsNotifier {
     }
   }
 
-  Future<void> deletePost({
-    required BuildContext context,
-    required int postId,
-  }) async {
-    ref.read(customModalsProvider).showLoadingDialog(context);
+  Future<void> deletePost({required int postId}) async {
+    ref.read(customModalsProvider).showLoadingDialog();
     final res = await ref
         .read(publicationsRepositoryProvider)
         .deletePost(postId: postId.toString())
         .toFailure();
-    ref.read(customModalsProvider).pop(context);
+    ref.read(customModalsProvider).pop();
     if (res != null) {
       ref.read(customModalsProvider).showInfoDialog(
-            buildContext: context,
             title: 'Error',
             content: res.message,
             buttonText: 'Reintentar',
@@ -160,7 +150,6 @@ class PublicationsNotifier extends _$PublicationsNotifier {
       return;
     } else {
       ref.read(customModalsProvider).showInfoDialog(
-            buildContext: context,
             title: 'Eliminado',
             content: 'La publicación ha sido eliminada exitosamente',
             buttonText: 'Continuar',
@@ -174,19 +163,17 @@ class PublicationsNotifier extends _$PublicationsNotifier {
   }
 
   Future<void> editPet({
-    required BuildContext context,
     required PostRequest request,
     required String postId,
   }) async {
-    ref.read(customModalsProvider).showLoadingDialog(context);
+    ref.read(customModalsProvider).showLoadingDialog();
     final res = await ref
         .read(publicationsRepositoryProvider)
         .editPet(post: request, postId: postId)
         .toFailure();
-    ref.read(customModalsProvider).pop(context);
+    ref.read(customModalsProvider).pop();
     if (res != null) {
       ref.read(customModalsProvider).showInfoDialog(
-            buildContext: context,
             title: 'Error',
             content: res.message,
             buttonText: 'Reintentar',
@@ -194,7 +181,6 @@ class PublicationsNotifier extends _$PublicationsNotifier {
       return;
     } else {
       ref.read(customModalsProvider).showInfoDialog(
-            buildContext: context,
             title: '',
             content: 'La publicación ha sido modificada exitosamente',
             buttonText: 'Continuar',

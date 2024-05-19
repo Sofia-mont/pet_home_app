@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:pet_home/core/app/app_service.dart';
 import 'package:pet_home/core/utils/platform_utils.dart';
 import 'package:pet_home/ui/constants/font_constants.dart';
 import 'package:pet_home/ui/constants/palette.dart';
@@ -11,35 +12,37 @@ import 'package:pet_home/ui/widgets/response_screen.dart';
 final customModalsProvider = Provider<CustomModals>(CustomModalsImpl.fromRead);
 
 abstract class CustomModals {
-  Future<void> showLoadingDialog(BuildContext context);
+  Future<void> showLoadingDialog();
   Future<void> showInformativeScreen({
     bool isError = true,
     String title = '¡Ops! Ha ocurrido un error',
     String message = 'Vuelve a intentarlo',
     VoidCallback? onPressed,
     String buttonMsg = 'Reintentar',
-    required BuildContext context,
   });
   Future<void> showInfoDialog({
-    required BuildContext buildContext,
     required String title,
     required String content,
     required String buttonText,
     VoidCallback? buttonAction,
   });
-  Future<void> showFilterDialog({required BuildContext buildContext});
-  void pop(BuildContext context);
+  Future<void> showFilterDialog();
+  void pop();
 }
 
 class CustomModalsImpl implements CustomModals {
-  CustomModalsImpl();
+  CustomModalsImpl({required this.appState});
 
   factory CustomModalsImpl.fromRead(Ref ref) {
-    return CustomModalsImpl();
+    return CustomModalsImpl(appState: AppService.instance);
   }
 
+  final AppService appState;
+
+  BuildContext get context => appState.context;
+
   @override
-  Future<void> showLoadingDialog(BuildContext context) {
+  Future<void> showLoadingDialog() {
     return showAdaptiveDialog(
       context: context,
       barrierDismissible: false,
@@ -84,7 +87,6 @@ class CustomModalsImpl implements CustomModals {
     String message = 'Vuelve a intentarlo',
     VoidCallback? onPressed,
     String buttonMsg = 'Reintentar',
-    required BuildContext context,
   }) async {
     GoRouter.of(context).goNamed(
       ResponseScreen.path,
@@ -99,20 +101,19 @@ class CustomModalsImpl implements CustomModals {
   }
 
   @override
-  void pop(BuildContext context) {
+  void pop() {
     GoRouter.of(context).pop();
   }
 
   @override
   Future<void> showInfoDialog({
-    required BuildContext buildContext,
     required String title,
     required String content,
     required String buttonText,
     VoidCallback? buttonAction,
   }) {
     return showAdaptiveDialog(
-      context: buildContext,
+      context: context,
       builder: (context) => AlertDialog.adaptive(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
         title: Text(
@@ -129,7 +130,7 @@ class CustomModalsImpl implements CustomModals {
         ),
         actions: [
           TextButton(
-            onPressed: buttonAction ?? () => Navigator.pop(buildContext),
+            onPressed: buttonAction ?? () => Navigator.pop(context),
             child: Text(
               buttonText,
               style: FontConstants.body2.copyWith(
@@ -143,9 +144,9 @@ class CustomModalsImpl implements CustomModals {
   }
 
   @override
-  Future<void> showFilterDialog({required BuildContext buildContext}) {
+  Future<void> showFilterDialog() {
     return showAdaptiveDialog(
-      context: buildContext,
+      context: context,
       builder: (context) => AlertDialog.adaptive(
         iconPadding: const EdgeInsets.all(10),
         icon: Align(

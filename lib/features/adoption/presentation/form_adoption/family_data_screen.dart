@@ -141,7 +141,6 @@ class _FamilyDataScreenState extends ConsumerState<FamilyDataScreen> {
           );
     } else {
       ref.read(customModalsProvider).showInfoDialog(
-            buildContext: context,
             title: 'Información incompleta',
             content: 'Por favor, ingresa toda la información',
             buttonText: 'Aceptar',

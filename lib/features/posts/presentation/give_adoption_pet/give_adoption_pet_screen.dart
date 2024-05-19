@@ -267,12 +267,9 @@ class _AdoptPetFirstScreenState extends ConsumerState<GiveAdoptionPetScreen> {
         neutered: isNeutered == 'Sí' ? true : false,
         images: selectedImages,
       );
-      ref
-          .read(publicationsNotifierProvider.notifier)
-          .postPet(context: context, request: request);
+      ref.read(publicationsNotifierProvider.notifier).postPet(request: request);
     } else {
       ref.read(customModalsProvider).showInfoDialog(
-            buildContext: context,
             title: 'Información incompleta',
             content: 'Por favor, ingresa toda la información',
             buttonText: 'Aceptar',

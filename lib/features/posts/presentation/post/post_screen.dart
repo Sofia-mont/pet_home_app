@@ -165,7 +165,6 @@ class _PublicationScreenState extends ConsumerState<PostScreen>
                               onPressed: () => ref
                                   .read(customModalsProvider)
                                   .showInfoDialog(
-                                    buildContext: context,
                                     title: 'Mensaje para el posible adoptante',
                                     content:
                                         'Si decides que quieres en tu vida la compañía de una vida animal, debes ser consciente del compromiso que esto implica. La vida está llena de cambios y en los 15 años que vive en promedio un perro o un gato se van a presentar una infinidad de situaciones que deberás enfrentar de manera seria y responsable. \n Si decides adoptar un animal debes acogerlo como un miembro más de tu casa. Esto quiere decir que, pase lo que pase, el animal siempre será tenido en cuenta en las decisiones de la familia y por ningún motivo se desharán de él, como si fuera un objeto o un juguete. Ningún problema es excusa para abandonarlo, del mismo modo que no es excusa para abandonar a cualquier otro integrante de tu familia',

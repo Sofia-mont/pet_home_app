@@ -180,7 +180,6 @@ class _PersonalDataScreenState extends ConsumerState<PersonalDataScreen> {
           );
     } else {
       ref.read(customModalsProvider).showInfoDialog(
-            buildContext: context,
             title: 'Información incompleta',
             content: 'Por favor, ingresa toda la información',
             buttonText: 'Aceptar',

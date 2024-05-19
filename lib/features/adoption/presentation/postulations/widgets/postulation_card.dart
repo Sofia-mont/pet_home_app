@@ -67,7 +67,6 @@ class _PostulationCardState extends ConsumerState<PostulationCard> {
             child: IconButton(
               onPressed: () =>
                   ref.read(adoptionNotifierProvider.notifier).getFormById(
-                        context: context,
                         formId: widget.form.id,
                         isPending: widget.isPending.toString(),
                       ),

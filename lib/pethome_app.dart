@@ -30,7 +30,6 @@ class _PethomeAppState extends ConsumerState<PethomeApp> {
                 localStorage.currentUser!.user,
                 localStorage.currentUser!.pass,
               ),
-              context: context,
             );
       } else if (localStorage.accessTokenHasExpired!) {
         ref
