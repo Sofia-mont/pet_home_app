@@ -37,9 +37,6 @@ class _PersonalDataScreenState extends ConsumerState<PersonalDataScreen> {
   final TextEditingController _jobController = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    var ciudades = department == ''
-        ? Future.value([])
-        : ref.read(locationNotifierProvider.notifier).getCiudades(department);
     return CustomScaffold(
       appbarTitle: 'Formulario de adopción',
       body: Column(
@@ -85,22 +82,21 @@ class _PersonalDataScreenState extends ConsumerState<PersonalDataScreen> {
                       ),
                     ),
                     const SizedBox(width: 20),
-                    FutureBuilder(
-                      future: ciudades,
-                      builder: (context, snapshot) {
-                        return Flexible(
-                          child: DropdownSearchInput(
-                            onChange: (value) {
-                              setState(() {
-                                city = value;
-                              });
-                            },
-                            selectedItem: city != '' ? city : null,
-                            asyncItems: (p0) => ciudades,
-                            title: 'Ciudad',
-                          ),
-                        );
-                      },
+                    Flexible(
+                      child: DropdownSearchInput(
+                        onChange: (value) {
+                          setState(() {
+                            city = value;
+                          });
+                        },
+                        selectedItem: city != '' ? city : null,
+                        asyncItems: (p0) => department == ''
+                            ? Future.value([])
+                            : ref
+                                .read(locationNotifierProvider.notifier)
+                                .getCiudades(department),
+                        title: 'Ciudad',
+                      ),
                     ),
                   ],
                 ),

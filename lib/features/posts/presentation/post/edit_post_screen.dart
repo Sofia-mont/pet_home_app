@@ -71,9 +71,6 @@ class _AdoptPetFirstScreenState extends ConsumerState<EditPostScreen> {
 
   @override
   Widget build(BuildContext context) {
-    var ciudades = department == ''
-        ? Future.value([])
-        : ref.read(locationNotifierProvider.notifier).getCiudades(department);
     return CustomScaffold(
       appbarTitle: 'Editar publicación',
       body: Form(
@@ -177,23 +174,22 @@ class _AdoptPetFirstScreenState extends ConsumerState<EditPostScreen> {
                   ),
                 ),
                 const SizedBox(width: 20),
-                FutureBuilder(
-                  future: ciudades,
-                  builder: (context, snapshot) {
-                    return Flexible(
-                      child: DropdownSearchInput(
-                        onChange: (value) {
-                          setState(() {
-                            city = value;
-                          });
-                        },
-                        asyncItems: (p0) => ciudades,
-                        selectedItem: city,
-                        title: '',
-                        hintText: 'Ciudad',
-                      ),
-                    );
-                  },
+                Flexible(
+                  child: DropdownSearchInput(
+                    onChange: (value) {
+                      setState(() {
+                        city = value;
+                      });
+                    },
+                    asyncItems: (p0) => department == ''
+                        ? Future.value([])
+                        : ref
+                            .read(locationNotifierProvider.notifier)
+                            .getCiudades(department),
+                    selectedItem: city != '' ? city : null,
+                    title: '',
+                    hintText: 'Ciudad',
+                  ),
                 ),
               ],
             ),
@@ -266,7 +262,7 @@ class _AdoptPetFirstScreenState extends ConsumerState<EditPostScreen> {
   }
 
   bool _validateForm() {
-    return city != widget.publication.city ||
+    return (city != widget.publication.city && city != '') ||
         department != widget.publication.department ||
         petType != widget.publication.petType ||
         petSex != widget.publication.petSex ||

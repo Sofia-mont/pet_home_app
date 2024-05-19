@@ -43,9 +43,6 @@ class _AdoptPetFirstScreenState extends ConsumerState<GiveAdoptionPetScreen> {
 
   @override
   Widget build(BuildContext context) {
-    var ciudades = department == ''
-        ? Future.value([])
-        : ref.read(locationNotifierProvider.notifier).getCiudades(department);
     return CustomScaffold(
       appbarTitle: 'Dar en adopción',
       body: Form(
@@ -147,23 +144,18 @@ class _AdoptPetFirstScreenState extends ConsumerState<GiveAdoptionPetScreen> {
                   ),
                 ),
                 const SizedBox(width: 20),
-                FutureBuilder(
-                  future: ciudades,
-                  builder: (context, snapshot) {
-                    return Flexible(
-                      child: DropdownSearchInput(
-                        onChange: (value) {
-                          setState(() {
-                            city = value;
-                          });
-                        },
-                        selectedItem: city != '' ? city : null,
-                        asyncItems: (p0) => ciudades,
-                        title: '',
-                        hintText: 'Ciudad',
-                      ),
-                    );
-                  },
+                Flexible(
+                  child: DropdownSearchInput(
+                    onChange: (value) => setState(() => city = value),
+                    asyncItems: (p0) => department == ''
+                        ? Future.value([])
+                        : ref
+                            .read(locationNotifierProvider.notifier)
+                            .getCiudades(department),
+                    title: '',
+                    selectedItem: city != '' ? city : null,
+                    hintText: 'Ciudad',
+                  ),
                 ),
               ],
             ),

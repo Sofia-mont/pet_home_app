@@ -41,9 +41,6 @@ class _RegisterInfoScreenState extends ConsumerState<RegisterInfoScreen> {
 
   @override
   Widget build(BuildContext context) {
-    var ciudades = department == ''
-        ? Future.value([])
-        : ref.read(locationNotifierProvider.notifier).getCiudades(department);
     return CustomScaffold(
       body: Form(
         key: _formKey,
@@ -116,6 +113,7 @@ class _RegisterInfoScreenState extends ConsumerState<RegisterInfoScreen> {
                   child: DropdownSearchInput(
                     onChange: (value) {
                       setState(() {
+                        city = '';
                         department = value;
                       });
                     },
@@ -129,22 +127,22 @@ class _RegisterInfoScreenState extends ConsumerState<RegisterInfoScreen> {
                 const SizedBox(
                   width: 20,
                 ),
-                FutureBuilder(
-                  future: ciudades,
-                  builder: (context, snapshot) {
-                    return Flexible(
-                      child: DropdownSearchInput(
-                        onChange: (value) {
-                          setState(() {
-                            city = value;
-                          });
-                        },
-                        asyncItems: (p0) => ciudades,
-                        isRequired: true,
-                        title: 'Ciudad',
-                      ),
-                    );
-                  },
+                Flexible(
+                  child: DropdownSearchInput(
+                    onChange: (value) {
+                      setState(() {
+                        city = value;
+                      });
+                    },
+                    asyncItems: (p0) => department == ''
+                        ? Future.value([])
+                        : ref
+                            .read(locationNotifierProvider.notifier)
+                            .getCiudades(department),
+                    isRequired: true,
+                    selectedItem: city != '' ? city : null,
+                    title: 'Ciudad',
+                  ),
                 ),
               ],
             ),

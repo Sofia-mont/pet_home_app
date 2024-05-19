@@ -28,9 +28,6 @@ class _FilterPetScreenState extends ConsumerState<FilterPetScreen> {
 
   @override
   Widget build(BuildContext context) {
-    var ciudades = department == ''
-        ? Future.value([])
-        : ref.read(locationNotifierProvider.notifier).getCiudades(department);
     return CustomScaffold(
       appbarTitle: 'Filtrar',
       body: Column(
@@ -52,22 +49,27 @@ class _FilterPetScreenState extends ConsumerState<FilterPetScreen> {
             items: const ['Macho', 'Hembra'],
           ),
           DropdownSearchInput(
-            onChange: (value) => setState(() => department = value),
+            onChange: (value) {
+              setState(() {
+                city = '';
+                department = value;
+              });
+            },
             asyncItems: (p0) =>
                 ref.read(locationNotifierProvider.notifier).getDepartamentos(),
             title: 'Departamento',
           ),
-          FutureBuilder(
-            future: ciudades,
-            builder: (context, snapshot) {
-              return Flexible(
-                child: DropdownSearchInput(
-                  onChange: (value) => setState(() => city = value),
-                  asyncItems: (p0) => ciudades,
-                  title: 'Ciudad',
-                ),
-              );
-            },
+          Flexible(
+            child: DropdownSearchInput(
+              onChange: (value) => setState(() => city = value),
+              asyncItems: (p0) => department == ''
+                  ? Future.value([])
+                  : ref
+                      .read(locationNotifierProvider.notifier)
+                      .getCiudades(department),
+              title: 'Ciudad',
+              selectedItem: city != '' ? city : null,
+            ),
           ),
           const Spacer(),
           LargeButton(
