@@ -184,7 +184,7 @@ class _PublicationScreenState extends ConsumerState<PostScreen>
                             ),
                           ),
                         if (!widget.isOwner &&
-                            widget.publication.postState != 'ADOPTADO')
+                            widget.publication.postState == 'ADOPTADO')
                           SizedBox(
                             height: 60,
                             child: Center(
