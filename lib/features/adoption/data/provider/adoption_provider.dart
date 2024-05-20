@@ -73,9 +73,9 @@ class AdoptionNotifier extends _$AdoptionNotifier {
           .showInformativeScreen(message: left.message),
       (right) => ref.read(customModalsProvider).showInformativeScreen(
             isError: false,
-            title: '¡Hemos publicado tu mascota!',
+            title: '¡Tu solicitud de adopción ha sido enviada!',
             message:
-                'En cualquier momento podrían llegarte solicitudes de adopción, asegurate de revisar sus formularios con toda la información para determinar si es un candidato apto.',
+                'Ten en cuenta que el diligenciamiento de este formulario no significa que se te dará el animal en adopción. Tus datos y referencias personales serán evaluados y se tomará una decisión basada en el bienestar del animal',
             buttonMsg: 'Continuar',
             onPressed: () =>
                 ref.read(appRouterProvider).goNamed(HomeScreen.path),
