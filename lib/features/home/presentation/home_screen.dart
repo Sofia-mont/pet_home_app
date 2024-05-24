@@ -140,9 +140,9 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                   ),
                 ),
                 itemBuilder: (_, data) => PetCard(publicationInfo: data),
-                loadingBuilder: (context, pagination) => SizedBox(
-                  height: MediaQuery.of(context).size.height / 3,
-                  child: const Center(
+                loadingBuilder: (context, pagination) => const SizedBox(
+                  height: 260,
+                  child: Center(
                     child: CircularProgressIndicator(),
                   ),
                 ),
@@ -168,6 +168,9 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                     PublicationsResponseQuery(petType: 'Gato'),
                   ).notifier,
                 ),
+              ),
+              const SizedBox(
+                height: 20,
               ),
             ],
           ),
