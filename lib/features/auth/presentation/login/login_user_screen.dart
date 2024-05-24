@@ -9,6 +9,7 @@ import 'package:pet_home/ui/constants/palette.dart';
 import 'package:pet_home/ui/scaffold/custom_scaffold.dart';
 import 'package:pet_home/ui/widgets/inputs/input_with_title.dart';
 import 'package:pet_home/ui/widgets/buttons/large_button.dart';
+import 'package:pet_home/ui/widgets/modals/custom_modals.dart';
 
 class LoginUserScreen extends ConsumerStatefulWidget {
   const LoginUserScreen({super.key});
@@ -22,8 +23,6 @@ class _LoginUserScreenState extends ConsumerState<LoginUserScreen> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
-  bool get enableButton =>
-      _formKey.currentState != null && _formKey.currentState!.validate();
   @override
   Widget build(BuildContext context) {
     return CustomScaffold(
@@ -63,7 +62,7 @@ class _LoginUserScreenState extends ConsumerState<LoginUserScreen> {
           ),
           Form(
             key: _formKey,
-            autovalidateMode: AutovalidateMode.onUserInteraction,
+            autovalidateMode: AutovalidateMode.always,
             child: Padding(
               padding: const EdgeInsets.symmetric(
                 horizontal: 15,
@@ -89,16 +88,8 @@ class _LoginUserScreenState extends ConsumerState<LoginUserScreen> {
                     ),
                   ),
                   LargeButton(
-                    isEnabled: _formKey.currentState != null &&
-                        _formKey.currentState!.validate(),
                     text: 'Iniciar sesión',
-                    onPressed: () =>
-                        ref.read(authNotifierProvider.notifier).login(
-                              user: User(
-                                _emailController.text,
-                                _passwordController.text,
-                              ),
-                            ),
+                    onPressed: () => _handleLogin(),
                   ),
                   TextButton(
                     onPressed: () => {
@@ -120,5 +111,25 @@ class _LoginUserScreenState extends ConsumerState<LoginUserScreen> {
         ],
       ),
     );
+  }
+
+  void _handleLogin() {
+    final passError =
+        TextValidators.passwordValidator(_passwordController.text);
+    final emailError = TextValidators.emailValidator(_emailController.text);
+    if (passError != null || emailError != null) {
+      ref.read(customModalsProvider).showInfoDialog(
+            title: 'Error',
+            content: 'Digita el email y/o la contraseña correctamente',
+            buttonText: 'Aceptar',
+          );
+    } else {
+      ref.read(authNotifierProvider.notifier).login(
+            user: User(
+              _emailController.text,
+              _passwordController.text,
+            ),
+          );
+    }
   }
 }

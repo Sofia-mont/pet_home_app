@@ -23,8 +23,13 @@ class PetCard extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return Container(
       width: MediaQuery.of(context).size.width * 0.9,
-      height: MediaQuery.of(context).size.height / 3,
-      margin: EdgeInsets.only(right: 10, left: isHome ? 0 : 10),
+      height: 260,
+      margin: EdgeInsets.only(
+        right: 10,
+        left: isHome ? 0 : 10,
+        bottom: isHome ? 0 : 10,
+        top: isHome ? 0 : 10,
+      ),
       child: InkWell(
         onTap: () => ref.read(appRouterProvider).pushNamed(
           PostScreen.path,
@@ -185,17 +190,13 @@ class PetCard extends ConsumerWidget {
             ),
             Positioned(
               left: 0,
-              child: Container(
-                height: 260,
-                width: MediaQuery.of(context).size.width * 0.5,
-                decoration: BoxDecoration(
-                  borderRadius: const BorderRadius.all(Radius.circular(10)),
-                  image: DecorationImage(
-                    image: NetworkImage(
-                      publicationInfo.petImages.first,
-                    ),
-                    fit: BoxFit.cover,
-                  ),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(15),
+                child: Image.network(
+                  publicationInfo.petImages.first,
+                  fit: BoxFit.cover,
+                  height: 260,
+                  width: MediaQuery.of(context).size.width * 0.5,
                 ),
               ),
             ),

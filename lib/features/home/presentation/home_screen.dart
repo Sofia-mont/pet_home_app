@@ -73,15 +73,15 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                   ),
                 ),
                 itemBuilder: (_, data) => PetCard(publicationInfo: data),
-                loadingBuilder: (context, pagination) => SizedBox(
-                  height: MediaQuery.of(context).size.height / 3,
-                  child: const Center(
+                loadingBuilder: (context, pagination) => const SizedBox(
+                  height: 260,
+                  child: Center(
                     child: CircularProgressIndicator(),
                   ),
                 ),
                 listViewBuilder: (context, data) {
                   return SizedBox(
-                    height: MediaQuery.of(context).size.height / 3,
+                    height: 260,
                     child: ListView.builder(
                       itemCount: data.length,
                       itemBuilder: (_, index) {
