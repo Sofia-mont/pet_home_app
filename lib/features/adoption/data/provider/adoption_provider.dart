@@ -121,6 +121,10 @@ class AdoptionNotifier extends _$AdoptionNotifier {
             title: 'Oops! Ha surgido un error',
             content: left.message,
             buttonText: 'Ok',
+            buttonAction: () {
+              ref.watch(scaffoldControllerProvider.notifier).setPosition(0);
+              ref.read(appRouterProvider).goNamed(HomeScreen.path);
+            },
           ),
       (right) {
         ref.watch(scaffoldControllerProvider.notifier).setPosition(0);
