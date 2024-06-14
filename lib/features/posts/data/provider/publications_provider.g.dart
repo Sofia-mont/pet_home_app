@@ -334,7 +334,7 @@ final myPostulationsProvider =
 
 typedef _$MyPostulations = AutoDisposeAsyncNotifier<List<Post>>;
 String _$publicationsNotifierHash() =>
-    r'e30646ac535841e847a232fa736dac64323e54d9';
+    r'053bb9ab670f84f48d711c791ea93af40c7cdbaa';
 
 /// See also [PublicationsNotifier].
 @ProviderFor(PublicationsNotifier)
