@@ -1,6 +1,5 @@
 import 'package:dio/dio.dart';
 import 'package:pet_home/core/utils/dio/dio_provider.dart';
-import 'package:pet_home/core/constants/app_constants.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'location_repository.g.dart';
@@ -15,7 +14,8 @@ class LocationRepository {
   final Dio client;
 
   Future<List<String>> fetchDepartamentos() async {
-    const path = '${AppConstants.baseURL}/location/departments';
+    const path =
+        'https://www.datos.gov.co/resource/xdk5-pm3f.json?\$select=departamento&\$group=departamento';
     final response = await client.get(
       path,
       options: Options(
@@ -23,15 +23,17 @@ class LocationRepository {
       ),
     );
     if (response.statusCode == 200) {
-      List<String> data = List<String>.from(response.data);
-      return data;
+      final List<dynamic> data = response.data;
+      final List<String> departamentos =
+          data.map((item) => item['departamento'] as String).toList();
+      return departamentos;
     }
     return [];
   }
 
   Future<List<String>> fetchCiudades(String departamento) async {
     final path =
-        '${AppConstants.baseURL}/location/cities?department=$departamento';
+        'https://www.datos.gov.co/resource/xdk5-pm3f.json?\$select=municipio&\$limit=1123&departamento=${departamento}';
     final response = await client.get(
       path,
       options: Options(
@@ -39,8 +41,10 @@ class LocationRepository {
       ),
     );
     if (response.statusCode == 200) {
-      List<String> data = List<String>.from(response.data);
-      return data;
+      final List<dynamic> data = response.data;
+      final List<String> cities =
+          data.map((item) => item['municipio'] as String).toList();
+      return cities;
     }
     return [];
   }
