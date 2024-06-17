@@ -6,9 +6,9 @@ import 'package:pet_home/core/extension_methods/future_extension.dart';
 import 'package:pet_home/core/router/router.dart';
 import 'package:pet_home/features/home/presentation/home_screen.dart';
 import 'package:pet_home/features/posts/data/repository/publications_repository.dart';
-import 'package:pet_home/features/posts/domain/post/post/post.dart';
-import 'package:pet_home/features/posts/domain/post/post_request.dart/post_request.dart';
-import 'package:pet_home/features/posts/domain/posts/publications_search_query/publications_search_query.dart';
+import 'package:pet_home/features/posts/domain/post.dart';
+import 'package:pet_home/features/posts/domain/post_request.dart';
+import 'package:pet_home/features/posts/domain/posts_search_query.dart';
 import 'package:pet_home/ui/scaffold/scaffold_controller.dart';
 import 'package:pet_home/ui/widgets/modals/custom_modals.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -21,7 +21,7 @@ class FetchFilteredPosts extends _$FetchFilteredPosts
     with PaginatedDataMixinGeneric<Post>
     implements PaginatedNotifier<Post> {
   @override
-  FutureOr<List<Post>> build(PublicationsResponseQuery? filters) async {
+  FutureOr<List<Post>> build(PostsResponseQuery? filters) async {
     state = const AsyncValue.loading();
     final cancelToken = CancelToken();
     return await init(

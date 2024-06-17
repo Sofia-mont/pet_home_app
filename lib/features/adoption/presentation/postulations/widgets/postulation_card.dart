@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
 import 'package:pet_home/features/adoption/data/provider/adoption_provider.dart';
-import 'package:pet_home/features/adoption/domain/form_adoption_projection/form_adoption_projection.dart';
+import 'package:pet_home/features/adoption/domain/form_adoption_projection.dart';
 import 'package:pet_home/ui/constants/font_constants.dart';
 import 'package:pet_home/ui/constants/palette.dart';
 
@@ -51,12 +51,12 @@ class _PostulationCardState extends ConsumerState<PostulationCard> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                widget.form.candidateFullName,
+                widget.form.candidateFullName!,
                 style:
                     FontConstants.body1.copyWith(color: Palette.primaryDarker),
               ),
               Text(
-                'Enviado el ${DateFormat('d/MM/y', 'es_ES').format(widget.form.sentAt)}',
+                'Enviado el ${DateFormat('d/MM/y', 'es_ES').format(widget.form.sentAt!)}',
                 style:
                     FontConstants.caption2.copyWith(color: Palette.textLight),
               ),
@@ -67,7 +67,7 @@ class _PostulationCardState extends ConsumerState<PostulationCard> {
             child: IconButton(
               onPressed: () =>
                   ref.read(adoptionNotifierProvider.notifier).getFormById(
-                        formId: widget.form.id,
+                        formId: widget.form.id!,
                         isPending: widget.isPending.toString(),
                       ),
               icon: const Icon(

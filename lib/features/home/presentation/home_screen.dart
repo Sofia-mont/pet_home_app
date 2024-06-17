@@ -5,7 +5,7 @@ import 'package:pet_home/features/home/presentation/home_more_screen.dart';
 import 'package:pet_home/features/home/presentation/widget/home_drawer.dart';
 import 'package:pet_home/features/home/presentation/widget/home_speed_dial.dart';
 import 'package:pet_home/features/posts/data/provider/publications_provider.dart';
-import 'package:pet_home/features/posts/domain/posts/publications_search_query/publications_search_query.dart';
+import 'package:pet_home/features/posts/domain/posts_search_query.dart';
 import 'package:pet_home/ui/widgets/cards/pet_card.dart';
 import 'package:pet_home/ui/constants/font_constants.dart';
 import 'package:pet_home/ui/constants/palette.dart';
@@ -69,7 +69,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
               PaginatedListView(
                 state: ref.watch(
                   fetchFilteredPostsProvider(
-                    PublicationsResponseQuery(petType: 'Perro'),
+                    const PostsResponseQuery(petType: 'Perro'),
                   ),
                 ),
                 itemBuilder: (_, data) => PetCard(publicationInfo: data),
@@ -101,7 +101,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                 },
                 notifier: ref.read(
                   fetchFilteredPostsProvider(
-                    PublicationsResponseQuery(petType: 'Perro'),
+                    const PostsResponseQuery(petType: 'Perro'),
                   ).notifier,
                 ),
               ),
@@ -136,7 +136,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
               PaginatedListView(
                 state: ref.watch(
                   fetchFilteredPostsProvider(
-                    PublicationsResponseQuery(petType: 'Gato'),
+                    const PostsResponseQuery(petType: 'Gato'),
                   ),
                 ),
                 itemBuilder: (_, data) => PetCard(publicationInfo: data),
@@ -165,7 +165,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                 },
                 notifier: ref.read(
                   fetchFilteredPostsProvider(
-                    PublicationsResponseQuery(petType: 'Gato'),
+                    const PostsResponseQuery(petType: 'Gato'),
                   ).notifier,
                 ),
               ),

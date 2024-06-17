@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:pet_home/features/adoption/data/provider/adoption_provider.dart';
-import 'package:pet_home/features/adoption/domain/form_adoption_request/form_adoption_request.dart';
+import 'package:pet_home/features/adoption/domain/form_adoption_request.dart';
 import 'package:pet_home/ui/constants/font_constants.dart';
 import 'package:pet_home/ui/constants/palette.dart';
 import 'package:pet_home/ui/icons/pethome_icons.dart';

@@ -1,9 +1,9 @@
 import 'package:dio/dio.dart';
 import 'package:pet_home/core/constants/app_constants.dart';
 import 'package:pet_home/core/utils/dio/dio_provider.dart';
-import 'package:pet_home/features/posts/domain/post/post/post.dart';
-import 'package:pet_home/features/posts/domain/post/post_request.dart/post_request.dart';
-import 'package:pet_home/features/posts/domain/posts/publications_search_query/publications_search_query.dart';
+import 'package:pet_home/features/posts/domain/post.dart';
+import 'package:pet_home/features/posts/domain/post_request.dart';
+import 'package:pet_home/features/posts/domain/posts_search_query.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:riverpod_infinite_scroll_pagination/riverpod_infinite_scroll_pagination.dart';
 
@@ -20,7 +20,7 @@ class PublicationsRepository {
   Future<PaginatedResponse<Post>> getFilteredPosts({
     int page = 1,
     String? query = '',
-    PublicationsResponseQuery? filters,
+    PostsResponseQuery? filters,
     CancelToken? cancelToken,
   }) async {
     const path = '${AppConstants.baseURL}/post/search';
@@ -174,7 +174,7 @@ class PublicationsRepository {
 }
 
 Map<String, dynamic> _generateQuery(
-  PublicationsResponseQuery? query,
+  PostsResponseQuery? query,
   int page,
 ) {
   return {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pet_home/features/adoption/data/provider/adoption_provider.dart';
-import 'package:pet_home/features/adoption/domain/postulation_search_query/postulation_search_query.dart';
+import 'package:pet_home/features/adoption/domain/postulation_search_query.dart';
 import 'package:pet_home/features/adoption/presentation/postulations/widgets/postulation_card.dart';
 import 'package:pet_home/ui/constants/font_constants.dart';
 import 'package:pet_home/ui/constants/palette.dart';

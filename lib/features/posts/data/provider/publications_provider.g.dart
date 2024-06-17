@@ -32,10 +32,10 @@ class _SystemHash {
 
 abstract class _$FetchFilteredPosts
     extends BuildlessAutoDisposeAsyncNotifier<List<Post>> {
-  late final PublicationsResponseQuery? filters;
+  late final PostsResponseQuery? filters;
 
   FutureOr<List<Post>> build(
-    PublicationsResponseQuery? filters,
+    PostsResponseQuery? filters,
   );
 }
 
@@ -50,7 +50,7 @@ class FetchFilteredPostsFamily extends Family<AsyncValue<List<Post>>> {
 
   /// See also [FetchFilteredPosts].
   FetchFilteredPostsProvider call(
-    PublicationsResponseQuery? filters,
+    PostsResponseQuery? filters,
   ) {
     return FetchFilteredPostsProvider(
       filters,
@@ -86,7 +86,7 @@ class FetchFilteredPostsProvider extends AutoDisposeAsyncNotifierProviderImpl<
     FetchFilteredPosts, List<Post>> {
   /// See also [FetchFilteredPosts].
   FetchFilteredPostsProvider(
-    PublicationsResponseQuery? filters,
+    PostsResponseQuery? filters,
   ) : this._internal(
           () => FetchFilteredPosts()..filters = filters,
           from: fetchFilteredPostsProvider,
@@ -111,7 +111,7 @@ class FetchFilteredPostsProvider extends AutoDisposeAsyncNotifierProviderImpl<
     required this.filters,
   }) : super.internal();
 
-  final PublicationsResponseQuery? filters;
+  final PostsResponseQuery? filters;
 
   @override
   FutureOr<List<Post>> runNotifierBuild(
@@ -160,7 +160,7 @@ class FetchFilteredPostsProvider extends AutoDisposeAsyncNotifierProviderImpl<
 
 mixin FetchFilteredPostsRef on AutoDisposeAsyncNotifierProviderRef<List<Post>> {
   /// The parameter `filters` of this provider.
-  PublicationsResponseQuery? get filters;
+  PostsResponseQuery? get filters;
 }
 
 class _FetchFilteredPostsProviderElement
@@ -169,7 +169,7 @@ class _FetchFilteredPostsProviderElement
   _FetchFilteredPostsProviderElement(super.provider);
 
   @override
-  PublicationsResponseQuery? get filters =>
+  PostsResponseQuery? get filters =>
       (origin as FetchFilteredPostsProvider).filters;
 }
 

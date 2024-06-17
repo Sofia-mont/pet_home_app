@@ -6,8 +6,7 @@ import 'package:pet_home/core/router/router.dart';
 import 'package:pet_home/core/sealed/either.dart';
 import 'package:pet_home/features/auth/data/provider/auth_state.dart';
 import 'package:pet_home/features/auth/data/repository/auth_repository.dart';
-import 'package:pet_home/features/auth/domain/register_user/register_user.dart';
-import 'package:pet_home/features/auth/domain/user/user.dart';
+import 'package:pet_home/features/auth/domain/register_request.dart';
 import 'package:pet_home/features/auth/presentation/login/login_user_screen.dart';
 import 'package:pet_home/features/home/presentation/home_screen.dart';
 import 'package:pet_home/ui/widgets/modals/custom_modals.dart';
@@ -22,7 +21,7 @@ class AuthNotifier extends _$AuthNotifier {
 
   void resetState() => state = AuthState.initial();
 
-  Future<void> register({required RegisterUser user}) async {
+  Future<void> register({required RegisterRequest user}) async {
     ref.read(customModalsProvider).showLoadingDialog();
     final res =
         await ref.read(authRepositoryProvider).register(user: user).toEither();
@@ -42,10 +41,12 @@ class AuthNotifier extends _$AuthNotifier {
     );
   }
 
-  Future<void> login({required User user}) async {
+  Future<void> login({required String email, required String password}) async {
     ref.read(customModalsProvider).showLoadingDialog();
-    final res =
-        await ref.read(authRepositoryProvider).login(user: user).toEither();
+    final res = await ref
+        .read(authRepositoryProvider)
+        .login(email: email, password: password)
+        .toEither();
     ref.read(customModalsProvider).pop();
     res.fold(
       (left) => ref.read(customModalsProvider).showInfoDialog(
@@ -60,8 +61,8 @@ class AuthNotifier extends _$AuthNotifier {
             id: DateTime.now().millisecondsSinceEpoch.toString(),
             refreshToken: right.refreshToken,
             token: right.token,
-            user: user.email,
-            pass: user.password,
+            user: email,
+            pass: password,
           ),
         );
         ref.read(appRouterProvider).goNamed(HomeScreen.path);

@@ -3,7 +3,7 @@ import 'package:jwt_decoder/jwt_decoder.dart';
 import 'package:pet_home/core/app/app_service.dart';
 import 'package:pet_home/core/app/domain/user_data.dart';
 import 'package:pet_home/core/constants/app_constants.dart';
-import 'package:pet_home/features/auth/domain/token/token.dart';
+import 'package:pet_home/features/auth/domain/token.dart';
 
 class AuthInterceptor implements Interceptor {
   final _localStorage = AppService.instance;

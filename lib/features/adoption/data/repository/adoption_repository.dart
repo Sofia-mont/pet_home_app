@@ -1,10 +1,10 @@
 import 'package:dio/dio.dart';
 import 'package:pet_home/core/constants/app_constants.dart';
 import 'package:pet_home/core/utils/dio/dio_provider.dart';
-import 'package:pet_home/features/adoption/domain/form_adoption_projection/form_adoption_projection.dart';
-import 'package:pet_home/features/adoption/domain/form_adoption_request/form_adoption_request.dart';
-import 'package:pet_home/features/adoption/domain/form_adoption_response/form_adoption_response.dart';
-import 'package:pet_home/features/adoption/domain/postulation_search_query/postulation_search_query.dart';
+import 'package:pet_home/features/adoption/domain/form_adoption_projection.dart';
+import 'package:pet_home/features/adoption/domain/form_adoption_request.dart';
+import 'package:pet_home/features/adoption/domain/form_adoption_response.dart';
+import 'package:pet_home/features/adoption/domain/postulation_search_query.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:riverpod_infinite_scroll_pagination/riverpod_infinite_scroll_pagination.dart';
 

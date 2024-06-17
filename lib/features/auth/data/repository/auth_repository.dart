@@ -1,9 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:pet_home/core/constants/app_constants.dart';
 import 'package:pet_home/core/utils/dio/dio_provider.dart';
-import 'package:pet_home/features/auth/domain/register_user/register_user.dart';
-import 'package:pet_home/features/auth/domain/token/token.dart';
-import 'package:pet_home/features/auth/domain/user/user.dart';
+import 'package:pet_home/features/auth/domain/register_request.dart';
+import 'package:pet_home/features/auth/domain/token.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'auth_repository.g.dart';
@@ -16,8 +15,8 @@ class AuthRepository {
   AuthRepository({required this.client});
   final Dio client;
 
-  Future<RegisterUser> register({
-    required RegisterUser user,
+  Future<RegisterRequest> register({
+    required RegisterRequest user,
     CancelToken? cancelToken,
   }) async {
     const path = '${AppConstants.baseURL}/auth/register';
@@ -30,12 +29,15 @@ class AuthRepository {
         headers: {'Content-Type': 'application/json', 'requiresToken': false},
       ),
     );
-    return RegisterUser.fromJson(response.data);
+    return RegisterRequest.fromJson(response.data);
   }
 
-  Future<Token> login({required User user}) async {
+  Future<Token> login({required String email, required String password}) async {
     const path = '${AppConstants.baseURL}/auth/login';
-    final data = user.toJson();
+    final data = {
+      'email': email,
+      'password': password,
+    };
     final response = await client.post(
       path,
       data: data,

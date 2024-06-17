@@ -4,9 +4,9 @@ import 'package:pet_home/core/extension_methods/future_extension.dart';
 import 'package:pet_home/core/router/router.dart';
 import 'package:pet_home/core/sealed/either.dart';
 import 'package:pet_home/features/adoption/data/repository/adoption_repository.dart';
-import 'package:pet_home/features/adoption/domain/form_adoption_projection/form_adoption_projection.dart';
-import 'package:pet_home/features/adoption/domain/form_adoption_request/form_adoption_request.dart';
-import 'package:pet_home/features/adoption/domain/postulation_search_query/postulation_search_query.dart';
+import 'package:pet_home/features/adoption/domain/form_adoption_projection.dart';
+import 'package:pet_home/features/adoption/domain/form_adoption_request.dart';
+import 'package:pet_home/features/adoption/domain/postulation_search_query.dart';
 import 'package:pet_home/features/adoption/presentation/user_postulation/user_postulation_screen.dart';
 import 'package:pet_home/features/home/presentation/home_screen.dart';
 import 'package:pet_home/ui/scaffold/scaffold_controller.dart';
@@ -68,9 +68,10 @@ class AdoptionNotifier extends _$AdoptionNotifier {
         .toEither();
 
     res.fold(
-      (left) => ref
-          .read(customModalsProvider)
-          .showInformativeScreen(message: left.message),
+      (left) => ref.read(customModalsProvider).showInformativeScreen(
+            message: left.message,
+            onPressed: ref.read(appRouterProvider).pop,
+          ),
       (right) => ref.read(customModalsProvider).showInformativeScreen(
             isError: false,
             title: '¡Tu solicitud de adopción ha sido enviada!',

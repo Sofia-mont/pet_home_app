@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pet_home/core/router/router.dart';
-import 'package:pet_home/features/posts/domain/post/post/post.dart';
+import 'package:pet_home/features/posts/domain/post.dart';
 import 'package:pet_home/features/posts/presentation/post/post_screen.dart';
 import 'package:pet_home/ui/constants/font_constants.dart';
 import 'package:pet_home/ui/constants/palette.dart';

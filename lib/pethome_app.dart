@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:pet_home/core/app/app_service.dart';
 import 'package:pet_home/core/router/router.dart';
 import 'package:pet_home/features/auth/data/provider/auth_provider.dart';
-import 'package:pet_home/features/auth/domain/user/user.dart';
 import 'package:url_strategy/url_strategy.dart';
 import 'package:pet_home/ui/constants/app_theme.dart';
 
@@ -26,10 +25,8 @@ class _PethomeAppState extends ConsumerState<PethomeApp> {
         localStorage.accessTokenHasExpired != null) {
       if (localStorage.refreshTokenHasExpired!) {
         ref.read(authNotifierProvider.notifier).login(
-              user: User(
-                localStorage.currentUser!.user,
-                localStorage.currentUser!.pass,
-              ),
+              email: localStorage.currentUser!.user!,
+              password: localStorage.currentUser!.pass!,
             );
       } else if (localStorage.accessTokenHasExpired!) {
         ref

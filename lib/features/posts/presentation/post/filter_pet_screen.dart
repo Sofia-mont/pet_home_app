@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pet_home/core/router/router.dart';
 import 'package:pet_home/features/location/data/provider/location_provider.dart';
-import 'package:pet_home/features/posts/domain/posts/publications_search_query/publications_search_query.dart';
+import 'package:pet_home/features/posts/domain/posts_search_query.dart';
 import 'package:pet_home/features/posts/presentation/post/filtered_post_screen.dart';
 import 'package:pet_home/ui/scaffold/custom_scaffold.dart';
 import 'package:pet_home/ui/widgets/buttons/large_button.dart';
@@ -81,7 +81,7 @@ class _FilterPetScreenState extends ConsumerState<FilterPetScreen> {
             onPressed: () {
               ref.read(appRouterProvider).pushReplacement(
                     FilteredPostsScreen.path,
-                    extra: PublicationsResponseQuery(
+                    extra: PostsResponseQuery(
                       petType: petType,
                       petSex: petSex,
                       petSize: petSize,

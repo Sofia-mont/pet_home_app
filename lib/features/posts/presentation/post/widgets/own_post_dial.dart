@@ -4,7 +4,7 @@ import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:pet_home/core/router/router.dart';
 import 'package:pet_home/features/adoption/presentation/postulations/postulations_list_screen.dart';
 import 'package:pet_home/features/posts/data/provider/publications_provider.dart';
-import 'package:pet_home/features/posts/domain/post/post/post.dart';
+import 'package:pet_home/features/posts/domain/post.dart';
 import 'package:pet_home/features/posts/presentation/post/edit_post_Screen.dart';
 import 'package:pet_home/ui/constants/font_constants.dart';
 import 'package:pet_home/ui/constants/palette.dart';

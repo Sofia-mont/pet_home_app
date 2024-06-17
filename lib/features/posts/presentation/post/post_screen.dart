@@ -6,7 +6,7 @@ import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
 import 'package:pet_home/core/router/router.dart';
 import 'package:pet_home/features/adoption/presentation/form_adoption/personal_data_screen.dart';
-import 'package:pet_home/features/posts/domain/post/post/post.dart';
+import 'package:pet_home/features/posts/domain/post.dart';
 import 'package:pet_home/features/posts/presentation/post/widgets/own_post_dial.dart';
 import 'package:pet_home/ui/constants/font_constants.dart';
 import 'package:pet_home/ui/constants/palette.dart';
@@ -123,7 +123,7 @@ class _PublicationScreenState extends ConsumerState<PostScreen>
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  widget.publication.postOwner.name,
+                                  widget.publication.postOwner!.name,
                                   style: FontConstants.body1
                                       .copyWith(color: Palette.primaryDarker),
                                 ),
@@ -135,7 +135,7 @@ class _PublicationScreenState extends ConsumerState<PostScreen>
                               ],
                             ),
                             Text(
-                              'Publicado en \n${DateFormat('MMM d, yyyy', 'es_ES').format(widget.publication.createdAt)}',
+                              'Publicado en \n${DateFormat('MMM d, yyyy', 'es_ES').format(widget.publication.createdAt!)}',
                               style: FontConstants.caption2
                                   .copyWith(color: Palette.textMedium),
                             ),

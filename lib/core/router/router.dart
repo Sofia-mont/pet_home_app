@@ -2,7 +2,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:pet_home/core/app/app_service.dart';
-import 'package:pet_home/features/adoption/domain/form_adoption_response/form_adoption_response.dart';
+import 'package:pet_home/features/adoption/domain/form_adoption_response.dart';
 import 'package:pet_home/features/adoption/presentation/my_postulations/my_postulations_screen.dart';
 import 'package:pet_home/features/adoption/presentation/postulations/postulations_list_screen.dart';
 import 'package:pet_home/features/adoption/presentation/user_postulation/user_postulation_screen.dart';
@@ -17,8 +17,8 @@ import 'package:pet_home/features/adoption/presentation/form_adoption/questionar
 import 'package:pet_home/features/adoption/presentation/form_adoption/adoption_conditions_screen.dart';
 import 'package:pet_home/features/home/presentation/home_more_screen.dart';
 import 'package:pet_home/features/home/presentation/home_screen.dart';
-import 'package:pet_home/features/posts/domain/post/post/post.dart';
-import 'package:pet_home/features/posts/domain/posts/publications_search_query/publications_search_query.dart';
+import 'package:pet_home/features/posts/domain/post.dart';
+import 'package:pet_home/features/posts/domain/posts_search_query.dart';
 import 'package:pet_home/features/posts/presentation/give_adoption_pet/give_adoption_pet_screen.dart';
 import 'package:pet_home/features/posts/presentation/post/edit_post_Screen.dart';
 import 'package:pet_home/features/posts/presentation/post/filter_pet_screen.dart';
@@ -86,8 +86,7 @@ class CustomRouter {
       path: FilteredPostsScreen.path,
       name: FilteredPostsScreen.path,
       builder: (context, state) {
-        PublicationsResponseQuery query =
-            state.extra as PublicationsResponseQuery;
+        PostsResponseQuery query = state.extra as PostsResponseQuery;
         return FilteredPostsScreen(query: query);
       },
     ),

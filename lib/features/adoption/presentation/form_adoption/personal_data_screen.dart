@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pet_home/core/router/router.dart';
-import 'package:pet_home/features/adoption/domain/candidate_info/candidate_info.dart';
-import 'package:pet_home/features/adoption/domain/form_adoption_request/form_adoption_request.dart';
+import 'package:pet_home/features/adoption/domain/candidate_info.dart';
+import 'package:pet_home/features/adoption/domain/form_adoption_request.dart';
 import 'package:pet_home/features/adoption/presentation/form_adoption/family_data_screen.dart';
 import 'package:pet_home/features/location/data/provider/location_provider.dart';
 import 'package:pet_home/ui/constants/font_constants.dart';
@@ -152,7 +152,7 @@ class _PersonalDataScreenState extends ConsumerState<PersonalDataScreen> {
   }
 
   void _submitHandler() {
-    FormAdoptionRequest form = FormAdoptionRequest();
+    FormAdoptionRequest form = const FormAdoptionRequest();
     final isValid = _validateForm();
     if (isValid) {
       ref.read(appRouterProvider).push(

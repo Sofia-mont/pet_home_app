@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pet_home/features/posts/data/provider/publications_provider.dart';
-import 'package:pet_home/features/posts/domain/posts/publications_search_query/publications_search_query.dart';
+import 'package:pet_home/features/posts/domain/posts_search_query.dart';
 import 'package:pet_home/ui/constants/font_constants.dart';
 import 'package:pet_home/ui/constants/palette.dart';
 import 'package:pet_home/ui/widgets/cards/pet_card.dart';
@@ -23,7 +23,7 @@ class _HomeMoreState extends ConsumerState<HomeMore> {
   Widget build(BuildContext context) {
     final post = ref.watch(
       fetchFilteredPostsProvider(
-        PublicationsResponseQuery(petType: widget.petType),
+        PostsResponseQuery(petType: widget.petType),
       ),
     );
     return Scaffold(
@@ -44,7 +44,7 @@ class _HomeMoreState extends ConsumerState<HomeMore> {
           ),
           notifier: ref.read(
             fetchFilteredPostsProvider(
-              PublicationsResponseQuery(petType: widget.petType),
+              PostsResponseQuery(petType: widget.petType),
             ).notifier,
           ),
         ),
