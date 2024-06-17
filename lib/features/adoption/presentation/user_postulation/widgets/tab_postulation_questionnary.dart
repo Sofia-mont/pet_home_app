@@ -17,7 +17,7 @@ class TabPostulationQuestionnary extends ConsumerWidget {
       children: [
         const SizedBox(height: 10),
         Container(
-          height: MediaQuery.of(context).size.height * 0.72,
+          height: MediaQuery.of(context).size.height * 0.70,
           padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
           decoration: BoxDecoration(
             color: const Color(0xFFF5F5F5),
