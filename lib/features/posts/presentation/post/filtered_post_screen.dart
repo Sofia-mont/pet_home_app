@@ -43,6 +43,7 @@ class _FilteredPostsScreenState extends ConsumerState<FilteredPostsScreen> {
               child: Column(
                 children: [
                   Wrap(
+                    spacing: 10,
                     children: [
                       for (var data in chipData)
                         Chip(
