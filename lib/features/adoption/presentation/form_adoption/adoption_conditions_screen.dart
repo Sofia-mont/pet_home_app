@@ -195,10 +195,7 @@ class _QuestionaryThirdScreenState
                   visualDensity: const VisualDensity(
                     horizontal: VisualDensity.minimumDensity,
                   ),
-                  fillColor: MaterialStateProperty.resolveWith<Color>(
-                      (Set<MaterialState> states) {
-                    return Palette.primary;
-                  }),
+                  fillColor: const WidgetStatePropertyAll(Palette.primary),
                   onChanged: (value) {
                     setState(() {
                       termsAndConditions = value ?? false;

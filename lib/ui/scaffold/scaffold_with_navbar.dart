@@ -5,7 +5,7 @@ import 'package:pet_home/features/adoption/presentation/my_postulations/my_postu
 import 'package:pet_home/features/home/presentation/home_screen.dart';
 import 'package:pet_home/features/posts/presentation/post/my_posts_screen.dart';
 import 'package:pet_home/ui/constants/palette.dart';
-import 'package:pet_home/ui/constants/pethome_icons.dart';
+import 'package:pet_home/ui/icons/pethome_icons.dart';
 import 'package:pet_home/ui/scaffold/scaffold_controller.dart';
 
 class ScaffoldWithNavBar extends ConsumerStatefulWidget {

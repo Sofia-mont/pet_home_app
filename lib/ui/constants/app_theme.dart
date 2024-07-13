@@ -45,14 +45,14 @@ class AppTheme {
       ),
       outlinedButtonTheme: OutlinedButtonThemeData(
         style: ButtonStyle(
-          textStyle: MaterialStateProperty.all(FontConstants.body1),
-          shape: MaterialStateProperty.all(
-            const RoundedRectangleBorder(
+          textStyle: WidgetStatePropertyAll(FontConstants.body1),
+          shape: const WidgetStatePropertyAll(
+            RoundedRectangleBorder(
               borderRadius: BorderRadius.all(Radius.circular(10)),
             ),
           ),
-          side: MaterialStateProperty.all(
-            const BorderSide(color: Palette.primary, width: 2),
+          side: const WidgetStatePropertyAll(
+            BorderSide(color: Palette.primary, width: 2),
           ),
         ),
       ),
@@ -67,21 +67,9 @@ class AppTheme {
         ),
         textTheme: ButtonTextTheme.accent,
       ),
-      checkboxTheme: CheckboxThemeData(
-        checkColor: MaterialStateProperty.resolveWith((states) {
-          return Colors.white;
-        }),
-        fillColor: MaterialStateProperty.resolveWith((states) {
-          if (states.contains(MaterialState.disabled)) {
-            return Colors.white;
-          } else if (states.contains(MaterialState.error)) {
-            return Palette.errorDark;
-          } else if (states.contains(MaterialState.error)) {
-            return Palette.errorDark;
-          } else {
-            return Palette.primary;
-          }
-        }),
+      checkboxTheme: const CheckboxThemeData(
+        checkColor: WidgetStatePropertyAll(Colors.white),
+        fillColor: WidgetStatePropertyAll(Palette.primary),
       ),
       inputDecorationTheme: InputDecorationTheme(
         fillColor: Palette.primary,

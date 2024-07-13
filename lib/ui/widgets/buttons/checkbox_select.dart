@@ -40,10 +40,7 @@ class _CheckboxSelectState extends State<CheckboxSelect> {
                             scale: 1.16,
                             child: Radio<String>(
                               fillColor:
-                                  MaterialStateProperty.resolveWith<Color>(
-                                      (Set<MaterialState> states) {
-                                return Palette.primary;
-                              }),
+                                  const WidgetStatePropertyAll(Palette.primary),
                               visualDensity: const VisualDensity(
                                 horizontal: VisualDensity.minimumDensity,
                               ),
