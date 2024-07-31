@@ -33,7 +33,7 @@ class LocationRepository {
 
   Future<List<String>> fetchCiudades(String departamento) async {
     final path =
-        'https://www.datos.gov.co/resource/xdk5-pm3f.json?\$select=municipio&\$limit=1123&departamento=$departamento}';
+        'https://www.datos.gov.co/resource/xdk5-pm3f.json?\$select=municipio&\$limit=1123&departamento=$departamento';
     final response = await client.get(
       path,
       options: Options(
