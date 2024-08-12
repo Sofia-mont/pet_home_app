@@ -183,19 +183,6 @@ class _PublicationScreenState extends ConsumerState<PostScreen>
                               text: 'Adoptame',
                             ),
                           ),
-                        if (!widget.isOwner &&
-                            widget.publication.postState == 'ADOPTADO')
-                          SizedBox(
-                            height: 60,
-                            child: Center(
-                              child: Text(
-                                'Mascota adoptada',
-                                style: FontConstants.subtitle1.copyWith(
-                                  color: Palette.successDark,
-                                ),
-                              ),
-                            ),
-                          ),
                       ],
                     ),
                   ),
@@ -226,7 +213,7 @@ class _PublicationScreenState extends ConsumerState<PostScreen>
             alignment: Alignment.center,
             child: Container(
               padding: const EdgeInsets.all(20),
-              height: 150,
+              height: 165,
               width: MediaQuery.of(context).size.width * 0.95,
               decoration: BoxDecoration(
                 color: Palette.textLighter,
@@ -245,10 +232,13 @@ class _PublicationScreenState extends ConsumerState<PostScreen>
                             color: Palette.textMedium,
                             size: 20,
                           ),
-                          Text(
-                            '${widget.publication.department}, ${widget.publication.city}',
-                            style: FontConstants.body2
-                                .copyWith(color: Palette.textMedium),
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.7,
+                            child: Text(
+                              '${widget.publication.department}, ${widget.publication.city}',
+                              style: FontConstants.body2
+                                  .copyWith(color: Palette.textMedium),
+                            ),
                           ),
                         ],
                       ),
@@ -264,6 +254,7 @@ class _PublicationScreenState extends ConsumerState<PostScreen>
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
                       Text(
                         widget.publication.petName,

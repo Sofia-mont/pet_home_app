@@ -71,9 +71,12 @@ class TabPostulationInfo extends ConsumerWidget {
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
-                              '${form.candidateInfo.city}, ${form.candidateInfo.department}',
-                              style: FontConstants.body1,
+                            SizedBox(
+                              width: MediaQuery.of(context).size.width * 0.5,
+                              child: Text(
+                                '${form.candidateInfo.city}, ${form.candidateInfo.department}',
+                                style: FontConstants.body1,
+                              ),
                             ),
                             Text(
                               form.candidateInfo.address,

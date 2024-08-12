@@ -66,6 +66,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                   ),
                 ],
               ),
+              const SizedBox(height: 5),
               PaginatedListView(
                 state: ref.watch(
                   fetchFilteredPostsProvider(
@@ -133,6 +134,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                   ),
                 ],
               ),
+              const SizedBox(height: 5),
               PaginatedListView(
                 state: ref.watch(
                   fetchFilteredPostsProvider(

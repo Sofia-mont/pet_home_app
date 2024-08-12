@@ -23,7 +23,7 @@ class PetCard extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return Container(
       width: MediaQuery.of(context).size.width * 0.9,
-      height: 260,
+      height: 280,
       margin: EdgeInsets.only(
         right: 10,
         left: isHome ? 0 : 10,
@@ -44,7 +44,7 @@ class PetCard extends ConsumerWidget {
             Positioned(
               right: 0,
               child: Container(
-                height: 230,
+                height: 240,
                 width: MediaQuery.of(context).size.width * 0.4,
                 decoration: const BoxDecoration(
                   color: Palette.textLighter,
@@ -195,7 +195,7 @@ class PetCard extends ConsumerWidget {
                 child: Image.network(
                   publicationInfo.petImages.first,
                   fit: BoxFit.cover,
-                  height: 260,
+                  height: 270,
                   width: MediaQuery.of(context).size.width * 0.5,
                 ),
               ),
