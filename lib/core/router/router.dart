@@ -25,6 +25,7 @@ import 'package:pet_home/features/posts/presentation/post/filter_pet_screen.dart
 import 'package:pet_home/features/posts/presentation/post/filtered_post_screen.dart';
 import 'package:pet_home/features/posts/presentation/post/post_screen.dart';
 import 'package:pet_home/features/posts/presentation/post/my_posts_screen.dart';
+import 'package:pet_home/features/tracking/presentation/tracking_screen.dart';
 import 'package:pet_home/ui/scaffold/scaffold_with_navbar.dart';
 import 'package:pet_home/ui/widgets/response_screen.dart';
 
@@ -117,6 +118,12 @@ class CustomRouter {
         Post publication = state.extra as Post;
         return EditPostScreen(publication: publication);
       },
+    ),
+    GoRoute(
+      parentNavigatorKey: AppService.instance.navigatorKey,
+      path: TrackingScreen.path,
+      name: TrackingScreen.path,
+      builder: (context, state) => const TrackingScreen(),
     ),
     ShellRoute(
       navigatorKey: _shellNavigator,

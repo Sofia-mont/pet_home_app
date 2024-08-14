@@ -7,7 +7,7 @@ part of 'publications_provider.dart';
 // **************************************************************************
 
 String _$fetchFilteredPostsHash() =>
-    r'22445c53bc222c59bc7cdda26da7852f8f5afd43';
+    r'3a88cb3bd99f3ba261f2b2a726d85e8d552214e1';
 
 /// Copied from Dart SDK
 class _SystemHash {
