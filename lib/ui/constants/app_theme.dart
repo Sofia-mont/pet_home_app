@@ -6,7 +6,6 @@ import 'package:pet_home/ui/constants/palette.dart';
 class AppTheme {
   static ThemeData lightTheme() {
     return ThemeData(
-      useMaterial3: false,
       visualDensity: VisualDensity.adaptivePlatformDensity,
       shadowColor: Palette.textMedium,
       scaffoldBackgroundColor: const Color(0xFFF5F5F5),
@@ -97,7 +96,7 @@ class AppTheme {
       ),
       colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.teal).copyWith(
         primary: Palette.primary,
-        secondary: Palette.primary,
+        secondary: Palette.textLighter,
       ),
     );
   }

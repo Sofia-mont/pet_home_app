@@ -115,6 +115,7 @@ class CustomModalsImpl implements CustomModals {
     return showAdaptiveDialog(
       context: context,
       builder: (context) => AlertDialog.adaptive(
+        backgroundColor: Palette.textLighter,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
         title: Text(
           title,

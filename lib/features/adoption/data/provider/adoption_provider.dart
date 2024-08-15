@@ -9,7 +9,6 @@ import 'package:pet_home/features/adoption/domain/form_adoption_request.dart';
 import 'package:pet_home/features/adoption/domain/postulation_search_query.dart';
 import 'package:pet_home/features/adoption/presentation/user_postulation/user_postulation_screen.dart';
 import 'package:pet_home/features/home/presentation/home_screen.dart';
-import 'package:pet_home/ui/scaffold/scaffold_controller.dart';
 import 'package:pet_home/ui/widgets/modals/custom_modals.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:riverpod_infinite_scroll_pagination/riverpod_infinite_scroll_pagination.dart';
@@ -123,12 +122,10 @@ class AdoptionNotifier extends _$AdoptionNotifier {
             content: left.message,
             buttonText: 'Ok',
             buttonAction: () {
-              ref.watch(scaffoldControllerProvider.notifier).setPosition(0);
               ref.read(appRouterProvider).goNamed(HomeScreen.path);
             },
           ),
       (right) {
-        ref.watch(scaffoldControllerProvider.notifier).setPosition(0);
         ref.read(appRouterProvider).goNamed(HomeScreen.path);
       },
     );
@@ -150,7 +147,6 @@ class AdoptionNotifier extends _$AdoptionNotifier {
             buttonText: 'Ok',
           ),
       (right) {
-        ref.watch(scaffoldControllerProvider.notifier).setPosition(0);
         ref.read(appRouterProvider).goNamed(HomeScreen.path);
       },
     );

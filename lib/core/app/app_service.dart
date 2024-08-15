@@ -23,9 +23,9 @@ class AppService extends ChangeNotifier {
 
   UserData? currentUser;
 
-  bool? accessTokenHasExpired;
+  bool accessTokenHasExpired = false;
 
-  bool? refreshTokenHasExpired;
+  bool refreshTokenHasExpired = false;
 
   bool get isLoggedIn => currentUser != null;
 

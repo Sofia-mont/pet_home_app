@@ -3,6 +3,7 @@ import 'package:pet_home/core/constants/app_constants.dart';
 import 'package:pet_home/core/utils/dio/dio_provider.dart';
 import 'package:pet_home/features/auth/domain/register_request.dart';
 import 'package:pet_home/features/auth/domain/token.dart';
+import 'package:pet_home/features/posts/domain/post_owner.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'auth_repository.g.dart';
@@ -58,5 +59,17 @@ class AuthRepository {
       ),
     );
     return Token.fromJson(response.data);
+  }
+
+  Future<PostOwner> getUser({required String email}) async {
+    const path = '${AppConstants.baseURL}/auth/user';
+    final response = await client.get(
+      path,
+      queryParameters: {'email': email},
+      options: Options(
+        headers: {'Content-Type': 'application/json', 'requiresToken': false},
+      ),
+    );
+    return PostOwner.fromJson(response.data);
   }
 }

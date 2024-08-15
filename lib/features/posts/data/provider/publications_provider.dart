@@ -9,7 +9,6 @@ import 'package:pet_home/features/posts/data/repository/publications_repository.
 import 'package:pet_home/features/posts/domain/post.dart';
 import 'package:pet_home/features/posts/domain/post_request.dart';
 import 'package:pet_home/features/posts/domain/posts_search_query.dart';
-import 'package:pet_home/ui/scaffold/scaffold_controller.dart';
 import 'package:pet_home/ui/widgets/modals/custom_modals.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:riverpod_infinite_scroll_pagination/riverpod_infinite_scroll_pagination.dart';
@@ -155,7 +154,6 @@ class PublicationsNotifier extends _$PublicationsNotifier {
             buttonText: 'Continuar',
             buttonAction: () {
               ref.read(appRouterProvider).pop();
-              ref.watch(scaffoldControllerProvider.notifier).setPosition(0);
               ref.read(appRouterProvider).goNamed(HomeScreen.path);
             },
           );
@@ -186,7 +184,6 @@ class PublicationsNotifier extends _$PublicationsNotifier {
             buttonText: 'Continuar',
             buttonAction: () {
               ref.read(appRouterProvider).pop();
-              ref.watch(scaffoldControllerProvider.notifier).setPosition(0);
               ref.read(appRouterProvider).goNamed(HomeScreen.path);
             },
           );

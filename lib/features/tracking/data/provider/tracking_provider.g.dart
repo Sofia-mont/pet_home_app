@@ -21,7 +21,7 @@ final fetchEventsProvider =
 );
 
 typedef _$FetchEvents = AutoDisposeAsyncNotifier<List<Event>>;
-String _$eventsNotifierHash() => r'8aa5e551bfb7d6c1169d92084fdbbe0586ed512b';
+String _$eventsNotifierHash() => r'0428d506cd54411ce72b65d06a524690db312396';
 
 /// See also [EventsNotifier].
 @ProviderFor(EventsNotifier)

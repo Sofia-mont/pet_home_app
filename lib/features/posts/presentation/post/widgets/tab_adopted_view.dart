@@ -25,9 +25,16 @@ class _TabAdoptedViewState extends ConsumerState<TabAdoptedView> {
           margin: const EdgeInsets.symmetric(vertical: 20),
           padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
           decoration: BoxDecoration(
-            color: Palette.primaryLighter,
+            color: const Color(0xFFD95A59),
             borderRadius: BorderRadius.circular(10),
-            border: Border.all(color: Palette.primary, width: 2),
+            boxShadow: [
+              BoxShadow(
+                color: Palette.textMedium.withOpacity(0.25),
+                offset: const Offset(0, 5),
+                blurRadius: 10,
+                spreadRadius: 0,
+              ),
+            ],
           ),
           child: InkWell(
             onTap: () =>
@@ -45,11 +52,13 @@ class _TabAdoptedViewState extends ConsumerState<TabAdoptedView> {
                     children: [
                       Text(
                         'Seguimiento post-adopción',
-                        style: FontConstants.body1,
+                        style: FontConstants.body1
+                            .copyWith(color: Palette.textLighter),
                       ),
                       Text(
                         'Ingresa aquí para realizar un seguimiento de las mascotas que ya has dado en adopción',
-                        style: FontConstants.caption2,
+                        style: FontConstants.caption2
+                            .copyWith(color: Palette.textLighter),
                       ),
                     ],
                   ),

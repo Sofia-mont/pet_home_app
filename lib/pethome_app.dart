@@ -21,18 +21,15 @@ class _PethomeAppState extends ConsumerState<PethomeApp> {
     AppService.instance.initialize();
     final localStorage = AppService.instance;
 
-    if (localStorage.refreshTokenHasExpired != null ||
-        localStorage.accessTokenHasExpired != null) {
-      if (localStorage.refreshTokenHasExpired!) {
-        ref.read(authNotifierProvider.notifier).login(
-              email: localStorage.currentUser!.user!,
-              password: localStorage.currentUser!.pass!,
-            );
-      } else if (localStorage.accessTokenHasExpired!) {
-        ref
-            .read(authNotifierProvider.notifier)
-            .refreshToken(token: localStorage.currentUser!.refreshToken!);
-      }
+    if (localStorage.refreshTokenHasExpired) {
+      ref.read(authNotifierProvider.notifier).login(
+            email: localStorage.currentUser!.user!,
+            password: localStorage.currentUser!.pass!,
+          );
+    } else if (localStorage.accessTokenHasExpired) {
+      ref
+          .read(authNotifierProvider.notifier)
+          .refreshToken(token: localStorage.currentUser!.refreshToken!);
     }
   }
 

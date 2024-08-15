@@ -26,13 +26,9 @@ import 'package:pet_home/features/posts/presentation/post/filtered_post_screen.d
 import 'package:pet_home/features/posts/presentation/post/post_screen.dart';
 import 'package:pet_home/features/posts/presentation/post/my_posts_screen.dart';
 import 'package:pet_home/features/tracking/presentation/tracking_screen.dart';
-import 'package:pet_home/ui/scaffold/scaffold_with_navbar.dart';
 import 'package:pet_home/ui/widgets/response_screen.dart';
 
 part 'redirection.dart';
-
-final GlobalKey<NavigatorState> _shellNavigator =
-    GlobalKey(debugLabel: 'shell');
 
 final appRouterProvider = Provider<GoRouter>((ref) {
   return GoRouter(
@@ -125,69 +121,59 @@ class CustomRouter {
       name: TrackingScreen.path,
       builder: (context, state) => const TrackingScreen(),
     ),
-    ShellRoute(
-      navigatorKey: _shellNavigator,
-      builder: (context, state, child) =>
-          ScaffoldWithNavBar(key: state.pageKey, widget: child),
-      routes: [
-        GoRoute(
-          path: HomeScreen.path,
-          name: HomeScreen.path,
-          pageBuilder: (context, state) {
-            return CustomTransitionPage(
-              child: HomeScreen(
-                key: state.pageKey,
-              ),
-              transitionsBuilder:
-                  (context, animation, secondaryAnimation, child) {
-                return FadeTransition(
-                  opacity: CurveTween(curve: Curves.easeInOutCirc)
-                      .animate(animation),
-                  child: child,
-                );
-              },
+    GoRoute(
+      path: HomeScreen.path,
+      name: HomeScreen.path,
+      pageBuilder: (context, state) {
+        return CustomTransitionPage(
+          child: HomeScreen(
+            key: state.pageKey,
+          ),
+          transitionsBuilder: (context, animation, secondaryAnimation, child) {
+            return FadeTransition(
+              opacity:
+                  CurveTween(curve: Curves.easeInOutCirc).animate(animation),
+              child: child,
             );
           },
-        ),
-        GoRoute(
-          path: MyPostsScreen.path,
-          name: MyPostsScreen.path,
-          pageBuilder: (context, state) {
-            return CustomTransitionPage(
-              child: MyPostsScreen(
-                key: state.pageKey,
-              ),
-              transitionsBuilder:
-                  (context, animation, secondaryAnimation, child) {
-                return FadeTransition(
-                  opacity: CurveTween(curve: Curves.easeInOutCirc)
-                      .animate(animation),
-                  child: child,
-                );
-              },
+        );
+      },
+    ),
+    GoRoute(
+      path: MyPostsScreen.path,
+      name: MyPostsScreen.path,
+      pageBuilder: (context, state) {
+        return CustomTransitionPage(
+          child: MyPostsScreen(
+            key: state.pageKey,
+          ),
+          transitionsBuilder: (context, animation, secondaryAnimation, child) {
+            return FadeTransition(
+              opacity:
+                  CurveTween(curve: Curves.easeInOutCirc).animate(animation),
+              child: child,
             );
           },
-        ),
-        GoRoute(
-          path: MyPostulationsScreen.path,
-          name: MyPostulationsScreen.path,
-          pageBuilder: (context, state) {
-            return CustomTransitionPage(
-              child: MyPostulationsScreen(
-                key: state.pageKey,
-              ),
-              transitionsBuilder:
-                  (context, animation, secondaryAnimation, child) {
-                return FadeTransition(
-                  opacity: CurveTween(curve: Curves.easeInOutCirc)
-                      .animate(animation),
-                  child: child,
-                );
-              },
+        );
+      },
+    ),
+    GoRoute(
+      path: MyPostulationsScreen.path,
+      name: MyPostulationsScreen.path,
+      pageBuilder: (context, state) {
+        return CustomTransitionPage(
+          child: MyPostulationsScreen(
+            key: state.pageKey,
+          ),
+          transitionsBuilder: (context, animation, secondaryAnimation, child) {
+            return FadeTransition(
+              opacity:
+                  CurveTween(curve: Curves.easeInOutCirc).animate(animation),
+              child: child,
             );
           },
-        ),
-      ],
+        );
+      },
     ),
     GoRoute(
       parentNavigatorKey: AppService.instance.navigatorKey,

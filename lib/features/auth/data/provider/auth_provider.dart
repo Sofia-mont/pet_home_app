@@ -3,6 +3,7 @@ import 'package:pet_home/core/app/app_service.dart';
 import 'package:pet_home/core/app/domain/user_data.dart';
 import 'package:pet_home/core/extension_methods/future_extension.dart';
 import 'package:pet_home/core/router/router.dart';
+import 'package:pet_home/core/sealed/custom_async_value.dart';
 import 'package:pet_home/core/sealed/either.dart';
 import 'package:pet_home/features/auth/data/provider/auth_state.dart';
 import 'package:pet_home/features/auth/data/repository/auth_repository.dart';
@@ -55,7 +56,7 @@ class AuthNotifier extends _$AuthNotifier {
             buttonText: 'Reintentar',
             buttonAction: () => ref.read(appRouterProvider).pop(),
           ),
-      (right) {
+      (right) async {
         AppService.instance.setUserData(
           UserData(
             id: DateTime.now().millisecondsSinceEpoch.toString(),
@@ -66,6 +67,17 @@ class AuthNotifier extends _$AuthNotifier {
           ),
         );
         ref.read(appRouterProvider).goNamed(HomeScreen.path);
+      },
+    );
+  }
+
+  Future<void> getUser({required String email}) async {
+    final user =
+        await ref.read(authRepositoryProvider).getUser(email: email).toEither();
+    user.fold(
+      (left) => state = state.copyWith(user: AppAsync.failure(left)),
+      (right) async {
+        state = state.copyWith(user: AppAsync.data(right));
       },
     );
   }

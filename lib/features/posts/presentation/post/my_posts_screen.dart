@@ -28,6 +28,7 @@ class _MyPostsScreenState extends ConsumerState<MyPostsScreen>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: const Color(0xFFF5F5F5),
         title: const Center(
           child: Text(
             'Mis publicaciones',
@@ -36,6 +37,7 @@ class _MyPostsScreenState extends ConsumerState<MyPostsScreen>
         ),
         elevation: 0,
         bottom: TabBar(
+          indicatorSize: TabBarIndicatorSize.tab,
           padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 5),
           indicator: const BoxDecoration(
             color: Palette.primaryLighter,

@@ -5,6 +5,7 @@ import 'package:pet_home/features/posts/domain/post.dart';
 import 'package:pet_home/features/posts/presentation/post/post_screen.dart';
 import 'package:pet_home/ui/constants/font_constants.dart';
 import 'package:pet_home/ui/constants/palette.dart';
+import 'package:pet_home/ui/constants/shimmer_image.dart';
 import 'package:pet_home/ui/icons/pethome_icons.dart';
 
 class PetCard extends ConsumerWidget {
@@ -52,6 +53,14 @@ class PetCard extends ConsumerWidget {
                     topRight: Radius.circular(10),
                     bottomRight: Radius.circular(10),
                   ),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Palette.textMedium,
+                      blurRadius: 10,
+                      spreadRadius: -5,
+                      offset: Offset(2, 5),
+                    ),
+                  ],
                 ),
                 child: Padding(
                   padding: const EdgeInsets.symmetric(
@@ -86,7 +95,7 @@ class PetCard extends ConsumerWidget {
                       ),
                       Text(
                         '${publicationInfo.department}, ${publicationInfo.city}',
-                        style: FontConstants.caption2,
+                        style: FontConstants.caption2.copyWith(height: .9),
                       ),
                       Text(
                         publicationInfo.petAge,
@@ -192,26 +201,8 @@ class PetCard extends ConsumerWidget {
               left: 0,
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(15),
-                child: Image.network(
-                  loadingBuilder: (
-                    BuildContext context,
-                    Widget child,
-                    ImageChunkEvent? loadingProgress,
-                  ) {
-                    if (loadingProgress == null) {
-                      return child;
-                    }
-                    return Center(
-                      child: CircularProgressIndicator(
-                        value: loadingProgress.expectedTotalBytes != null
-                            ? loadingProgress.cumulativeBytesLoaded /
-                                loadingProgress.expectedTotalBytes!
-                            : null,
-                      ),
-                    );
-                  },
-                  publicationInfo.petImages.first,
-                  fit: BoxFit.cover,
+                child: ShimmerImage(
+                  imageUrl: publicationInfo.petImages.first,
                   height: 270,
                   width: MediaQuery.of(context).size.width * 0.5,
                 ),

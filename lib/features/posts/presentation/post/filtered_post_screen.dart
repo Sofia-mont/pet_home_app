@@ -47,6 +47,10 @@ class _FilteredPostsScreenState extends ConsumerState<FilteredPostsScreen> {
                     children: [
                       for (var data in chipData)
                         Chip(
+                          backgroundColor: Palette.primaryLighter,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(50),
+                          ),
                           label: Text(
                             data!,
                             style: FontConstants.body2
