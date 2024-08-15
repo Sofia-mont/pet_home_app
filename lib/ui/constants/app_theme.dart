@@ -31,7 +31,7 @@ class AppTheme {
           backgroundColor: Palette.primary,
           shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.all(
-              Radius.circular(20),
+              Radius.circular(10),
             ),
           ),
           elevation: 0,
