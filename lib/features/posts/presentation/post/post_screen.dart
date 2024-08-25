@@ -219,141 +219,149 @@ class _PublicationScreenState extends ConsumerState<PostScreen>
                 color: Palette.textLighter,
                 borderRadius: BorderRadius.circular(20),
               ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
-                        children: [
-                          const Icon(
-                            Pethome.map_pin,
-                            color: Palette.textMedium,
-                            size: 20,
-                          ),
-                          SizedBox(
-                            width: MediaQuery.of(context).size.width * 0.7,
-                            child: Text(
-                              '${widget.publication.department}, ${widget.publication.city}',
-                              style: FontConstants.body2
-                                  .copyWith(color: Palette.textMedium),
+              child: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
+                          children: [
+                            const Icon(
+                              Pethome.map_pin,
+                              color: Palette.textMedium,
+                              size: 20,
                             ),
-                          ),
-                        ],
-                      ),
-                      Icon(
-                        widget.publication.petSex == 'Macho'
-                            ? Pethome.male
-                            : Pethome.female,
-                        color: widget.publication.petSex == 'Macho'
-                            ? Palette.primary
-                            : Palette.softPink,
-                      ),
-                    ],
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: [
-                      Text(
-                        widget.publication.petName,
-                        style: FontConstants.heading3
-                            .copyWith(color: Palette.primaryDarker),
-                      ),
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [
-                          Icon(
-                            Pethome.dog,
-                            color: Palette.textMedium.withOpacity(
-                              widget.publication.petSize == 'Grande' ? 1 : 0.3,
+                            SizedBox(
+                              width: MediaQuery.of(context).size.width * 0.7,
+                              child: Text(
+                                '${widget.publication.department}, ${widget.publication.city}',
+                                style: FontConstants.body2
+                                    .copyWith(color: Palette.textMedium),
+                              ),
                             ),
-                            size: 35,
-                          ),
-                          const SizedBox(width: 5),
-                          Icon(
-                            Pethome.dog,
-                            color: Palette.textMedium.withOpacity(
-                              widget.publication.petSize == 'Mediano' ? 1 : 0.3,
+                          ],
+                        ),
+                        Icon(
+                          widget.publication.petSex == 'Macho'
+                              ? Pethome.male
+                              : Pethome.female,
+                          color: widget.publication.petSex == 'Macho'
+                              ? Palette.primary
+                              : Palette.softPink,
+                        ),
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        Text(
+                          widget.publication.petName,
+                          style: FontConstants.heading3
+                              .copyWith(color: Palette.primaryDarker),
+                        ),
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            Icon(
+                              Pethome.dog,
+                              color: Palette.textMedium.withOpacity(
+                                widget.publication.petSize == 'Grande'
+                                    ? 1
+                                    : 0.3,
+                              ),
+                              size: 35,
                             ),
-                            size: 30,
-                          ),
-                          const SizedBox(width: 5),
-                          Icon(
-                            Pethome.dog,
-                            color: Palette.textMedium.withOpacity(
-                              widget.publication.petSize == 'Pequeño' ? 1 : 0.3,
+                            const SizedBox(width: 5),
+                            Icon(
+                              Pethome.dog,
+                              color: Palette.textMedium.withOpacity(
+                                widget.publication.petSize == 'Mediano'
+                                    ? 1
+                                    : 0.3,
+                              ),
+                              size: 30,
                             ),
-                            size: 20,
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                  Text(
-                    widget.publication.petAge,
-                    style:
-                        FontConstants.body2.copyWith(color: Palette.textMedium),
-                  ),
-                  const SizedBox(height: 10),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
-                        children: [
-                          Icon(
-                            widget.publication.vaccinated
-                                ? Icons.check_circle
-                                : Icons.cancel,
-                            color: widget.publication.vaccinated
-                                ? Palette.successDark
-                                : Palette.errorDark,
-                            size: 20,
-                          ),
-                          Text(
-                            'Vacunado',
-                            style: FontConstants.caption2,
-                          ),
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          Icon(
-                            widget.publication.neutered
-                                ? Icons.check_circle
-                                : Icons.cancel,
-                            color: widget.publication.neutered
-                                ? Palette.successDark
-                                : Palette.errorDark,
-                            size: 20,
-                          ),
-                          Text(
-                            'Castrado',
-                            style: FontConstants.caption2,
-                          ),
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          Icon(
-                            widget.publication.dewormed
-                                ? Icons.check_circle
-                                : Icons.cancel,
-                            color: widget.publication.dewormed
-                                ? Palette.successDark
-                                : Palette.errorDark,
-                            size: 20,
-                          ),
-                          Text(
-                            'Desparasitado',
-                            style: FontConstants.caption2,
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ],
+                            const SizedBox(width: 5),
+                            Icon(
+                              Pethome.dog,
+                              color: Palette.textMedium.withOpacity(
+                                widget.publication.petSize == 'Pequeño'
+                                    ? 1
+                                    : 0.3,
+                              ),
+                              size: 20,
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                    Text(
+                      widget.publication.petAge,
+                      style: FontConstants.body2
+                          .copyWith(color: Palette.textMedium),
+                    ),
+                    const SizedBox(height: 10),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
+                          children: [
+                            Icon(
+                              widget.publication.vaccinated
+                                  ? Icons.check_circle
+                                  : Icons.cancel,
+                              color: widget.publication.vaccinated
+                                  ? Palette.successDark
+                                  : Palette.errorDark,
+                              size: 20,
+                            ),
+                            Text(
+                              'Vacunado',
+                              style: FontConstants.caption2,
+                            ),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Icon(
+                              widget.publication.neutered
+                                  ? Icons.check_circle
+                                  : Icons.cancel,
+                              color: widget.publication.neutered
+                                  ? Palette.successDark
+                                  : Palette.errorDark,
+                              size: 20,
+                            ),
+                            Text(
+                              'Castrado',
+                              style: FontConstants.caption2,
+                            ),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Icon(
+                              widget.publication.dewormed
+                                  ? Icons.check_circle
+                                  : Icons.cancel,
+                              color: widget.publication.dewormed
+                                  ? Palette.successDark
+                                  : Palette.errorDark,
+                              size: 20,
+                            ),
+                            Text(
+                              'Desparasitado',
+                              style: FontConstants.caption2,
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
