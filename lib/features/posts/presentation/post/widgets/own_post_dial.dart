@@ -29,6 +29,7 @@ class _OwnPostDialState extends ConsumerState<OwnPostDial> {
     return SpeedDial(
       icon: Pethome.dog_nose,
       activeIcon: Icons.clear_outlined,
+      backgroundColor: Palette.primary,
       spacing: 20,
       children: [
         SpeedDialChild(

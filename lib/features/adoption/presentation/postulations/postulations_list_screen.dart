@@ -31,6 +31,7 @@ class _PostulationsListScreenState extends ConsumerState<PostulationsListScreen>
       appBar: AppBar(
         elevation: 0,
         bottom: TabBar(
+          indicatorSize: TabBarIndicatorSize.tab,
           padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 5),
           indicator: const BoxDecoration(
             color: Palette.primaryLighter,
