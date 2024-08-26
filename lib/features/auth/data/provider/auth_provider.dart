@@ -28,9 +28,12 @@ class AuthNotifier extends _$AuthNotifier {
         await ref.read(authRepositoryProvider).register(user: user).toEither();
     ref.read(customModalsProvider).pop();
     res.fold(
-      (left) => ref
-          .read(customModalsProvider)
-          .showInformativeScreen(message: left.message),
+      (left) => ref.read(customModalsProvider).showInfoDialog(
+            title: 'Error al registrarte',
+            content: left.message,
+            buttonText: 'Reintentar',
+            buttonAction: () => ref.read(appRouterProvider).pop(),
+          ),
       (right) => ref.read(customModalsProvider).showInformativeScreen(
             isError: false,
             message: 'Ahora puedes iniciar sesión.',

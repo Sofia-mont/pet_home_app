@@ -116,6 +116,7 @@ class _RegisterInfoScreenState extends ConsumerState<RegisterInfoScreen> {
                         city = '';
                         department = value;
                       });
+                      FocusScope.of(context).requestFocus(FocusNode());
                     },
                     asyncItems: (p0) => ref
                         .read(locationNotifierProvider.notifier)
@@ -133,6 +134,7 @@ class _RegisterInfoScreenState extends ConsumerState<RegisterInfoScreen> {
                       setState(() {
                         city = value;
                       });
+                      FocusScope.of(context).requestFocus(FocusNode());
                     },
                     asyncItems: (p0) => department == ''
                         ? Future.value([])
