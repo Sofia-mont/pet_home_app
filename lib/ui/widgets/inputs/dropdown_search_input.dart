@@ -75,6 +75,7 @@ class _DropdownSearchInputState extends State<DropdownSearchInput> {
                 items: widget.items,
                 itemAsString: (item) => item.toString(),
                 popupProps: PopupProps.dialog(
+                  dialogProps: const DialogProps(backgroundColor: Colors.white),
                   isFilterOnline: true,
                   showSearchBox: false,
                   title: Padding(
